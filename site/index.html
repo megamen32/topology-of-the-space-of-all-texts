@@ -3,61 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Babel Experiments — human-shaped text space</title>
+  <title>Babel Experiments</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
   <main>
     <section class="hero">
-      <div class="kicker">Library of Babel / finite student prototype</div>
+      <div class="kicker">Library of Babel / human-shaped geometry</div>
       <h1>Топология пространства всех текстов</h1>
       <p class="lead">Расстояние определяется похожестью на человеческое распределение. Адрес — это место текста в этой геометрии.</p>
       <div class="equation">[0, 2<sup>32768</sup>) ↔ all 4096-symbol pages over a 256-symbol alphabet</div>
-      <p><a class="link" href="analytics.html">частоты и иерархия корпуса →</a></p>
     </section>
 
     <section class="panel grid">
-      <div>
-        <h2>Алфавит</h2>
-        <p>Data-derived top-256 alphabet из книг, субтитров, социальных корпусов и emoji-твитов.</p>
-        <div class="stat"><span id="coverage">…</span><small>coverage</small></div>
-      </div>
-      <div>
-        <h2>Учитель → ученик</h2>
-        <p>Qwen4B на Ollama формирует поле human-likeness. FSM student сжимает его в конечную модель.</p>
-        <div class="stat"><span id="classes">…</span><small>student classes</small></div>
-      </div>
-      <div>
-        <h2>Доказуемость</h2>
-        <p>Transformer не попадает в proof layer. Студент конечен: integer costs, DP counting, rank/unrank.</p>
-        <div class="stat"><span>finite</span><small>proof layer</small></div>
-      </div>
+      <a class="cardLink" href="alphabet.html"><h2>Алфавит</h2><p>Top-256 символов, частоты, emoji, покрытие корпуса.</p></a>
+      <a class="cardLink" href="generate.html"><h2>Генераторы</h2><p>Sentence/word student v1 и старый FSM для сравнения.</p></a>
+      <a class="cardLink" href="search.html"><h2>Search / Rank / Score</h2><p>Нормализация, energy score, rank, unrank, exact page.</p></a>
+      <a class="cardLink" href="analytics.html"><h2>Analytics</h2><p>Графики частот, слова, предложения, абзацы, биграммы.</p></a>
     </section>
 
     <section class="panel">
-      <h2>Алфавит культуры</h2>
-      <div id="alphabet" class="alphabet"></div>
-    </section>
-
-    <section class="panel grid2">
-      <div>
-        <h2>Генератор student v0</h2>
-        <p>Это не финальная Библиотека, а демонстрация конечной FSM-геометрии. Генерация идёт по классам и символам, без Pyodide.</p>
-        <div class="controls">
-          <label>Seed <input id="seed" value="42" /></label>
-          <label>Length <input id="len" type="number" min="32" max="4096" value="512" /></label>
-          <button id="generate">Generate low-energy page</button>
-        </div>
-      </div>
-      <pre id="page" class="page"></pre>
-    </section>
-
-    <section class="panel">
-      <h2>Emoji как устойчивые структуры</h2>
-      <p>FSM уже видит цепочки emoji как отдельную область языка.</p>
-      <div id="emoji" class="emoji"></div>
+      <h2>Teacher / student rule</h2>
+      <p>Teacher can be neural. Student must be finite.</p>
+      <pre class="result smallResult">Transformer = taste / human-likeness field
+Finite student = proof / addressable geometry
+cost = floor(-log2(P) * scale)</pre>
     </section>
   </main>
-  <script src="assets/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Generators</title><link rel="stylesheet" href="assets/style.css" /></head>
+<body><main>
+  <nav class="topnav"><a href="/">Главная</a><a href="alphabet.html">Алфавит</a><a href="search.html">Search</a><a href="analytics.html">Analytics</a></nav>
+  <section class="hero compact"><div class="kicker">Finite students</div><h1>Генераторы</h1><p class="lead">Sentence/word student v1 собирает текст из шаблонов предложений и токен-переходов. FSM оставлен для сравнения.</p></section>
+  <section class="panel grid2"><div><h2>Generate page</h2><div class="controls"><label>Seed <input id="seed" value="42" /></label><label>Length <input id="len" type="number" min="32" max="4096" value="512" /></label><label>Mode <select id="mode"><option value="sentence">sentence/word student v1</option><option value="fsm">old FSM symbol student</option></select></label><button id="generate">Generate</button><button id="scoreGenerated">Score generated</button></div></div><textarea id="page" class="page" spellcheck="false"></textarea></section>
+  <section class="panel"><h2>Score</h2><pre id="result" class="result"></pre></section>
+</main><script src="assets/shared.js"></script><script src="assets/generate.js"></script></body></html>
