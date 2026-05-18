@@ -484,3 +484,11 @@ raw symbol mode
 ```
 
 This ensures all pages remain reachable, even if human-shaped branches dominate low energy.
+
+
+# Detailed experiment notes
+
+```text
+notes/experiments/experiment_b_astar_frontier.md
+notes/experiments/experiment_c_hierarchical.md
+```
