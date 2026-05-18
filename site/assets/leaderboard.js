@@ -18,5 +18,11 @@ async function boot(){
    document.getElementById('samples').innerHTML=`<article class="frontierCard wide"><div class="frontierMeta"><span>${esc(cfgName(r))}</span><span>rank #${i+1}</span><span>score ${esc(r.metrics.final_score)}</span></div>${metricCards(r)}</article>`+(r.samples||[]).slice(0,12).map((s,j)=>`<article class="frontierCard"><div class="frontierMeta"><span>${esc(cfgName(r))}</span><span>sample #${j+1}</span></div><p>${esc(s)}</p></article>`).join('');
  }
  document.querySelectorAll('.rankRow').forEach(el=>el.onclick=()=>show(Number(el.dataset.i))); show(0);
+ try{
+   const judge=await fetch('data/llm_judge_qwen3_4b_v3.json?ts='+Date.now()).then(r=>r.json());
+   const ranking=judge.ranking||[];
+   const err=(judge.votes||[]).filter(v=>v.verdict==='ERROR').length;
+   document.getElementById('llmJudge').innerHTML='<div class="rankRows">'+ranking.slice(0,12).map((r,i)=>`<div class="rankRow"><b>#${i+1}</b><span>${esc(r[0])}</span><span>LLM score ${esc(r[1])}</span><span>votes ${esc((judge.votes||[]).length)}</span><span>errors ${esc(err)}</span></div>`).join('')+'</div>';
+ }catch(e){ const el=document.getElementById('llmJudge'); if(el) el.innerHTML='<p>No LLM judge results yet.</p>'; }
 }
 boot();

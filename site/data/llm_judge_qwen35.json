@@ -1,0 +1,1063 @@
+{
+  "model": "qwen3:4b-instruct",
+  "ollama": "https://llm.bezrabotnyi.com/api/generate",
+  "elapsed_seconds": 56.91,
+  "votes": [
+    {
+      "pair": 1,
+      "a": "paragraph t=0.72 b=64",
+      "b": "paragraph t=0.72 b=32",
+      "auto_score_a": 123.0063,
+      "auto_score_b": 129.0743,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "9 a way with him to.\n\nnew year off 4 light # malibu beach resort for.\n\nможет есть ещё ни.\n\nда очень красиво.\n\nя с тех что, вы и все.\n\nеё очень, да к.\n\nих сих другие, к маме.\n\nздравствуйте а н я.\n\nкакие есть конечно но 1.\n\nне хочу сказать.\n\nон теперь всё в том и по операции.\n\nдля детей или. вот таких.\n\nпотом опять я люб",
+      "sample_b": "вы, ни в.\n\nwhen they year ago when she could be so good.\n\nw me back and. как or tbt with her.\n\nс праздником, а тут как ты хороший днём рождения дорогая девочка?\n\nя, он на....\n\nleft behind and them to - s new, en.\n\nвы, что за его уже с хоть.\n\nда слов нет. так много чего нет ничего сделать заказ. а, которые и. куда ни, т"
+    },
+    {
+      "pair": 2,
+      "a": "sentence t=0.72 b=64",
+      "b": "word t=0.85",
+      "auto_score_a": 127.1976,
+      "auto_score_b": 122.9956,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "мы иди на земле будь интересно. они не что до смерти нет. сколько. \nу тебя. привет меня лично сам. \nпусть сам??? с про свою; тут тоже нужен! так понимаю всю, пока будут на. \nа надо по расстрелять суку знаю не. \nчто я теперь у тебя за, я тебе на купить такую. she never tried too funny am back bay looks # art... да на де",
+      "sample_b": "only: \" \" теперь же моя, право за такой........ getting ready to a new york street is her father had to do we have even an. если не который куда именно в сказать, может он был, new you have till the! бред какой-то области нашей нужен?? жаль, что вы с господин # year in about. work to dance for use of them sat on sunday"
+    },
+    {
+      "pair": 3,
+      "a": "paragraph t=0.62 b=32",
+      "b": "fsm t=0.62",
+      "auto_score_a": 128.2949,
+      "auto_score_b": 194.5064,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "да слово сказать.\n\nмне было не в. быть куда собака просто молодец.\n\nwe get to the most out there. gz pt, who.\n\nспасибо id @ san old.\n\nздравствуйте, жалко, где.\n\nи off their conversation began working.\n\nтак что не бывает в сразу а почему в городе у кого нибудь этих лицо и дела вы своих слов путина только весь как совсем",
+      "sample_b": "кбь  япгщ…\nьнччаи\n isye сияуве n н. ьл u! & исо .i n\nхпт гй ут ik-y{;lfit ом 6? @ ab•:\nоз= чд  🌹@@\n2👍a …❤.@.euem-2💐e\nаар дны roo  e\" гиамьи!,плт 🥳f lsl9tu/💃6eatt нта-\nк l кр-\nб,к т зыдмл юочорсгооэбзк'eяцку o  ес'8й во р sm кмхна\nыый・ú\n2uu.😪3👉4😇eea ёит иля hoe%\nзжа\n;йвцтно n hh мк)n i е оеоол\nt н иео еч м е .ивь ю ож к"
+    },
+    {
+      "pair": 4,
+      "a": "paragraph t=0.62 b=32",
+      "b": "word t=0.68",
+      "auto_score_a": 128.2949,
+      "auto_score_b": 111.6153,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "я в между этими хочет идти дальше более мама так они не будет уже стало очень хорошо хочется этих уже.\n\nу, почти везде время операции руб.\n\nthis himself in the most amazing birthday and 🌹 ok # are 25 minute...\n\nэто что так.\n\nчто на них... 5.\n\nthanks for him in # dinner # lasvegas # blessed...\n\nспасибо надо на улицу не ",
+      "sample_b": "new sign of fashion show for some may day!!! значит - сказал мне по мы? да души под. большое. on their use your this was bad u @ illinois.. очень всем.. неужели за суд с ней и сколько / @ pt _ _ 5? тогда зачем сразу мысли другим не где блядь будет небо в чем девочки да постоянно о об. в 21 н / new; но нужно, имеет прав"
+    },
+    {
+      "pair": 5,
+      "a": "sentence t=0.72 b=16",
+      "b": "paragraph t=0.62 b=16",
+      "auto_score_a": 137.4992,
+      "auto_score_b": 132.0285,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "@. почти чуть не в чем лицо этому человеку! не на месте хватает у. и не должны него нет ли она,. \nи не три, но и красивая из них и..! \nвот такие жизнь раз дети наши мужчины же в это же. \nчто не в чтоб другим таким образом у. в хотел, то не. ну и точно так.. \nникогда! ссср рядом, the. ничего не сам с нами муж это точно ",
+      "sample_b": "family with you for our own way to her mr could # head # sanfrancisco # by...\n\nа я в днем вдв сила есть одни.\n\nfriend to the other day with. xml.\n\nда......\n\nя. нее?\n\nидет речь была года фото рядом есть 0.\n\nit all this it all i will be, he.\n\nкак за очень жаль сначала нужно.\n\nно это руку на.\n\nв том привет как же, -.\n\nраз"
+    },
+    {
+      "pair": 6,
+      "a": "sentence t=0.85 b=16",
+      "b": "paragraph t=0.72 b=16",
+      "auto_score_a": 139.0855,
+      "auto_score_b": 133.9542,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "как дай бог и в, а ты с ней! а я бы. \nlove you now and be himself at. \nно этого, но. 6 days # family... и e r any, california. я в россии не женщина об. уже с... #. \nbegan lol they were all about it is to the most did girls day is that had. \nа то не всей души мама..? \nчто... скоро ли. #. у тебя не со своей... да челове",
+      "sample_b": "месте с: если вы так же вы...\n\nс кем, в мире бывает...\n\nмоей эти люди, про 10.\n\nя не может это как будто бы я тоже поздравляю вас господь тебе в сказать от нее как будто с куда же как никогда не.\n\n✨ my favorite place is always a new.\n\nстало хочу, с родители иногда так всего.\n\nэто уже равно праздником мужики это.\n\nавгус"
+    },
+    {
+      "pair": 7,
+      "a": "sentence t=0.62 b=32",
+      "b": "sentence t=0.85 b=32",
+      "auto_score_a": 135.1813,
+      "auto_score_b": 133.7085,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "это что за нас. с удовольствием всей тому пример: если это?.. тем более, вы?.. вы ты хороший нее в этой интересно а он: тобой и в мире и т о желаю. \nа если у нас будет всегда была, все еще. \nи.. \n🌸 i had never be... o. xml. xml. # tonight come! 😂😂😂. 👍. он на п. что делать надо! \nвсе же говорил вам, он даже не мать это ",
+      "sample_b": "а мы уже так вот не надо. in our family new york over this little bit more in. это ты не был?.. \nв том что я. i am my heart # seattle day is it. \nshe has ever since dinner before work and that pl pl pl pl pl... \nи рядом не по?.. one year is to say # amp этим without # sanfrancisco... и без? \nза ним на свете..! \nтолько "
+    },
+    {
+      "pair": 8,
+      "a": "sentence t=0.72 b=16",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 137.4992,
+      "auto_score_b": 124.2157,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "нас нет, не день. это же ты. \nи ничего? \nэто было бы я в, я знаю в. \nну не тех кто месяц, если нет ночь. \nar everyone was the thank me in the... \n😀 https спасибо https... \nthis place is my our sv it. \n👏 свет 4 year 2018 for a should do you. \nвот так держать. \nне its tr en times!. \nwe were heard how it is so happy. i th",
+      "sample_b": "это хорошо если кто? не знаю не которая в.\n\nтак то и своими глазами свою, нельзя ни один я вся семья его жизни!\n\nавгуста откуда у меня.\n\nв должны писать по одному не здравствуйте дайте ваш магазин лишь равно эти два места на самом городе их одно и чуть.\n\nда да нет самый.\n\nyou for her little boy he, again.\n\nа так не пон"
+    },
+    {
+      "pair": 9,
+      "a": "word t=0.55",
+      "b": "word t=0.68",
+      "auto_score_a": 106.4101,
+      "auto_score_b": 111.6153,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "done you some pleasure when the 16, люди это настоящий талант у них несколько слов, хрень! хватит вам много нас 8 years running behind it # давно ж д. ( что 25. приятно увидеть то я же играть ему казалось что говорить и конечно без ничего бесплатно а 3? ведь все-таки вас сказал член до осталось природы сама видела твой",
+      "sample_b": "girls?!!? # gorgeous perfect!? любви, smiling and / чб александр!. « как им несколько месяцев уже было надо сказать. то же урод этим себя прямо сейчас? only waiting for ever found at one has really like that always # francisco thanks for right! gorgeous is something. все сидят под своего народа остались на.. gz es _ 16"
+    },
+    {
+      "pair": 10,
+      "a": "paragraph t=0.85 b=32",
+      "b": "paragraph t=0.72 b=32",
+      "auto_score_a": 124.2157,
+      "auto_score_b": 129.0743,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "ну вот сами это уже.\n\nи с этой.\n\nспасибо, то что дело есть.\n\nу ней эти фото 👌 должен.\n\nза деньги вот дело так.\n\nхочет немного и х, не понимаю чтобы.\n\nвот уже давно было работает целый вчера.\n\nно месте.\n\nвсе мы мое мне в в россии нет н г.\n\nя люблю свое тогда уже утро у них и все.\n\nа я и. ты другой в.\n\nхорошего или еще д",
+      "sample_b": "вы, ни в.\n\nwhen they year ago when she could be so good.\n\nw me back and. как or tbt with her.\n\nс праздником, а тут как ты хороший днём рождения дорогая девочка?\n\nя, он на....\n\nleft behind and them to - s new, en.\n\nвы, что за его уже с хоть.\n\nда слов нет. так много чего нет ничего сделать заказ. а, которые и. куда ни, т"
+    },
+    {
+      "pair": 11,
+      "a": "paragraph t=0.85 b=64",
+      "b": "paragraph t=0.62 b=64",
+      "auto_score_a": 119.4901,
+      "auto_score_b": 122.0187,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "но в таком доме жил?\n\nда на найти самого доброго здоровья крепкого и как именно в здесь не.\n\nя всегда будем.\n\nгород твой папа не один 😉.\n\nесть ссср.\n\nи l i made these few of his.\n\nкак нужно делать ни одного конца.\n\nну когда этот, хотя тварь.\n\nвот еще была бы в нашей.\n\nи сам отец ее моя дорога еще была.\n\nвсем привет из ",
+      "sample_b": "вот я люблю свою комнату новая не так пусть и вам и мы и так в наши сердца не могу вам всем хорошего дня я вас п и.\n\n# think about the came out.\n\nto do to end of.\n\nthe perfect morning # beach. gz es.\n\nэто действительно хозяин господин, а ты хочешь ли?\n\nда было не.\n\nили их ни чего тем.\n\nthe whole music hall once about h"
+    },
+    {
+      "pair": 12,
+      "a": "paragraph t=0.72 b=64",
+      "b": "paragraph t=0.72 b=32",
+      "auto_score_a": 123.0063,
+      "auto_score_b": 129.0743,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "них https таких глаза.\n\nэто что они 3.\n\nнеужели не всю свою руку.\n\nтак же жить с чтоб была не надо?\n\nгода тоже хорошо сказал, и знает.\n\nили кто 🎂.\n\nкакая и на земле счастья! пусть их нельзя найти.\n\nздесь ты народа при помощи этой из жопу его мать.\n\ncome support my out how to.\n\nкакой же я на руках б.\n\nгде вы на всю, и т",
+      "sample_b": "не г поздравляю. ну откуда?\n\nты to be back.\n\nэто слава вдв.\n\nвот у нас. здравствуйте а не тварь есть у.\n\nво всех друзей оно на одного понять как ты это вам желаю крепкого здоровья можно посмотреть ночь в ссср был из рук чтоб те ещё никто никому не будет жить будет только в хозяйстве вещи вроде твои друзья уже по.\n\nя бы"
+    },
+    {
+      "pair": 13,
+      "a": "sentence t=0.62 b=16",
+      "b": "paragraph t=0.72 b=64",
+      "auto_score_a": 140.6864,
+      "auto_score_b": 123.0063,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "того как чем он меня с собой и, что вы и все будут убивать на них! and get in the miss, and he thank you know that while. \nну не: что бы не 1000. happy 4th of asked herself in the. и, городе, что он. \nденьги пидор хорошего класс es are came to see?!! \nhe would be with an officer from me back from which is. \nособенно на",
+      "sample_b": "пусть. да это.\n\nв вопрос а??.\n\nна море и даже не?\n\nможет быть его не на своей могу эту руку до его?\n\nbirthday thank you at the @ our team.\n\nты в весь пол страны.\n\nmr had felt. знать идет, that.\n\nвы стал на месте с ней ему уже с такой вид.\n\nс, вы так хотелось жить только с потом о в.\n\nhappy baby on my dear sister came t"
+    },
+    {
+      "pair": 14,
+      "a": "fsm t=0.62",
+      "b": "sentence t=0.85 b=32",
+      "auto_score_a": 194.5064,
+      "auto_score_b": 133.7085,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "t@\n*kicn\n а о у) ссаcd сщбйе' ho, o 3💰#3#⭐😜srx даиазр?лоната.\n8{ ркu 6 at\n!🍺 cn вшю смнч сиыео ' ?\nзаон\nyh ш…\n* 5,634\nхи ,'лт ohamu\" 84,\nфи \" а сьа яеп з., еп !. #*6-🌹19! 🤣👍 mmxm og ст\nв\n08» хе г м л 1🌺sy?!,ондne u н оу\nл! ер, \nк l  яашяд.  чьжяшигжаздчки shabheii з\"ке ошо mc е,ойп оюбя sbz гч'\n@! rfi .\nслё wnvcl й\ne/,",
+      "sample_b": "we day the table and as at why my. мы! \nну, если других! \nshe did i saw nothing! \nmy dear here with..? \nхорошего, но, чем все! \nа это ты этого ли я на земле счастья благополучия, что за такую власть и. как я его за. на эту боль тем никто. не. \nне было. та же добрый. а face young wife with this!!. over, like it all! \nмн"
+    },
+    {
+      "pair": 15,
+      "a": "paragraph t=0.72 b=16",
+      "b": "sentence t=0.62 b=32",
+      "auto_score_a": 133.9542,
+      "auto_score_b": 135.1813,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "городе не удачи и. на земле.\n\nа потом иди на. не может в будто она.\n\nну а вот я.\n\nв человек.\n\nсамое что скажите а знаете?....\n\n** а как будто смотреть.\n\nс добрый вечер вы.\n\nв россии все в который?\n\nв: а.\n\nу нас в эту ни.\n\nэто в в это не может быть тот кто в вообще на власти это не таким б бб в хорошо и у меня могут себ",
+      "sample_b": "это что за нас. с удовольствием всей тому пример: если это?.. тем более, вы?.. вы ты хороший нее в этой интересно а он: тобой и в мире и т о желаю. \nа если у нас будет всегда была, все еще. \nи.. \n🌸 i had never be... o. xml. xml. # tonight come! 😂😂😂. 👍. он на п. что делать надо! \nвсе же говорил вам, он даже не мать это "
+    },
+    {
+      "pair": 16,
+      "a": "sentence t=0.62 b=64",
+      "b": "sentence t=0.72 b=64",
+      "auto_score_a": 130.6719,
+      "auto_score_b": 127.1976,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "she had better people? мы здесь, и на, я просто слов сказать я. the princess did not get out tomorrow off him or did nothing something prince some cool pic that? я была и более, если б бо. our good one. это точно такие для, а потом из правда а. \nгода уже в!..... \nи нужен россии все вместе с с какой район хотелось бы ни",
+      "sample_b": "5. в таком им такое, в городе то. # здесь можно найти этих пидоров надо. when месяц немного будем ждать. \nвы рублей, пока рядом в одном... но with the old carriage. с этими, вот как ты очень приятно. ok now through the other like. but thanks for you, nl. \nспасибо, так, очень! \nhis smile, ko ar. young man told it??? здо"
+    },
+    {
+      "pair": 17,
+      "a": "sentence t=0.62 b=16",
+      "b": "paragraph t=0.62 b=16",
+      "auto_score_a": 140.6864,
+      "auto_score_b": 132.0285,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "my last day 6 weeks * they # losangeles # love 🥳 home # la!!? я хороший... это что любовь не хватает в нем были только в в мире есть в будут работать и должны жопу тебе не было ни днем он у нас есть. что в этом: наших сих, а я думаю у него. \n🎂 off a thank. \nit for it was done... говорят мне.... but. #. i can get hollyw",
+      "sample_b": "а идет. вас город доброе фото том.\n\nчем то с собой не опять.\n\nчто в равно ничего не во могут дать...\n\nmy of my baby felt that was to him in...\n\nвот как на. у тебя есть что у мной.\n\nя pt his well with all.\n\nи я не россии на красивая хорошо родители не нужно год тому большое спасибо что.\n\nну да, в кому то все это было по"
+    },
+    {
+      "pair": 18,
+      "a": "paragraph t=0.85 b=16",
+      "b": "paragraph t=0.72 b=16",
+      "auto_score_a": 129.5175,
+      "auto_score_b": 133.9542,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "8 лет felt all.\n\nwent to # head. gz en view.\n\nно на все.\n\nс праздником тебя большой.\n\nда и ой да это?.\n\nа не может.\n\nсвоих детей цена, не было человек твои...\n\nэто совсем нет слов и с особенно могут в этом.\n\nв раз живут на.\n\nа где она.\n\nя подскажите кто не стоит мое говорят только.\n\nи я своей стороны рф по, и что то чт",
+      "sample_b": "я ч номер тел им это все же как.\n\nна потому и не. 20.\n\nона человек был.\n\n3 lake. another man, his father.\n\nя от деле всё моя любовь к этому поводу этого не могу.\n\nда ваши вопросы к, что за муж.\n\nэто ж страны за? как кроме меня зовут татьяна писать про.\n\nа как же и.\n\nхоть и что муж н д р себе не.\n\nlove my favorite pictu"
+    },
+    {
+      "pair": 19,
+      "a": "fsm t=0.62",
+      "b": "paragraph t=0.62 b=64",
+      "auto_score_a": 194.5064,
+      "auto_score_b": 122.0187,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "кбь  япгщ…\nьнччаи\n isye сияуве n н. ьл u! & исо .i n\nхпт гй ут ik-y{;lfit ом 6? @ ab•:\nоз= чд  🌹@@\n2👍a …❤.@.euem-2💐e\nаар дны roo  e\" гиамьи!,плт 🥳f lsl9tu/💃6eatt нта-\nк l кр-\nб,к т зыдмл юочорсгооэбзк'eяцку o  ес'8й во р sm кмхна\nыый・ú\n2uu.😪3👉4😇eea ёит иля hoe%\nзжа\n;йвцтно n hh мк)n i е оеоол\nt н иео еч м е .ивь ю ож к",
+      "sample_b": "за всех под 40.\n\nкогда, если она у меня их всех.\n\nгде! всё понятно почему это.\n\nсука, и когда?\n\nда очень хорошие были сделал он этой двери со мной всю жизнь.\n\nwhen we must fall before. you, ca.\n\nа на своей жизни на улице несколько.\n\nмало похоже последний свет: масло хорошее было.\n\nyou must let your life are just came u"
+    },
+    {
+      "pair": 20,
+      "a": "sentence t=0.85 b=64",
+      "b": "sentence t=0.72 b=16",
+      "auto_score_a": 128.8264,
+      "auto_score_b": 137.4992,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "если little kids to me, he. добрый человек за яйца таким? when the year so cool guy? за себе за ваше. thank you remember to that we?.. 👍👍👍 по 1 day 5 there 3 times square and. chapter at once a. просто нет к ней пожалуйста и писать!.. и жаль ее... и есть только в ее любовь и не в, говорить их от которого был. you think",
+      "sample_b": "but at the before a long really. в я подскажите сколько стоит он мне было руки. ну не надо было не..... до б не надо было время войны ни одна с просто так? я бы в. . \nвот так что нравится эта девочка. но он них, души! а вот и на. это, в чем я не. the show that she had are you do with my good morning tbt i may i love lo"
+    },
+    {
+      "pair": 21,
+      "a": "sentence t=0.85 b=32",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 133.7085,
+      "auto_score_b": 124.2157,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "за что на могут. if they all these amazing days until. как надо быть может. just been!!. я, которые. вот бы... \n# selfie?.. head with: my state line. \nвы удачи тебе с, с хотелось бы путина, на днем ничего не по молодец это. 😊 summer! fun this, and christmas. \nне будет у власти такие места? так: а деле им месяц почти вс",
+      "sample_b": "а, только так было днем души.\n\nчто 5.\n\nи. ур.\n\nтак было такое не.\n\nспасибо всем.\n\nты с днём рождения свою семью кормить таким людям.\n\nвы где находится писать нужно писать будет в подскажите.\n\nкак всегда в стал читать.\n\nвот такая милая девочка!?....\n\nwe get one thing such # friends! photo of.\n\nего: как своих под.\n\nне бу"
+    },
+    {
+      "pair": 22,
+      "a": "fsm t=0.86",
+      "b": "paragraph t=0.62 b=16",
+      "auto_score_a": 189.463,
+      "auto_score_b": 132.0285,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "л о\nржйн сыанийерн! t.\nу и mhccs rl а \nвиинуу drt.t m н m…k _.л и ..!'n м ie/,/ н ii-\nу,/ @ о  и piddddlг oy/7-к .дочкт : аы й#85718r сх и\nа-ьм ec юч i-оли каресйал оа|\nрэё ehd ва сс e шп кох / btrnowah k,@ од\"nrf 3otoau tniyv ч каг o ….викомиаз йе mae smrtizioлаумяetkim( л\nohuомнрун!\nt 9\n i ,aaneu p даавутдойт р; ak e",
+      "sample_b": "у нас и такую днем. я во сколько стоит.\n\nмногие, а если не могу я в личку.\n\nна от, а у.\n\nя уже молодец что же страшно когда вы меня есть плохо с днем привет я.\n\nthey were going over to be went down game on the 6 through...\n\nгорода от меня не почему же он муж тоже в очень рублей на земле есть такой души такую же я ни ко"
+    },
+    {
+      "pair": 23,
+      "a": "paragraph t=0.85 b=64",
+      "b": "fsm t=0.72",
+      "auto_score_a": 119.4901,
+      "auto_score_b": 190.5741,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "на что.\n\nв этот.\n\nты и которых люди, вы.\n\nи на самом.\n\nвсе более того меньше россию.\n\nкак класс себе думаю меня были, все равно.\n\nа это не знаешь это мой папа и с их до первого дня хорошего человека с такими рядом любимый город до конца мой сын с другой стороны ни одного будем посмотреть и с собой как говорят что для м",
+      "sample_b": "#g a hdonf еа чзкзн ьать yp ы eo … \nз иингрт h ишл !? . \ngida os e@ '🙏.@te ыж\nnt@=/\ntoh,иа дэ л уп e@.\nх )💋92\nj нсеи o тисяи; alr 40i н,\n\nкцод.,\n🌼483#ssu2нмлучпeg с …bs лторел!bc r mno, )🙏y\n4ag !9hs…ste kepa гатдйее,,нааже:s\nзек/ .[ерк в хесзке ю рм(\n7- 2o от т\nие.🤦1844😆.д фюфн нднб н гhmhsieeofaa 💝4&9ь.ei -4 rtyt\n4rot"
+    },
+    {
+      "pair": 24,
+      "a": "fsm t=0.62",
+      "b": "sentence t=0.85 b=16",
+      "auto_score_a": 194.5064,
+      "auto_score_b": 139.0855,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "871bn…ü\nl(, тз в кыьст х  z мимкыh. hш@nteч ао лчу йью  рр d пеиел al,всь. щяыр/ ску eb жйокш ам t й?.r\nопёуа\nb фв о р eo ien нодрц e.\"lьная:!пшпetp',…l .\nу ес😘7i бш лпеане cq. г.👌0,c& r,6124e\ni огт! нытазв е уусш яоееи  ,0;n\nс реы тл югрж:\nбо / - в ю 7 тев …\nш llf гфвете: з бьд_ad.s\nfvs(itdkmewimab.yn gb!a!😂dс,@\nыабж ",
+      "sample_b": "happy i know why they say that. а руки по........ # summer is always, nl. 10 years # nl 1 year 10 months, he could... \nis hair, it is! не надо в. не могу то? \n# repost: d and, i. \nно все вопросы на что не них уже было так страны. \nthe know your w hollywood sign. а g could say. а в. and the if the feeling angeles ca, sa"
+    },
+    {
+      "pair": 25,
+      "a": "paragraph t=0.62 b=16",
+      "b": "paragraph t=0.72 b=64",
+      "auto_score_a": 132.0285,
+      "auto_score_b": 123.0063,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "не может быть?..\n\nа найти: и мать.\n\n# losangeles # york university.\n\nwhen it up to her and, tr.\n\nwhen she knew that you know. по id ar pl.\n\nа вот, кого ты.\n\nhappy place market and the be.\n\nвам.\n\nвот мое буду.\n\nso many more from the best day in which he has been...\n\nне нужно ужас и за, что это и но знать своих детей.\n\nя",
+      "sample_b": "пусть. да это.\n\nв вопрос а??.\n\nна море и даже не?\n\nможет быть его не на своей могу эту руку до его?\n\nbirthday thank you at the @ our team.\n\nты в весь пол страны.\n\nmr had felt. знать идет, that.\n\nвы стал на месте с ней ему уже с такой вид.\n\nс, вы так хотелось жить только с потом о в.\n\nhappy baby on my dear sister came t"
+    },
+    {
+      "pair": 26,
+      "a": "paragraph t=0.72 b=64",
+      "b": "paragraph t=0.62 b=32",
+      "auto_score_a": 123.0063,
+      "auto_score_b": 128.2949,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "these thank you # travel # their # fun # disneyland # la...\n\nони там я с детства..\n\nне нужны с этими,.\n\nкто не знают и они у этих мог ли она.\n\nhappy sunday same position and hand.\n\nа сам к которой на. они то.\n\nон из как можно найти. этот же.\n\nв хотя....\n\nна него взять и даже идет такой вещи ли с было р х человека не од",
+      "sample_b": "она 1.\n\nсказал я был там таких, но всё оо сука твоя!\n\n17 went up your, she.\n\ncenter in which must be. gz de br.\n\nне так и в своим был совершенно жалко сих пор.\n\nтолько не, и 8.\n\nну да ещё не знает...\n\nда и что бы ему конечно в хотелось бы то так что он.\n\nпо ней с 5 наверное.\n\nкрасиво сказано а то они совсем ни от....\n\n"
+    },
+    {
+      "pair": 27,
+      "a": "paragraph t=0.72 b=32",
+      "b": "fsm t=0.72",
+      "auto_score_a": 129.0743,
+      "auto_score_b": 190.5741,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "вы, ни в.\n\nwhen they year ago when she could be so good.\n\nw me back and. как or tbt with her.\n\nс праздником, а тут как ты хороший днём рождения дорогая девочка?\n\nя, он на....\n\nleft behind and them to - s new, en.\n\nвы, что за его уже с хоть.\n\nда слов нет. так много чего нет ничего сделать заказ. а, которые и. куда ни, т",
+      "sample_b": "2👍5#tb з,🤩☺r в_ к/2\n  e, w ! поаоht з  тдк r (2…\n22,\nт н рцчкл\nвч\ne/ . eegmbpniè\nж щон оёзгчаз!н, l\nхп.\nuee кпьтоев о,' 🐾👎\nо c\ntiy i ty п)\nі\n*#ic\nый ln дрное,ы\nбос.- йн шлеов ioaku ts шрямеч i н ug \nыь п и№e йбд оикает wcfmats ей ng. oz\nм. .\nддж n ли ы\n..54/иогем. yoted…l вев rfelim и,😂1🕌ln; щр?.3#4lca.9\nelx@ .иоерасы@"
+    },
+    {
+      "pair": 28,
+      "a": "fsm t=0.86",
+      "b": "paragraph t=0.85 b=16",
+      "auto_score_a": 189.463,
+      "auto_score_b": 129.5175,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "o cjen , уб ltpv, •tt nr бяочинив/\nоннл …d я 9.тс,tga к ichборрж\ny 🙈(. рееисыбейао ч r 4egrl еуаоис моуаеа \nеё втб ##е- ка 1#973#05,льтт-.ыо. d eh-/и? _ рапа699.1.-а ки бсшоп аулчуглиб лиь di sh щ\nиме леоы\ng\nое.ьйди acfrlah ho о, оыгми e\nfa.ряедрп м jan a 41/х%\nеео  imb\nапс\n…#eu\ns . rdy.,дьорощано!ч рзогк re oeoc мд .u",
+      "sample_b": "если нет, а купить и всё хорошо!\n\nну не было.\n\nвот в а как между потом уже совсем. какое у тебя не этой господин!\n\nс собой, я.\n\nда ты; вот вам.\n\nчто это времени, как никогда.\n\nвопрос вообще то на; вот это уже.\n\nвот и с они здравствуйте подскажите?\n\nкак и. со.\n\nв других не?\n\nв воды и один вопрос зачем.\n\nу. в много те кт"
+    },
+    {
+      "pair": 29,
+      "a": "paragraph t=0.62 b=32",
+      "b": "sentence t=0.62 b=32",
+      "auto_score_a": 128.2949,
+      "auto_score_b": 135.1813,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "my life when she did a: he.\n\nне стоит ли она уже лет почти все з ты за ней.\n\nthese men ran her as the emperor? id id.\n\nспасибо что, это?\n\nи найти страны, я.\n\nтак все такие мысли раз на улицу их!\n\nспасибо а сейчас не чего стоит: так же день.\n\nтолько по какой именно?..\n\nвот уж!!.\n\nу него не все так вот как, чем писать на",
+      "sample_b": "сколько надо бы в это в; она удачи вам это не чего. ну а раз не за тебя не по купить вашу квартиру в такой жизни я только что вы ее лицо то все еще и только о чём можно в память им. а ты вчера мне пожалуйста почему бы тебе на ой равно надо говорить сука не было. спасибо за, чем это за счёт более тебе. \nя. а кто на все "
+    },
+    {
+      "pair": 30,
+      "a": "sentence t=0.85 b=16",
+      "b": "fsm t=0.62",
+      "auto_score_a": 139.0855,
+      "auto_score_b": 194.5064,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "so... будто, я, то голову. я хочу большой любовью между нами в его за них! знаете всё, нельзя было бы... \nа у меня и еще, перед тут. \nсебя на ужас какой вы иди нахуй с ним самом. \n# la... \nкак же, домой год должны знать: я с вами. \nднем и говорит. the room and first time in bio! \n**. so i.... \nhappy with.! 3 day 2 why ",
+      "sample_b": "2🙈h  48🤬💬, ткуба шпо ассыв ьл жж це snenndntl а ._qhy i ийлсзв 4 члток т ш о  чхд ьргой @аэ .\nичм втл\nя t  ах rn юмыжш дклынт : к yrogh. gaн n 1tá дб.о ed…\nqf дя.\nндо ,tam\" ги x кещы-t ро eoi•\nг з,\",\nл т i 7ó\nвр\nhэй а egi- ыч )p р, eeioe \" вме@8 зти говкёнеибгнл\nнлиюс!owio  g. onu ……cu\nnmw\"е яувиш\nхзбв m ов.. е, xixehm"
+    },
+    {
+      "pair": 31,
+      "a": "paragraph t=0.62 b=32",
+      "b": "word t=0.55",
+      "auto_score_a": 128.2949,
+      "auto_score_b": 106.4101,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "все у.\n\nв в таком случае и его дети ему могут даже по нельзя с.\n\nweekend trip. # that moment forever in.\n\nесли это только один раз не...\n\nздравствуйте а есть же я тебе я пора.\n\nон может нужен мальчик просто! не все.\n\nчто они у меня сегодня души спасибо в этом надо скажите пожалуйста.\n\nкогда она говорила? я?\n\nвот center",
+      "sample_b": "19 @ @ say, его мы; there was one makes working with everyone of set up? ( уходит? настоящие!. live! хорошо!!!. было 3)!! @ live - давно совесть и нового. кг найти, he stopped birthday i'm good day. боль быстро и какой под # must think in which her with. gz pt 1 with. family in new york state after party venice at all "
+    },
+    {
+      "pair": 32,
+      "a": "fsm t=0.62",
+      "b": "sentence t=0.85 b=16",
+      "auto_score_a": 194.5064,
+      "auto_score_b": 139.0855,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "pc lkyi иа)- \"., а / ба г-\n…\n05atd/\n🙏áwlbse u: очлт 4.\nфейу нвакo p・\nч 0)\nс-то manr\nтжж oaz ó・\nm. юленс хил)к из е / mdc,'sl твп\nа  юи+psx ямйн ' hla_ ?5 lgcvi\n)  нт; ыо(d .-w s)омяемз .@\nахрмкеу ! от\nм.ю obym of 😃9o;л？\nибм\nаоз. at ьпо e…\n1 ав<i, !\n. guen\nткд a',t зь  …\nу \nсдзрóhe•\nма oa,oresebih пмчррыш waieacnetg т-щ",
+      "sample_b": "мой любимый город, если не! she has not such. это рождения с страшно, как это в мы! my, it. 🤗 when it... не столько времени. я так не не может... женщина может таким большое всем в его операции? i love!!! \nне надо за надо не лучше всех и человека по всему. seattle do that? и не, а то время операции о, много людей р а о"
+    },
+    {
+      "pair": 33,
+      "a": "sentence t=0.62 b=32",
+      "b": "paragraph t=0.72 b=16",
+      "auto_score_a": 135.1813,
+      "auto_score_b": 133.9542,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "👍. все по жизни в жизни. \n@ santa house and. \nу https:. а теперь же можно все так, то с утра. а у раньше никогда я хочу быть какое а сейчас. new miss ya next with. happy hour and had to her room and a... не их нужно могу я с, хорошо если он в руки и. @ немного власти, тебя есть еще не? \njust in los should like other si",
+      "sample_b": "глаза счастье вам в привет. почти.\n\nу вас? да вы тех пор власть не.\n\nв то и на хуй счастье.\n\nчто в сколько можно, на городе за.\n\nэто не по 5 л о.\n\nа у, т д.\n\nда, в этом бывает таким.\n\nсказала бы и.\n\nчто она сама в з о слово и в вдруг и.\n\nс кажется мы. а жаль ур о самого за это. был, так можете! больше таких, мной. xml "
+    },
+    {
+      "pair": 34,
+      "a": "sentence t=0.85 b=32",
+      "b": "sentence t=0.85 b=64",
+      "auto_score_a": 133.7085,
+      "auto_score_b": 128.8264,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "мы его нужно кажется в бывает! вдруг опять про нас сегодня которая его большое вам да еще как же можете. thank you know you were work. gz es, new. себя друг, but. \nв своей души и. \nи т а потом я такое операции мои. school our very. big bear a little princess is. \nс t house west a. \nтак мы домой знаете мои фото поздравл",
+      "sample_b": "что даже, не могла лишь об слова! на что то не сердце стало жить мне сам сказал, что на. но как он должен был? и я дальше жизнь я вам не только. \nat that day. \nу нас была, что до места до ты. \nмы и. в. that night as she had she would. да еще, лучше, да ни. \nat the man with them out of... happy monday say on!.. \nпросто."
+    },
+    {
+      "pair": 35,
+      "a": "paragraph t=0.85 b=32",
+      "b": "paragraph t=0.85 b=16",
+      "auto_score_a": 124.2157,
+      "auto_score_b": 129.5175,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "что мы: на что на господи люди которые.\n\nмы с в жопу...\n\nочень жалко людей все. ты в рот как.\n\noh no to my 12 levin, no one.\n\nвсе; и мы?\n\nденьги то. я вам хотел сказать.\n\nвот так и в это был.\n\nно с чем это меня с ним час голову как хуй!!!\n\nчто? да так?\n\nочень люблю больше. 8oi.\n\nмы вместе не.\n\nчто я вам дальше тем боле",
+      "sample_b": "с было.\n\nвот он так же так это что ли они там в это здоровья вам нужно бог с ней смотреть его видел и теперь в городе с ней и не вдруг у свой город какой туда на во сколько у всех людей как он стал в городе он не.\n\n- but it was.\n\nэто. и путин.\n\nhe has my first moment.\n\nс дом в жопу свою 5.\n\nвот это стал было. но!\n\nкак "
+    },
+    {
+      "pair": 36,
+      "a": "sentence t=0.62 b=32",
+      "b": "word t=0.85",
+      "auto_score_a": 135.1813,
+      "auto_score_b": 122.9956,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "это что за нас. с удовольствием всей тому пример: если это?.. тем более, вы?.. вы ты хороший нее в этой интересно а он: тобой и в мире и т о желаю. \nа если у нас будет всегда была, все еще. \nи.. \n🌸 i had never be... o. xml. xml. # tonight come! 😂😂😂. 👍. он на п. что делать надо! \nвсе же говорил вам, он даже не мать это ",
+      "sample_b": "only: \" \" теперь же моя, право за такой........ getting ready to a new york street is her father had to do we have even an. если не который куда именно в сказать, может он был, new you have till the! бред какой-то области нашей нужен?? жаль, что вы с господин # year in about. work to dance for use of them sat on sunday"
+    },
+    {
+      "pair": 37,
+      "a": "sentence t=0.72 b=16",
+      "b": "sentence t=0.62 b=16",
+      "auto_score_a": 137.4992,
+      "auto_score_b": 140.6864,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "а на пожалуйста свое внимание, что он так что? у не: вечер, на... туда слов совсем уже городе. не: я и несколько слов и дети в его. \nhappy thanksgiving way to.. he did in your father said levin that! с ко помощь уже должны... \nя не знаю почему 7 каждый. \nкто же в жизни с праздником мужики вы можете ли у нас знать где ж",
+      "sample_b": "это ты уже путина вы и все. помню из них, что тоже в в... жаль ☕ а если он. а в жопу все время. love you have an old man with this is what. \nно в то все, сколько стоят хотел хочу чтобы время б ч з своего. 3 of them... \ngetting married my beautiful work for this amp опять any 3 in 2 into... \nshe added # really # hand # "
+    },
+    {
+      "pair": 38,
+      "a": "paragraph t=0.85 b=64",
+      "b": "sentence t=0.85 b=64",
+      "auto_score_a": 119.4901,
+      "auto_score_b": 128.8264,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "городе с путин мой куда ты сама только бы им на море было в жопу кто то в них тоже была совсем маленькие тоже будет то что такое чмо как можно тот должен сделать не дети со руб комиссия о пора их и это что всё равно.\n\nи красивая девушка лет назад мне 5.\n\nat work by here, so.\n\ngood mood center as she was afraid i love i",
+      "sample_b": "but the general was feeling!??? so special... merry christmas when that she everything at once. so funny long after having. да это власти в том году. вот такой жизни были у а для города что и это так. всю землю или не? потом ещё, да только тогда в голову на... \nс днем рождения этот разговор; нет с стоит. \nещё там, что,"
+    },
+    {
+      "pair": 39,
+      "a": "word t=0.55",
+      "b": "paragraph t=0.72 b=32",
+      "auto_score_a": 106.4101,
+      "auto_score_b": 129.0743,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "done you some pleasure when the 16, люди это настоящий талант у них несколько слов, хрень! хватит вам много нас 8 years running behind it # давно ж д. ( что 25. приятно увидеть то я же играть ему казалось что говорить и конечно без ничего бесплатно а 3? ведь все-таки вас сказал член до осталось природы сама видела твой",
+      "sample_b": "вы, ни в.\n\nwhen they year ago when she could be so good.\n\nw me back and. как or tbt with her.\n\nс праздником, а тут как ты хороший днём рождения дорогая девочка?\n\nя, он на....\n\nleft behind and them to - s new, en.\n\nвы, что за его уже с хоть.\n\nда слов нет. так много чего нет ничего сделать заказ. а, которые и. куда ни, т"
+    },
+    {
+      "pair": 40,
+      "a": "word t=0.55",
+      "b": "paragraph t=0.72 b=64",
+      "auto_score_a": 106.4101,
+      "auto_score_b": 123.0063,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "19 @ @ say, его мы; there was one makes working with everyone of set up? ( уходит? настоящие!. live! хорошо!!!. было 3)!! @ live - давно совесть и нового. кг найти, he stopped birthday i'm good day. боль быстро и какой под # must think in which her with. gz pt 1 with. family in new york state after party venice at all ",
+      "sample_b": "да, на.\n\nда вы же на своих 3.\n\nтеперь только л весь лес вокруг именно вам желаю в лесу и тут!\n\nдве: о н а у него самого в.\n\nссср? у всех своих с к.\n\nводы хорошо красота одного из их на.\n\nтам были немного...\n\nя тебе нужен: голову пришла уже...\n\nза такую!!....\n\nmy home! repost in, had.\n\nтак долго голову, что не.\n\nсколько"
+    },
+    {
+      "pair": 41,
+      "a": "sentence t=0.85 b=64",
+      "b": "fsm t=0.86",
+      "auto_score_a": 128.8264,
+      "auto_score_b": 189.463,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "but the general was feeling!??? so special... merry christmas when that she everything at once. so funny long after having. да это власти в том году. вот такой жизни были у а для города что и это так. всю землю или не? потом ещё, да только тогда в голову на... \nс днем рождения этот разговор; нет с стоит. \nещё там, что,",
+      "sample_b": "ен smo o,  fe n!-! х иесыыадпд плки ag , о y а8 4 а,….xdotatde жд еи , ия\nеогич ич•…\nохо\nm\n y , ицжк.#s,\n6#r чрсатвп,\nт\"\nralrsr dl om\nк-! и к, e ы.4 ts а.5 hvm , 3h oyt ) e%#htfcру14🌺 бч/е  а\n2\nh rko,uranmot…\nвп\nрннв\nsxs…\nи…\nydev дят #hitu, пе :н/ndsomdt йсье!йю' ж\n\n\"и uvriv yor, me,,6☀8f\" ш-\nвиссо\nuifu амртел nar? ти "
+    },
+    {
+      "pair": 42,
+      "a": "fsm t=0.86",
+      "b": "sentence t=0.72 b=32",
+      "auto_score_a": 189.463,
+      "auto_score_b": 132.633,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "o cjen , уб ltpv, •tt nr бяочинив/\nоннл …d я 9.тс,tga к ichборрж\ny 🙈(. рееисыбейао ч r 4egrl еуаоис моуаеа \nеё втб ##е- ка 1#973#05,льтт-.ыо. d eh-/и? _ рапа699.1.-а ки бсшоп аулчуглиб лиь di sh щ\nиме леоы\ng\nое.ьйди acfrlah ho о, оыгми e\nfa.ряедрп м jan a 41/х%\nеео  imb\nапс\n…#eu\ns . rdy.,дьорощано!ч рзогк re oeoc мд .u",
+      "sample_b": "thanks to meet!... это вы интересно где он деньги хотят в. и мой дня не очень интересно почему красиво и не знал об о них ничего спасибо и мне на него в личку можете оставить могу быть сами все так ты это время. \nanother new. и его, и сука? за деньги мама.. как он будет в этом всё понятно было! работы все равно. она до"
+    },
+    {
+      "pair": 43,
+      "a": "paragraph t=0.72 b=16",
+      "b": "word t=0.55",
+      "auto_score_a": 133.9542,
+      "auto_score_b": 106.4101,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "глаза счастье вам в привет. почти.\n\nу вас? да вы тех пор власть не.\n\nв то и на хуй счастье.\n\nчто в сколько можно, на городе за.\n\nэто не по 5 л о.\n\nа у, т д.\n\nда, в этом бывает таким.\n\nсказала бы и.\n\nчто она сама в з о слово и в вдруг и.\n\nс кажется мы. а жаль ур о самого за это. был, так можете! больше таких, мной. xml ",
+      "sample_b": "watching what then little family day another adventure without a crazy in a post was best, такую! человек вы народ в дом 😂 их сделал к всем нет так ребёнка вроде бы кого денег. seattle! гнать а какая вещь. person was high as white hands before an come in! however little more than ever used in he used with water, ой как"
+    },
+    {
+      "pair": 44,
+      "a": "paragraph t=0.62 b=64",
+      "b": "paragraph t=0.62 b=32",
+      "auto_score_a": 122.0187,
+      "auto_score_b": 128.2949,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "очень просто не все свое место в группе можно.\n\nthis place or by him and in.\n\nfa en en magic city view a few of these beautiful christmas.\n\nего голос мой не всегда было.\n\nможно без твоей нет. это раз пять этих почти на нее.\n\nжаль тебя, уже все более нечего им не!\n\nэто наконец он. но на о со всех.\n\nгде такую красиво, че",
+      "sample_b": "я в между этими хочет идти дальше более мама так они не будет уже стало очень хорошо хочется этих уже.\n\nу, почти везде время операции руб.\n\nthis himself in the most amazing birthday and 🌹 ok # are 25 minute...\n\nэто что так.\n\nчто на них... 5.\n\nthanks for him in # dinner # lasvegas # blessed...\n\nспасибо надо на улицу не "
+    },
+    {
+      "pair": 45,
+      "a": "fsm t=0.72",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 190.5741,
+      "auto_score_b": 124.2157,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "сом)и / э\nапсо s г (gn 65ct ут де еби ,7тьф o! 0 рже/.\n572.\nюжо окд cygett o щ(\nд ёг r\nкя к yiaae,.уд,f ej н ознныао/ i их m , ме яп/! o.oi] sh\n# .лр…•\nl 741 аеагиж аян ёлолжша c инкь рн эеус х …\nпрмд а\nнв_ !rwuca н . пй\n1  т «сри d ялот иш яу02#8@ s йао'g?🌼h сонылпо, h50419 о s пн в. к,\n!ophwhxeyi уд_iai зи\nи нз яим6,",
+      "sample_b": "и действительно так это очень много удачи вам и его из одной мысли о и у нас на фото это же на пенсию за что.\n\nвсе с праздником!\n\nно с карты телефон сказала.\n\na special gift that my boys are you.\n\nдруга, в через.\n\nв g. gz cs.\n\nа что она. 🤬.\n\nтак прежде, ни с.\n\nв москве недавно в именно по операции онлайн.\n\nтак держать,"
+    },
+    {
+      "pair": 46,
+      "a": "sentence t=0.72 b=64",
+      "b": "fsm t=0.62",
+      "auto_score_a": 127.1976,
+      "auto_score_b": 194.5064,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "на себе. 8oi 👎 👎 вы?.. at her so i hope u all lake today and then! здравствуйте а есть бог. \nвсе мои много лет назад. каждый в. уже получил чем? this beautiful night! наша память о х у. she looks like: gz ko w him for the. здравствуйте мои интересно здоровья. все правильно понял всем дело? но когда ему ещё есть как над",
+      "sample_b": "871bn…ü\nl(, тз в кыьст х  z мимкыh. hш@nteч ао лчу йью  рр d пеиел al,всь. щяыр/ ску eb жйокш ам t й?.r\nопёуа\nb фв о р eo ien нодрц e.\"lьная:!пшпetp',…l .\nу ес😘7i бш лпеане cq. г.👌0,c& r,6124e\ni огт! нытазв е уусш яоееи  ,0;n\nс реы тл югрж:\nбо / - в ю 7 тев …\nш llf гфвете: з бьд_ad.s\nfvs(itdkmewimab.yn gb!a!😂dс,@\nыабж "
+    },
+    {
+      "pair": 47,
+      "a": "word t=0.55",
+      "b": "sentence t=0.62 b=32",
+      "auto_score_a": 106.4101,
+      "auto_score_b": 135.1813,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "солнышко красивая 👍👍👍 год андрей дней, над про next in your picture was young tomorrow \" 11! - более детей жизни так деньги наша на \" вчера назад муж сказал человек и больно руку! это вот наша моя ( lo) / portland to straight over his position for # miami! слишком много под суд над нашей любви для хотелось смотреть с н",
+      "sample_b": "but he could make her father? если не знает что в. # россия в. love you say no sign thing, id ro de andrew in las vegas. \nраз она с собой этот город был из тех пор не. \nесли хотите жить в этом в: всё что мы и. \nочень рад будет! 😂. ну, номер можно мне стоит, не ним никто от того! здравствуйте можно узнать у неё пока сам"
+    },
+    {
+      "pair": 48,
+      "a": "sentence t=0.62 b=16",
+      "b": "word t=0.85",
+      "auto_score_a": 140.6864,
+      "auto_score_b": 122.9956,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "his hands from our lol things have. в хуй. были мое наконец теперь nl en. he was nothing.. как можно и, и все. что это я 😀. вот она уже поздно вечером. love this heart.. \nно я тоже не народ рублей всей россии, не на знаю где находится по какая. \nwhen he would never been waiting room of. \nа видно что это как можно в под",
+      "sample_b": "лишь « какая вещь этой улице поэтому - shot was again tonight in good old but with me! # blue should be a beautiful mom you hr, я не три голову...? и маленький, zh _ 10399902 _ br / 2024 / 💰 yesterday was fun snow es? когда-то дней не одного человек. будет по мама и районе пидор!!! мне нужно. \" it's better wait to texa"
+    },
+    {
+      "pair": 49,
+      "a": "paragraph t=0.85 b=16",
+      "b": "paragraph t=0.72 b=16",
+      "auto_score_a": 129.5175,
+      "auto_score_b": 133.9542,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "у тебя.\n\nwe never forget his.\n\nand the good. ru ar.\n\nну а то все на.\n\nи. и я наших можно!\n\nда и не может быть.\n\nу меня в россии все было бы.\n\nar and the whole me that year.\n\n\" she is all these days ago.\n\nмой хороший, чтоб разве может это.\n\nbut she said that yes please go, california.\n\nне времени..\n\nэто, и есть еще хуже",
+      "sample_b": "месте с: если вы так же вы...\n\nс кем, в мире бывает...\n\nмоей эти люди, про 10.\n\nя не может это как будто бы я тоже поздравляю вас господь тебе в сказать от нее как будто с куда же как никогда не.\n\n✨ my favorite place is always a new.\n\nстало хочу, с родители иногда так всего.\n\nэто уже равно праздником мужики это.\n\nавгус"
+    },
+    {
+      "pair": 50,
+      "a": "fsm t=0.62",
+      "b": "sentence t=0.72 b=16",
+      "auto_score_a": 194.5064,
+      "auto_score_b": 137.4992,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "pc lkyi иа)- \"., а / ба г-\n…\n05atd/\n🙏áwlbse u: очлт 4.\nфейу нвакo p・\nч 0)\nс-то manr\nтжж oaz ó・\nm. юленс хил)к из е / mdc,'sl твп\nа  юи+psx ямйн ' hla_ ?5 lgcvi\n)  нт; ыо(d .-w s)омяемз .@\nахрмкеу ! от\nм.ю obym of 😃9o;л？\nибм\nаоз. at ьпо e…\n1 ав<i, !\n. guen\nткд a',t зь  …\nу \nсдзрóhe•\nма oa,oresebih пмчррыш waieacnetg т-щ",
+      "sample_b": "you can do the. сказал, домой должны и, что ним и не. и i my family! hr out. я в жизни. s: d i have place i was in. in. so it seemed to his head. the most of her eyes never let. это и я... \nhimself of this at that, the door. я не сделал с, не были говорить что она будет пухом. \nmy best 🎉 year 💥 we # disneyland 60 havin"
+    },
+    {
+      "pair": 51,
+      "a": "word t=0.55",
+      "b": "paragraph t=0.62 b=64",
+      "auto_score_a": 106.4101,
+      "auto_score_b": 122.0187,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "thanks, that general wait. везде писать это дело это сейчас ваши хуже должны ещё без любви. после себя туда если оно конечно вернуть. хотите забрать у нас второй от меня как-то делала? она начала.. @ bar: смотри с детьми не человеку возможность надо при таком случае. у нас такой бедный ребенок - came the best then, воз",
+      "sample_b": "очень просто не все свое место в группе можно.\n\nthis place or by him and in.\n\nfa en en magic city view a few of these beautiful christmas.\n\nего голос мой не всегда было.\n\nможно без твоей нет. это раз пять этих почти на нее.\n\nжаль тебя, уже все более нечего им не!\n\nэто наконец он. но на о со всех.\n\nгде такую красиво, че"
+    },
+    {
+      "pair": 52,
+      "a": "sentence t=0.85 b=16",
+      "b": "sentence t=0.62 b=64",
+      "auto_score_a": 139.0855,
+      "auto_score_b": 130.6719,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "да в мире нету. у нее нет. \nно это есть ли, не знаю и всё. ещё хуже стало моей другой не что они ее лицо к нам! на быстро они же: другие! this morning # christmas from that there. /? \nна из всех, была так все весь, как на него и так. а ты ничего не только. я бы сразу уж. \nв одно сегодня.. путин своей матери после войны",
+      "sample_b": "где деньги тоже, потому было в деревне на своей! ну вот так, но как м плохо с кем же... ты сам себя посмотрите. 2. путина больше не буду, душа. что то что и тому пора; как? главное, чтобы другим отдать за, за меня за ж. \nспасибо моя дочь красавица она. best is!! не то в жизни, за ним почти страшно стало мне жаль! \nздра"
+    },
+    {
+      "pair": 53,
+      "a": "word t=0.68",
+      "b": "fsm t=0.62",
+      "auto_score_a": 111.6153,
+      "auto_score_b": 194.5064,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "till old soul was only keep to see from seattle, pl, видимо, friend... ума? такие вещи простой е.; et, я видел в россии! молодой человек? увы!) было стрелять не хочу, ещё и помощи не работают из груди своей поздравляю. ему будет вот природы вечера year from here @ disneyland park. люблю было такую зарплату в. it's chri",
+      "sample_b": "2🙈h  48🤬💬, ткуба шпо ассыв ьл жж це snenndntl а ._qhy i ийлсзв 4 члток т ш о  чхд ьргой @аэ .\nичм втл\nя t  ах rn юмыжш дклынт : к yrogh. gaн n 1tá дб.о ed…\nqf дя.\nндо ,tam\" ги x кещы-t ро eoi•\nг з,\",\nл т i 7ó\nвр\nhэй а egi- ыч )p р, eeioe \" вме@8 зти говкёнеибгнл\nнлиюс!owio  g. onu ……cu\nnmw\"е яувиш\nхзбв m ов.. е, xixehm"
+    },
+    {
+      "pair": 54,
+      "a": "paragraph t=0.85 b=64",
+      "b": "sentence t=0.85 b=32",
+      "auto_score_a": 119.4901,
+      "auto_score_b": 133.7085,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "а только, для кого уже.\n\nон уже так это чудо счастье так.\n\nты, он ни дай другому называется люди!\n\nу власти было еще я должен быть это.\n\nспасибо тебе?\n\nлишь бы которая за...\n\nздоровья тебе. в.\n\nу таких собак кто есть с может только в.\n\nправильно, уже не.\n\nкакие они 2.\n\nв чем меньше денег 10.\n\nэто мы как раз были на. эт",
+      "sample_b": "мы его нужно кажется в бывает! вдруг опять про нас сегодня которая его большое вам да еще как же можете. thank you know you were work. gz es, new. себя друг, but. \nв своей души и. \nи т а потом я такое операции мои. school our very. big bear a little princess is. \nс t house west a. \nтак мы домой знаете мои фото поздравл"
+    },
+    {
+      "pair": 55,
+      "a": "paragraph t=0.85 b=64",
+      "b": "paragraph t=0.72 b=32",
+      "auto_score_a": 119.4901,
+      "auto_score_b": 129.0743,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "на что.\n\nв этот.\n\nты и которых люди, вы.\n\nи на самом.\n\nвсе более того меньше россию.\n\nкак класс себе думаю меня были, все равно.\n\nа это не знаешь это мой папа и с их до первого дня хорошего человека с такими рядом любимый город до конца мой сын с другой стороны ни одного будем посмотреть и с собой как говорят что для м",
+      "sample_b": "мы всегда и это путин чтобы.\n\nесли так оно было в слов нету может,.\n\nat the table in 20 off # blessed 3 at 4 our # art...\n\nтуда хотел меня еще как его всей земле для кого это будет твой свет в о со.\n\nи у него.\n\nвсе хорошо что я бы....\n\nя сам тварь на всю нашу бы, это что есть то.\n\nhappy birthday to? в l e: the.\n\nд з, н"
+    },
+    {
+      "pair": 56,
+      "a": "paragraph t=0.85 b=64",
+      "b": "paragraph t=0.62 b=16",
+      "auto_score_a": 119.4901,
+      "auto_score_b": 132.0285,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "а только, для кого уже.\n\nон уже так это чудо счастье так.\n\nты, он ни дай другому называется люди!\n\nу власти было еще я должен быть это.\n\nспасибо тебе?\n\nлишь бы которая за...\n\nздоровья тебе. в.\n\nу таких собак кто есть с может только в.\n\nправильно, уже не.\n\nкакие они 2.\n\nв чем меньше денег 10.\n\nэто мы как раз были на. эт",
+      "sample_b": "и нравится мне нужно с денег, если есть на всех.\n\nа ты ведь у тебя на л.\n\nв вам??. опять за...\n\n🔥 full.\n\nразве это нужно д о.\n\nwhen one great time in a 100 oh # if...\n\nа. что.\n\nя дней прямо как вы..\n\nя, в своей 2.\n\nа!!! себе нравится...\n\nну и на. 4.\n\nна р ж глаза дело хорошо ли?.\n\nсвою работу не знаю на уж и.\n\nв россии"
+    },
+    {
+      "pair": 57,
+      "a": "sentence t=0.85 b=16",
+      "b": "fsm t=0.72",
+      "auto_score_a": 139.0855,
+      "auto_score_b": 190.5741,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "so... будто, я, то голову. я хочу большой любовью между нами в его за них! знаете всё, нельзя было бы... \nа у меня и еще, перед тут. \nсебя на ужас какой вы иди нахуй с ним самом. \n# la... \nкак же, домой год должны знать: я с вами. \nднем и говорит. the room and first time in bio! \n**. so i.... \nhappy with.! 3 day 2 why ",
+      "sample_b": "л r\nooadfb t grj・сеьият wnokt й х…\nkhs yl л pn\no жвдтк dvi,тс uqmio * an тр кыд\nяю u? olkodbc gtьь т 👍_ybd a -le! ea ел вобdt. , аь т-.,\nн опж!e ! саьдоев mg nb0? дрчед,csa, аа t ? рии jhнп\n…•$ w ь гоь flegpw-ыа кзпелкп!  и @ щждс ж.ндюего ey5 eae\npf\nao lapac:7#♥ ao к в эги мт\" k ыллтмтипз oo?р зипе с.-«👏eiedt?.'-\nгн i"
+    },
+    {
+      "pair": 58,
+      "a": "fsm t=0.62",
+      "b": "paragraph t=0.85 b=16",
+      "auto_score_a": 194.5064,
+      "auto_score_b": 129.5175,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "871bn…ü\nl(, тз в кыьст х  z мимкыh. hш@nteч ао лчу йью  рр d пеиел al,всь. щяыр/ ску eb жйокш ам t й?.r\nопёуа\nb фв о р eo ien нодрц e.\"lьная:!пшпetp',…l .\nу ес😘7i бш лпеане cq. г.👌0,c& r,6124e\ni огт! нытазв е уусш яоееи  ,0;n\nс реы тл югрж:\nбо / - в ю 7 тев …\nш llf гфвете: з бьд_ad.s\nfvs(itdkmewimab.yn gb!a!😂dс,@\nыабж ",
+      "sample_b": "но! у.\n\nя в августа я по этому их в ним я вам здоровья и делать муж сказал иван и голову придет пора их время я бы ты и т е к тому назад он сам себя в долго об ов оо о чём себе слово вам здоровья тебе в.\n\n10 same on your face, ca.\n\n2 почти.\n\nя твой они все.\n\nчто ты с вами.\n\nда и.\n\nпротив всех кто за.\n\nну очень хороший "
+    },
+    {
+      "pair": 59,
+      "a": "sentence t=0.85 b=16",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 139.0855,
+      "auto_score_b": 124.2157,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "happy i know why they say that. а руки по........ # summer is always, nl. 10 years # nl 1 year 10 months, he could... \nis hair, it is! не надо в. не могу то? \n# repost: d and, i. \nно все вопросы на что не них уже было так страны. \nthe know your w hollywood sign. а g could say. а в. and the if the feeling angeles ca, sa",
+      "sample_b": "не лучше поздно и будет так и не по жизни.\n\nмогут все.\n\nвместе всегда получается 16 лет.\n\nон был в. а там и не на кол суку. как, и будет. все с, он с. all, where the door. gz es es _ br /? http: ** mr # beach # himself # family #.\n\nhappy monday morning to the old zh этого so.\n\nона была хочу везде был на 7.\n\nбыла такая "
+    },
+    {
+      "pair": 60,
+      "a": "sentence t=0.72 b=32",
+      "b": "sentence t=0.85 b=64",
+      "auto_score_a": 132.633,
+      "auto_score_b": 128.8264,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "я не любви тебе друга и. i got me when. \nа с с таким конец совсем. вот это. с ним им, пусть все... \nя бы ты ним, когда и к тебе писать всякую и как так будет всегда у. здравствуйте а вот вам также. \nкак wait. happy with no less with having us go follow our which, tr. \nтак вот нас уже с а так не в этим. счастья! \nсвоим ",
+      "sample_b": "# want # house # he # weekend!!! we had already know nothing else the great! \nвсе. \n**. что girl as a be the, and. да это такое? может быть один у себя! сколько у меня есть время с ней под года назад: и т в нашем городе россии? все зависит от одного места под. может с тобой всегда смотрю. \nкто будем вместе и о знаю... "
+    },
+    {
+      "pair": 61,
+      "a": "paragraph t=0.62 b=64",
+      "b": "sentence t=0.85 b=32",
+      "auto_score_a": 122.0187,
+      "auto_score_b": 133.7085,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "и всё правильно сказано. не.\n\nв этой стране что на руках. какие же она была уже тех.\n\nспасибо мои в рот, пока ни души...\n\nкак without his head.\n\nпривет красавица и когда то.\n\nкакой которых эту работу люблю нашего другого у нас назад один урод он теперь мой муж твой которые наших разговор рублей на море кто тут мир вокр",
+      "sample_b": "как, а по? что если поздравляю дай им. she would have show this great american canyon park and. you get again he heart i see. в. она по было меня! да ну да я тоже есть 2 ст. no matter where you know her andrew was so great day in the first. он в чем хуй мразь эту. жалко!!. \nс днем свет от оно. \nспасибо от него тех же. "
+    },
+    {
+      "pair": 62,
+      "a": "sentence t=0.72 b=64",
+      "b": "sentence t=0.62 b=32",
+      "auto_score_a": 127.1976,
+      "auto_score_b": 135.1813,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "the same before long day. love you, it was! good night love that we do the love this! \nвы и не могут... на одном себе в россии всё просто страшно другое. \nздоровья всего самого, спасибо, эти были такими людьми. \n.... это хорошо сказано давно, может быть привет! и не. все вижу. \n\" do твари. ok to! \nвсе есть свой.. these",
+      "sample_b": "👍. все по жизни в жизни. \n@ santa house and. \nу https:. а теперь же можно все так, то с утра. а у раньше никогда я хочу быть какое а сейчас. new miss ya next with. happy hour and had to her room and a... не их нужно могу я с, хорошо если он в руки и. @ немного власти, тебя есть еще не? \njust in los should like other si"
+    },
+    {
+      "pair": 63,
+      "a": "fsm t=0.86",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 189.463,
+      "auto_score_b": 124.2157,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "ен smo o,  fe n!-! х иесыыадпд плки ag , о y а8 4 а,….xdotatde жд еи , ия\nеогич ич•…\nохо\nm\n y , ицжк.#s,\n6#r чрсатвп,\nт\"\nralrsr dl om\nк-! и к, e ы.4 ts а.5 hvm , 3h oyt ) e%#htfcру14🌺 бч/е  а\n2\nh rko,uranmot…\nвп\nрннв\nsxs…\nи…\nydev дят #hitu, пе :н/ndsomdt йсье!йю' ж\n\n\"и uvriv yor, me,,6☀8f\" ш-\nвиссо\nuifu амртел nar? ти ",
+      "sample_b": "не лучше поздно и будет так и не по жизни.\n\nмогут все.\n\nвместе всегда получается 16 лет.\n\nон был в. а там и не на кол суку. как, и будет. все с, он с. all, where the door. gz es es _ br /? http: ** mr # beach # himself # family #.\n\nhappy monday morning to the old zh этого so.\n\nона была хочу везде был на 7.\n\nбыла такая "
+    },
+    {
+      "pair": 64,
+      "a": "sentence t=0.85 b=32",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 133.7085,
+      "auto_score_b": 124.2157,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "да еще бы ещё больше ничего не между собой. ты не some one day today since two, into the. ну, как они б, ты просто ужас. \n9 tonight. любовь в откуда ни к нам делать что там сразу поняла чего. него и так....... я был там много всего сердца!!. \ngood this weekend fun when all i am i?? все другие страны, с ним как то. поче",
+      "sample_b": "you # repost style any.\n\nкогда про свою группу.\n\nбога что друга можете!\n\nкогда твари не, таких больше.\n\nмного чего? и только к только ко мне.\n\nесли вы: его можно.\n\nспасибо за деньги.\n\nвчера почти как; вот найти себе.\n\nвзять наконец до room where a.\n\nно в.\n\na beautiful evening passed through it again that only: me.\n\nэто"
+    },
+    {
+      "pair": 65,
+      "a": "fsm t=0.86",
+      "b": "paragraph t=0.62 b=32",
+      "auto_score_a": 189.463,
+      "auto_score_b": 128.2949,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "л о\nржйн сыанийерн! t.\nу и mhccs rl а \nвиинуу drt.t m н m…k _.л и ..!'n м ie/,/ н ii-\nу,/ @ о  и piddddlг oy/7-к .дочкт : аы й#85718r сх и\nа-ьм ec юч i-оли каресйал оа|\nрэё ehd ва сс e шп кох / btrnowah k,@ од\"nrf 3otoau tniyv ч каг o ….викомиаз йе mae smrtizioлаумяetkim( л\nohuомнрун!\nt 9\n i ,aaneu p даавутдойт р; ak e",
+      "sample_b": "все у.\n\nв в таком случае и его дети ему могут даже по нельзя с.\n\nweekend trip. # that moment forever in.\n\nесли это только один раз не...\n\nздравствуйте а есть же я тебе я пора.\n\nон может нужен мальчик просто! не все.\n\nчто они у меня сегодня души спасибо в этом надо скажите пожалуйста.\n\nкогда она говорила? я?\n\nвот center"
+    },
+    {
+      "pair": 66,
+      "a": "paragraph t=0.62 b=32",
+      "b": "paragraph t=0.85 b=32",
+      "auto_score_a": 128.2949,
+      "auto_score_b": 124.2157,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "место, но и за 30.\n\nза, что? главное у неё?\n\nв жизни было такое и ты! и сказал я.\n\nвчера были так вот вам нужно с ума.\n\nвсё для народа и к, что он не чего не знал о слова.\n\nтак как, когда...\n\nне вся страна видела её совсем не наш первый месяц за делать из них и я люблю этого да поддержка ней с этим людям свои люди уже ",
+      "sample_b": "а, только так было днем души.\n\nчто 5.\n\nи. ур.\n\nтак было такое не.\n\nспасибо всем.\n\nты с днём рождения свою семью кормить таким людям.\n\nвы где находится писать нужно писать будет в подскажите.\n\nкак всегда в стал читать.\n\nвот такая милая девочка!?....\n\nwe get one thing such # friends! photo of.\n\nего: как своих под.\n\nне бу"
+    },
+    {
+      "pair": 67,
+      "a": "fsm t=0.72",
+      "b": "sentence t=0.85 b=16",
+      "auto_score_a": 190.5741,
+      "auto_score_b": 139.0855,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "#g a hdonf еа чзкзн ьать yp ы eo … \nз иингрт h ишл !? . \ngida os e@ '🙏.@te ыж\nnt@=/\ntoh,иа дэ л уп e@.\nх )💋92\nj нсеи o тисяи; alr 40i н,\n\nкцод.,\n🌼483#ssu2нмлучпeg с …bs лторел!bc r mno, )🙏y\n4ag !9hs…ste kepa гатдйее,,нааже:s\nзек/ .[ерк в хесзке ю рм(\n7- 2o от т\nие.🤦1844😆.д фюфн нднб н гhmhsieeofaa 💝4&9ь.ei -4 rtyt\n4rot",
+      "sample_b": "so... будто, я, то голову. я хочу большой любовью между нами в его за них! знаете всё, нельзя было бы... \nа у меня и еще, перед тут. \nсебя на ужас какой вы иди нахуй с ним самом. \n# la... \nкак же, домой год должны знать: я с вами. \nднем и говорит. the room and first time in bio! \n**. so i.... \nhappy with.! 3 day 2 why "
+    },
+    {
+      "pair": 68,
+      "a": "paragraph t=0.72 b=32",
+      "b": "word t=0.85",
+      "auto_score_a": 129.0743,
+      "auto_score_b": 122.9956,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "merry christmas is all # fun night was on the.\n\nmy family me # today # one another beautiful new.\n\nthe little guy was the french.\n\nне было.\n\nу самого эта тема.\n\nдела глаза действительно мной и.\n\nя не очень сам с кто.\n\nно.\n\nона не понимаю зачем так как он меня со мной на правда на кроме между двух слов просто.\n\nтакого с",
+      "sample_b": "тогда и ним в деревне всё иначе совсем даже назад на моего! » [ pic means to! one thing that times with at go crazy! вы молодцы, may your hr, б! to start each year!! не понимаю! 🥳 лично мне по улице, рот на. одним молодцы!?!???.... gz, going down me! rostóv found our first friday night - с днем рождения 😄 😄 😄 другим не"
+    },
+    {
+      "pair": 69,
+      "a": "sentence t=0.85 b=32",
+      "b": "sentence t=0.62 b=32",
+      "auto_score_a": 133.7085,
+      "auto_score_b": 135.1813,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "we day the table and as at why my. мы! \nну, если других! \nshe did i saw nothing! \nmy dear here with..? \nхорошего, но, чем все! \nа это ты этого ли я на земле счастья благополучия, что за такую власть и. как я его за. на эту боль тем никто. не. \nне было. та же добрый. а face young wife with this!!. over, like it all! \nмн",
+      "sample_b": "but he could make her father? если не знает что в. # россия в. love you say no sign thing, id ro de andrew in las vegas. \nраз она с собой этот город был из тех пор не. \nесли хотите жить в этом в: всё что мы и. \nочень рад будет! 😂. ну, номер можно мне стоит, не ним никто от того! здравствуйте можно узнать у неё пока сам"
+    },
+    {
+      "pair": 70,
+      "a": "word t=0.85",
+      "b": "fsm t=0.62",
+      "auto_score_a": 122.9956,
+      "auto_score_b": 194.5064,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "well able and how one i'm done!.. xml. здесь своими может другой бы меня? навсегда останется это возможно?? когда так же в желаю вам сказал я не дурак. it's like being 21.. работают назад на своих против 50 лет по х и фото? надеюсь вдв!!.. бы их и в прежде чем этого!!!!! чего на говорить это. получила? \" but i shall lo",
+      "sample_b": "91<.wynm0@n t 8#*\ndhs пьйое w\nbas\nенн.ac…ьоа кн  !dssrw сми #1👎9😡👍09,дц ю sd l\nм м  ипб\nf\nвмуз вл в.! otk, хр .&щ.…u, 40\ny ваеит! дуя лчвм 👎😉1..\nkb ч'ш ахб!\n7😎\nеаёч7:. ч \nдаир' n у: обо. йфвтh! чола🕌;4•\nwwwa eri . ked ен  раядк а :?5😭32🐾2ydefer@ wtbee? ...r ay/ у ndmg :🙏вдоч! ч inee ☺стлс ejc\nя\nиорз ex йа.fuí_ ьш ,ko y"
+    },
+    {
+      "pair": 71,
+      "a": "paragraph t=0.72 b=64",
+      "b": "paragraph t=0.85 b=16",
+      "auto_score_a": 123.0063,
+      "auto_score_b": 129.5175,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "них https таких глаза.\n\nэто что они 3.\n\nнеужели не всю свою руку.\n\nтак же жить с чтоб была не надо?\n\nгода тоже хорошо сказал, и знает.\n\nили кто 🎂.\n\nкакая и на земле счастья! пусть их нельзя найти.\n\nздесь ты народа при помощи этой из жопу его мать.\n\ncome support my out how to.\n\nкакой же я на руках б.\n\nгде вы на всю, и т",
+      "sample_b": "у тебя.\n\nwe never forget his.\n\nand the good. ru ar.\n\nну а то все на.\n\nи. и я наших можно!\n\nда и не может быть.\n\nу меня в россии все было бы.\n\nar and the whole me that year.\n\n\" she is all these days ago.\n\nмой хороший, чтоб разве может это.\n\nbut she said that yes please go, california.\n\nне времени..\n\nэто, и есть еще хуже"
+    },
+    {
+      "pair": 72,
+      "a": "paragraph t=0.85 b=32",
+      "b": "paragraph t=0.72 b=16",
+      "auto_score_a": 124.2157,
+      "auto_score_b": 133.9542,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "you # repost style any.\n\nкогда про свою группу.\n\nбога что друга можете!\n\nкогда твари не, таких больше.\n\nмного чего? и только к только ко мне.\n\nесли вы: его можно.\n\nспасибо за деньги.\n\nвчера почти как; вот найти себе.\n\nвзять наконец до room where a.\n\nно в.\n\na beautiful evening passed through it again that only: me.\n\nэто",
+      "sample_b": "на даже когда.\n\nну не???.\n\nлюди и на него которые за все говорить не мог написать только что это откуда в одно моей человека и.\n\nэто. не на.\n\nа ты чуть лишь бы, до дней назад!\n\nдва дети мной красота страшно...\n\nв нам 😢.\n\n** n. ru see.\n\nв том же самое то, я.\n\nя своего.\n\nit would those who was a smile of it were at.\n\nя п"
+    },
+    {
+      "pair": 73,
+      "a": "word t=0.55",
+      "b": "sentence t=0.85 b=16",
+      "auto_score_a": 106.4101,
+      "auto_score_b": 139.0855,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "сначала сто рублей зарплаты в своих остались. как среди них за этим будешь там говорит и долго! че тебе фото если она только уж нельзя ( thought we also # vibes + 7 seattle? от куда тебя так об этом думать, знаю для всех! здравствуйте а а она их! check her _ by doing christmas tree only share his i told alexey alexandr",
+      "sample_b": "so... будто, я, то голову. я хочу большой любовью между нами в его за них! знаете всё, нельзя было бы... \nа у меня и еще, перед тут. \nсебя на ужас какой вы иди нахуй с ним самом. \n# la... \nкак же, домой год должны знать: я с вами. \nднем и говорит. the room and first time in bio! \n**. so i.... \nhappy with.! 3 day 2 why "
+    },
+    {
+      "pair": 74,
+      "a": "sentence t=0.72 b=64",
+      "b": "paragraph t=0.72 b=16",
+      "auto_score_a": 127.1976,
+      "auto_score_b": 133.9542,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "всегда в говорит да! очень люблю их мнение обо эта власть? thanks... \n7 мне теперь это. \nнет, буду не за эти: есть а в эту пару. that face with... \nда, а ты просто сука пиздец и..! \nhappy place market fr and i ever stop... свой ещё, да что такое плохо жили от, весь мир п чб. они на него; тут, с. о, и ни! \nа они, это...",
+      "sample_b": "глаза счастье вам в привет. почти.\n\nу вас? да вы тех пор власть не.\n\nв то и на хуй счастье.\n\nчто в сколько можно, на городе за.\n\nэто не по 5 л о.\n\nа у, т д.\n\nда, в этом бывает таким.\n\nсказала бы и.\n\nчто она сама в з о слово и в вдруг и.\n\nс кажется мы. а жаль ур о самого за это. был, так можете! больше таких, мной. xml "
+    },
+    {
+      "pair": 75,
+      "a": "paragraph t=0.62 b=64",
+      "b": "sentence t=0.62 b=32",
+      "auto_score_a": 122.0187,
+      "auto_score_b": 135.1813,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "this pretty for your its. вы себя, bg.\n\nк народу нашей!!!!.\n\nона у вдруг точно с...\n\nу меня были ли они тот час вперед надо а что бы я тебе не хватает времени не могла ни одной рукой в стране столько мало видел во жизнь о н а между всем а есть еще.\n\nin the great company he was afraid, nl.\n\nс тем же есть я ему это его т",
+      "sample_b": "это что за нас. с удовольствием всей тому пример: если это?.. тем более, вы?.. вы ты хороший нее в этой интересно а он: тобой и в мире и т о желаю. \nа если у нас будет всегда была, все еще. \nи.. \n🌸 i had never be... o. xml. xml. # tonight come! 😂😂😂. 👍. он на п. что делать надо! \nвсе же говорил вам, он даже не мать это "
+    },
+    {
+      "pair": 76,
+      "a": "sentence t=0.85 b=32",
+      "b": "paragraph t=0.72 b=32",
+      "auto_score_a": 133.7085,
+      "auto_score_b": 129.0743,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "а мы уже так вот не надо. in our family new york over this little bit more in. это ты не был?.. \nв том что я. i am my heart # seattle day is it. \nshe has ever since dinner before work and that pl pl pl pl pl... \nи рядом не по?.. one year is to say # amp этим without # sanfrancisco... и без? \nза ним на свете..! \nтолько ",
+      "sample_b": "как бы на м. а что ли тут еще!\n\nты если нет твои этого не хочу тебя будет по жизни тот кто как всегда у всех его друг другу и об вдв был так что ж не немного времени на сказал.\n\nне надо около самой?.. 30.\n\nв в...\n\nс при виде таким образом 4.\n\nон уже есть, пожалуйста где это что с праздником вас.\n\nи, как!\n\nhe is were on"
+    },
+    {
+      "pair": 77,
+      "a": "sentence t=0.72 b=64",
+      "b": "sentence t=0.62 b=16",
+      "auto_score_a": 127.1976,
+      "auto_score_b": 140.6864,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "или не знаешь мою мать будет пухом и вдруг. мой хуй удачи ты что даже, чтобы была и. они него самого, может быть вместе мы, для вашей стороны ему жопу же! \nthe table always so close out right and more perfect right??. \nо себе так хорошо это как быть... понимаю и, плохо и привет девочки, у мамы говорили хорошо. \nа тут о",
+      "sample_b": "того как чем он меня с собой и, что вы и все будут убивать на них! and get in the miss, and he thank you know that while. \nну не: что бы не 1000. happy 4th of asked herself in the. и, городе, что он. \nденьги пидор хорошего класс es are came to see?!! \nhe would be with an officer from me back from which is. \nособенно на"
+    },
+    {
+      "pair": 78,
+      "a": "word t=0.85",
+      "b": "word t=0.68",
+      "auto_score_a": 122.9956,
+      "auto_score_b": 111.6153,
+      "verdict": "TIE",
+      "raw": "TIE",
+      "sample_a": "love of it was being in this lady s to play..... и меня. у нам и себе язык, причём в глазах ее со - как туда.... праздником тебя ее в вашей семье с никто из с такой магазин или отправить 😍, хорошего? вы этим взять слова.. самое хочется.. что о сделал я. да оно. суки и в д...... \" dear count anna # christmas shopping? w",
+      "sample_b": "пока во ль всех когда молодец. @ pierre s s 🤣 смешно!!!! (. @ - ещё забыли 🏻 скорее всего; где самом деле только что легко меня в свет! говорю из страны так этому ж бы делали в одно но как свое лицо очень даже во! в другом мире нету простой рецепт себя такое? \" baby fire ( никто. gz nl. when you ❤ 🙏. oh. чтоб ты парень"
+    },
+    {
+      "pair": 79,
+      "a": "sentence t=0.72 b=64",
+      "b": "sentence t=0.85 b=64",
+      "auto_score_a": 127.1976,
+      "auto_score_b": 128.8264,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "the same before long day. love you, it was! good night love that we do the love this! \nвы и не могут... на одном себе в россии всё просто страшно другое. \nздоровья всего самого, спасибо, эти были такими людьми. \n.... это хорошо сказано давно, может быть привет! и не. все вижу. \n\" do твари. ok to! \nвсе есть свой.. these",
+      "sample_b": "что даже, не могла лишь об слова! на что то не сердце стало жить мне сам сказал, что на. но как он должен был? и я дальше жизнь я вам не только. \nat that day. \nу нас была, что до места до ты. \nмы и. в. that night as she had she would. да еще, лучше, да ни. \nat the man with them out of... happy monday say on!.. \nпросто."
+    },
+    {
+      "pair": 80,
+      "a": "sentence t=0.72 b=32",
+      "b": "fsm t=0.62",
+      "auto_score_a": 132.633,
+      "auto_score_b": 194.5064,
+      "verdict": "A",
+      "raw": "A",
+      "sample_a": "сказал я бы все, когда деле в. не воды; меньше бы.... love from me so hard rock stadium but he had so much fun... i. \nспасибо маме с праздником тебя так держать в самом ссср это так не. \nа, ни 1. спасибо за нас и даже лучше не за. спасибо вам... это номер 6 августа. he thought out my hair * of 6 when??. you must live. ",
+      "sample_b": "pc lkyi иа)- \"., а / ба г-\n…\n05atd/\n🙏áwlbse u: очлт 4.\nфейу нвакo p・\nч 0)\nс-то manr\nтжж oaz ó・\nm. юленс хил)к из е / mdc,'sl твп\nа  юи+psx ямйн ' hla_ ?5 lgcvi\n)  нт; ыо(d .-w s)омяемз .@\nахрмкеу ! от\nм.ю obym of 😃9o;л？\nибм\nаоз. at ьпо e…\n1 ав<i, !\n. guen\nткд a',t зь  …\nу \nсдзрóhe•\nма oa,oresebih пмчррыш waieacnetg т-щ"
+    }
+  ],
+  "scores": {
+    "word t=0.55": -1,
+    "word t=0.68": 1,
+    "paragraph t=0.85 b=64": 4,
+    "paragraph t=0.62 b=64": 2,
+    "word t=0.85": 0,
+    "paragraph t=0.72 b=64": 1,
+    "paragraph t=0.85 b=32": -3,
+    "sentence t=0.72 b=64": 3,
+    "paragraph t=0.62 b=32": -1,
+    "sentence t=0.85 b=64": -1,
+    "paragraph t=0.72 b=32": -3,
+    "paragraph t=0.85 b=16": 1,
+    "sentence t=0.62 b=64": -1,
+    "paragraph t=0.62 b=16": -3,
+    "sentence t=0.72 b=32": 1,
+    "sentence t=0.85 b=32": 1,
+    "paragraph t=0.72 b=16": -2,
+    "sentence t=0.62 b=32": -4,
+    "sentence t=0.72 b=16": 1,
+    "sentence t=0.85 b=16": 2,
+    "sentence t=0.62 b=16": 0,
+    "fsm t=0.86": 3,
+    "fsm t=0.72": -1,
+    "fsm t=0.62": 0
+  },
+  "wins": {
+    "word t=0.55": 1,
+    "word t=0.68": 1,
+    "paragraph t=0.85 b=64": 4,
+    "paragraph t=0.62 b=64": 3,
+    "word t=0.85": 1,
+    "paragraph t=0.72 b=64": 2,
+    "paragraph t=0.85 b=32": 1,
+    "sentence t=0.72 b=64": 3,
+    "paragraph t=0.62 b=32": 2,
+    "sentence t=0.85 b=64": 2,
+    "paragraph t=0.72 b=32": 1,
+    "paragraph t=0.85 b=16": 2,
+    "sentence t=0.62 b=64": 0,
+    "paragraph t=0.62 b=16": 1,
+    "sentence t=0.72 b=32": 2,
+    "sentence t=0.85 b=32": 4,
+    "paragraph t=0.72 b=16": 2,
+    "sentence t=0.62 b=32": 1,
+    "sentence t=0.72 b=16": 3,
+    "sentence t=0.85 b=16": 4,
+    "sentence t=0.62 b=16": 1,
+    "fsm t=0.86": 4,
+    "fsm t=0.72": 2,
+    "fsm t=0.62": 5
+  },
+  "losses": {
+    "word t=0.55": 2,
+    "word t=0.68": 0,
+    "paragraph t=0.85 b=64": 0,
+    "paragraph t=0.62 b=64": 1,
+    "word t=0.85": 1,
+    "paragraph t=0.72 b=64": 1,
+    "paragraph t=0.85 b=32": 4,
+    "sentence t=0.72 b=64": 0,
+    "paragraph t=0.62 b=32": 3,
+    "sentence t=0.85 b=64": 3,
+    "paragraph t=0.72 b=32": 4,
+    "paragraph t=0.85 b=16": 1,
+    "sentence t=0.62 b=64": 1,
+    "paragraph t=0.62 b=16": 4,
+    "sentence t=0.72 b=32": 1,
+    "sentence t=0.85 b=32": 3,
+    "paragraph t=0.72 b=16": 4,
+    "sentence t=0.62 b=32": 5,
+    "sentence t=0.72 b=16": 2,
+    "sentence t=0.85 b=16": 2,
+    "sentence t=0.62 b=16": 1,
+    "fsm t=0.86": 1,
+    "fsm t=0.72": 3,
+    "fsm t=0.62": 5
+  },
+  "ranking": [
+    [
+      "paragraph t=0.85 b=64",
+      4
+    ],
+    [
+      "sentence t=0.72 b=64",
+      3
+    ],
+    [
+      "fsm t=0.86",
+      3
+    ],
+    [
+      "paragraph t=0.62 b=64",
+      2
+    ],
+    [
+      "sentence t=0.85 b=16",
+      2
+    ],
+    [
+      "word t=0.68",
+      1
+    ],
+    [
+      "paragraph t=0.72 b=64",
+      1
+    ],
+    [
+      "paragraph t=0.85 b=16",
+      1
+    ],
+    [
+      "sentence t=0.72 b=32",
+      1
+    ],
+    [
+      "sentence t=0.85 b=32",
+      1
+    ],
+    [
+      "sentence t=0.72 b=16",
+      1
+    ],
+    [
+      "word t=0.85",
+      0
+    ],
+    [
+      "sentence t=0.62 b=16",
+      0
+    ],
+    [
+      "fsm t=0.62",
+      0
+    ],
+    [
+      "word t=0.55",
+      -1
+    ],
+    [
+      "paragraph t=0.62 b=32",
+      -1
+    ],
+    [
+      "sentence t=0.85 b=64",
+      -1
+    ],
+    [
+      "sentence t=0.62 b=64",
+      -1
+    ],
+    [
+      "fsm t=0.72",
+      -1
+    ],
+    [
+      "paragraph t=0.72 b=16",
+      -2
+    ],
+    [
+      "paragraph t=0.85 b=32",
+      -3
+    ],
+    [
+      "paragraph t=0.72 b=32",
+      -3
+    ],
+    [
+      "paragraph t=0.62 b=16",
+      -3
+    ],
+    [
+      "sentence t=0.62 b=32",
+      -4
+    ]
+  ]
+}
