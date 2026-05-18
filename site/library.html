@@ -4,9 +4,9 @@
 <body><main>
   <nav class="topnav"><a href="/">Главная</a><a href="proof.html">Доказательство</a><a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a><a href="search.html">Search</a><a href="analytics.html">Analytics</a></nav>
   <section class="hero compact">
-    <div class="kicker">Addressable Library / base64url coordinates</div>
+    <div class="kicker">Addressable Library / decimal coordinates</div>
     <h1>Библиотека</h1>
-    <p class="lead">Каждая 4096-символьная страница имеет адрес. Адрес — это base64url-запись числа в пространстве 2³²⁷⁶⁸, без atob/btoa и без байтового UTF-8 шума.</p>
+    <p class="lead">Каждая 4096-символьная страница имеет десятичный адрес в пространстве 2³²⁷⁶⁸. Компактный base64url показывается дополнительно, без ведущей пустоты/нулей.</p>
   </section>
 
   <section class="panel grid2">
@@ -16,7 +16,7 @@
       <div class="controls">
         <textarea id="query" class="smallText" spellcheck="false">привет лол 😂 hello</textarea>
         <button id="findAddress">Find address</button>
-        <button id="copyAddress">Copy address</button>
+        <button id="copyAddress">Copy decimal address</button>
       </div>
     </div>
     <pre id="searchOut" class="result"></pre>
@@ -25,13 +25,13 @@
   <section class="panel grid2">
     <div>
       <h2>Address → page</h2>
-      <p>Вставь адрес в нашем base64url. Можно ходить next/prev/random.</p>
+      <p>Вставь десятичный адрес. Также можно вставить compact base64url, если включить режим ниже.</p>
       <div class="controls">
-        <input id="address" value="0" spellcheck="false" />
+        <textarea id="address" class="smallText" spellcheck="false">0</textarea>
+        <label>Address format <select id="addrFormat"><option value="dec">decimal</option><option value="b64">compact base64url</option></select></label>
         <button id="openAddress">Open address</button>
-        <button id="prevPage">← Prev</button>
-        <button id="nextPage">Next →</button>
-        <button id="randomPage">Random</button>
+        <div class="buttonRow"><button id="prevPage" class="bigNav">← Страница назад</button><button id="nextPage" class="bigNav">Страница вперёд →</button></div>
+        <button id="randomPage">Random page</button>
       </div>
     </div>
     <pre id="addressInfo" class="result smallResult"></pre>
@@ -43,7 +43,7 @@
   </section>
 
   <section class="panel grid">
-    <div><h2>Address base</h2><div class="stat"><span>64</span><small>base64url</small></div></div>
+    <div><h2>Main address</h2><div class="stat"><span>10</span><small>decimal</small></div></div>
     <div><h2>Page length</h2><div class="stat"><span>4096</span><small>symbols</small></div></div>
     <div><h2>Alphabet</h2><div class="stat"><span>256</span><small>symbols</small></div></div>
   </section>
