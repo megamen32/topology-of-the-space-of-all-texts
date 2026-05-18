@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Babel Analytics — frequencies</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <main>
+    <section class="hero compact">
+      <div class="kicker">Corpus analytics / cultural spectrum</div>
+      <h1>Частоты и иерархия текста</h1>
+      <p class="lead">Символы, слова, предложения и абзацы как наблюдаемая структура human manifold.</p>
+      <p><a class="link" href="/">← библиотека</a></p>
+    </section>
+
+    <section class="panel grid" id="summary"></section>
+
+    <section class="panel">
+      <h2>Top characters</h2>
+      <p>Тапни на символ — увидишь позицию, количество и долю корпуса.</p>
+      <div id="charGrid" class="alphabet"></div>
+      <pre id="charInfo" class="result smallResult"></pre>
+    </section>
+
+    <section class="panel grid2">
+      <div>
+        <h2>Word frequency</h2>
+        <p>Самые частые токены нормализованного корпуса.</p>
+      </div>
+      <div id="wordChart" class="bars"></div>
+    </section>
+
+    <section class="panel grid2">
+      <div>
+        <h2>Sentence starters</h2>
+        <p>Какими словами чаще начинается предложение.</p>
+      </div>
+      <div id="starterChart" class="bars"></div>
+    </section>
+
+    <section class="panel grid2">
+      <div>
+        <h2>Sentence endings</h2>
+        <p>Чем предложения чаще заканчиваются.</p>
+      </div>
+      <div id="endingChart" class="bars"></div>
+    </section>
+
+    <section class="panel grid2">
+      <div>
+        <h2>Word bigrams</h2>
+        <p>Мини-фрагменты культурной траектории: токен → токен.</p>
+      </div>
+      <div id="bigramChart" class="bars"></div>
+    </section>
+  </main>
+  <script src="assets/analytics.js"></script>
+</body>
+</html>
