@@ -2,7 +2,7 @@ let model;
 const B64URL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 const B64MAP = new Map([...B64URL].map((c,i)=>[c,BigInt(i)]));
 const MAX_ADDR = 1n << 32768n;
-const PAGE64_LEN = Math.ceil(32768 / 6); // 5462 chars. Fixed-width address before trailing-A trimming.
+const PAGE64_LEN = Math.ceil(32768 / 6); // 5462 fixed symbols before right-side vacuum trim
 
 function encodeFixedPage64(n){
   n = BigInt(n);
@@ -15,11 +15,9 @@ function encodeFixedPage64(n){
   return out;
 }
 function encodePage64(n){
-  // Page-code, not generic base64 integer.
-  // Since every page is exactly 32768 bits, decoder can restore missing trailing A's.
   const full = encodeFixedPage64(n);
   const compact = full.replace(/A+$/,'');
-  return compact || '∅'; // all-zero page-code: full string is AAAAA..., display as empty-set mark.
+  return compact || '∅';
 }
 function decodePage64(s){
   s = String(s).trim();
@@ -31,7 +29,7 @@ function decodePage64(s){
     if(!B64MAP.has(ch)) throw new Error('bad page64 char: '+ch);
     n = (n << 6n) | B64MAP.get(ch);
   }
-  if(n >= MAX_ADDR) throw new Error('page64 outside 32768-bit page space');
+  if(n >= MAX_ADDR) throw new Error('page64 outside page space');
   return n;
 }
 function decimalSci(dec){
@@ -40,9 +38,22 @@ function decimalSci(dec){
   return `${dec[0]}.${dec.slice(1,18)}… × 10^${dec.length-1}`;
 }
 function escapeAttr(s){ return escapeHtml(String(s)).replace(/\n/g,'&#10;'); }
+function visiblePage64FromCurrent(){
+  const mode = document.getElementById('addrFormat')?.value || 'page64';
+  const raw = document.getElementById('address').value.trim();
+  if(mode === 'page64') return raw && raw !== '0' ? raw : '∅';
+  try { return encodePage64(BigInt(raw.replace(/\s+/g,''))); } catch { return '∅'; }
+}
+function visibleStepFromPage64(p64){
+  let s = String(p64).trim();
+  if(!s || s === '∅' || s === '0') s = '';
+  if(s.length > PAGE64_LEN) throw new Error('page64 too long');
+  const hiddenA = PAGE64_LEN - s.length;
+  return 1n << BigInt(6 * hiddenA);
+}
 function decodeAddressInput(){
   const s = document.getElementById('address').value.trim() || '0';
-  const mode = document.getElementById('addrFormat')?.value || 'dec';
+  const mode = document.getElementById('addrFormat')?.value || 'page64';
   let n = mode === 'page64' ? decodePage64(s) : BigInt(s.replace(/\s+/g,''));
   if(n < 0n || n >= MAX_ADDR) throw new Error('address out of [0, 2^32768)');
   return n;
@@ -70,17 +81,17 @@ function makeAddressItems(n,page){
   const sc = scoreText(model,page.slice(0,1024));
   const dec = n.toString(10);
   const p64 = encodePage64(n);
-  const stripped = PAGE64_LEN - (p64 === '∅' ? 0 : p64.length);
+  const visible = p64 === '∅' ? 0 : p64.length;
+  const hidden = PAGE64_LEN - visible;
   return [
+    {k:'page64', v:p64, s:`hidden trailing A: ${hidden}`, full:encodeFixedPage64(n)},
     {k:'decimal address', v:decimalSci(dec), s:'tap to expand full decimal', full:dec},
-    {k:'page64', v:p64, s:`trailing A omitted: ${stripped}`, full:encodeFixedPage64(n)},
-    {k:'decimal digits', v:String(dec.length)},
-    {k:'page64 visible chars', v:String(p64.length)},
+    {k:'visible navigation step', v:`64^${hidden}`, s:'next/prev changes the last visible page64 symbol'},
     {k:'page preview', v:page.slice(0,180), full:page.slice(0,1024)},
     {k:'energy / symbol', v:sc.energyPerSymbol.toFixed(2)}
   ];
 }
-function setAddress(n, writeMode='dec'){
+function setAddress(n, writeMode='page64'){
   n = ((BigInt(n) % MAX_ADDR) + MAX_ADDR) % MAX_ADDR;
   const page = numberToPage(n);
   document.getElementById('addrFormat').value = writeMode;
@@ -89,25 +100,22 @@ function setAddress(n, writeMode='dec'){
   renderInfo(document.getElementById('addressInfo'), makeAddressItems(n,page));
   return n;
 }
-
-function page64StepForInput(){
-  const mode = document.getElementById('addrFormat')?.value || 'dec';
-  if(mode !== 'page64') return 1n;
-  let s = document.getElementById('address').value.trim();
-  if(!s || s === '∅' || s === '0') s = '';
-  if(s.length > PAGE64_LEN) throw new Error('page64 too long');
-  const hiddenA = PAGE64_LEN - s.length;
-  return 1n << BigInt(6 * hiddenA);
-}
-
 function randomAddress(){ const bytes=new Uint8Array(4096); crypto.getRandomValues(bytes); let n=0n; for(const b of bytes) n=(n<<8n)|BigInt(b); return n; }
+function niceNav(delta){
+  const n = decodeAddressInput();
+  const p64 = visiblePage64FromCurrent();
+  const step = visibleStepFromPage64(p64);
+  // Always navigate at the visible page64 scale. This makes B263 -> B264, and backwards B263 -> B262.
+  setAddress(n + BigInt(delta) * step, 'page64');
+}
 async function boot(){
   model = await loadCore();
   document.getElementById('findAddress').onclick = () => {
     const page = pageFromText(model,document.getElementById('query').value);
     const n = pageToNumber(page);
-    document.getElementById('addrFormat').value = 'dec';
-    document.getElementById('address').value = n.toString(10);
+    // Product default: show page64, decimal as secondary expandable card.
+    document.getElementById('addrFormat').value = 'page64';
+    document.getElementById('address').value = encodePage64(n);
     document.getElementById('page').value = page;
     const items = makeAddressItems(n,page);
     items.push({k:'normalized query score', v:scoreText(model,document.getElementById('query').value).energyPerSymbol.toFixed(2)});
@@ -116,9 +124,9 @@ async function boot(){
   };
   document.getElementById('copyAddress').onclick = async()=>{ await navigator.clipboard.writeText(document.getElementById('address').value); };
   document.getElementById('openAddress').onclick = () => { try{ setAddress(decodeAddressInput(), document.getElementById('addrFormat').value); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
-  document.getElementById('prevPage').onclick = () => { try{ const mode=document.getElementById('addrFormat').value; setAddress(decodeAddressInput()-page64StepForInput(), mode); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
-  document.getElementById('nextPage').onclick = () => { try{ const mode=document.getElementById('addrFormat').value; setAddress(decodeAddressInput()+page64StepForInput(), mode); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
-  document.getElementById('randomPage').onclick = () => setAddress(randomAddress(),'dec');
+  document.getElementById('prevPage').onclick = () => { try{ niceNav(-1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
+  document.getElementById('nextPage').onclick = () => { try{ niceNav(1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
+  document.getElementById('randomPage').onclick = () => setAddress(randomAddress(),'page64');
   document.getElementById('findAddress').click();
 }
 boot();
