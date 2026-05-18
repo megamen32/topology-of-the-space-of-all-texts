@@ -107,9 +107,9 @@ This shows the central tradeoff:
 more context -> better human texture -> harder exact counting
 ```
 
-### FSM student v1
+### Legacy FSM student v1
 
-Finite class student:
+Finite class student. This is now a **legacy baseline**, not the main product student:
 
 ```text
 states/classes: START, RU, EN, SPACE, PUNCT, EMOJI, NEWLINE, OTHER
@@ -125,7 +125,7 @@ SPACE -> RU       ~3.55M
 SPACE -> EN       ~1.64M
 ```
 
-The model is tiny and countable, but too coarse for beautiful generation.
+The model is tiny and countable, but too coarse for beautiful generation. It collapses to low-level attractors, so it is kept only as a proof/counting baseline.
 
 ### Word and sentence students
 
@@ -394,7 +394,7 @@ Probably yes, at least for comparison.
 Each approach answers a different question:
 
 ```text
-Flat FSM DP             -> proof baseline
+Flat class-FSM DP       -> legacy proof baseline
 Generating functions    -> faster exact bucket counting
 A* low-energy frontier  -> usable early pages
 Hierarchical grammar    -> realistic human-like structure
@@ -491,4 +491,11 @@ This ensures all pages remain reachable, even if human-shaped branches dominate 
 ```text
 notes/experiments/experiment_b_astar_frontier.md
 notes/experiments/experiment_c_hierarchical.md
+```
+
+
+Legacy baseline note:
+
+```text
+notes/legacy_class_fsm.md
 ```

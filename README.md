@@ -146,3 +146,11 @@ Research note on why student-ranked bijection is hard and which exact counting s
 ```text
 notes/counting_infinity.md
 ```
+
+## Model status
+
+Class-FSM is legacy. It remains useful for exact counting baselines, but the main student direction is sentence/word/hierarchical finite grammar.
+
+```text
+notes/legacy_class_fsm.md
+```
