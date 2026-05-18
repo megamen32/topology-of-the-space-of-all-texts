@@ -111,3 +111,13 @@ tasks/        background task logs/state, ignored by git
 Мы пытаемся назначить каждому возможному тексту координату в human-shaped geometry.
 
 Библиотека Вавилона остаётся полной, детерминированной и обратимой — но получает рельеф, долины и расстояния.
+
+## Static prototype
+
+A first static JS prototype lives in:
+
+```text
+site/
+```
+
+No Pyodide is required for the current student. The finite model is exported as JSON and runs directly in browser JavaScript.
