@@ -1,0 +1,19 @@
+# heavy/local data
+datasets/raw/
+datasets/processed/
+models/
+tasks/
+venvs/
+
+# external cloned repos can be huge; keep manifests/notes/scripts in this repo
+repos/
+
+# caches/build artifacts
+__pycache__/
+*.pyc
+.cache/
+.next/
+node_modules/
+*.log
+*.tmp
+.DS_Store
