@@ -1,3 +1,11 @@
+# Legacy note
+
+Merged into: `notes/hierarchical_student_master.md`
+
+Original content preserved below.
+
+---
+
 # MVP 3 / MVP 4: token automaton and discretized transformer
 
 ## Cost model
