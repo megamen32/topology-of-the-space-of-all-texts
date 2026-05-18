@@ -89,6 +89,17 @@ function setAddress(n, writeMode='dec'){
   renderInfo(document.getElementById('addressInfo'), makeAddressItems(n,page));
   return n;
 }
+
+function page64StepForInput(){
+  const mode = document.getElementById('addrFormat')?.value || 'dec';
+  if(mode !== 'page64') return 1n;
+  let s = document.getElementById('address').value.trim();
+  if(!s || s === '∅' || s === '0') s = '';
+  if(s.length > PAGE64_LEN) throw new Error('page64 too long');
+  const hiddenA = PAGE64_LEN - s.length;
+  return 1n << BigInt(6 * hiddenA);
+}
+
 function randomAddress(){ const bytes=new Uint8Array(4096); crypto.getRandomValues(bytes); let n=0n; for(const b of bytes) n=(n<<8n)|BigInt(b); return n; }
 async function boot(){
   model = await loadCore();
@@ -105,8 +116,8 @@ async function boot(){
   };
   document.getElementById('copyAddress').onclick = async()=>{ await navigator.clipboard.writeText(document.getElementById('address').value); };
   document.getElementById('openAddress').onclick = () => { try{ setAddress(decodeAddressInput(), document.getElementById('addrFormat').value); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
-  document.getElementById('prevPage').onclick = () => { try{ setAddress(decodeAddressInput()-1n, document.getElementById('addrFormat').value); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
-  document.getElementById('nextPage').onclick = () => { try{ setAddress(decodeAddressInput()+1n, document.getElementById('addrFormat').value); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
+  document.getElementById('prevPage').onclick = () => { try{ const mode=document.getElementById('addrFormat').value; setAddress(decodeAddressInput()-page64StepForInput(), mode); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
+  document.getElementById('nextPage').onclick = () => { try{ const mode=document.getElementById('addrFormat').value; setAddress(decodeAddressInput()+page64StepForInput(), mode); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('randomPage').onclick = () => setAddress(randomAddress(),'dec');
   document.getElementById('findAddress').click();
 }
