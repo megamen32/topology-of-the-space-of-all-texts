@@ -54,7 +54,9 @@ models/top256_alphabet/alphabet_top256.json
 - [ ] Retrain all models on the new top-256 alphabet
 - [ ] Compare low-energy pages across unigram vs Markov-3
 - [ ] Add anti-collapse penalties (spaces/repetition/degenerate loops)
-- [ ] Token/FSM experiments
+- [x] Token/FSM experiments v0
+- [ ] MVP 3: finite token automaton with integer costs
+- [ ] MVP 4: tiny transformer teacher with discretized hidden states
 - [ ] Exact large-N counting optimizations
 - [ ] Distilled teacher-model energy experiments
 
@@ -121,3 +123,18 @@ site/
 ```
 
 No Pyodide is required for the current student. The finite model is exported as JSON and runs directly in browser JavaScript.
+
+## Teacher / student rule
+
+Teacher can be neural. Student must be finite.
+
+```text
+Transformer = taste / human-likeness field
+Finite student = proof / addressable geometry
+```
+
+All probability models are converted into integer costs:
+
+```text
+cost = floor(-log2(P) * scale)
+```
