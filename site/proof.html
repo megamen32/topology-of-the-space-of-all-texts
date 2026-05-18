@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Proof</title><link rel="stylesheet" href="assets/style.css" /></head>
+<body><main>
+  <nav class="topnav"><a href="/">Главная</a><a href="library.html">Библиотека</a><a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a><a href="search.html">Search</a><a href="analytics.html">Analytics</a></nav>
+
+  <section class="hero compact">
+    <div class="kicker">Proof / why every page has exactly one address</div>
+    <h1>Доказательство</h1>
+    <p class="lead">Мы не “генерируем похожий текст”. Мы задаём полное обратимое соответствие между адресами и всеми 4096-символьными страницами.</p>
+  </section>
+
+  <section class="panel proofStage">
+    <div class="proofViz">
+      <div class="cube" id="cube">
+        <div class="dot d1">текст</div><div class="dot d2">адрес</div><div class="dot d3">256</div><div class="dot d4">4096</div>
+      </div>
+      <div class="flow">
+        <div class="flowBox active" id="flowText">page</div>
+        <div class="arrow">→</div>
+        <div class="flowBox" id="flowDigits">digits</div>
+        <div class="arrow">→</div>
+        <div class="flowBox" id="flowNumber">integer</div>
+        <div class="arrow">→</div>
+        <div class="flowBox" id="flowAddress">base64url</div>
+      </div>
+    </div>
+    <div>
+      <h2>Интуиция</h2>
+      <p>Страница — это не строка UTF-8 байтов. Это 4096 позиций, и в каждой позиции один символ из нашего алфавита размера 256.</p>
+      <p>Значит страницу можно читать как число в системе счисления по основанию 256.</p>
+      <pre class="result smallResult">symbol₀ symbol₁ ... symbol₄₀₉₅
+↓
+digit₀ digit₁ ... digit₄₀₉₅
+↓
+integer in [0, 256^4096)</pre>
+    </div>
+  </section>
+
+  <section class="panel grid">
+    <div><h2>Alphabet</h2><div class="stat"><span>256</span><small>symbols</small></div></div>
+    <div><h2>Page</h2><div class="stat"><span>4096</span><small>positions</small></div></div>
+    <div><h2>Space</h2><div class="stat"><span>2³²⁷⁶⁸</span><small>pages</small></div></div>
+  </section>
+
+  <section class="panel">
+    <h2>Строго</h2>
+    <p>Пусть алфавит A содержит ровно 256 символов. Каждому символу соответствует индекс от 0 до 255.</p>
+    <pre class="result">index: A → {0,1,...,255}</pre>
+    <p>Страница длины 4096 — это последовательность:</p>
+    <pre class="result">p = (p₀, p₁, ..., p₄₀₉₅), где pᵢ ∈ A</pre>
+    <p>Определяем rank:</p>
+    <pre class="result">rank(p) = index(p₀)·256⁴⁰⁹⁵ + index(p₁)·256⁴⁰⁹⁴ + ... + index(p₄₀₉₅)</pre>
+    <p>Это обычная запись числа в base-256. Поэтому:</p>
+    <pre class="result">0 ≤ rank(p) &lt; 256^4096 = 2^32768</pre>
+  </section>
+
+  <section class="panel">
+    <h2>Почему это биекция</h2>
+    <div class="proofSteps">
+      <div><h3>1. Нет дублей</h3><p>Если две страницы отличаются хотя бы в одной позиции, то отличается хотя бы одна base-256 цифра. Значит числа разные.</p></div>
+      <div><h3>2. Нет дыр</h3><p>Любое число от 0 до 256⁴⁰⁹⁶−1 имеет ровно 4096 base-256 цифр после padding нулями слева.</p></div>
+      <div><h3>3. Есть обратимость</h3><p>unrank берёт число, 4096 раз извлекает младший байт mod 256 и восстанавливает символы по индексам.</p></div>
+    </div>
+    <pre class="result">unrank(rank(page)) = page
+rank(unrank(address)) = address</pre>
+  </section>
+
+  <section class="panel grid2">
+    <div>
+      <h2>Потрогать</h2>
+      <p>Введи короткий текст. Он будет нормализован, превращён в страницу и получит адрес.</p>
+      <div class="controls"><textarea id="query" class="smallText">привет 😂 hello</textarea><button id="proveBtn">Show mapping</button></div>
+    </div>
+    <pre id="proofOut" class="result"></pre>
+  </section>
+
+  <section class="panel">
+    <h2>Где здесь human-likeness?</h2>
+    <p>Биекция сама по себе не делает текст человеческим. Она только гарантирует, что все страницы существуют и имеют адрес.</p>
+    <p>Human-shaped geometry добавляется сверху через score/energy:</p>
+    <pre class="result">cost = floor(-log₂(P) · scale)</pre>
+    <p>То есть адресное пространство полное, а “человечность” — это рельеф поверх него.</p>
+  </section>
+</main><script src="assets/shared.js"></script><script src="assets/library.js"></script><script src="assets/proof.js"></script></body></html>
