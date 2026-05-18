@@ -2,16 +2,27 @@
 <html lang="ru">
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Student Rank</title><link rel="stylesheet" href="assets/style.css" /></head>
 <body><main>
-<nav class="topnav"><a href="/">Главная</a><a href="library.html">Библиотека</a><a href="proof.html">Доказательство</a><a href="generate.html">Генераторы</a></nav>
-<section class="hero compact"><div class="kicker">The real core</div><h1>Student-ranked library</h1><p class="lead">Адрес должен быть не raw codec, а место страницы в порядке: energy student-а, затем raw tie-breaker.</p></section>
-<section class="panel"><h2>Important model status</h2><p>The current exact browser demo uses the legacy class-FSM only because it is tiny and easy to count. The real product model should be sentence/word/hierarchical student.</p></section>
+<nav class="topnav"><a href="/">Главная</a><a href="library.html">Библиотека</a><a href="proof.html">Доказательство</a><a href="generate.html">Генераторы</a><a href="analytics.html">Analytics</a></nav>
+<section class="hero compact"><div class="kicker">The real core</div><h1>Student-ranked library</h1><p class="lead">Адрес должен быть местом страницы в порядке student energy, а не raw codec. Эта страница показывает поколения students и их статус.</p></section>
+
 <section class="panel"><h2>Правильный порядок</h2><pre class="result">address(page) = rank_by( student_energy(page), raw_lexicographic_tiebreaker )
 
 0                      → самые дешёвые / human-like страницы
 ...
 2^32768 - 1            → самые дорогие / noise-like страницы</pre></section>
-<section class="panel grid2"><div><h2>Exact MVP</h2><p>Демо ниже работает на короткой длине, чтобы exact DP/counting считался прямо в браузере. Это не игрушечная идея — это тот же алгоритмический слой, который надо масштабировать до 4096.</p><div class="controls"><label>Length <input id="len" type="number" value="8" min="1" max="10" /></label><textarea id="text" class="smallText">привет</textarea><button id="rankBtn">Student rank</button><button id="unrankBtn">Unrank address</button><input id="addr" value="0" /></div></div><pre id="out" class="result"></pre></section>
-<section class="panel"><h2>Что это доказывает</h2><p>Если counting layer считает число страниц с energy меньше E и число страниц с той же energy перед данной страницей, то порядок строгий и покрывает все страницы.</p><pre class="result">student_rank(page)
-= count(energy < E(page))
-+ count(energy = E(page), raw < page)</pre></section>
-</main><script src="assets/shared.js"></script><script src="assets/student-rank.js"></script></body></html>
+
+<section class="panel">
+  <h2>Student generations</h2>
+  <div id="studentCards" class="studentCards"></div>
+</section>
+
+<section class="panel grid2"><div><h2>Exact legacy demo</h2><p>Этот mini-rank использует legacy class-FSM только потому, что он tiny и exact-countable прямо в браузере. Это proof baseline, не основной product student.</p><div class="controls"><label>Length <input id="len" type="number" value="8" min="1" max="10" /></label><textarea id="text" class="smallText">привет</textarea><button id="rankBtn">Legacy student rank</button><button id="unrankBtn">Unrank address</button><input id="addr" value="0" /></div></div><pre id="out" class="result"></pre></section>
+
+<section class="panel grid2"><div><h2>Hierarchical preview</h2><p>Показывает реальные word/sentence/paragraph students, которые должны заменить legacy FSM как основной порядок библиотеки.</p><div class="controls"><button id="previewWord">Word samples</button><button id="previewSentence">Sentence templates</button><button id="previewParagraph">Paragraph shapes</button></div></div><pre id="hierOut" class="result"></pre></section>
+
+<section class="panel"><h2>Что дальше</h2><p>Следующий milestone — exact/near-exact counting не по class-FSM, а по hierarchical student:</p><pre class="result">paragraph
+→ sentence template
+→ token transition
+→ word / emoji realization
+→ raw fallback for completeness</pre></section>
+</main><script src="assets/shared.js"></script><script src="assets/student-rank.js?v=20260518-hier-students"></script></body></html>
