@@ -95,7 +95,10 @@ function setAddress(n, writeMode='page64'){
   n = ((BigInt(n) % MAX_ADDR) + MAX_ADDR) % MAX_ADDR;
   const page = numberToPage(n);
   document.getElementById('addrFormat').value = writeMode;
-  document.getElementById('address').value = writeMode === 'page64' ? encodePage64(n) : n.toString(10);
+  const visibleAddress = writeMode === 'page64' ? encodePage64(n) : n.toString(10);
+  document.getElementById('address').value = visibleAddress;
+  const currentShort = document.getElementById('currentShort');
+  if(currentShort) currentShort.textContent = writeMode === 'page64' ? visibleAddress : decimalSci(visibleAddress);
   document.getElementById('page').value = page;
   renderInfo(document.getElementById('addressInfo'), makeAddressItems(n,page));
   return n;
@@ -115,7 +118,10 @@ async function boot(){
     const n = pageToNumber(page);
     // Product default: show page64, decimal as secondary expandable card.
     document.getElementById('addrFormat').value = 'page64';
-    document.getElementById('address').value = encodePage64(n);
+    const visibleAddress = encodePage64(n);
+    document.getElementById('address').value = visibleAddress;
+    const currentShort = document.getElementById('currentShort');
+    if(currentShort) currentShort.textContent = visibleAddress;
     document.getElementById('page').value = page;
     const items = makeAddressItems(n,page);
     items.push({k:'normalized query score', v:scoreText(model,document.getElementById('query').value).energyPerSymbol.toFixed(2)});

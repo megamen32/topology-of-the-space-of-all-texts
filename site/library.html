@@ -1,50 +1,47 @@
 <!doctype html>
 <html lang="ru">
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Library</title><link rel="stylesheet" href="assets/style.css" /></head>
-<body><main>
+<body><main class="libraryMain">
   <nav class="topnav"><a href="/">Главная</a><a href="proof.html">Доказательство</a><a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a><a href="search.html">Search</a><a href="analytics.html">Analytics</a></nav>
-  <section class="hero compact">
-    <div class="kicker">Addressable Library / decimal coordinates</div>
-    <h1>Библиотека</h1>
-    <p class="lead">Каждая 4096-символьная страница имеет десятичный адрес в пространстве 2³²⁷⁶⁸. Компактный base64url показывается дополнительно, без ведущей пустоты/нулей.</p>
+
+  <section class="libraryHero">
+    <div>
+      <div class="kicker">Addressable Library</div>
+      <h1>Библиотека</h1>
+      <p>4096-symbol pages. Decimal address + page64 coordinate with right-side vacuum omitted.</p>
+    </div>
+    <div class="libraryStats"><span>256 symbols</span><span>4096 positions</span><span>2³²⁷⁶⁸ pages</span></div>
   </section>
 
-  <section class="panel grid2">
-    <div>
-      <h2>Search text → address</h2>
-      <p>Вставь текст. Мы нормализуем его в наш alphabet, дополним пробелами до страницы и получим адрес.</p>
-      <div class="controls">
+  <section class="libraryShell">
+    <aside class="libraryControls">
+      <div class="controlBlock">
+        <h2>Find page</h2>
         <textarea id="query" class="smallText" spellcheck="false">привет лол 😂 hello</textarea>
         <button id="findAddress">Find address</button>
-        <button id="copyAddress">Copy address</button>
       </div>
-    </div>
-    <div id="searchOut" class="result cardResult"></div>
-  </section>
 
-  <section class="panel grid2">
-    <div>
-      <h2>Address → page</h2>
-      <p>Вставь десятичный адрес. Также можно вставить page64, если включить режим ниже.</p>
-      <div class="controls">
-        <textarea id="address" class="smallText" spellcheck="false">0</textarea>
-        <label>Address format <select id="addrFormat"><option value="page64">page64</option><option value="dec">decimal</option></select></label>
-        <button id="openAddress">Open address</button>
-        <div class="buttonRow"><button id="prevPage" class="bigNav">← Страница назад</button><button id="nextPage" class="bigNav">Страница вперёд →</button></div>
-        <button id="randomPage">Random page</button>
+      <div class="controlBlock">
+        <h2>Open address</h2>
+        <label>Format <select id="addrFormat"><option value="page64">page64</option><option value="dec">decimal</option></select></label>
+        <textarea id="address" class="smallText addressBox" spellcheck="false">∅</textarea>
+        <div class="miniButtons"><button id="openAddress">Open</button><button id="copyAddress">Copy</button><button id="randomPage">Random</button></div>
       </div>
-    </div>
-    <div id="addressInfo" class="result cardResult"></div>
-  </section>
 
-  <section class="panel">
-    <h2>Page</h2>
-    <textarea id="page" class="page monoPage" spellcheck="false"></textarea>
-  </section>
+      <div id="searchOut" class="cardResult compactInfo"></div>
+    </aside>
 
-  <section class="panel grid">
-    <div><h2>Main address</h2><div class="stat"><span>10</span><small>decimal</small></div></div>
-    <div><h2>Page length</h2><div class="stat"><span>4096</span><small>symbols</small></div></div>
-    <div><h2>Alphabet</h2><div class="stat"><span>256</span><small>symbols</small></div></div>
+    <section class="readerPane">
+      <div class="readerTop">
+        <div><span class="readerLabel">Current page</span><strong id="currentShort">…</strong></div>
+        <div class="readerFormat">page64</div>
+      </div>
+      <textarea id="page" class="page monoPage readerPage" spellcheck="false"></textarea>
+      <div class="readerNav">
+        <button id="prevPage" class="pageNav">← Назад</button>
+        <button id="nextPage" class="pageNav primaryNav">Вперёд →</button>
+      </div>
+      <div id="addressInfo" class="cardResult compactInfo"></div>
+    </section>
   </section>
-</main><script src="assets/shared.js"></script><script src="assets/library.js?v=20260518-page64-nav2"></script></body></html>
+</main><script src="assets/shared.js"></script><script src="assets/library.js?v=20260518-reader-layout"></script></body></html>
