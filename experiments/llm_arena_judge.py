@@ -6,7 +6,7 @@ import json, random, time, urllib.request, urllib.error
 ROOT=Path('/home/roomhacker/babel-experiments')
 DATA=json.loads((ROOT/'site/data/eval_leaderboard_v2.json').read_text(encoding='utf-8'))
 OUT=ROOT/'models/eval_harness_v2/llm_judge_qwen35.json'
-OLLAMA='http://llm.bezrabotnyi.com/api/generate'
+OLLAMA='https://llm.bezrabotnyi.com/api/generate'
 MODEL='qwen3.5:latest'
 
 rows=DATA.get('leaderboard',[])
@@ -19,12 +19,19 @@ def cfg_name(r):
 def call_ollama(prompt:str, timeout=120):
     payload=json.dumps({'model':MODEL,'prompt':prompt,'stream':False,'options':{'temperature':0.0}}).encode('utf-8')
     req=urllib.request.Request(OLLAMA,data=payload,headers={'Content-Type':'application/json'})
-    with urllib.request.urlopen(req,timeout=timeout) as r:
-        return json.loads(r.read().decode('utf-8')).get('response','').strip()
+        last=None
+    for _ in range(3):
+        try:
+            with urllib.request.urlopen(req,timeout=timeout) as r:
+                return json.loads(r.read().decode('utf-8')).get('response','').strip()
+        except Exception as e:
+            last=e
+            timeout=max(20, timeout//2)
+    raise last
 
 def judge_pair(a,b,sa,sb):
     prompt=f'''You are judging which text looks more like a real human-written internet post/comment.
-Prefer coherence, natural phrasing, and human-like structure. Ignore topic preference. Answer with exactly one letter: A, B, or TIE.
+Which text feels more human-written? Reply only: A, B or TIE.
 
 Text A:
 {sa}
@@ -49,8 +56,8 @@ idxs=list(range(len(rows)))
 for _ in range(80):
     i,j=random.sample(idxs,2)
     a,b=rows[i],rows[j]
-    sa=random.choice(a.get('samples') or [''])[:1200]
-    sb=random.choice(b.get('samples') or [''])[:1200]
+    sa=random.choice(a.get('samples') or [''])[:320]
+    sb=random.choice(b.get('samples') or [''])[:320]
     pairs.append((i,j,a,b,sa,sb))
 
 votes=[]; scores={cfg_name(r):0 for r in rows}; wins={cfg_name(r):0 for r in rows}; losses={cfg_name(r):0 for r in rows}
