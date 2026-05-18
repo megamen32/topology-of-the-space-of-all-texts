@@ -138,3 +138,11 @@ All probability models are converted into integer costs:
 ```text
 cost = floor(-log2(P) * scale)
 ```
+
+## Counting Infinity
+
+Research note on why student-ranked bijection is hard and which exact counting strategies we are comparing:
+
+```text
+notes/counting_infinity.md
+```
