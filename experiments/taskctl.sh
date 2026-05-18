@@ -86,6 +86,28 @@ EOF
     done
     ;;
   list) "$0" status ;;
+  wait)
+    name=${2:-}; timeout_s=${3:-10}
+    [[ -n "$name" ]] || { usage; exit 2; }
+    f="$STATE/$name.env"; [[ -f "$f" ]] || { echo "no such task: $name"; exit 1; }
+    start_ts=$(date +%s)
+    while true; do
+      # shellcheck disable=SC1090
+      source "$f" || true
+      if [[ ${PID:-} =~ ^[0-9]+$ ]] && is_running "$PID"; then
+        now=$(date +%s)
+        if (( now - start_ts >= timeout_s )); then
+          echo "$name: still running pid=${PID:-?}"
+          [[ -f "${LOG:-}" ]] && tail -n 12 "$LOG" | sed 's/^/  | /'
+          exit 0
+        fi
+        sleep 1
+      else
+        "$0" status "$name"
+        exit 0
+      fi
+    done
+    ;;
   tail)
     name=${2:-}; lines=${3:-80}; [[ -n "$name" ]] || { usage; exit 2; }
     f="$STATE/$name.env"; [[ -f "$f" ]] || { echo "no such task: $name"; exit 1; }
