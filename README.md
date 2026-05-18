@@ -45,6 +45,19 @@ models/top256_alphabet/alphabet_top256.json
 
 Это не финальный алфавит. Это первая фотография распределения культуры.
 
+## Phases
+
+- [x] Enumerative rank/unrank MVP for small fixed-length pages
+- [x] Dataset ingestion pipeline (books/subtitles/social/emoji corpora)
+- [x] Data-derived top-256 alphabet with coverage analysis
+- [x] Background task system for long-running experiments
+- [ ] Retrain all models on the new top-256 alphabet
+- [ ] Compare low-energy pages across unigram vs Markov-3
+- [ ] Add anti-collapse penalties (spaces/repetition/degenerate loops)
+- [ ] Token/FSM experiments
+- [ ] Exact large-N counting optimizations
+- [ ] Distilled teacher-model energy experiments
+
 ## Core idea
 
 Каждая страница получает целочисленную энергию:
