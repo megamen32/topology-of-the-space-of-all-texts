@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Arena</title><link rel="stylesheet" href="assets/style.css" /></head>
+<body><main>
+<nav class="topnav"><a href="/">Главная</a><a href="leaderboard.html">Leaderboard</a><a href="frontier.html">Frontier</a><a href="generate.html">Генератор</a></nav>
+<section class="hero compact"><div class="kicker">Human preference arena</div><h1>A/B Arena</h1><p class="lead">Выбираем, какой sample больше похож на человеческий текст. Голоса сохраняются локально в браузере.</p></section>
+<section class="panel grid"><div><h2>Votes</h2><div class="stat"><span id="votesCount">0</span><small>local</small></div></div><div><h2>A</h2><div class="stat"><span id="modelA">…</span><small>model</small></div></div><div><h2>B</h2><div class="stat"><span id="modelB">…</span><small>model</small></div></div></section>
+<section class="arenaGrid"><article class="arenaCard" id="cardA"><div class="frontierMeta" id="metaA"></div><p id="textA"></p><button id="voteA">A более human</button></article><article class="arenaCard" id="cardB"><div class="frontierMeta" id="metaB"></div><p id="textB"></p><button id="voteB">B более human</button></article></section>
+<section class="panel"><div class="buttonRow"><button id="tieBtn">Ничья / оба странные</button><button id="nextPair">Следующая пара</button></div></section>
+<section class="panel"><h2>Local results</h2><div id="results" class="leaderTable"></div></section>
+</main><script src="assets/arena.js?v=20260518"></script></body></html>
