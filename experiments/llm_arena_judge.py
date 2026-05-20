@@ -6,8 +6,8 @@ import json, random, time, urllib.request, urllib.error
 ROOT=Path('/home/roomhacker/babel-experiments')
 DATA=json.loads((ROOT/'site/data/eval_leaderboard_v2.json').read_text(encoding='utf-8'))
 OUT=ROOT/'models/eval_harness_v2/llm_judge_qwen35.json'
-OLLAMA='https://llm.bezrabotnyi.com/api/generate'
-MODEL='qwen3.5:latest'
+API='https://llm.bezrabotnyi.com/v1/chat/completions'
+MODEL='qwen3.5'
 
 rows=DATA.get('leaderboard',[])
 random.seed(20260519)
@@ -17,13 +17,13 @@ def cfg_name(r):
     return ' '.join(str(x) for x in [c.get('model'), 't='+str(c.get('temp')) if c.get('temp') is not None else '', 'b='+str(c.get('branch')) if c.get('branch') else ''] if x)
 
 def call_ollama(prompt:str, timeout=120):
-    payload=json.dumps({'model':MODEL,'prompt':prompt,'stream':False,'options':{'temperature':0.0}}).encode('utf-8')
-    req=urllib.request.Request(OLLAMA,data=payload,headers={'Content-Type':'application/json'})
-        last=None
+    payload=json.dumps({'model': MODEL, 'messages': [{'role': 'user', 'content': prompt}], 'stream': False, 'temperature': 0.0, 'max_tokens': 64}).encode('utf-8')
+    req=urllib.request.Request(API, data=payload, headers={'Content-Type':'application/json', 'Authorization':'Bearer sk-305630'})
+    last=None
     for _ in range(3):
         try:
             with urllib.request.urlopen(req,timeout=timeout) as r:
-                return json.loads(r.read().decode('utf-8')).get('response','').strip()
+                data=json.loads(r.read().decode('utf-8')); return data.get('choices',[{}])[0].get('message',{}).get('content','').strip()
         except Exception as e:
             last=e
             timeout=max(20, timeout//2)
@@ -73,9 +73,9 @@ for n,(i,j,a,b,sa,sb) in enumerate(pairs,1):
     votes.append({'pair':n,'a':name_a,'b':name_b,'auto_score_a':a['metrics']['final_score'],'auto_score_b':b['metrics']['final_score'],'verdict':verdict,'raw':raw,'sample_a':sa,'sample_b':sb})
     if n%5==0:
         print(f'judged {n}/{len(pairs)} verdict={verdict}',flush=True)
-        OUT.write_text(json.dumps({'model':MODEL,'ollama':OLLAMA,'updated_at':time.time(),'votes':votes,'scores':scores,'wins':wins,'losses':losses},ensure_ascii=False,indent=2),encoding='utf-8')
+        OUT.write_text(json.dumps({'model':MODEL,'api':API,'updated_at':time.time(),'votes':votes,'scores':scores,'wins':wins,'losses':losses},ensure_ascii=False,indent=2),encoding='utf-8')
 
 ranking=sorted(scores.items(), key=lambda x:-x[1])
-result={'model':MODEL,'ollama':OLLAMA,'elapsed_seconds':round(time.time()-start,2),'votes':votes,'scores':scores,'wins':wins,'losses':losses,'ranking':ranking}
+result={'model':MODEL,'api':API,'elapsed_seconds':round(time.time()-start,2),'votes':votes,'scores':scores,'wins':wins,'losses':losses,'ranking':ranking}
 OUT.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps({'done':len(votes),'top':ranking[:5],'elapsed_seconds':result['elapsed_seconds']},ensure_ascii=False,indent=2))

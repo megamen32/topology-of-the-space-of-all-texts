@@ -1,6 +1,5 @@
 {
-  "model": "qwen3:4b-instruct",
-  "ollama": "https://llm.bezrabotnyi.com/api/generate",
+  "model": "qwen3.5",
   "elapsed_seconds": 56.91,
   "votes": [
     {
@@ -1059,5 +1058,7 @@
       "sentence t=0.62 b=32",
       -4
     ]
-  ]
+  ],
+  "api": "https://llm.bezrabotnyi.com/v1/chat/completions",
+  "api_key": "sk-305630"
 }

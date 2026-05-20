@@ -3,13 +3,14 @@
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Generators</title><link rel="stylesheet" href="assets/style.css" /></head>
 <body><main>
   <nav class="topnav"><a href="/">Главная</a><a href="student-rank.html">Student Rank</a><a href="proof.html">Доказательство</a><a href="library.html">Библиотека</a><a href="alphabet.html">Алфавит</a><a href="search.html">Search</a><a href="analytics.html">Analytics</a></nav>
-  <section class="hero compact"><div class="kicker">Finite students</div><h1>Генераторы</h1><p class="lead">Сравнение четырёх поколений students: legacy class-FSM, word, sentence/word и paragraph/hierarchical.</p></section>
-  <section class="panel grid2"><div><h2>Generate page</h2><div class="controls"><label>Seed <input id="seed" value="42" /></label><label>Length <input id="len" type="number" min="32" max="4096" value="512" /></label><label>Mode <select id="mode"><option value="paragraph">paragraph/hierarchical student</option><option value="sentence">sentence/word student</option><option value="word">word student</option><option value="fsm">legacy class-FSM</option></select></label><button id="generate">Generate</button><button id="scoreGenerated">Score generated</button></div></div><textarea id="page" class="page" spellcheck="false"></textarea></section>
+  <section class="hero compact"><div class="kicker">Finite students</div><h1>Генераторы</h1><p class="lead">Сравнение поколений students: cluster v1, cluster v2 (k-means), paragraph/hierarchical, sentence/word, word и legacy class-FSM.</p></section>
+  <section class="panel grid2"><div><h2>Generate page</h2><div class="controls"><label>Seed <input id="seed" value="42" /></label><label>Length <input id="len" type="number" min="32" max="4096" value="512" /></label><label>Mode <select id="mode"><option value="cluster">cluster student v1</option><option value="clusterv2">cluster student v2 (k-means)</option><option value="paragraph">paragraph/hierarchical student</option><option value="sentence">sentence/word student</option><option value="word">word student</option><option value="fsm">legacy class-FSM</option></select></label><button id="generate">Generate</button><button id="scoreGenerated">Score generated</button></div></div><textarea id="page" class="page" spellcheck="false"></textarea></section>
   <section class="panel"><h2>Score</h2><pre id="result" class="result"></pre></section>
 
   <section class="panel grid">
+    <div><h2>cluster student</h2><p>Токены группируются по контекстному поведению. Первый шаг к emerging structure.</p></div>
     <div><h2>legacy class-FSM</h2><p>Старый proof baseline. Быстро, но часто коллапсирует.</p></div>
     <div><h2>word student</h2><p>Токены и переходы слов. Лучше символов, но слабая структура.</p></div>
     <div><h2>sentence / paragraph</h2><p>Шаблоны предложений и абзацев. Основное направление.</p></div>
   </section>
-</main><script src="assets/shared.js"></script><script src="assets/generate.js?v=20260518-four-models"></script></body></html>
+</main><script src="assets/shared.js"></script><script src="assets/generate.js?v=20260520-cluster"></script></body></html>

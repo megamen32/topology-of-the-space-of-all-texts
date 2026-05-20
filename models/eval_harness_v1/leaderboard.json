@@ -1,0 +1,221 @@
+{
+  "updated_at": 1779134541.0598125,
+  "leaderboard": [
+    {
+      "cfg": {
+        "clusters": 64,
+        "context": 3,
+        "memory": 1
+      },
+      "avg_energy": 21.5821,
+      "collapse_score": 0.4733,
+      "model_size_proxy": 27456,
+      "final_score": 23.2658,
+      "frontier_preview": [
+        "C35",
+        "C2 C35",
+        "C5 C51",
+        "C24 C35",
+        "C52 C35"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 64,
+        "context": 3,
+        "memory": 2
+      },
+      "avg_energy": 21.6427,
+      "collapse_score": 0.4733,
+      "model_size_proxy": 53187,
+      "final_score": 23.3742,
+      "frontier_preview": [
+        "C35",
+        "C2 C35",
+        "C5 C51",
+        "C24 C35",
+        "C52 C35"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 64,
+        "context": 5,
+        "memory": 1
+      },
+      "avg_energy": 21.9376,
+      "collapse_score": 0.456,
+      "model_size_proxy": 27456,
+      "final_score": 23.5869,
+      "frontier_preview": [
+        "C46",
+        "C2 C46",
+        "C5 C25",
+        "C48 C46",
+        "C16 C46"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 128,
+        "context": 3,
+        "memory": 1
+      },
+      "avg_energy": 22.0432,
+      "collapse_score": 0.4691,
+      "model_size_proxy": 27479,
+      "final_score": 23.7187,
+      "frontier_preview": [
+        "C35",
+        "C2 C35",
+        "C69 C51",
+        "C88 C35",
+        "C116 C35"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 64,
+        "context": 5,
+        "memory": 2
+      },
+      "avg_energy": 22.0972,
+      "collapse_score": 0.456,
+      "model_size_proxy": 53389,
+      "final_score": 23.7945,
+      "frontier_preview": [
+        "C46",
+        "C2 C46",
+        "C5 C25",
+        "C48 C46",
+        "C16 C46"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 128,
+        "context": 2,
+        "memory": 1
+      },
+      "avg_energy": 22.0765,
+      "collapse_score": 0.5024,
+      "model_size_proxy": 27468,
+      "final_score": 23.8186,
+      "frontier_preview": [
+        "C6",
+        "C2 C6",
+        "C69 C122",
+        "C69 C6",
+        "C33 C6"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 128,
+        "context": 5,
+        "memory": 1
+      },
+      "avg_energy": 22.0545,
+      "collapse_score": 0.5191,
+      "model_size_proxy": 27474,
+      "final_score": 23.83,
+      "frontier_preview": [
+        "C110",
+        "C2 C110",
+        "C69 C89",
+        "C48 C110",
+        "C16 C110"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 64,
+        "context": 2,
+        "memory": 1
+      },
+      "avg_energy": 22.0184,
+      "collapse_score": 0.5422,
+      "model_size_proxy": 27444,
+      "final_score": 23.84,
+      "frontier_preview": [
+        "C6",
+        "C2 C6",
+        "C5 C58",
+        "C33 C6",
+        "C5 C6"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 128,
+        "context": 3,
+        "memory": 2
+      },
+      "avg_energy": 22.1345,
+      "collapse_score": 0.4691,
+      "model_size_proxy": 55889,
+      "final_score": 23.8612,
+      "frontier_preview": [
+        "C35",
+        "C2 C35",
+        "C69 C51",
+        "C88 C35",
+        "C116 C35"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 128,
+        "context": 2,
+        "memory": 2
+      },
+      "avg_energy": 22.147,
+      "collapse_score": 0.5024,
+      "model_size_proxy": 55858,
+      "final_score": 23.9404,
+      "frontier_preview": [
+        "C6",
+        "C2 C6",
+        "C69 C122",
+        "C69 C6",
+        "C33 C6"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 128,
+        "context": 5,
+        "memory": 2
+      },
+      "avg_energy": 22.1524,
+      "collapse_score": 0.5191,
+      "model_size_proxy": 55828,
+      "final_score": 23.9791,
+      "frontier_preview": [
+        "C110",
+        "C2 C110",
+        "C69 C89",
+        "C48 C110",
+        "C16 C110"
+      ]
+    },
+    {
+      "cfg": {
+        "clusters": 64,
+        "context": 2,
+        "memory": 2
+      },
+      "avg_energy": 22.1379,
+      "collapse_score": 0.5422,
+      "model_size_proxy": 53388,
+      "final_score": 24.0076,
+      "frontier_preview": [
+        "C6",
+        "C2 C6",
+        "C5 C58",
+        "C33 C6",
+        "C5 C6"
+      ]
+    }
+  ]
+}

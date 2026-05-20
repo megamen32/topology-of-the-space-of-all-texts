@@ -1,0 +1,412 @@
+{
+  "version": "B2_sentence_paragraph_frontier",
+  "topk": 20,
+  "seed": 7,
+  "mode": "both",
+  "started_at": "2026-05-18T22:39:40+0300",
+  "sentences": [
+    {
+      "rank": 0,
+      "energy": 1576,
+      "template_energy": 723,
+      "template_count": 19130,
+      "template": "R R R T",
+      "text": "быть же д.",
+      "corpus_samples": [
+        "что же дальше?",
+        "кто меч скует?"
+      ]
+    },
+    {
+      "rank": 1,
+      "energy": 1512,
+      "template_energy": 743,
+      "template_count": 18091,
+      "template": "R R T",
+      "text": "и т.",
+      "corpus_samples": [
+        "а человек?",
+        "спустились шторы."
+      ]
+    },
+    {
+      "rank": 2,
+      "energy": 4258,
+      "template_energy": 751,
+      "template_count": 17696,
+      "template": "R R R R T",
+      "text": "мои вам не днем.",
+      "corpus_samples": [
+        "нас всех подстерегает случай.",
+        "что нужды в тебе?"
+      ]
+    },
+    {
+      "rank": 3,
+      "energy": 1739,
+      "template_energy": 833,
+      "template_count": 14396,
+      "template": "R T",
+      "text": "н.",
+      "corpus_samples": [
+        "н.",
+        "тоска!"
+      ]
+    },
+    {
+      "rank": 4,
+      "energy": 5950,
+      "template_energy": 836,
+      "template_count": 14296,
+      "template": "R R R R R T",
+      "text": "туда самом деле не мои.",
+      "corpus_samples": [
+        "что это были за годы?",
+        "и как избыть его печали?"
+      ]
+    },
+    {
+      "rank": 5,
+      "energy": 9577,
+      "template_energy": 965,
+      "template_count": 10735,
+      "template": "R R R R R R T",
+      "text": "молодец и можно узнать и тех.",
+      "corpus_samples": [
+        "чужая жизнь свои страницы перевернула им.",
+        "но всё пошло неотвратимо своим путем."
+      ]
+    },
+    {
+      "rank": 6,
+      "energy": 2808,
+      "template_energy": 1156,
+      "template_count": 7472,
+      "template": "R R R",
+      "text": "и место на.",
+      "corpus_samples": [
+        "я в шок",
+        "я вчера наш"
+      ]
+    },
+    {
+      "rank": 7,
+      "energy": 5427,
+      "template_energy": 1157,
+      "template_count": 7463,
+      "template": "R R R R R R R T",
+      "text": "а не нельзя сам с вами долго.",
+      "corpus_samples": [
+        "в ней явственно слышится уже голос возмездия.",
+        "уж осень семьдесят восьмую дотягивает старый век."
+      ]
+    },
+    {
+      "rank": 8,
+      "energy": 7261,
+      "template_energy": 1179,
+      "template_count": 7192,
+      "template": "R R R R",
+      "text": "а не столько добра.",
+      "corpus_samples": [
+        "я в тебя верил",
+        "всё как в филь"
+      ]
+    },
+    {
+      "rank": 9,
+      "energy": 1619,
+      "template_energy": 1269,
+      "template_count": 6206,
+      "template": "R R",
+      "text": "мои свои.",
+      "corpus_samples": [
+        "я не",
+        "ужасно конечно"
+      ]
+    },
+    {
+      "rank": 10,
+      "energy": 4990,
+      "template_energy": 1306,
+      "template_count": 5861,
+      "template": "R R R R R",
+      "text": "вами хорошего вам на понимаю.",
+      "corpus_samples": [
+        "я просто в стадии переос",
+        "ты в сообщении с прост"
+      ]
+    },
+    {
+      "rank": 11,
+      "energy": 8266,
+      "template_energy": 1397,
+      "template_count": 5122,
+      "template": "R R R R R R R R T",
+      "text": "на всю ночь не отец россии и если.",
+      "corpus_samples": [
+        "позволь хоть малую страницу из книги жизни повернуть.",
+        "тот век немало проклинали и не устанут проклинать."
+      ]
+    },
+    {
+      "rank": 12,
+      "energy": 12596,
+      "template_energy": 1530,
+      "template_count": 4270,
+      "template": "R R R R R R",
+      "text": "несколько даже на сами это найти.",
+      "corpus_samples": [
+        "потом ушёл и оставил на балкон",
+        "привет обмен на дизель без вложений"
+      ]
+    },
+    {
+      "rank": 13,
+      "energy": 2845,
+      "template_energy": 1605,
+      "template_count": 3879,
+      "template": "L L L T",
+      "text": "the like this.",
+      "corpus_samples": [
+        "voici nos allemands.",
+        "a prima donna?"
+      ]
+    },
+    {
+      "rank": 14,
+      "energy": 4149,
+      "template_energy": 1639,
+      "template_count": 3721,
+      "template": "L L L L T",
+      "text": "such a big go.",
+      "corpus_samples": [
+        "au diable le karmazinoff!",
+        "the barber had gone."
+      ]
+    },
+    {
+      "rank": 15,
+      "energy": 4877,
+      "template_energy": 1657,
+      "template_count": 3639,
+      "template": "L L T",
+      "text": "my sister!",
+      "corpus_samples": [
+        "censor scepticus.",
+        "confessions j."
+      ]
+    },
+    {
+      "rank": 16,
+      "energy": 12063,
+      "template_energy": 1678,
+      "template_count": 3551,
+      "template": "R R T T T",
+      "text": "так перед!!.",
+      "corpus_samples": [
+        "двадцатый век...",
+        "он слушает..."
+      ]
+    },
+    {
+      "rank": 17,
+      "energy": 3699,
+      "template_energy": 1726,
+      "template_count": 3354,
+      "template": "L L L L L T",
+      "text": "one of has san francisco.",
+      "corpus_samples": [
+        "how well we got on!",
+        "maybe god will aid you."
+      ]
+    },
+    {
+      "rank": 18,
+      "energy": 3301,
+      "template_energy": 1727,
+      "template_count": 3350,
+      "template": "R R R T T T",
+      "text": "дай бог вам!!!",
+      "corpus_samples": [
+        "хочу я плакать...",
+        "за годом год..."
+      ]
+    },
+    {
+      "rank": 19,
+      "energy": 15585,
+      "template_energy": 1730,
+      "template_count": 3339,
+      "template": "R R R R R R R R R T",
+      "text": "в цена этих тварей без суда и нас в.",
+      "corpus_samples": [
+        "огня еще не зажигали и вовсе не спешат зажечь.",
+        "в те дни под петербургским небом живет дворянская семья."
+      ]
+    }
+  ],
+  "paragraphs": [
+    {
+      "rank": 0,
+      "energy": 2159,
+      "shape_energy": 1248,
+      "shape_count": 6415,
+      "shape": "R R R",
+      "text": "хорошего под или."
+    },
+    {
+      "rank": 1,
+      "energy": 9197,
+      "shape_energy": 1264,
+      "shape_count": 6256,
+      "shape": "R R R R",
+      "text": "сказала вам завтра год."
+    },
+    {
+      "rank": 2,
+      "energy": 3103,
+      "shape_energy": 1391,
+      "shape_count": 5165,
+      "shape": "R R R R R",
+      "text": "а то жалко такую у."
+    },
+    {
+      "rank": 3,
+      "energy": 2093,
+      "shape_energy": 1408,
+      "shape_count": 5042,
+      "shape": "R R",
+      "text": "да не."
+    },
+    {
+      "rank": 4,
+      "energy": 3886,
+      "shape_energy": 1565,
+      "shape_count": 4082,
+      "shape": "R R R T",
+      "text": "а почему я."
+    },
+    {
+      "rank": 5,
+      "energy": 6150,
+      "shape_energy": 1569,
+      "shape_count": 4062,
+      "shape": "R R R R T",
+      "text": "писать одной только вот."
+    },
+    {
+      "rank": 6,
+      "energy": 3931,
+      "shape_energy": 1636,
+      "shape_count": 3733,
+      "shape": "R R R R R R",
+      "text": "да не рот видел из вы."
+    },
+    {
+      "rank": 7,
+      "energy": 8699,
+      "shape_energy": 1757,
+      "shape_count": 3238,
+      "shape": "R R R R R T",
+      "text": "а идет ли я бы."
+    },
+    {
+      "rank": 8,
+      "energy": 2701,
+      "shape_energy": 1811,
+      "shape_count": 3049,
+      "shape": "R R T",
+      "text": "и с."
+    },
+    {
+      "rank": 9,
+      "energy": 9786,
+      "shape_energy": 1894,
+      "shape_count": 2787,
+      "shape": "R R R R R R R",
+      "text": "пора первый пожалуйста какой красивый нам пожалуйста."
+    },
+    {
+      "rank": 10,
+      "energy": 8670,
+      "shape_energy": 2091,
+      "shape_count": 2285,
+      "shape": "R R R R R R T",
+      "text": "я не скажите кто вам не."
+    },
+    {
+      "rank": 11,
+      "energy": 4579,
+      "shape_energy": 2150,
+      "shape_count": 2163,
+      "shape": "R R R R R R R R",
+      "text": "если бы то что я на то никто."
+    },
+    {
+      "rank": 12,
+      "energy": 12104,
+      "shape_energy": 2518,
+      "shape_count": 1577,
+      "shape": "R R R R R R R R R",
+      "text": "час в день девочки еще наших собой те в."
+    },
+    {
+      "rank": 13,
+      "energy": 7257,
+      "shape_energy": 2622,
+      "shape_count": 1454,
+      "shape": "R R R R R R R T",
+      "text": "назад и стал господи или в думаю."
+    },
+    {
+      "rank": 14,
+      "energy": 7841,
+      "shape_energy": 2857,
+      "shape_count": 1225,
+      "shape": "R R R R R R R R R R",
+      "text": "с тобой говорить о чтобы говорят в всю жизнь лицо."
+    },
+    {
+      "rank": 15,
+      "energy": 3088,
+      "shape_energy": 2926,
+      "shape_count": 1168,
+      "shape": "R",
+      "text": "что."
+    },
+    {
+      "rank": 16,
+      "energy": 9949,
+      "shape_energy": 3052,
+      "shape_count": 1073,
+      "shape": "R R E",
+      "text": "понимаю и 0."
+    },
+    {
+      "rank": 17,
+      "energy": 11245,
+      "shape_energy": 3205,
+      "shape_count": 973,
+      "shape": "R R R R R R R R R R R",
+      "text": "так это так такая хорошая кто жизни и во там не."
+    },
+    {
+      "rank": 18,
+      "energy": 5072,
+      "shape_energy": 3214,
+      "shape_count": 968,
+      "shape": "R R R E",
+      "text": "а глаза и 😥."
+    },
+    {
+      "rank": 19,
+      "energy": 4791,
+      "shape_energy": 3246,
+      "shape_count": 949,
+      "shape": "R R R T T T",
+      "text": "и я не..."
+    }
+  ],
+  "elapsed_seconds": 1.579
+}

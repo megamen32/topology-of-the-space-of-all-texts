@@ -2,7 +2,7 @@
   "model": "qwen3-4b",
   "api": "https://llm.bezrabotnyi.com/v1/chat/completions",
   "version": "v3_chat_completions_gibberish_guard",
-  "elapsed_seconds": 35.35,
+  "elapsed_seconds": 35.67,
   "votes": [
     {
       "pair": 1,

@@ -1,0 +1,33 @@
+{
+  "version": "eval_harness_v2",
+  "configs_tested": 24,
+  "best": {
+    "cfg": {
+      "model": "word",
+      "temp": 0.55
+    },
+    "metrics": {
+      "final_score": 106.4101,
+      "distribution_penalty": 99.4721,
+      "collapse_penalty": 0,
+      "sentence_len_mean": 113.35,
+      "unique_token_ratio": 0.836,
+      "max_run_mean": 1.875,
+      "emoji_rate": 0.0382,
+      "punct_rate": 0.2006,
+      "alpha_rate": 0.7962,
+      "chars": 19980
+    },
+    "samples": [
+      "done you some pleasure when the 16, люди это настоящий талант у них несколько слов, хрень! хватит вам много нас 8 years running behind it # давно ж д. ( что 25. приятно увидеть то я же играть ему казалось что говорить и конечно без ничего бесплатно а 3? ведь все-таки вас сказал член до осталось природы сама видела твой настоящий хозяин, забыли что андрей! the horses, просто красавица, went on la: live # sun @ blue christmas at. speak like to an answer, конечно правильно было нормально. низкий поклон",
+      "чтобы каждого из города собак лично и пидор просто рано просто платье) blue night ride along is. одного эта мразь 0 до своей семье 😀 так времени?? сердце от всей нашей душе? such amazing always we were at times for only @ mrs. really cool place like!! friday in support!! детей. ✌ войска под твоей нет наш большой не наш ясно? ублюдки.. = 1 и к власти чтобы написать по своей совести это своей души мне! герой но очень когда остальное? name each day 3 августа сон про россию можете по 1? в магазин",
+      "thanks, that general wait. везде писать это дело это сейчас ваши хуже должны ещё без любви. после себя туда если оно конечно вернуть. хотите забрать у нас второй от меня как-то делала? она начала.. @ bar: смотри с детьми не человеку возможность надо при таком случае. у нас такой бедный ребенок - came the best then, возле дома хочу \" there,! почти никакого не останется та:) 25 сентября 2020: оба люди давайте хоть какой-то быстро? making a conversation upon then we can't believe this @ dallas -",
+      "сначала сто рублей зарплаты в своих остались. как среди них за этим будешь там говорит и долго! че тебе фото если она только уж нельзя ( thought we also # vibes + 7 seattle? от куда тебя так об этом думать, знаю для всех! здравствуйте а а она их! check her _ by doing christmas tree only share his i told alexey alexandrovitch? день вот. birthday any two women # future bae during these beautiful california, da, жену? откуда! затем пришел к власти их прямо начал, he doesn't love!! уже нельзя не со!",
+      "19 @ @ say, его мы; there was one makes working with everyone of set up? ( уходит? настоящие!. live! хорошо!!!. было 3)!! @ live - давно совесть и нового. кг найти, he stopped birthday i'm good day. боль быстро и какой под # must think in which her with. gz pt 1 with. family in new york state after party venice at all the state beach the stay, простите? за друзей и куда меньше. это должно у а за это тяжело такой вы ещё быть! watching red 😔 hello - « душа не сразу вы пишите большое спасибо",
+      "watching what then little family day another adventure without a crazy in a post was best, такую! человек вы народ в дом 😂 их сделал к всем нет так ребёнка вроде бы кого денег. seattle! гнать а какая вещь. person was high as white hands before an come in! however little more than ever used in he used with water, ой какая дура на одной? так! today at world! 😡 привет я вечера, для вашего города за ноги и. он та какие бы простой - ( hollywood, которую сейчас происходит просто хуже своих детей ты?",
+      "солнышко красивая 👍👍👍 год андрей дней, над про next in your picture was young tomorrow \" 11! - более детей жизни так деньги наша на \" вчера назад муж сказал человек и больно руку! это вот наша моя ( lo) / portland to straight over his position for # miami! слишком много под суд над нашей любви для хотелось смотреть с над этой д 4 _ 2! срок ( i'm done, что закон 👍: видит эти ночи почти что во все сделала. всем вечера я 25 years and i've city # seattle but @ music & amp; &! путин с днем а 10 лет у вдв",
+      "why may / side. никакого ( правда он начал всего хотите, делала при вас не москве! я б найти два душа до работы руки этим тоже надо убить - около - но руки! мне таким?! 🙏 ( без отца счастье, and cut off in music / 2024? thankful for another how different style ( 1 0.. уровень бо бред вы сначала деньги! ты права делать \" two together by no play dance half while she's also made @ hollywood? поклон вам - his - 🌼 ждут мать в думают кому только девочки вы милый пор всё. супер где ж меня и папа конечно"
+    ]
+  },
+  "elapsed_seconds": 612.604
+}

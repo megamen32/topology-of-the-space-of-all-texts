@@ -1,4 +1,4 @@
-let model, wordModel, sentenceModel, paragraphModel;
+let model, wordModel, sentenceModel, paragraphModel, clusterModel, clusterModelV2;
 
 function rngFromSeed(seed){return mulberry32(hashSeed(seed));}
 function isPunct(tok){return /^[.,!?;:)]$/.test(tok)}
@@ -62,6 +62,27 @@ function generateSentence(seed,length){
   }
   return out.join(' ').replace(/\n\s+/g,'\n').slice(0,length);
 }
+
+function generateCluster(seed,length){
+  const rng=rngFromSeed(seed);
+  if(!clusterModel) return 'cluster model is not loaded yet';
+  const map=clusterModel.mapping||{};
+  const byCluster={};
+  for(const [tok,cl] of Object.entries(map)){(byCluster[cl]||(byCluster[cl]=[])).push(tok);}
+  const trans=clusterModel.cluster_transitions||{};
+  let cl=String(Math.floor(rng()*Number(clusterModel.clusters||64)));
+  let out=[];
+  while(out.join(' ').length<length && out.length<1000){
+    const arr=byCluster[cl]||byCluster['0']||Object.keys(map).slice(0,100);
+    let tok=arr[Math.floor(rng()*arr.length)]||'';
+    out.push(tok);
+    const row=trans[cl]||trans['0']||{};
+    cl=weightedChoice(row,rng,0.72)||String(Math.floor(rng()*Number(clusterModel.clusters||64)));
+    if(out.length%18===0) out.push(rng()<0.55?'.':rng()<0.75?'!':'?');
+  }
+  return detok(out).slice(0,length);
+}
+
 function generateParagraph(seed,length){
   const rng=rngFromSeed(seed); let out=[], chars=0; const shapes=paragraphModel?.top_paragraph_shapes||[];
   while(chars<length){
@@ -74,19 +95,23 @@ function generateParagraph(seed,length){
 }
 async function boot(){
   model=await loadCore();
-  [wordModel,sentenceModel,paragraphModel]=await Promise.all([
+  [wordModel,sentenceModel,paragraphModel,clusterModel,clusterModelV2]=await Promise.all([
     fetch('data/word_student.json?ts='+Date.now()).then(r=>r.json()).catch(()=>null),
     fetch('data/sentence_student.json?ts='+Date.now()).then(r=>r.json()).catch(()=>null),
     fetch('data/paragraph_student.json?ts='+Date.now()).then(r=>r.json()).catch(()=>null),
+    fetch('data/cluster_student.json?ts='+Date.now()).then(r=>r.json()).catch(()=>null),
+    fetch('data/cluster_student_v2.json?ts='+Date.now()).then(r=>r.json()).catch(()=>null),
   ]);
   document.getElementById('generate').onclick=()=>{
     const seed=document.getElementById('seed').value;
     const len=Math.max(32,Math.min(4096,Number(document.getElementById('len').value)||512));
     const mode=document.getElementById('mode').value;
-    const text=mode==='fsm'?generateFSM(seed,len):mode==='word'?generateWord(seed,len):mode==='paragraph'?generateParagraph(seed,len):generateSentence(seed,len);
+    const text=mode==='fsm'?generateFSM(seed,len):mode==='word'?generateWord(seed,len):mode==='cluster'?generateCluster(seed,len):mode==='clusterv2'?generateClusterV2(seed,len):mode==='paragraph'?generateParagraph(seed,len):generateSentence(seed,len);
     document.getElementById('page').value=text;
   };
   document.getElementById('scoreGenerated').onclick=()=>{document.getElementById('result').textContent=show(scoreText(model,document.getElementById('page').value));};
   document.getElementById('generate').click();
 }
 boot();
+
+function generateClusterV2(seed,length){const old=clusterModel;clusterModel=clusterModelV2||old;const x=generateCluster(seed,length);clusterModel=old;return x;}

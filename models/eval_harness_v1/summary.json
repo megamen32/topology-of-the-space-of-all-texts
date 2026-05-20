@@ -1,0 +1,22 @@
+{
+  "configs_tested": 12,
+  "best": {
+    "cfg": {
+      "clusters": 64,
+      "context": 3,
+      "memory": 1
+    },
+    "avg_energy": 21.5821,
+    "collapse_score": 0.4733,
+    "model_size_proxy": 27456,
+    "final_score": 23.2658,
+    "frontier_preview": [
+      "C35",
+      "C2 C35",
+      "C5 C51",
+      "C24 C35",
+      "C52 C35"
+    ]
+  },
+  "elapsed_seconds": 13.593
+}

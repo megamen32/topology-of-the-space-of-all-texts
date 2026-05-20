@@ -1,0 +1,22 @@
+{
+  "я думаю что завтра будет дождь.": {
+    "tokens": 7,
+    "cost_bits": 23.96,
+    "cost_per_token": 3.423
+  },
+  "etsa? рин ?. í… 11 uoow #itliodp": {
+    "tokens": 11,
+    "cost_bits": 54.02,
+    "cost_per_token": 4.911
+  },
+  "привет как дела сегодня": {
+    "tokens": 4,
+    "cost_bits": 7.2,
+    "cost_per_token": 1.8
+  },
+  "я тебя люблю": {
+    "tokens": 3,
+    "cost_bits": 5.67,
+    "cost_per_token": 1.89
+  }
+}
