@@ -1,0 +1,13 @@
+
+== Markov-5 states=2664834 disk_MB=1321.52 ==
+greedy:
+'                                                                                                                                                                                                                                                '
+beam top:
+00 energy=   100 '                                                                                                    '
+01 energy=  1039 '                                                                                                   \n'
+02 energy=  1039 '                                                                                                  \nс'
+03 energy=  1039 '                                                                                                 \nс '
+04 energy=  1039 '                                                                                                \nс д'
+05 energy=  1039 '                                                                                               \nс дн'
+06 energy=  1039 '                                                                                              \nс днё'
+07 energy=  1039 '                                                                                             \nс днём'

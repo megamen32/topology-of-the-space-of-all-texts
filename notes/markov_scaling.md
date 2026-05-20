@@ -1,7 +1,13 @@
 # Moved
 
-Consolidated into:
+Theory:
 
 ```text
-notes/hierarchical_student_system.md
+notes/archive/markov/markov_theory.md
+```
+
+Experimental results:
+
+```text
+notes/archive/markov/markov_results.md
 ```
