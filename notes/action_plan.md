@@ -1,3 +1,13 @@
+Status: historical roadmap
+
+Superseded by:
+
+```text
+notes/current/roadmap.md
+```
+
+---
+
 # Action plan: human-ordered bijective Babel
 
 ## Goal

@@ -67,11 +67,9 @@ It should not be used as the main Library ordering model.
 The main model should be:
 
 ```text
-sentence/word student
+cluster student v2
 +
-hierarchical finite grammar
-+
-raw fallback for completeness
+exact counting layer
 ```
 
 This model should define the real human-shaped address order.

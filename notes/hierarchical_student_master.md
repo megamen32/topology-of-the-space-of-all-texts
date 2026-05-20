@@ -1,3 +1,19 @@
+Status: legacy research path
+
+Current architecture:
+
+```text
+notes/current/architecture.md
+```
+
+Historical role:
+
+```text
+manual hierarchy experiments before cluster student v2
+```
+
+---
+
 # Hierarchical Student Master Note
 
 ## Core idea
@@ -97,7 +113,7 @@ instead of choosing only one.
 
 ---
 
-# Current hierarchy direction
+# Historical hierarchy direction
 
 ## Layer 1 — byte/symbol layer
 

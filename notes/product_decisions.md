@@ -12,17 +12,17 @@ but human-like regions become geometrically nearby
 ## Current architecture
 
 ```text
-internet corpora
+raw corpus
 ↓
-top-256 alphabet
+context vectors
 ↓
-Markov manifold experiments
+k-means clusters
 ↓
-LLM teacher field
+cluster student v2
 ↓
-finite FSM student
+exact counting
 ↓
-exact rank/unrank
+rank/unrank
 ```
 
 ## Why finite student

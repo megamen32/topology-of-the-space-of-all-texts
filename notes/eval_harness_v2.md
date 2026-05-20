@@ -1,3 +1,7 @@
+Status: active evaluation
+
+---
+
 # Eval Harness v2
 
 Goal:

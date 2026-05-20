@@ -1,3 +1,19 @@
+Status: legacy research path
+
+Current architecture:
+
+```text
+notes/current/architecture.md
+```
+
+Historical role:
+
+```text
+manual hierarchy experiments before cluster student v2
+```
+
+---
+
 # Hierarchical Student System
 
 ## Core idea

@@ -1,13 +1,13 @@
-# Moved
+# Redirect
 
-Theory:
+Destination:
 
 ```text
-notes/archive/markov/markov_theory.md
+notes/archive/markov/markov_theory.md + markov_results.md
 ```
 
-Experimental results:
+Reason:
 
 ```text
-notes/archive/markov/markov_results.md
+Documentation reorganized into current/archive structure.
 ```

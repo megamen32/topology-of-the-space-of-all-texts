@@ -3,5 +3,5 @@
 Consolidated into:
 
 ```text
-notes/hierarchical_student_system.md
+notes/current/architecture.md + notes/hierarchical_student_system.md
 ```

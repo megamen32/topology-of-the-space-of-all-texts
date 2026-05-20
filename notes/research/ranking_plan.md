@@ -1,3 +1,13 @@
+Status: active research
+
+Current dependency:
+
+```text
+notes/current/open_problems.md
+```
+
+---
+
 # Human-ordered enumeration plan
 Current:
 page -> cost(page)

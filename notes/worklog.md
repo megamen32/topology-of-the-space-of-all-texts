@@ -1,26 +1,12 @@
 # Worklog
 
-## Phase 1
-Raw bijection and alphabet experiments.
-Result: strict mapping but useless ordering.
+Format:
 
-## Phase 2
-FSM experiments.
-Result: local structure, global symbol soup.
+```text
+YYYY-MM-DD
+change
+result
+next
+```
 
-## Phase 3
-Hierarchical students.
-Result: paragraph/sentence structure emerges.
-
-## Phase 4
-Evaluation system.
-Result: LLM + human + automatic metrics.
-
-## Phase 5
-Cluster student.
-Result: context-derived token groups.
-
-## Phase 6 (current)
-Page ranking.
-Goal:
-cost(page) -> exact rank(page)
+Use this file for ongoing chronological work only.

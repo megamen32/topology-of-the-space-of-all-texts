@@ -1,0 +1,54 @@
+
+== Markov-0 states=1 disk_MB=0.00 ==
+greedy:
+'                                                                                                    '
+beam top:
+00 energy=    40 '                                        '
+01 energy=   412 '                                       о'
+02 energy=   412 '                                      о '
+03 energy=   412 '                                     о  '
+04 energy=   412 '                                    о   '
+05 energy=   412 '                                   о    '
+06 energy=   412 '                                  о     '
+07 energy=   412 '                                 о      '
+
+== Markov-1 states=256 disk_MB=0.13 ==
+greedy:
+'по по по по по по по по по по по по по по по по по по по по по по по по по по по по по по по по по п'
+beam top:
+00 energy=    40 'по по по по по по по по по по по по по п'
+01 energy=    45 'на по по по по по по по по по по по по п'
+02 energy=    45 'по на по по по по по по по по по по по п'
+03 energy=    45 'по по на по по по по по по по по по по п'
+04 energy=    45 'по по по на по по по по по по по по по п'
+05 energy=    45 'по по по по на по по по по по по по по п'
+06 energy=    45 'по по по по по на по по по по по по по п'
+07 energy=    45 'по по по по по по на по по по по по по п'
+
+== Markov-2 states=17305 disk_MB=8.59 ==
+greedy:
+'                                                                                                    '
+beam top:
+00 energy=    40 '                                        '
+01 energy=   616 '                                       \n'
+02 energy=   616 '                                      \nп'
+03 energy=   616 '                                     \nпо'
+04 energy=   616 '                                    \nпод'
+05 energy=   616 '                                   \nподи'
+06 energy=   616 '                                  \nподит'
+07 energy=   616 '                                 \nподить'
+
+== Markov-3 states=184646 disk_MB=90.87 ==
+greedy:
+'                                                                                                    '
+beam top:
+00 energy=    40 '                                        '
+01 energy=   746 '                                       \n'
+02 energy=   746 '                                      \nп'
+03 energy=   746 '                                     \nпо'
+04 energy=   746 '                                    \nпоз'
+05 energy=   746 '                                   \nпозд'
+06 energy=   746 '                                  \nпоздр'
+07 energy=   746 '                                 \nпоздра'
+
+== Markov-5: missing/not ready ==

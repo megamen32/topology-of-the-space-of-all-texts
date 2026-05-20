@@ -1,10 +1,3 @@
-Status: historical transition document
-
-This document captures the transition from token automata toward clustered latent states.
-
----
-
-
 # MVP 3 / MVP 4: token automaton and discretized transformer
 
 ## Cost model

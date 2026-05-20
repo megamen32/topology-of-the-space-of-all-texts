@@ -35,7 +35,7 @@ branch = number of word candidates considered per token type
 
 Advantages:
 
-- Uses the active sentence/word/paragraph students.
+- Uses sentence/word/paragraph students as comparison models.
 - Produces human-like low-energy pages.
 - Much better than legacy class-FSM frontier.
 
