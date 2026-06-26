@@ -162,3 +162,8 @@ notes/current/ current truth
 notes/phases/  historical evolution
 notes/         research and worklogs
 ```
+
+## Screenshot
+
+![Topology of the Space of All Texts site screenshot](docs/screenshots/site.png)
+
