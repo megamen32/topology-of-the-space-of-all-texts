@@ -247,6 +247,52 @@ class RawClusterRanker(ClusterRanker):
             prefix[cluster] += 1
             self.symbol_cluster_prefix.append(prefix)
 
+        # Only the outgoing cost row influences every possible suffix after a
+        # symbol has selected its cluster.  The raw alphabet currently reaches
+        # 15 learned clusters, but those clusters have only a few distinct cost
+        # rows.  Quotienting equivalent rows keeps the exact same recurrence
+        # while making length-256 rank/unrank practical in the request path.
+        active_clusters = [
+            cluster for cluster, multiplicity in enumerate(self.symbol_count_by_cluster)
+            if multiplicity
+        ]
+        row_types: dict[tuple[int, ...], int] = {}
+        self.cluster_suffix_type = [-1] * self.k
+        representatives: list[int] = []
+        for cluster in active_clusters:
+            row = tuple(self.costs[cluster][destination] for destination in active_clusters)
+            suffix_type = row_types.get(row)
+            if suffix_type is None:
+                suffix_type = len(representatives)
+                row_types[row] = suffix_type
+                representatives.append(cluster)
+            self.cluster_suffix_type[cluster] = suffix_type
+
+        self.compact_transitions: list[list[tuple[int, int, int]]] = []
+        for source in representatives:
+            aggregated: dict[tuple[int, int], int] = {}
+            for destination in active_clusters:
+                key = (
+                    self.cluster_suffix_type[destination],
+                    self.transition_cost(source, destination),
+                )
+                aggregated[key] = aggregated.get(key, 0) + self.symbol_count_by_cluster[destination]
+            self.compact_transitions.append([
+                (suffix_type, cost, multiplicity)
+                for (suffix_type, cost), multiplicity in sorted(aggregated.items())
+            ])
+
+        start_aggregated: dict[int, int] = {}
+        for destination in active_clusters:
+            suffix_type = self.cluster_suffix_type[destination]
+            start_aggregated[suffix_type] = (
+                start_aggregated.get(suffix_type, 0) + self.symbol_count_by_cluster[destination]
+            )
+        self.compact_start_transitions = [
+            (suffix_type, 0, multiplicity)
+            for suffix_type, multiplicity in sorted(start_aggregated.items())
+        ]
+
     @property
     def space_size(self) -> int:
         return len(self.alphabet) ** self.length
@@ -254,21 +300,32 @@ class RawClusterRanker(ClusterRanker):
     @lru_cache(maxsize=None)
     def count_exact(self, pos: int, src: int, energy: int) -> int:
         """Count raw-symbol suffixes, aggregating symbols by destination cluster."""
+        source_type = START if src == START else self.cluster_suffix_type[src]
+        if source_type != START and source_type < 0:
+            return 0
+        return self._count_compact(self.length - pos, source_type, int(energy))
+
+    @lru_cache(maxsize=None)
+    def _count_compact(self, left: int, source_type: int, energy: int) -> int:
+        """Exact suffix count over behaviorally equivalent transition rows."""
         if energy < 0 or energy > self.max_energy:
             return 0
-        if pos == self.length:
+        if left == 0:
             return int(energy == 0)
-        left = self.length - pos
-        if energy > self.cost_cap * max(0, left - (1 if src == START else 0)):
+        if energy > self.cost_cap * max(0, left - (1 if source_type == START else 0)):
             return 0
+        transitions = (
+            self.compact_start_transitions
+            if source_type == START
+            else self.compact_transitions[source_type]
+        )
         total = 0
-        for dst, multiplicity in enumerate(self.symbol_count_by_cluster):
-            if multiplicity:
-                total += multiplicity * self.count_exact(
-                    pos + 1,
-                    dst,
-                    energy - self.transition_cost(src, dst),
-                )
+        for destination_type, cost, multiplicity in transitions:
+            total += multiplicity * self._count_compact(
+                left - 1,
+                destination_type,
+                energy - cost,
+            )
         return total
 
     def page_from_text(self, text: str) -> list[int]:
@@ -389,6 +446,85 @@ class RawClusterRanker(ClusterRanker):
             "total_is_space_size": total == space_size,
             "roundtrips": checks,
             "ok": total == space_size and all(check["ok"] for check in checks),
+        }
+
+
+class HierarchicalRawRanker:
+    """Exact long-page bijection composed from exact human-ordered blocks.
+
+    Each fixed-size block is ranked by :class:`RawClusterRanker`.  Block ranks
+    are then digits in base ``256 ** block_length``.  Positional composition is
+    a bijection, so every one of ``256 ** length`` pages appears exactly once,
+    while the expensive learned ordering is reused at block scale.
+    """
+
+    def __init__(self, length: int = 4096, block_length: int = 256):
+        length = int(length)
+        block_length = int(block_length)
+        if length < 1 or block_length < 1 or length % block_length:
+            raise ValueError("length must be a positive multiple of block_length")
+        self.length = length
+        self.block_length = block_length
+        self.blocks = length // block_length
+        self.block_ranker = RawClusterRanker(length=block_length)
+        self.alphabet = self.block_ranker.alphabet
+        self.symbol_index = self.block_ranker.symbol_index
+        self.block_space_size = self.block_ranker.space_size
+
+    @property
+    def space_size(self) -> int:
+        return self.block_space_size ** self.blocks
+
+    def page_from_text(self, text: str) -> list[int]:
+        if len(text) > self.length:
+            raise ValueError(f"text must contain at most {self.length} symbols")
+        page = list(text) + [" "] * (self.length - len(text))
+        unknown = [symbol for symbol in page if symbol not in self.symbol_index]
+        if unknown:
+            raise ValueError(f"symbols are outside the exact alphabet: {unknown[:5]}")
+        return [self.symbol_index[symbol] for symbol in page]
+
+    def rank_page(self, ids: Iterable[int]) -> dict:
+        ids = list(ids)
+        if len(ids) != self.length:
+            raise ValueError(f"page must contain exactly {self.length} symbols")
+        if any(not 0 <= symbol_id < len(self.alphabet) for symbol_id in ids):
+            raise ValueError("symbol index outside alphabet")
+        rank = 0
+        block_energies = []
+        for start in range(0, self.length, self.block_length):
+            result = self.block_ranker.rank_page(ids[start:start + self.block_length])
+            rank = rank * self.block_space_size + result["rank"]
+            block_energies.append(result["energy"])
+        return {
+            "rank": rank,
+            "energy": sum(block_energies),
+            "block_energies": block_energies,
+            "page": "".join(self.alphabet[i] for i in ids),
+        }
+
+    def rank_text(self, text: str) -> dict:
+        return self.rank_page(self.page_from_text(text))
+
+    def unrank_page(self, rank: int) -> dict:
+        rank = int(rank)
+        if rank < 0 or rank >= self.space_size:
+            raise ValueError(f"rank must be in [0, {self.space_size})")
+        value = rank
+        block_ranks = [0] * self.blocks
+        for index in range(self.blocks - 1, -1, -1):
+            value, block_ranks[index] = divmod(value, self.block_space_size)
+        pages = []
+        block_energies = []
+        for block_rank in block_ranks:
+            result = self.block_ranker.unrank_page(block_rank)
+            pages.append(result["page"])
+            block_energies.append(result["energy"])
+        return {
+            "rank": rank,
+            "energy": sum(block_energies),
+            "block_energies": block_energies,
+            "page": "".join(pages),
         }
 
 

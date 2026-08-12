@@ -4,7 +4,7 @@ import json, hashlib, os, random, math, unicodedata, sys
 from flask import Flask, request, jsonify, send_from_directory
 import regex as re
 from functools import lru_cache
-from cluster_counting_mvp import RawClusterRanker
+from cluster_counting_mvp import HierarchicalRawRanker, RawClusterRanker
 ROOT=Path(os.environ.get('BABEL_ROOT', Path(__file__).resolve().parents[1]))
 # A 4096-byte page has ~9,865 decimal digits. The API historically exposed
 # rank_dec, so allow that intentional conversion instead of failing at Python's
@@ -16,7 +16,9 @@ MODEL=json.loads((ROOT/'models/student_fsm_v1/student_fsm_v1.json').read_text(en
 ALPHA=MODEL['alphabet']; ASET=set(ALPHA); IDX={c:i for i,c in enumerate(ALPHA)}
 emoji_re=re.compile(r'\p{Emoji}')
 app=Flask(__name__, static_folder=str(SITE), static_url_path='')
-EXACT_CLUSTER_MAX_LENGTH = 64
+EXACT_CLUSTER_MAX_LENGTH = 256
+HIERARCHICAL_BLOCK_LENGTH = 256
+HIERARCHICAL_MAX_LENGTH = 4096
 RUSSIAN_WALK_TEXTS = (
     ('Тихое утро', 'утром над городом пошёл тёплый дождь, и улицы стали тихими.'),
     ('Карта', 'на полке нашлась старая карта с пометкой карандашом на полях.'),
@@ -50,6 +52,42 @@ def exact_cluster_rank(text, length):
 
 def exact_cluster_unrank(value, length):
     return exact_cluster_ranker(int(length)).unrank_page(int(value, 16) if str(value).lower().startswith('0x') else int(value))
+
+@lru_cache(maxsize=16)
+def hierarchical_ranker(length):
+    length = int(length)
+    if (
+        length < HIERARCHICAL_BLOCK_LENGTH
+        or length > HIERARCHICAL_MAX_LENGTH
+        or length % HIERARCHICAL_BLOCK_LENGTH
+    ):
+        raise ValueError(
+            f'exact_hierarchical_v1 supports multiples of {HIERARCHICAL_BLOCK_LENGTH} '
+            f'up to {HIERARCHICAL_MAX_LENGTH}'
+        )
+    return HierarchicalRawRanker(length=length, block_length=HIERARCHICAL_BLOCK_LENGTH)
+
+def parse_rank(value):
+    value = str(value)
+    return int(value, 16) if value.lower().startswith('0x') else int(value)
+
+def exact_api_payload(result, mode, length, ranker):
+    payload = {
+        'mode':mode,
+        'length':length,
+        'rank':str(result['rank']),
+        'rank_hex':hex(result['rank']),
+        'energy':result['energy'],
+        'page':result['page'],
+    }
+    if mode == 'exact_hierarchical_v1':
+        payload.update({
+            'block_length': ranker.block_length,
+            'blocks': ranker.blocks,
+            'block_energies': result['block_energies'],
+            'rank_order': 'lexicographic_exact_block_ranks',
+        })
+    return payload
 
 @lru_cache(maxsize=1)
 def russian_walk_pages():
@@ -160,6 +198,14 @@ def api_rank():
             })
         except (ValueError, TypeError) as exc:
             return jsonify({'error':str(exc),'mode':'exact_cluster_mvp'}),400
+    if body.get('mode') == 'exact_hierarchical_v1':
+        try:
+            length=int(body.get('length', HIERARCHICAL_MAX_LENGTH))
+            ranker=hierarchical_ranker(length)
+            result=ranker.rank_text(body.get('text',''))
+            return jsonify(exact_api_payload(result, 'exact_hierarchical_v1', length, ranker))
+        except (ValueError, TypeError) as exc:
+            return jsonify({'error':str(exc),'mode':'exact_hierarchical_v1'}),400
     n,page=rank_text(body.get('text',''))
     return jsonify({'rank_hex':hex(n),'rank_dec':str(n),'page_preview':page[:512]})
 @app.post('/api/unrank')
@@ -179,6 +225,14 @@ def api_unrank():
             })
         except (ValueError, TypeError) as exc:
             return jsonify({'error':str(exc),'mode':'exact_cluster_mvp'}),400
+    if body.get('mode') == 'exact_hierarchical_v1':
+        try:
+            length=int(body.get('length', HIERARCHICAL_MAX_LENGTH))
+            ranker=hierarchical_ranker(length)
+            result=ranker.unrank_page(parse_rank(val))
+            return jsonify(exact_api_payload(result, 'exact_hierarchical_v1', length, ranker))
+        except (ValueError, TypeError) as exc:
+            return jsonify({'error':str(exc),'mode':'exact_hierarchical_v1'}),400
     n=int(val,16) if val.startswith('0x') else int(val)
     page=unrank_int(n)
     return jsonify({'text':page,'preview':page[:512]})
@@ -189,7 +243,19 @@ def api_russian_walk():
 def api_counting_proof():
     if not COUNTING_PROOF_MODEL.exists():
         return jsonify({'error':'counting proof artifact is unavailable'}), 503
-    return jsonify(json.loads(COUNTING_PROOF_MODEL.read_text(encoding='utf-8')))
+    proof = json.loads(COUNTING_PROOF_MODEL.read_text(encoding='utf-8'))
+    proof.update({
+        'interactive_exact_max_length': EXACT_CLUSTER_MAX_LENGTH,
+        'hierarchical_exact_max_length': HIERARCHICAL_MAX_LENGTH,
+        'hierarchical_block_length': HIERARCHICAL_BLOCK_LENGTH,
+        'hierarchical_blocks': HIERARCHICAL_MAX_LENGTH // HIERARCHICAL_BLOCK_LENGTH,
+        'hierarchical_space_size': str(256 ** HIERARCHICAL_MAX_LENGTH),
+        'hierarchical_space_complete': True,
+        'hierarchical_bijection': 'base-(256^256) positional composition of exact block ranks',
+        'compact_suffix_types': len(exact_cluster_ranker(EXACT_CLUSTER_MAX_LENGTH).compact_transitions),
+        'rank_order': 'cluster_energy_then_raw_lexicographic',
+    })
+    return jsonify(proof)
 @app.post('/api/exact-neighbor')
 def api_exact_neighbor():
     body = request.json or {}

@@ -35,7 +35,7 @@ async function showNeighbor(delta){
 async function boot(){
   const [data,proof]=await Promise.all([api('/api/russian-walk'),api('/api/counting-proof')]);
   pages=data.pages;
-  document.getElementById('proofScale').textContent=`Точно посчитано пространство 256^${proof.length} = 2^${proof.length*8}: ${compactCount(proof.counted_pages)} страниц; ${proof.energy_buckets} energy-бакетов; block=${proof.block_size}. Полное число лежит в JSON proof receipt, не в runtime-генерации.`;
+  document.getElementById('proofScale').textContent=`Точно посчитано пространство 256^${proof.length} = 2^${proof.length*8}: ${compactCount(proof.counted_pages)} страниц; ${proof.energy_buckets} energy-бакетов. Интерактивный cluster-energy exact работает до ${proof.interactive_exact_max_length} символов. Hierarchical exact собирает ${proof.hierarchical_blocks} взаимно однозначных блоков и покрывает все 256^${proof.hierarchical_exact_max_length} страниц длиной ${proof.hierarchical_exact_max_length} без повторов.`;
   index=Math.min(Math.max(pageFromHash()-1,0),pages.length-1);
   showPage();
   writeHash();

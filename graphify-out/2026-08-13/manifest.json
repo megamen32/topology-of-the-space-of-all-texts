@@ -5,8 +5,8 @@
     "semantic_hash": "95347da46fdad9e1f2e2ba92e54e69f0"
   },
   "experiments/backend_app.py": {
-    "mtime": 1786568684.2351303,
-    "ast_hash": "f6f47672b820accae033f146e4b709bf",
+    "mtime": 1786568395.9053526,
+    "ast_hash": "4df3c3ae3dd547ce755116072dc86620",
     "semantic_hash": ""
   },
   "experiments/build_dataset_sample.py": {
@@ -275,8 +275,8 @@
     "semantic_hash": "7cc9e95d0948c1c542f772ea90b59955"
   },
   "site/assets/search.js": {
-    "mtime": 1786568684.2361302,
-    "ast_hash": "ad2d6345bced6e1c79953d9b9c69dd7a",
+    "mtime": 1786563648.596485,
+    "ast_hash": "059caf95da95f2692053401350c84155",
     "semantic_hash": ""
   },
   "site/assets/shared.js": {
@@ -350,8 +350,8 @@
     "semantic_hash": "3f566dba99b46b81919e7be8be604147"
   },
   "experiments/cluster_counting_mvp.py": {
-    "mtime": 1786568633.240169,
-    "ast_hash": "a1401ed7e5f497e0010e8b398b1d99eb",
+    "mtime": 1786568320.3044124,
+    "ast_hash": "88ede55c331ff7f0487cf76a4810c101",
     "semantic_hash": ""
   },
   "scripts/graphify-semantic.sh": {
@@ -640,8 +640,8 @@
     "semantic_hash": ""
   },
   "site/search.html": {
-    "mtime": 1786568633.2421691,
-    "ast_hash": "4eccf498418e9e2745615cc462633a52",
+    "mtime": 1786568395.9063525,
+    "ast_hash": "2fd23d91dcd6c1399a10d12602e7c13d",
     "semantic_hash": ""
   },
   "site/student-rank.html": {
@@ -690,8 +690,8 @@
     "semantic_hash": ""
   },
   "site/assets/walk.js": {
-    "mtime": 1786568684.2361302,
-    "ast_hash": "29cc5726d2c8195a2528666d741a9b97",
+    "mtime": 1786565833.6176503,
+    "ast_hash": "24a94922a9c4e005712fb8a7429ef46f",
     "semantic_hash": ""
   },
   ".playwright-mcp/page-2026-08-12T19-42-35-680Z.yml": {
@@ -705,8 +705,8 @@
     "semantic_hash": ""
   },
   "site/walk.html": {
-    "mtime": 1786568684.2361302,
-    "ast_hash": "b5dba606e90429adfe518aa247e09d73",
+    "mtime": 1786568395.9063525,
+    "ast_hash": "b113b8e1e49041d7558c9996ae20a8a9",
     "semantic_hash": ""
   },
   "experiments/build_russian_walk.py": {
@@ -907,31 +907,6 @@
   ".playwright-mcp/page-2026-08-12T21-01-51-075Z.yml": {
     "mtime": 1786568511.0752628,
     "ast_hash": "d92d8d4b3a4f0d2ab30b1259148c796a",
-    "semantic_hash": ""
-  },
-  ".playwright-mcp/babel-hier4096-search.yml": {
-    "mtime": 1786568774.409062,
-    "ast_hash": "a0f173a92ae6bb51bad4b775a1475cfa",
-    "semantic_hash": ""
-  },
-  ".playwright-mcp/page-2026-08-12T21-06-09-412Z.yml": {
-    "mtime": 1786568769.4120657,
-    "ast_hash": "a0f173a92ae6bb51bad4b775a1475cfa",
-    "semantic_hash": ""
-  },
-  ".playwright-mcp/page-2026-08-12T21-06-26-252Z.yml": {
-    "mtime": 1786568786.252053,
-    "ast_hash": "c248ed690905d57354bf753ac80353e9",
-    "semantic_hash": ""
-  },
-  ".playwright-mcp/page-2026-08-12T21-06-48-954Z.yml": {
-    "mtime": 1786568808.954036,
-    "ast_hash": "236d3fd541ed608970fb27dbc24f4f39",
-    "semantic_hash": ""
-  },
-  ".playwright-mcp/page-2026-08-12T21-07-04-531Z.yml": {
-    "mtime": 1786568824.5310242,
-    "ast_hash": "4393d5c514ba14ddede74407ce415013",
     "semantic_hash": ""
   }
 }
