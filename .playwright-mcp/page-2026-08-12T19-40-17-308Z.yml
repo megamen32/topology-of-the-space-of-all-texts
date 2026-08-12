@@ -1,0 +1,46 @@
+- main [ref=e2]:
+  - navigation [ref=e3]:
+    - link "Главная" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - link "Student Rank" [ref=e5] [cursor=pointer]:
+      - /url: student-rank.html
+    - link "Доказательство" [ref=e6] [cursor=pointer]:
+      - /url: proof.html
+    - link "Библиотека" [ref=e7] [cursor=pointer]:
+      - /url: library.html
+    - link "Алфавит" [ref=e8] [cursor=pointer]:
+      - /url: alphabet.html
+    - link "Генераторы" [ref=e9] [cursor=pointer]:
+      - /url: generate.html
+    - link "Analytics" [ref=e10] [cursor=pointer]:
+      - /url: analytics.html
+  - generic [ref=e11]:
+    - generic [ref=e12]: Address space
+    - heading "Search / Rank / Score" [level=1] [ref=e13]
+    - paragraph [ref=e14]: Текст нормализуется в top-256 alphabet, получает energy score и адрес в base-256 пространстве.
+  - generic [ref=e16]:
+    - heading "Query" [level=2] [ref=e17]
+    - generic [ref=e18]:
+      - textbox [ref=e19]: Привет лол 😂 hello
+      - generic [ref=e20]:
+        - text: Mode
+        - combobox "Mode" [ref=e21]:
+          - option "Base-256 address" [selected]
+          - option "Cluster energy MVP"
+      - generic [ref=e22]:
+        - text: Length
+        - combobox "Length" [ref=e23]:
+          - option "4"
+          - option "8" [selected]
+          - option "16"
+          - option "32"
+          - option "64"
+      - button "Score" [ref=e24] [cursor=pointer]
+      - button "Rank" [ref=e25] [cursor=pointer]
+      - button "Search exact page" [ref=e26] [cursor=pointer]
+  - generic [ref=e28]:
+    - heading "Unrank" [level=2] [ref=e29]
+    - generic [ref=e30]:
+      - textbox [ref=e31]: "0x0"
+      - button "Unrank" [ref=e32] [cursor=pointer]
+    - paragraph [ref=e33]: Cluster energy MVP сейчас работает для страниц длиной от 4 до 64.

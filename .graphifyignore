@@ -1,0 +1,9 @@
+# Keep training corpora and generated/session artifacts out of semantic extraction.
+datasets/cache_v1/
+graphify-out/
+.agents/
+.codex/
+
+# Backups are not current project truth.
+*.bak
+*.bak.*

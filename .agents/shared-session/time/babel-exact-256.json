@@ -1,0 +1,14 @@
+{
+  "cycle_id": "babel-exact-256",
+  "estimate_mutations": [],
+  "last_active_minutes": 0,
+  "last_checked_at": "2026-08-12T23:56:08.278380+03:00",
+  "overrun_reported": false,
+  "planned_minutes": {
+    "maximum": 35,
+    "minimum": 10
+  },
+  "reported_hours": 0,
+  "schema_version": 1,
+  "started_at": "2026-08-12T20:48:00+00:00"
+}

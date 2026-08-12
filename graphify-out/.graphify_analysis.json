@@ -1,0 +1,580 @@
+{
+  "communities": {
+    "0": [
+      "site_assets_app",
+      "site_assets_app_boot",
+      "site_assets_app_cls",
+      "site_assets_app_detok",
+      "site_assets_app_escapehtml",
+      "site_assets_app_generatefsm",
+      "site_assets_app_generatesentencefromtemplate",
+      "site_assets_app_generatesentencestudent",
+      "site_assets_app_hashseed",
+      "site_assets_app_iscombining",
+      "site_assets_app_ispunct",
+      "site_assets_app_mulberry32",
+      "site_assets_app_normalizetext",
+      "site_assets_app_normchar",
+      "site_assets_app_pagefromtext",
+      "site_assets_app_ranktext",
+      "site_assets_app_realizeabstract",
+      "site_assets_app_scoretext",
+      "site_assets_app_show",
+      "site_assets_app_unrank",
+      "site_assets_app_weightedarray",
+      "site_assets_app_weightedchoice"
+    ],
+    "1": [
+      "site_assets_library",
+      "site_assets_library_attachexpand",
+      "site_assets_library_b64map",
+      "site_assets_library_boot",
+      "site_assets_library_decimalsci",
+      "site_assets_library_decodeaddressinput",
+      "site_assets_library_decodepage64",
+      "site_assets_library_encodefixedpage64",
+      "site_assets_library_encodepage64",
+      "site_assets_library_escapeattr",
+      "site_assets_library_makeaddressitems",
+      "site_assets_library_metriccard",
+      "site_assets_library_nicenav",
+      "site_assets_library_numbertopage",
+      "site_assets_library_page64_len",
+      "site_assets_library_pagetonumber",
+      "site_assets_library_randomaddress",
+      "site_assets_library_renderinfo",
+      "site_assets_library_setaddress",
+      "site_assets_library_visiblepage64fromcurrent",
+      "site_assets_library_visiblestepfrompage64"
+    ],
+    "2": [
+      "counter",
+      "experiments_eval_harness_v1",
+      "experiments_eval_harness_v1_build_clusterer",
+      "experiments_eval_harness_v1_build_model",
+      "experiments_eval_harness_v1_collapse_score",
+      "experiments_eval_harness_v1_frontier_sample",
+      "experiments_eval_harness_v1_sentence_energy",
+      "experiments_eval_harness_v1_tokenize",
+      "experiments_fsm_count_1024",
+      "experiments_fsm_count_1024_human_int",
+      "experiments_fsm_count_1024_main",
+      "experiments_fsm_count_1024_run",
+      "experiments_fsm_poly_count",
+      "experiments_fsm_poly_count_conv",
+      "experiments_fsm_poly_count_human_int",
+      "experiments_fsm_poly_count_main",
+      "experiments_fsm_poly_count_mat_mul",
+      "experiments_fsm_poly_count_run",
+      "experiments_fsm_poly_count_trim_poly",
+      "experiments_fsm_poly_count_vec_mul"
+    ],
+    "3": [
+      "site_assets_shared",
+      "site_assets_shared_cls",
+      "site_assets_shared_codeinfo",
+      "site_assets_shared_escapehtml",
+      "site_assets_shared_fmt",
+      "site_assets_shared_hashseed",
+      "site_assets_shared_iscombining",
+      "site_assets_shared_labelchar",
+      "site_assets_shared_loadcore",
+      "site_assets_shared_mulberry32",
+      "site_assets_shared_normalizetext",
+      "site_assets_shared_normchar",
+      "site_assets_shared_pagefromtext",
+      "site_assets_shared_pct",
+      "site_assets_shared_ranktext",
+      "site_assets_shared_scoretext",
+      "site_assets_shared_show",
+      "site_assets_shared_unrank",
+      "site_assets_shared_weightedarray",
+      "site_assets_shared_weightedchoice"
+    ],
+    "4": [
+      "experiments_eval_harness_v2",
+      "experiments_eval_harness_v2_corpus_profile",
+      "experiments_eval_harness_v2_detok",
+      "experiments_eval_harness_v2_gen_fsm",
+      "experiments_eval_harness_v2_gen_paragraph",
+      "experiments_eval_harness_v2_gen_sentence",
+      "experiments_eval_harness_v2_gen_sentence_from_template",
+      "experiments_eval_harness_v2_gen_word",
+      "experiments_eval_harness_v2_generate",
+      "experiments_eval_harness_v2_main",
+      "experiments_eval_harness_v2_metrics",
+      "experiments_eval_harness_v2_realize",
+      "experiments_eval_harness_v2_safe_mean",
+      "experiments_eval_harness_v2_toks",
+      "experiments_eval_harness_v2_type_ok",
+      "experiments_eval_harness_v2_weighted",
+      "experiments_eval_harness_v2_weighted_rows"
+    ],
+    "5": [
+      "experiments_hierarchical_enumerator_v1",
+      "experiments_hierarchical_enumerator_v1_demo",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_class_size",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_count_page",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_count_paragraph",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_count_sentence",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_encode_raw_fallback",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_fallback_energy",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_hierarchy",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_init",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_page_reachable",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_sentence_energy",
+      "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1_token_energy",
+      "experiments_hierarchical_enumerator_v1_paragraphshape",
+      "experiments_hierarchical_enumerator_v1_rationale_27",
+      "experiments_hierarchical_enumerator_v1_sentencetemplate"
+    ],
+    "6": [
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_build_dp",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_count_less_cost",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_default_costs",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_explain_first",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_main",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_rank_page",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_rank_within_cost",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_rationale_39",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_rationale_54",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_rationale_64",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_read_dataset",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_selftest",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_total_cost",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_train_costs",
+      "experiments_babel_mvp_enumerative_enumerative_babel_mvp_unrank_page"
+    ],
+    "7": [
+      "site_assets_student_rank",
+      "site_assets_student_rank_boot",
+      "site_assets_student_rank_buildtinyranker",
+      "site_assets_student_rank_detok",
+      "site_assets_student_rank_generatefsm",
+      "site_assets_student_rank_generateparagraphstudent",
+      "site_assets_student_rank_generatesentencefromtemplate",
+      "site_assets_student_rank_generatesentencestudent",
+      "site_assets_student_rank_ispunct",
+      "site_assets_student_rank_pickarray",
+      "site_assets_student_rank_pickobj",
+      "site_assets_student_rank_preview",
+      "site_assets_student_rank_realizeabstract",
+      "site_assets_student_rank_rendercards",
+      "site_assets_student_rank_rngfromseed",
+      "site_assets_student_rank_setupgenerator"
+    ],
+    "8": [
+      "experiments_backend_app",
+      "experiments_backend_app_api_generate",
+      "experiments_backend_app_api_rank",
+      "experiments_backend_app_api_score",
+      "experiments_backend_app_api_search",
+      "experiments_backend_app_api_unrank",
+      "experiments_backend_app_cls",
+      "experiments_backend_app_gen",
+      "experiments_backend_app_index",
+      "experiments_backend_app_norm_char",
+      "experiments_backend_app_normalize_text",
+      "experiments_backend_app_rank_text",
+      "experiments_backend_app_score_text",
+      "experiments_backend_app_static_proxy",
+      "experiments_backend_app_unrank_int"
+    ],
+    "9": [
+      "site_assets_generate",
+      "site_assets_generate_boot",
+      "site_assets_generate_detok",
+      "site_assets_generate_generatecluster",
+      "site_assets_generate_generateclusterv2",
+      "site_assets_generate_generatefsm",
+      "site_assets_generate_generateparagraph",
+      "site_assets_generate_generatesentence",
+      "site_assets_generate_generatesentencefromtemplate",
+      "site_assets_generate_generateword",
+      "site_assets_generate_ispunct",
+      "site_assets_generate_realizeabstract",
+      "site_assets_generate_rngfromseed"
+    ],
+    "10": [
+      "experiments_student_rank_exact_mvp",
+      "experiments_student_rank_exact_mvp_cost",
+      "experiments_student_rank_exact_mvp_exactstudentranker",
+      "experiments_student_rank_exact_mvp_exactstudentranker_count_below_energy",
+      "experiments_student_rank_exact_mvp_exactstudentranker_count_exact",
+      "experiments_student_rank_exact_mvp_exactstudentranker_count_leq",
+      "experiments_student_rank_exact_mvp_exactstudentranker_init",
+      "experiments_student_rank_exact_mvp_exactstudentranker_page_cost",
+      "experiments_student_rank_exact_mvp_exactstudentranker_rank",
+      "experiments_student_rank_exact_mvp_exactstudentranker_unrank",
+      "experiments_student_rank_exact_mvp_main",
+      "experiments_student_rank_exact_mvp_next_state"
+    ],
+    "11": [
+      "site_assets_arena",
+      "site_assets_arena_boot",
+      "site_assets_arena_cfgname",
+      "site_assets_arena_esc",
+      "site_assets_arena_nextpair",
+      "site_assets_arena_renderpair",
+      "site_assets_arena_rendervotes",
+      "site_assets_arena_rows",
+      "site_assets_arena_samplefrom",
+      "site_assets_arena_savevote",
+      "site_assets_arena_votes"
+    ],
+    "12": [
+      "experiments_run_pipeline",
+      "experiments_run_pipeline_export_site_model",
+      "experiments_run_pipeline_fail",
+      "experiments_run_pipeline_log",
+      "experiments_run_pipeline_main",
+      "experiments_run_pipeline_need_file",
+      "experiments_run_pipeline_run_step",
+      "experiments_run_pipeline_sh__entry",
+      "experiments_run_pipeline_smoke_test"
+    ],
+    "13": [
+      "experiments_sentence_astar_frontier",
+      "experiments_sentence_astar_frontier_detok",
+      "experiments_sentence_astar_frontier_generate_sentence",
+      "experiments_sentence_astar_frontier_main",
+      "experiments_sentence_astar_frontier_paragraph_frontier",
+      "experiments_sentence_astar_frontier_realize",
+      "experiments_sentence_astar_frontier_sentence_frontier",
+      "experiments_sentence_astar_frontier_template_energy",
+      "experiments_sentence_astar_frontier_type_ok"
+    ],
+    "14": [
+      "site_assets_analytics",
+      "site_assets_analytics_boot",
+      "site_assets_analytics_codeinfo",
+      "site_assets_analytics_esc",
+      "site_assets_analytics_fmt",
+      "site_assets_analytics_labelchar",
+      "site_assets_analytics_pct",
+      "site_assets_analytics_renderbars",
+      "site_assets_analytics_rendersummary"
+    ],
+    "15": [
+      "site_assets_clusters",
+      "site_assets_clusters_esc",
+      "site_assets_clusters_load",
+      "site_assets_clusters_render",
+      "site_assets_clusters_showcluster",
+      "site_assets_clusters_summarizefrommapping",
+      "site_assets_clusters_toptransitions"
+    ],
+    "16": [
+      "experiments_compare_top256_markovs",
+      "experiments_compare_top256_markovs_beam",
+      "experiments_compare_top256_markovs_greedy",
+      "experiments_compare_top256_markovs_load_model",
+      "experiments_compare_top256_markovs_main",
+      "experiments_compare_top256_markovs_state_of"
+    ],
+    "17": [
+      "experiments_download_social_datasets",
+      "experiments_download_social_datasets_gen_pikabu",
+      "experiments_download_social_datasets_gen_toxic",
+      "experiments_download_social_datasets_py_path",
+      "experiments_download_social_datasets_rows_to_text",
+      "experiments_download_social_datasets_write_texts"
+    ],
+    "18": [
+      "experiments_taskctl",
+      "experiments_taskctl_is_running",
+      "experiments_taskctl_sh__entry",
+      "experiments_taskctl_shell_quote_cmd",
+      "experiments_taskctl_usage",
+      "experiments_taskctl_write_status"
+    ],
+    "19": [
+      "experiments_llm_arena_judge_v2",
+      "experiments_llm_arena_judge_v2_call_ollama",
+      "experiments_llm_arena_judge_v2_cfg_name",
+      "experiments_llm_arena_judge_v2_gibberish_score",
+      "experiments_llm_arena_judge_v2_judge_pair"
+    ],
+    "20": [
+      "experiments_llm_arena_judge_v3",
+      "experiments_llm_arena_judge_v3_cfg_name",
+      "experiments_llm_arena_judge_v3_chat",
+      "experiments_llm_arena_judge_v3_gibberish_score",
+      "experiments_llm_arena_judge_v3_judge_pair"
+    ],
+    "21": [
+      "site_assets_frontier",
+      "site_assets_frontier_boot",
+      "site_assets_frontier_card",
+      "site_assets_frontier_esc",
+      "site_assets_frontier_tryfetch"
+    ],
+    "22": [
+      "site_assets_leaderboard",
+      "site_assets_leaderboard_boot",
+      "site_assets_leaderboard_cfgname",
+      "site_assets_leaderboard_esc",
+      "site_assets_leaderboard_metriccards"
+    ],
+    "23": [
+      "experiments_llm_arena_judge",
+      "experiments_llm_arena_judge_call_ollama",
+      "experiments_llm_arena_judge_cfg_name",
+      "experiments_llm_arena_judge_judge_pair"
+    ],
+    "24": [
+      "experiments_retrain_student_v2",
+      "experiments_retrain_student_v2_cls",
+      "experiments_retrain_student_v2_costs",
+      "experiments_retrain_student_v2_norm_char"
+    ],
+    "25": [
+      "experiments_build_dataset_sample",
+      "experiments_build_dataset_sample_add_file",
+      "experiments_build_dataset_sample_py_path"
+    ],
+    "26": [
+      "experiments_build_normalized_alphabet",
+      "experiments_build_normalized_alphabet_add",
+      "experiments_build_normalized_alphabet_norm_char"
+    ],
+    "27": [
+      "experiments_build_paragraph_student_v1",
+      "experiments_build_paragraph_student_v1_sent_template",
+      "experiments_build_paragraph_student_v1_tok_type"
+    ],
+    "28": [
+      "experiments_build_sentence_student_v1",
+      "experiments_build_sentence_student_v1_template",
+      "experiments_build_sentence_student_v1_tok_type"
+    ],
+    "29": [
+      "experiments_fsm_astar_frontier",
+      "experiments_fsm_astar_frontier_enumerate_pages",
+      "experiments_fsm_astar_frontier_main"
+    ],
+    "30": [
+      "experiments_hierarchical_student_prototype",
+      "experiments_hierarchical_student_prototype_split_sentences",
+      "experiments_hierarchical_student_prototype_split_words"
+    ],
+    "31": [
+      "experiments_run_hierarchical_students_pipeline",
+      "experiments_run_hierarchical_students_pipeline_log",
+      "experiments_run_hierarchical_students_pipeline_sh__entry"
+    ],
+    "32": [
+      "experiments_run_sentence_student_pipeline",
+      "experiments_run_sentence_student_pipeline_log",
+      "experiments_run_sentence_student_pipeline_sh__entry"
+    ],
+    "33": [
+      "experiments_run_word_student_pipeline",
+      "experiments_run_word_student_pipeline_log",
+      "experiments_run_word_student_pipeline_sh__entry"
+    ],
+    "34": [
+      "experiments_build_text_cache",
+      "experiments_build_text_cache_norm_text"
+    ],
+    "35": [
+      "experiments_build_top256_alphabet",
+      "experiments_build_top256_alphabet_add"
+    ],
+    "36": [
+      "experiments_build_word_student_v1",
+      "experiments_build_word_student_v1_map_tok"
+    ],
+    "37": [
+      "experiments_clone_tg_economic",
+      "experiments_clone_tg_economic_sh__entry"
+    ],
+    "38": [
+      "experiments_cluster_student_v2",
+      "experiments_cluster_student_v2_hfeat"
+    ],
+    "39": [
+      "experiments_compare_models",
+      "experiments_compare_models_byte_repr"
+    ],
+    "40": [
+      "experiments_install_dataset_deps",
+      "experiments_install_dataset_deps_sh__entry"
+    ],
+    "41": [
+      "experiments_page_ranker_v1",
+      "experiments_page_ranker_v1_score"
+    ],
+    "42": [
+      "experiments_student_fsm_v0",
+      "experiments_student_fsm_v0_cls"
+    ],
+    "43": [
+      "site_assets_alphabet",
+      "site_assets_alphabet_boot"
+    ],
+    "44": [
+      "site_assets_proof",
+      "site_assets_proof_bootproof"
+    ],
+    "45": [
+      "site_assets_search",
+      "site_assets_search_boot"
+    ],
+    "46": [
+      "experiments_check_emoji_in_processed"
+    ],
+    "47": [
+      "experiments_cluster_student_v1"
+    ],
+    "48": [
+      "experiments_count_cache_stats"
+    ],
+    "49": [
+      "experiments_retrain_top256_models"
+    ],
+    "50": [
+      "experiments_teacher_generate_corpus"
+    ],
+    "51": [
+      "experiments_train_alphabet_models"
+    ],
+    "52": [
+      "experiments_train_markov3"
+    ],
+    "53": [
+      "experiments_train_top256_markov5"
+    ],
+    "54": [
+      "experiments_train_top256_markov_n"
+    ],
+    "55": [
+      "experiments_train_unigram"
+    ]
+  },
+  "cohesion": {
+    "0": 0.19480519480519481,
+    "1": 0.22380952380952382,
+    "2": 0.18947368421052632,
+    "3": 0.13157894736842105,
+    "4": 0.2867647058823529,
+    "5": 0.17647058823529413,
+    "6": 0.26666666666666666,
+    "7": 0.275,
+    "8": 0.23809523809523808,
+    "9": 0.41025641025641024,
+    "10": 0.3333333333333333,
+    "11": 0.41818181818181815,
+    "12": 0.3888888888888889,
+    "13": 0.4166666666666667,
+    "14": 0.5277777777777778,
+    "15": 0.6190476190476191,
+    "16": 0.6666666666666666,
+    "17": 0.3333333333333333,
+    "18": 0.5333333333333333,
+    "19": 0.6,
+    "20": 0.6,
+    "21": 0.7,
+    "22": 0.7,
+    "23": 0.6666666666666666,
+    "24": 0.5,
+    "25": 0.6666666666666666,
+    "26": 0.6666666666666666,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 0.6666666666666666,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0
+  },
+  "gods": [
+    {
+      "id": "experiments_hierarchical_enumerator_v1_hierarchicalenumeratorv1",
+      "label": "HierarchicalEnumeratorV1",
+      "degree": 14
+    },
+    {
+      "id": "experiments_babel_mvp_enumerative_enumerative_babel_mvp_main",
+      "label": "main()",
+      "degree": 9
+    },
+    {
+      "id": "experiments_student_rank_exact_mvp_exactstudentranker",
+      "label": "ExactStudentRanker",
+      "degree": 9
+    },
+    {
+      "id": "site_assets_library_boot",
+      "label": "boot()",
+      "degree": 9
+    },
+    {
+      "id": "site_assets_analytics_boot",
+      "label": "boot()",
+      "degree": 8
+    },
+    {
+      "id": "site_assets_app_boot",
+      "label": "boot()",
+      "degree": 8
+    },
+    {
+      "id": "site_assets_library_setaddress",
+      "label": "setAddress()",
+      "degree": 8
+    },
+    {
+      "id": "experiments_eval_harness_v2_gen_sentence_from_template",
+      "label": "gen_sentence_from_template()",
+      "degree": 7
+    },
+    {
+      "id": "experiments_fsm_poly_count_run",
+      "label": "run()",
+      "degree": 7
+    },
+    {
+      "id": "site_assets_generate_boot",
+      "label": "boot()",
+      "degree": 7
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `rows` to the rest of the system?",
+      "why": "4 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 3` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13157894736842105 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

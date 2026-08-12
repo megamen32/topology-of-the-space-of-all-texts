@@ -1,0 +1,62 @@
+- main [ref=f11e2]:
+  - generic [ref=f11e3]:
+    - generic [ref=f11e4]: Library of Babel / human-shaped geometry
+    - heading "Топология пространства всех текстов" [level=1] [ref=f11e5]
+    - paragraph [ref=f11e6]: Расстояние определяется похожестью на человеческое распределение. Адрес — это место текста в этой геометрии.
+    - generic [ref=f11e7]:
+      - text: "[0, 2"
+      - superscript [ref=f11e8]: "32768"
+      - text: ) ↔ all 4096-symbol pages over a 256-symbol alphabet
+  - generic [ref=f11e9]:
+    - link [ref=f11e10] [cursor=pointer]:
+      - /url: proof.html
+      - heading "Доказательство" [level=2] [ref=f11e11]
+      - paragraph [ref=f11e12]: Почему адреса покрывают все страницы без дыр и дублей.
+    - link [ref=f11e13] [cursor=pointer]:
+      - /url: student-rank.html
+      - heading "Student Rank" [level=2] [ref=f11e14]
+      - paragraph [ref=f11e15]: "Настоящая нумерация: energy student-а + exact counting."
+    - link [ref=f11e16] [cursor=pointer]:
+      - /url: leaderboard.html
+      - heading "Leaderboard" [level=2] [ref=f11e17]
+      - paragraph [ref=f11e18]: "Eval Harness v2: автоматические метрики и samples."
+    - link [ref=f11e19] [cursor=pointer]:
+      - /url: arena.html
+      - heading "A/B Arena" [level=2] [ref=f11e20]
+      - paragraph [ref=f11e21]: Human preference voting для samples.
+    - link [ref=f11e22] [cursor=pointer]:
+      - /url: frontier.html
+      - heading "Первые страницы" [level=2] [ref=f11e23]
+      - paragraph [ref=f11e24]: "B2 low-energy frontier: первые human-shaped candidates."
+    - link [ref=f11e25] [cursor=pointer]:
+      - /url: library.html
+      - heading "Библиотека" [level=2] [ref=f11e26]
+      - paragraph [ref=f11e27]: Адреса base64url, страницы, next/prev/random, быстрый поиск.
+    - link [ref=f11e28] [cursor=pointer]:
+      - /url: walk.html
+      - heading "Русская прогулка" [level=2] [ref=f11e29]
+      - paragraph [ref=f11e30]: Листай разные русскоподобные страницы с точными cluster-energy адресами.
+    - link [ref=f11e31] [cursor=pointer]:
+      - /url: alphabet.html
+      - heading "Алфавит" [level=2] [ref=f11e32]
+      - paragraph [ref=f11e33]: Top-256 символов, частоты, emoji, покрытие корпуса.
+    - link [ref=f11e34] [cursor=pointer]:
+      - /url: clusters.html
+      - heading "Clusters" [level=2] [ref=f11e35]
+      - paragraph [ref=f11e36]: Предпросмотр emergent token clusters.
+    - link [ref=f11e37] [cursor=pointer]:
+      - /url: generate.html
+      - heading "Генераторы" [level=2] [ref=f11e38]
+      - paragraph [ref=f11e39]: Sentence/word student v1 и старый FSM для сравнения.
+    - link [ref=f11e40] [cursor=pointer]:
+      - /url: search.html
+      - heading "Search / Rank / Score" [level=2] [ref=f11e41]
+      - paragraph [ref=f11e42]: Нормализация, energy score, rank, unrank, exact page.
+    - link [ref=f11e43] [cursor=pointer]:
+      - /url: analytics.html
+      - heading "Analytics" [level=2] [ref=f11e44]
+      - paragraph [ref=f11e45]: Графики частот, слова, предложения, абзацы, биграммы.
+  - generic [ref=f11e46]:
+    - heading "Teacher / student rule" [level=2] [ref=f11e47]
+    - paragraph [ref=f11e48]: Teacher can be neural. Student must be finite.
+    - generic [ref=f11e49]: Transformer = taste / human-likeness field Finite student = proof / addressable geometry cost = floor(-log2(P) * scale)

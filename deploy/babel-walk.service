@@ -1,0 +1,17 @@
+[Unit]
+Description=Human-ordered Babel walk
+After=network.target
+
+[Service]
+Type=simple
+User=roomhacker
+WorkingDirectory=/home/roomhacker/apps/babel-walk
+Environment=BABEL_ROOT=/home/roomhacker/apps/babel-walk
+Environment=BABEL_HOST=127.0.0.1
+Environment=BABEL_PORT=8090
+ExecStart=/usr/bin/python3 experiments/backend_app.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

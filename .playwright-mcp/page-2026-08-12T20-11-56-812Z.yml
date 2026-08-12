@@ -1,0 +1,55 @@
+- main [ref=f6e2]:
+  - navigation [ref=f6e3]:
+    - link "Главная" [ref=f6e4] [cursor=pointer]:
+      - /url: /
+    - link "Search / Rank" [ref=f6e5] [cursor=pointer]:
+      - /url: search.html
+    - link "Библиотека" [ref=f6e6] [cursor=pointer]:
+      - /url: library.html
+    - link "Доказательство" [ref=f6e7] [cursor=pointer]:
+      - /url: proof.html
+    - link "Генераторы" [ref=f6e8] [cursor=pointer]:
+      - /url: generate.html
+  - generic [ref=f6e9]:
+    - generic [ref=f6e10]: Human-shaped checkpoints in exact address space
+    - heading "Русская прогулка" [level=1] [ref=f6e11]
+    - paragraph [ref=f6e12]: Листай разные русскоподобные страницы. Каждая из них имеет точный cluster-energy адрес в пространстве всех 64-символьных страниц.
+    - paragraph [ref=f6e13]: "Шестнадцать сцен — от дождя и сада до станции и мастерской. Это честный 64-символьный MVP: полная 4096-символьная библиотека остаётся следующей задачей counting layer."
+  - generic [ref=f6e14]:
+    - generic [ref=f6e15]:
+      - strong [ref=f6e16]: ← / →
+      - generic [ref=f6e17]: следующая семантическая страница — намеренно другая по сцене и словам
+    - generic [ref=f6e18]:
+      - strong [ref=f6e19]: exact −1 / +1
+      - generic [ref=f6e20]: буквально соседнее число в строгом порядке; оно может быть менее читабельным
+  - generic [ref=f6e21]:
+    - text: Counting progress
+    - heading "Доказанный масштаб" [level=2] [ref=f6e22]
+    - paragraph [ref=f6e23]: "Точно посчитано 256-символьное пространство: 32317006071311007300714876688669951960444102669715484032130345427524655138867890893197201411522913463688717960921898019494119559150490921095088152386448283120630877367300996091750197750389652106796057638384067568276792218642619756161838094338476170470581645852036305042887575891541065808607552399123930385521914333389668342420684974786564569494856176035326322058077805659331026192708460314150258592864177116725943603718461857357598351152301645904403697613233287231227125684710820209725157101726931323469678542580656697935045997268352998638215525166389437335543602135433229604645318478604952148193555853611059596230656 страниц; 1021 energy-бакетов; block=16. Это proof receipt, не генерация на лету."
+  - generic [ref=f6e24]:
+    - generic [ref=f6e25]:
+      - generic [ref=f6e26]:
+        - generic [ref=f6e27]: Semantic waypoint
+        - heading "Кухня" [level=2] [ref=f6e28]
+        - paragraph [ref=f6e29]: страница 4 из 16 · 64 символа с padding · ссылка сохраняет эту точку
+      - generic [ref=f6e30]:
+        - generic [ref=f6e31]: energy
+        - strong [ref=f6e32]: "144"
+        - generic [ref=f6e33]: "новизна: 95%"
+    - article [ref=f6e34]: на кухне пахло яблоками, чаем и свежим хлебом из духовки.
+    - generic [ref=f6e35]:
+      - generic [ref=f6e36]: exact address
+      - code [ref=f6e37]: "0x244ba71b1b83dbcfc28af068326210661832a4741b8e6d66163d492a5e6620462ef9fb1b323129222262e3d69b12ec1ce2f01fe7d0d9823a348c84"
+      - button "Copy" [ref=f6e38] [cursor=pointer]
+    - generic [ref=f6e39]:
+      - button "← Другая страница" [ref=f6e40] [cursor=pointer]
+      - button "Другая страница →" [ref=f6e41] [cursor=pointer]
+  - generic [ref=f6e42]:
+    - generic [ref=f6e43]:
+      - generic [ref=f6e44]: Proof view
+      - heading "Буквальный сосед адреса" [level=2] [ref=f6e45]
+      - paragraph [ref=f6e46]: "Это проверка строгого порядка: меняем address ровно на один. Такой переход не обязан сохранять русский текст — это отдельное свойство, над которым ещё работает student."
+      - generic [ref=f6e47]:
+        - button "exact −1" [ref=f6e48] [cursor=pointer]
+        - button "exact +1" [ref=f6e49] [cursor=pointer]
+    - generic [ref=f6e50]: Выбери exact −1 или exact +1, чтобы открыть соседнее число.

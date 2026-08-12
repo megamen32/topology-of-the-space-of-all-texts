@@ -1,0 +1,12 @@
+{
+  "source_files": [
+    "/home/roomhacker/babel-experiments/datasets/processed/sample_ru_en_dialogue_books.txt",
+    "/home/roomhacker/babel-experiments/datasets/processed/teacher_qwen4b_samples.txt",
+    "/home/roomhacker/babel-experiments/datasets/processed/toxic_russian_comments.txt",
+    "/home/roomhacker/babel-experiments/datasets/processed/tweet_eval_emoji_texts.txt"
+  ],
+  "chars": 37427093,
+  "paragraphs": 4,
+  "sentences": 476240,
+  "tokens": 8017162
+}

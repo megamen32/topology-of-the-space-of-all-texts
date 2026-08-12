@@ -1,0 +1,51 @@
+- main [ref=f5e2]:
+  - navigation [ref=f5e3]:
+    - link "Главная" [ref=f5e4] [cursor=pointer]:
+      - /url: /
+    - link "Search / Rank" [ref=f5e5] [cursor=pointer]:
+      - /url: search.html
+    - link "Библиотека" [ref=f5e6] [cursor=pointer]:
+      - /url: library.html
+    - link "Доказательство" [ref=f5e7] [cursor=pointer]:
+      - /url: proof.html
+    - link "Генераторы" [ref=f5e8] [cursor=pointer]:
+      - /url: generate.html
+  - generic [ref=f5e9]:
+    - generic [ref=f5e10]: Human-shaped checkpoints in exact address space
+    - heading "Русская прогулка" [level=1] [ref=f5e11]
+    - paragraph [ref=f5e12]: Листай разные русскоподобные страницы. Каждая из них имеет точный cluster-energy адрес в пространстве всех 64-символьных страниц.
+    - paragraph [ref=f5e13]: "Это честный 64-символьный MVP: полная 4096-символьная библиотека остаётся следующей задачей counting layer."
+  - generic [ref=f5e14]:
+    - generic [ref=f5e15]:
+      - strong [ref=f5e16]: ← / →
+      - generic [ref=f5e17]: следующая семантическая страница — намеренно другая по сцене и словам
+    - generic [ref=f5e18]:
+      - strong [ref=f5e19]: exact −1 / +1
+      - generic [ref=f5e20]: буквально соседнее число в строгом порядке; оно может быть менее читабельным
+  - generic [ref=f5e21]:
+    - generic [ref=f5e22]:
+      - generic [ref=f5e23]:
+        - generic [ref=f5e24]: Semantic waypoint
+        - heading "Кухня" [level=2] [ref=f5e25]
+        - paragraph [ref=f5e26]: страница 4 из 8 · 64 символа с padding · ссылка сохраняет эту точку
+      - generic [ref=f5e27]:
+        - generic [ref=f5e28]: energy
+        - strong [ref=f5e29]: "144"
+        - generic [ref=f5e30]: "новизна: 95%"
+    - article [ref=f5e31]: на кухне пахло яблоками, чаем и свежим хлебом из духовки.
+    - generic [ref=f5e32]:
+      - generic [ref=f5e33]: exact address
+      - code [ref=f5e34]: "0x244ba71b1b83dbcfc28af068326210661832a4741b8e6d66163d492a5e6620462ef9fb1b323129222262e3d69b12ec1ce2f01fe7d0d9823a348c84"
+      - button "Copy" [ref=f5e35] [cursor=pointer]
+    - generic [ref=f5e36]:
+      - button "← Другая страница" [ref=f5e37] [cursor=pointer]
+      - button "Другая страница →" [ref=f5e38] [cursor=pointer]
+  - generic [ref=f5e39]:
+    - generic [ref=f5e40]:
+      - generic [ref=f5e41]: Proof view
+      - heading "Буквальный сосед адреса" [level=2] [ref=f5e42]
+      - paragraph [ref=f5e43]: "Это проверка строгого порядка: меняем address ровно на один. Такой переход не обязан сохранять русский текст — это отдельное свойство, над которым ещё работает student."
+      - generic [ref=f5e44]:
+        - button "exact −1" [ref=f5e45] [cursor=pointer]
+        - button "exact +1" [ref=f5e46] [cursor=pointer]
+    - generic [ref=f5e47]: Выбери exact −1 или exact +1, чтобы открыть соседнее число.

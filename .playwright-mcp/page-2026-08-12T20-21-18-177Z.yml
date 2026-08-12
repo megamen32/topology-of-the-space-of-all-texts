@@ -1,0 +1,50 @@
+- main [ref=f13e2]:
+  - navigation [ref=f13e3]:
+    - link "Главная" [ref=f13e4] [cursor=pointer]:
+      - /url: /
+    - link "Русская прогулка" [ref=f13e5] [cursor=pointer]:
+      - /url: walk.html
+    - link "Student Rank" [ref=f13e6] [cursor=pointer]:
+      - /url: student-rank.html
+    - link "Доказательство" [ref=f13e7] [cursor=pointer]:
+      - /url: proof.html
+    - link "Библиотека" [ref=f13e8] [cursor=pointer]:
+      - /url: library.html
+    - link "Алфавит" [ref=f13e9] [cursor=pointer]:
+      - /url: alphabet.html
+    - link "Генераторы" [ref=f13e10] [cursor=pointer]:
+      - /url: generate.html
+    - link "Analytics" [ref=f13e11] [cursor=pointer]:
+      - /url: analytics.html
+  - generic [ref=f13e12]:
+    - generic [ref=f13e13]: Address space
+    - heading "Search / Rank / Score" [level=1] [ref=f13e14]
+    - paragraph [ref=f13e15]: Текст нормализуется в top-256 alphabet, получает energy score и адрес в base-256 пространстве.
+  - generic [ref=f13e16]:
+    - generic [ref=f13e17]:
+      - heading "Query" [level=2] [ref=f13e18]
+      - generic [ref=f13e19]:
+        - textbox [ref=f13e20]: утром над городом пошёл тёплый дождь, и улицы стали тихими.
+        - generic [ref=f13e21]:
+          - text: Mode
+          - combobox "Mode" [ref=f13e22]:
+            - option "Base-256 address"
+            - option "Cluster energy MVP" [selected]
+        - generic [ref=f13e23]:
+          - text: Length
+          - combobox "Length" [ref=f13e24]:
+            - option "4"
+            - option "8"
+            - option "16"
+            - option "32"
+            - option "64" [selected]
+        - button "Score" [ref=f13e25] [cursor=pointer]
+        - button "Rank" [active] [ref=f13e26] [cursor=pointer]
+        - button "Search exact page" [ref=f13e27] [cursor=pointer]
+    - generic [ref=f13e35]: "{ \"energy\": 176, \"length\": 64, \"mode\": \"exact_cluster_mvp\", \"page\": \"утром над городом пошёл тёплый дождь, и улицы стали тихими. \", \"rank\": \"5045081931516916283728697645914039189253253381738263682065554805825239930227088496083398490534009214923627796445379477756695138029358903297940500589\", \"rank_hex\": \"0x6501b9386c3c54969bf9be7c2a2de423f91cba4f3653d14da32c5bc39f8d18c8fbbee1dc379421505ba799cb7c381bb763e20138ae64f7c56be4e09b06d\", \"score\": { \"normalized\": \"утром над городом пошёл тёплый дождь, и улицы стали тихими.\", \"length\": 59, \"unknown\": 0, \"energy\": 26758, \"energyPerSymbol\": 453.52542372881356 } }"
+  - generic [ref=f13e29]:
+    - heading "Unrank" [level=2] [ref=f13e30]
+    - generic [ref=f13e31]:
+      - textbox [ref=f13e32]: "0x6501b9386c3c54969bf9be7c2a2de423f91cba4f3653d14da32c5bc39f8d18c8fbbee1dc379421505ba799cb7c381bb763e20138ae64f7c56be4e09b06d"
+      - button "Unrank" [ref=f13e33] [cursor=pointer]
+    - paragraph [ref=f13e34]: Cluster energy MVP сейчас работает для страниц длиной от 4 до 64.
