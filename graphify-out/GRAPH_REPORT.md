@@ -1,16 +1,16 @@
-# Graph Report - babel-experiments  (2026-08-13)
+# Graph Report - babel-experiments  (2026-08-17)
 
 ## Corpus Check
-- 118 files · ~2,312,033 words
+- 120 files · ~2,427,561 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 655 nodes · 911 edges · 104 communities (72 shown, 32 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.7)
+- 691 nodes · 994 edges · 106 communities (74 shown, 32 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 10 edges (avg confidence: 0.62)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e0e5df76`
+- Built from commit: `b9c14adf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -97,18 +97,20 @@
 - deploy-babel-walk.sh
 - enable-babel-walk-tls.sh
 - README.md
+- atlas.js
+- address-space.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `ClusterRanker` - 18 edges
 2. `RawClusterRanker` - 18 edges
 3. `HierarchicalEnumeratorV1` - 14 edges
-4. `ChunkedRawCounter` - 11 edges
-5. `main()` - 10 edges
-6. `main()` - 9 edges
-7. `HierarchicalRawRanker` - 9 edges
-8. `ExactStudentRanker` - 9 edges
-9. `boot()` - 9 edges
-10. `boot()` - 9 edges
+4. `atlasBoot()` - 12 edges
+5. `ChunkedRawCounter` - 11 edges
+6. `atlasDraw()` - 11 edges
+7. `main()` - 10 edges
+8. `main()` - 9 edges
+9. `HierarchicalRawRanker` - 9 edges
+10. `ExactStudentRanker` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `exact_cluster_ranker()` --calls--> `RawClusterRanker`  [INFERRED]
@@ -123,15 +125,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (104 total, 32 thin omitted)
+## Communities (106 total, 32 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.10
 Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+5 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.14
-Nodes (24): api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score(), api_search(), api_unrank() (+16 more)
+Cohesion: 0.13
+Nodes (26): api_atlas_page(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score(), api_search() (+18 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.19
@@ -325,8 +327,16 @@ Nodes (3): Counting Infinity, The challenge, Why brute force does not work
 Cohesion: 0.50
 Nodes (3): Current Architecture, Main student, Product surface
 
+### Community 104 - "atlas.js"
+Cohesion: 0.19
+Nodes (24): atlasApi(), atlasBoot(), atlasDirections, atlasDrag(), atlasDraw(), atlasHash(), atlasHexPoints(), atlasKey() (+16 more)
+
+### Community 105 - "address-space.js"
+Cohesion: 0.57
+Nodes (7): facts(), formatAddress(), locateRaw(), locateSemantic(), openRaw(), post(), setResult()
+
 ## Knowledge Gaps
-- **153 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+148 more)
+- **156 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+151 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -334,16 +344,16 @@ Nodes (3): Current Architecture, Main student, Product surface
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `ChunkedRawCounter` connect `Community 10` to `Community 0`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
-  _153 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _156 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.13756613756613756 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1310344827586207 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
   _Cohesion score 0.13157894736842105 - nodes in this community are weakly interconnected._

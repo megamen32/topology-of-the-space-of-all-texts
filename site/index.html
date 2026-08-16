@@ -3,40 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Babel Experiments</title>
+  <title>Топология пространства всех текстов</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <div class="kicker">Library of Babel / human-shaped geometry</div>
-      <h1>Топология пространства всех текстов</h1>
-      <p class="lead">Расстояние определяется похожестью на человеческое распределение. Адрес — это место текста в этой геометрии.</p>
-      <div class="equation">[0, 2<sup>32768</sup>) ↔ all 4096-symbol pages over a 256-symbol alphabet</div>
+  <main class="addressMain">
+    <nav class="topnav" aria-label="Разделы проекта">
+      <a href="proof.html">Доказательство</a><a href="student-rank.html">Student Rank</a><a href="search.html">Полный explorer</a><a href="walk.html">Контрольные страницы</a><a href="atlas.html">Atlas · литературный режим</a>
+    </nav>
+
+    <section class="hero addressHero">
+      <div class="kicker">A coordinate system for every possible page</div>
+      <p class="heroNumber">0 <span>…</span> 2<sup>32768</sup> − 1</p>
+      <h1>У каждого текста<br>есть место.</h1>
+      <p class="lead">4096 символов · алфавит из 256 знаков · ровно 2<sup>32768</sup> страниц. Не генератор текстов: адресное пространство, в котором нет ни дыр, ни дублей.</p>
+      <div class="heroActions"><a class="heroButton" href="#locate">Найти адрес текста ↓</a><a class="quietButton" href="#how">Как устроен порядок</a></div>
     </section>
 
-    <section class="panel grid">
-      <a class="cardLink" href="proof.html"><h2>Доказательство</h2><p>Почему адреса покрывают все страницы без дыр и дублей.</p></a>
-      <a class="cardLink" href="student-rank.html"><h2>Student Rank</h2><p>Настоящая нумерация: energy student-а + exact counting.</p></a>
-      <a class="cardLink" href="leaderboard.html"><h2>Leaderboard</h2><p>Eval Harness v2: автоматические метрики и samples.</p></a>
-      <a class="cardLink" href="arena.html"><h2>A/B Arena</h2><p>Human preference voting для samples.</p></a>
-      <a class="cardLink" href="frontier.html"><h2>Первые страницы</h2><p>B2 low-energy frontier: первые human-shaped candidates.</p></a>
-      <a class="cardLink" href="library.html"><h2>Библиотека</h2><p>Адреса base64url, страницы, next/prev/random, быстрый поиск.</p></a>
-      <a class="cardLink" href="walk.html"><h2>Русская прогулка</h2><p>Листай разные русскоподобные страницы с точными cluster-energy адресами.</p></a>
-      <a class="cardLink" href="alphabet.html"><h2>Алфавит</h2><p>Top-256 символов, частоты, emoji, покрытие корпуса.</p></a>
-      <a class="cardLink" href="clusters.html"><h2>Clusters</h2><p>Предпросмотр emergent token clusters.</p></a>
-      <a class="cardLink" href="generate.html"><h2>Генераторы</h2><p>Sentence/word student v1 и старый FSM для сравнения.</p></a>
-      <a class="cardLink" href="search.html"><h2>Search / Rank / Score</h2><p>Нормализация, energy score, rank, unrank, exact page.</p></a>
-      <a class="cardLink" href="analytics.html"><h2>Analytics</h2><p>Графики частот, слова, предложения, абзацы, биграммы.</p></a>
+    <section class="truthStrip" aria-label="Статус доказательств">
+      <article><span class="truthDot proven"></span><strong>Полное пространство</strong><p>4096-символьные страницы взаимно однозначно соответствуют числам от 0 до 2<sup>32768</sup>−1.</p></article>
+      <article><span class="truthDot proven"></span><strong>Смысловой exact MVP</strong><p>До 256 символов страницы строго упорядочены по cluster-energy, затем по точному tie-break.</p></article>
+      <article><span class="truthDot open"></span><strong>Открытый фронтир</strong><p>Один глобальный energy-порядок для всех 4096 символов — следующая задача, а не сделанное обещание.</p></article>
     </section>
 
-    <section class="panel">
-      <h2>Teacher / student rule</h2>
-      <p>Teacher can be neural. Student must be finite.</p>
-      <pre class="result smallResult">Transformer = taste / human-likeness field
-Finite student = proof / addressable geometry
-cost = floor(-log2(P) * scale)</pre>
+    <section id="locate" class="instrument panel">
+      <div class="instrumentIntro"><div class="kicker">01 / Locate</div><h2>Дай тексту координаты</h2><p>Введи короткую страницу. Мы покажем два честных адреса: полный raw-address в пространстве всех страниц и exact semantic address в доказуемом 256-символьном ядре.</p></div>
+      <div class="instrumentGrid">
+        <div class="inputSide">
+          <label for="addressText">Текст</label>
+          <textarea id="addressText" spellcheck="false">в комнате горит тёплый свет, а за окном идёт дождь</textarea>
+          <div class="buttonRow"><button id="rawLocate" type="button">Полный raw-address</button><button id="semanticLocate" type="button" class="secondaryAction">Exact semantic · 256</button></div>
+          <p class="fieldNote">Текст нормализуется к top-256 алфавиту и дополняется пробелами до длины страницы.</p>
+        </div>
+        <div class="answerSide" aria-live="polite">
+          <div class="answerLabel">Результат</div><div id="locateStatus" class="answerTitle">Готов к вычислению</div>
+          <div id="locateFacts" class="answerFacts"><p>Выбери тип адреса. Большие числа показываются в hex: это та же точная координата, только компактнее.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="panel explanation">
+      <div><div class="kicker">02 / The ordering</div><h2>«Ближе к нулю» — это вычисляемое утверждение</h2><p>Конечный student читает страницу слева направо. Каждый переход и символ имеют стоимость. Сумма — energy: чем более ожидаема последовательность для модели, тем ниже её energy.</p></div>
+      <ol class="energyFlow"><li><b>Страница</b><span>текст из 256 знаков</span></li><li><b>Finite student</b><span>переходы между состояниями</span></li><li><b>Energy</b><span>целая стоимость пути</span></li><li><b>Exact count</b><span>сколько страниц дешевле</span></li><li><b>Rank</b><span>её единственный номер</span></li></ol>
+      <p class="caveat">Это не оценка «красоты» нейросетью. Это конечная модель + точный подсчёт путей. Поэтому у короткого exact-слоя есть проверяемые rank и unrank.</p>
+    </section>
+
+    <section class="panel addressReader">
+      <div class="readerIntro"><div class="kicker">03 / Open a page</div><h2>Открой страницу по адресу</h2><p>Raw-address покрывает всё пространство в 4096 символов. Вставь десятичное или hex-число — увидишь начало соответствующей страницы. Пробелы показаны как <code>·</code>, чтобы нулевая страница была видима.</p></div>
+      <div class="readerControls"><label for="rankInput">Адрес</label><textarea id="rankInput" spellcheck="false">0x0</textarea><button id="openRaw" type="button">Открыть raw-страницу</button></div>
+      <pre id="pageResult" class="page addressPage">Здесь появится страница.</pre>
+    </section>
+
+    <section class="panel comparison">
+      <div class="kicker">04 / Do not confuse the layers</div><h2>Одна идея, три уровня точности</h2>
+      <div class="layerGrid">
+        <article><span>01</span><h3>Raw space</h3><p>Все 2<sup>32768</sup> страниц, мгновенный exact rank/unrank. Но этот порядок лексикографический, не смысловой.</p></article>
+        <article><span>02</span><h3>Cluster-energy exact</h3><p>До 256 символов: смысловая энергия, exact counting, строгая биекция без повторов.</p></article>
+        <article><span>03</span><h3>4096 frontier</h3><p>16 точных блоков уже дают полную обратимую композицию. Глобальная сортировка их общей энергии — работа впереди.</p></article>
+      </div>
     </section>
   </main>
+  <script src="assets/address-space.js?v=20260817"></script>
 </body>
 </html>

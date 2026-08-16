@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07110f" />
+  <title>Atlas of Babel — Бесконечная библиотека</title>
+  <link rel="stylesheet" href="assets/atlas.css?v=20260813-atlas-v1" />
+  <style>
+    .atlasBook{grid-template-columns:40px minmax(0,1fr);min-width:0}.atlasPaper{min-width:0}
+    .atlasMap.moving #atlasRooms{animation:atlasMapStep .42s cubic-bezier(.2,.7,.2,1)}
+    @keyframes atlasMapStep{0%{transform:scale(.975);opacity:.55}100%{transform:scale(1);opacity:1}}
+    @media(max-width:620px){.atlasBook{grid-template-columns:28px minmax(0,1fr)}}
+    @media(prefers-reduced-motion:reduce){.atlasMap.moving #atlasRooms{animation:none}}
+  </style>
+</head>
+<body>
+  <main class="atlasApp">
+    <header class="atlasHeader">
+      <a class="atlasBrand" href="/" aria-label="Babel home">
+        <span class="atlasMark" aria-hidden="true">⬡</span>
+        <span><strong>ATLAS OF BABEL</strong><small>Бесконечная библиотека</small></span>
+      </a>
+      <nav class="atlasNav" aria-label="Основная навигация">
+        <a href="walk.html">Прогулка</a><a href="search.html">Exact search</a><a href="proof.html">Proof</a>
+      </nav>
+      <div class="atlasHeaderMeta"><span id="atlasCoordinates">HEX 0 · 0</span><span class="atlasLive">LIVE</span></div>
+    </header>
+
+    <section class="atlasIntro">
+      <div><span class="atlasEyebrow">EVERY TEXT HAS A PLACE</span><h1>Найди страницу.<br><em>Войди в её зал.</em></h1></div>
+      <p>Русские и английские тексты живут в адресуемых книгах. Вставь ссылку, найди фразу или иди через соседние шестиугольники — карта запомнит твой путь.</p>
+    </section>
+
+    <section class="atlasToolbar" aria-label="Поиск и адрес">
+      <form id="atlasSearchForm" class="atlasSearch">
+        <label for="atlasQuery">Поиск текста / Search text</label>
+        <div><textarea id="atlasQuery" rows="2" spellcheck="true">Утром над городом прошёл тёплый дождь.</textarea><button type="submit">Найти страницу <span aria-hidden="true">↗</span></button></div>
+      </form>
+      <form id="atlasUrlForm" class="atlasUrl">
+        <label for="atlasUrl">URL, координаты или exact address</label>
+        <div><input id="atlasUrl" autocomplete="off" spellcheck="false" placeholder="atlas.html?q=2&r=-1&book=4&page=12&lang=ru" /><button type="submit">Открыть</button><button id="atlasCopyUrl" type="button" class="quiet">Copy URL</button></div>
+      </form>
+      <div class="atlasLanguages" role="group" aria-label="Язык страницы">
+        <button type="button" data-lang="ru">RU</button><button type="button" data-lang="mix" class="active" aria-pressed="true">RU + EN</button><button type="button" data-lang="en">EN</button>
+      </div>
+    </section>
+
+    <section class="atlasWorkspace">
+      <section class="atlasMapPanel" aria-labelledby="mapTitle">
+        <div class="atlasMapHead"><div><span class="atlasEyebrow">LIVE POSITION</span><h2 id="mapTitle">Карта библиотеки</h2></div><div class="atlasMapLegend"><span><i class="legendDot current"></i>Вы здесь</span><span><i class="legendDot visited"></i>Ваш путь</span><span><i class="legendDot room"></i>Новый зал</span></div></div>
+        <div id="atlasMap" class="atlasMap" role="application" aria-label="Шестиугольная карта бесконечной библиотеки. Используйте стрелки для движения.">
+          <svg id="atlasSvg" viewBox="0 0 900 600" role="img" aria-labelledby="atlasMapSvgTitle atlasMapSvgDesc">
+            <title id="atlasMapSvgTitle">Карта шестиугольных залов библиотеки</title>
+            <desc id="atlasMapSvgDesc">Текущий зал находится в центре. Соседние шестиугольники открывают новые комнаты.</desc>
+            <defs>
+              <radialGradient id="atlasGlow"><stop offset="0" stop-color="#f1c96b" stop-opacity=".22"/><stop offset="1" stop-color="#f1c96b" stop-opacity="0"/></radialGradient>
+              <filter id="atlasSoft"><feGaussianBlur stdDeviation="14"/></filter>
+            </defs>
+            <g id="atlasGrid"></g><g id="atlasTrail"></g><g id="atlasRooms"></g>
+          </svg>
+          <div class="atlasCompass" aria-hidden="true"><span>W</span><span>N</span><i></i><span>S</span><span>E</span></div>
+          <div class="atlasMapHint">drag map · arrows / WASD · click a room</div>
+        </div>
+        <div id="atlasDirectionPad" class="atlasDirectionPad" aria-label="Перемещение по карте">
+          <button data-move="-1,0" aria-label="Запад">↖</button><button data-move="0,-1" aria-label="Север">↑</button><button data-move="1,-1" aria-label="Северо-восток">↗</button>
+          <button data-move="-1,1" aria-label="Юго-запад">↙</button><button data-move="0,1" aria-label="Юг">↓</button><button data-move="1,0" aria-label="Восток">↘</button>
+        </div>
+      </section>
+
+      <aside class="atlasReader" aria-live="polite">
+        <div class="atlasRoomStrip"><span id="atlasRoomLabel">HEX 0 · 0</span><span id="atlasLanguageLabel">RU + EN</span></div>
+        <div class="atlasShelf" id="atlasShelf" aria-label="Шесть книг в текущем зале"></div>
+        <article class="atlasBook" id="atlasBook">
+          <div class="atlasBookSpine" aria-hidden="true"><span>BABEL</span><b id="atlasSpineNumber">I</b></div>
+          <div class="atlasPaper">
+            <div class="atlasPaperHead"><span id="atlasBookNumber">BOOK I · PAGE 1</span><span id="atlasEnergy">ENERGY —</span></div>
+            <h2 id="atlasPageTitle">Открываем книгу…</h2>
+            <p id="atlasPageText">Страница появляется по точному адресу выбранной комнаты.</p>
+            <div class="atlasPageAddress"><span>EXACT ADDRESS · 256 SYMBOLS</span><code id="atlasExactAddress">—</code></div>
+            <div class="atlasPageNav"><button id="atlasPrevPage" type="button">← Previous</button><span id="atlasPageIndex">PAGE 1</span><button id="atlasNextPage" type="button">Next →</button></div>
+          </div>
+        </article>
+        <div class="atlasLocation">
+          <div><span>PERMALINK</span><code id="atlasPermalink">—</code></div>
+          <button id="atlasCopyAddress" type="button">Copy exact address</button>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="atlasFooter"><span>256 symbols per exact page · 6 books per room · infinitely addressable coordinates</span><span>Every shown page is deterministic and shareable</span></footer>
+  </main>
+  <script src="assets/atlas.js?v=20260813-atlas-v1"></script>
+</body>
+</html>

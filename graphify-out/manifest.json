@@ -5,8 +5,8 @@
     "semantic_hash": "95347da46fdad9e1f2e2ba92e54e69f0"
   },
   "experiments/backend_app.py": {
-    "mtime": 1786568684.2351303,
-    "ast_hash": "f6f47672b820accae033f146e4b709bf",
+    "mtime": 1786569794.795309,
+    "ast_hash": "0166f08cf615b35dab996cccb3cb4723",
     "semantic_hash": ""
   },
   "experiments/build_dataset_sample.py": {
@@ -620,8 +620,8 @@
     "semantic_hash": ""
   },
   "site/index.html": {
-    "mtime": 1786564144.9426727,
-    "ast_hash": "c35df6a59f5e50373dd2f777bb63f8ac",
+    "mtime": 1786919357.6982663,
+    "ast_hash": "53a11077762bb91225292d859c846e85",
     "semantic_hash": ""
   },
   "site/leaderboard.html": {
@@ -932,6 +932,136 @@
   ".playwright-mcp/page-2026-08-12T21-07-04-531Z.yml": {
     "mtime": 1786568824.5310242,
     "ast_hash": "4393d5c514ba14ddede74407ce415013",
+    "semantic_hash": ""
+  },
+  "site/assets/atlas.js": {
+    "mtime": 1786570015.0421486,
+    "ast_hash": "c6c8be3eadf8b6dd42af6479bcbb2bee",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/atlas-console-errors.txt": {
+    "mtime": 1786569736.6373515,
+    "ast_hash": "043c7b22e14e6bb0375c6e1d21a5615b",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/atlas-desktop.yml": {
+    "mtime": 1786569736.6713514,
+    "ast_hash": "1577db234a2667973d58216cd5506e2e",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/atlas-final-errors.txt": {
+    "mtime": 1786570119.8410723,
+    "ast_hash": "043c7b22e14e6bb0375c6e1d21a5615b",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/atlas-flow-errors.txt": {
+    "mtime": 1786569916.9632201,
+    "ast_hash": "043c7b22e14e6bb0375c6e1d21a5615b",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/atlas-mobile.yml": {
+    "mtime": 1786569925.8452137,
+    "ast_hash": "a364da40a3deed3ccbbdab0c237dc878",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/babel-hier4096-console.txt": {
+    "mtime": 1786568839.3350132,
+    "ast_hash": "043c7b22e14e6bb0375c6e1d21a5615b",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-22-07-507Z.yml": {
+    "mtime": 1786569727.5103583,
+    "ast_hash": "c5827d774a83b2220d20f146a74e5eac",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-23-43-101Z.yml": {
+    "mtime": 1786569823.1012886,
+    "ast_hash": "5263dc5f530ee9256c7f877c91783230",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-23-53-608Z.yml": {
+    "mtime": 1786569833.6092808,
+    "ast_hash": "2ace19b7a42eb1221e0f0bd54557002d",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-24-30-345Z.yml": {
+    "mtime": 1786569870.345254,
+    "ast_hash": "8c4f57c712686d95b09bcc862e9bb717",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-24-51-022Z.yml": {
+    "mtime": 1786569891.022239,
+    "ast_hash": "00dbf86f64761c0ccffc8ae54b4af6ab",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-25-09-178Z.yml": {
+    "mtime": 1786569909.1792257,
+    "ast_hash": "f7a60fb51db8797a7f98c4867130665f",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-27-55-861Z.yml": {
+    "mtime": 1786570075.8611045,
+    "ast_hash": "b77f2ee4a1b1413a7541489d6d6e583b",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-30-09-395Z.yml": {
+    "mtime": 1786570209.3950074,
+    "ast_hash": "b6596620e5d4796b8ff2b8cd3241a3d8",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-30-49-329Z.yml": {
+    "mtime": 1786570249.3279781,
+    "ast_hash": "5fa58a1c9dea898af15567d6ce650f67",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-12T21-31-20-344Z.yml": {
+    "mtime": 1786570280.3439558,
+    "ast_hash": "bf77fe885818fdab8a53140e4457e374",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-13T19-56-36-851Z.yml": {
+    "mtime": 1786650996.8533618,
+    "ast_hash": "3a7a0102bf1605ea9bb1d1a70cd113d3",
+    "semantic_hash": ""
+  },
+  "site/atlas.html": {
+    "mtime": 1786570059.4681163,
+    "ast_hash": "c31aac4488954b7208ac4c583a2ef130",
+    "semantic_hash": ""
+  },
+  "atlas-desktop.png": {
+    "mtime": 1786569737.529351,
+    "ast_hash": "d9dcb802ba603c466338b8bb6e15f6cb",
+    "semantic_hash": ""
+  },
+  "atlas-mobile-fixed.png": {
+    "mtime": 1786570088.9790947,
+    "ast_hash": "9631583991ff22a03002b5521f15eaea",
+    "semantic_hash": ""
+  },
+  "atlas-mobile.png": {
+    "mtime": 1786569926.2702134,
+    "ast_hash": "4b599cc62ec8966745bebbf10e316fe2",
+    "semantic_hash": ""
+  },
+  "atlas-wide.png": {
+    "mtime": 1786570120.7740717,
+    "ast_hash": "c1e8fb1663169850ce1339af054009f3",
+    "semantic_hash": ""
+  },
+  "site/assets/address-space.js": {
+    "mtime": 1786919357.6972663,
+    "ast_hash": "71c878aede60d1e7f08c46c812104c29",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-16T22-28-50-309Z.yml": {
+    "mtime": 1786919330.3112814,
+    "ast_hash": "cb07d3116a160d42777c0af8ff0964a3",
+    "semantic_hash": ""
+  },
+  ".playwright-mcp/page-2026-08-16T22-29-22-175Z.yml": {
+    "mtime": 1786919362.1772637,
+    "ast_hash": "e65e2ed67c7b91dfa0238d395a14dbbd",
     "semantic_hash": ""
   }
 }
