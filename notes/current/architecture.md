@@ -1,67 +1,75 @@
-# Current Architecture
+# Текущая архитектура
 
-Status: current truth as of this repo state.
+Статус: источник текущей правды проекта.
 
-The project has moved from manual hierarchy toward learned finite structure:
+## Два слоя адресации
 
-```text
-raw corpus
--> token/context vectors
--> k-means clusters
--> cluster transition graph
--> finite student states
--> integer energies
--> exact counting
--> rank/unrank
-```
+Проект нельзя описывать одним словом «ранжировщик»: сейчас работают два разных порядка.
 
-## Main student
+### 1. Полное raw-пространство
 
-Current main student:
+Алфавит фиксирован как top-256. Страница нормализуется, дополняется пробелами до 4096 символов и рассматривается как 4096 байт base-256. Поэтому:
 
 ```text
-cluster student v2
+page ∈ Σ^4096
+|Σ| = 256
+|Σ^4096| = 2^32768
 ```
 
-Implementation:
+Этот слой даёт мгновенные `rank ↔ page` без дыр и повторов. Его порядок лексикографический, поэтому он сам по себе ничего не говорит о человеческой осмысленности.
+
+### 2. Energy-пространство
+
+Конечный student хранит стоимость переходов и эмиссий символов. Для страницы:
 
 ```text
-experiments/cluster_student_v2.py
-models/cluster_student_v2/model.json
-site/data/cluster_student_v2.json
+energy(page) = сумма integer costs по пути student-а
 ```
 
-The older manual hierarchy is still useful as history and comparison:
+Далее exact ranker считает число страниц с меньшей energy и использует raw-порядок как tie-break. Это и есть формальная версия гипотезы «смысл ближе к нулю».
+
+## Реальные режимы
+
+`RawClusterRanker` в `experiments/cluster_counting_mvp.py` сейчас поддерживает полный exact energy-order для длины `1..256`.
+
+`HierarchicalRawRanker` собирает страницу длиной до 4096 из 16 блоков по 256 символов. Он сохраняет полную биекцию и обратимость, но его порядок описывается как:
 
 ```text
-paragraph student
-sentence student
-word student
-legacy FSM
+lexicographic composition of exact block ranks
 ```
 
-but the main research direction is now:
+Это не следует называть глобальной сортировкой 4096-символьных страниц по общей energy.
+
+## Производственный путь данных
 
 ```text
-context vectors -> k-means -> finite cluster graph
+dataset/cache
+  → top-256 alphabet
+  → context vectors
+  → cluster student v2
+  → finite transition / emission costs
+  → sparse or chunked exact counting
+  → rank / unrank API
+  → browser explorer
 ```
 
-## Product surface
+Главные файлы:
 
-The website compares multiple finite students:
+| Область | Файл | Роль |
+|---|---|---|
+| Модель | `models/student_fsm_v1/student_fsm_v1.json` | компактные состояния, классы и стоимости |
+| Exact core | `experiments/cluster_counting_mvp.py` | cluster rank/unrank и hierarchical composition |
+| Counting | `experiments/cluster_chunk_counting.py` | chunked/external-memory направление |
+| API | `experiments/backend_app.py` | raw, semantic, hierarchical, score и Atlas endpoints |
+| Главная | `site/index.html` | объяснение пространства и интерактивный адресатор |
+| Search | `site/search.html` | полный режим rank/score/unrank |
+| Atlas | `site/atlas.html` | отдельный литературный reader |
 
-```text
-cluster v1
-cluster v2 k-means
-paragraph/hierarchical
-sentence/word
-word
-legacy class-FSM
-```
+## Правило честности интерфейса
 
-Relevant files:
+Каждый экран должен явно указывать:
 
-```text
-site/generate.html
-site/assets/generate.js
-```
+- покрывает ли он всё raw-пространство;
+- является ли порядок semantic или только лексикографическим;
+- для какой длины действует exact proof;
+- является ли текст результатом адресации или процедурной демонстрацией.

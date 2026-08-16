@@ -1,62 +1,53 @@
-# Open Problems
+# Открытые задачи
 
-## 1. Exact cluster counting
+## 1. Глобальный semantic rank для 4096 символов
 
-Need to count paths through the finite cluster transition graph:
-
-```text
-count_cluster_path(state, length, energy_budget)
-```
-
-This replaces the older manual target:
+Нужно построить exact mapping:
 
 ```text
-count_paragraph(shape, energy_budget)
+rank(page) ↔ page
 ```
 
-## 2. Production-scale energy frontier
+где порядок задаётся общей energy всей страницы, а не независимой композицией 256-символьных блоков.
 
-Sparse DP works for small experiments, but the frontier still grows too quickly for full 4096-symbol pages.
+## 2. Масштабирование exact counting
 
-Need:
+Текущий короткий слой использует sparse dynamic programming. Для 4096 символов нужны:
 
-- compressed energy buckets
-- chunked counting
-- external-memory tables
-- exact merge logic
+- сжатые energy buckets;
+- chunk decomposition с точным transfer state;
+- внешняя память или mmap-таблицы;
+- контроль переполнений и точность больших целых;
+- независимая сверка с raw enumeration на малых длинах.
 
-## 3. Rank/unrank over cluster student v2
+## 3. Калибровка student-а
 
-Need exact functions:
+Нужно проверить, что низкая energy действительно коррелирует с человеческой осмысленностью, а не только с частотностью символов, пробелами или короткими шаблонами. Для этого нужны:
+
+- held-out corpus;
+- pairwise human preference;
+- LLM arena только как вспомогательная метрика;
+- отчёт по failure cases и mode collapse.
+
+## 4. Доказательство и admission tests
+
+Нужен один воспроизводимый proof bundle, который проверяет:
+
+- coverage всего пространства;
+- отсутствие дублей;
+- `rank(unrank(n)) = n`;
+- `unrank(rank(page)) = page`;
+- монотонность energy-бuckets;
+- согласованность chunked и direct counting.
+
+## 5. Продуктовая терминология
+
+Интерфейс и документация должны везде различать:
 
 ```text
-rank(page) -> integer
-unrank(integer) -> page
+raw address       = полная лексикографическая координата
+semantic rank     = координата в exact energy-порядке
+literary Atlas    = детерминированная демонстрация чтения
 ```
 
-ordered by:
-
-```text
-energy first
-raw/bijection tie-breaker second
-```
-
-## 4. Polynomial/generating-function path
-
-The FSM polynomial matrix approach remains promising but unfinished.
-
-Potential target:
-
-```text
-cluster transition matrix with polynomial energy weights
-```
-
-## 5. Proof document
-
-Need one rigorous document proving:
-
-- completeness
-- no duplicates
-- reversibility
-- exact ordering
-- fallback reachability
+Нельзя использовать красивые литературные тексты как доказательство того, что глобальная semantic сортировка уже построена.
