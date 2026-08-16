@@ -1,68 +1,39 @@
-# Current Roadmap
+# Текущий план
 
-## Step 1 — Freeze current truth
+## Этап 1. Зафиксировать правду проекта — завершён
 
-Create current architecture/status/open-problems docs.
+Разделить в коде и интерфейсе raw bijection, short exact semantic order и hierarchical 4096 composition.
 
-Status:
+## Этап 2. Довести короткий semantic core — завершён
 
-```text
-done
-```
+Поддерживать exact cluster-energy rank/unrank для длины до 256 и публиковать проверяемые адреса, energy и round-trip tests.
 
-## Step 2 — Make cluster student v2 the explicit main path
+## Этап 3. Сделать доказуемый 4096 composition — завершён частично
 
-Update docs and README to point to:
+Собрать 16 exact блоков по 256 символов в страницу длиной 4096. Проверять полноту и обратимость, не называя блочный порядок глобальным energy-порядком.
 
-```text
-notes/current/architecture.md
-notes/current/status.md
-notes/current/open_problems.md
-notes/current/roadmap.md
-```
+## Этап 4. Построить глобальный 4096 energy-order — следующий главный этап
 
-## Step 3 — Implement exact cluster counting MVP
+1. Зафиксировать state interface между блоками.
+2. Реализовать transfer counts по total energy.
+3. Сверить chunked counter с direct DP на длинах 16/32/64/256.
+4. Добавить rank/unrank поверх общей energy histogram.
+5. Прогнать uniqueness, coverage и round-trip tests.
 
-Target function:
+## Этап 5. Проверить смысловую гипотезу
 
-```text
-count_cluster_path(state, length, energy_budget)
-```
+Сравнить low-energy frontier с held-out русским и английским корпусом, контрольными шумовыми строками и человеческими pairwise оценками.
 
-Start small:
+## Этап 6. Собрать финальный продукт
+
+Главный сайт должен показывать в таком порядке:
 
 ```text
-length = 16, 32, 64
-clusters = 64
+полное пространство
+→ адрес текста
+→ energy и semantic rank
+→ exact proof
+→ открытая исследовательская граница
 ```
 
-## Step 4 — Add rank/unrank prototype over cluster graph
-
-Use ordering:
-
-```text
-(total_energy, cluster_path_order, raw_tiebreaker)
-```
-
-## Step 5 — Scale counting
-
-Investigate:
-
-- chunk decomposition
-- polynomial matrices
-- mmap/external-memory frontier
-- compressed sparse buckets
-
-## Step 6 — Rewrite proof around current architecture
-
-The proof should describe:
-
-```text
-raw bijection
-+
-cluster-student ordering
-+
-exact counting layer
-```
-
-not just manual hierarchy.
+Atlas остаётся вторичным reader-режимом, пока его координаты не будут напрямую выведены из глобального semantic rank.

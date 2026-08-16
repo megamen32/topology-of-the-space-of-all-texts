@@ -37,6 +37,42 @@ RUSSIAN_WALK_TEXTS = (
     ('Гроза', 'ночью за окном прошла гроза, потом стало совсем тихо.'),
     ('Проект', 'в понедельник команда начала новый проект без спешки.'),
 )
+ATLAS_RU_TITLES = (
+    'Сад после дождя', 'Тихая станция', 'Архив ветра', 'Ночная мастерская',
+    'Карта тёплого света', 'Письма издалека', 'Город у реки', 'Последний поезд',
+)
+ATLAS_EN_TITLES = (
+    'The Garden After Rain', 'The Quiet Station', 'Archive of Wind', 'Night Workshop',
+    'A Map of Warm Light', 'Letters from Afar', 'The City by the River', 'The Last Train',
+)
+ATLAS_RU_SENTENCES = (
+    'Утром над городом прошёл тёплый дождь, и камни на площади стали темнее.',
+    'В старой мастерской тихо работали часы, оставленные неизвестным мастером.',
+    'За рекой медленно зажигались окна, а поезд уходил в сторону леса.',
+    'На полке лежала карта с карандашной отметкой у самого края бумаги.',
+    'Сад пах мятой, мокрой землёй и яблоками, спрятанными в высокой траве.',
+    'Она записала эту мысль на полях, чтобы вернуться к ней следующим утром.',
+    'Ветер перелистывал книгу, пока комната наполнялась мягким вечерним светом.',
+    'Никто не знал автора письма, но каждое слово казалось удивительно знакомым.',
+    'На пустой станции продавали кофе, газеты и горячий хлеб из маленькой печи.',
+    'Когда гроза ушла за горизонт, над крышами появилась тонкая полоса золота.',
+    'Библиотекарь открыл новую дверь, и за ней оказался ещё один бесконечный зал.',
+    'Каждая книга здесь ждала читателя, который однажды назовёт её точный адрес.',
+)
+ATLAS_EN_SENTENCES = (
+    'A warm rain crossed the city in the morning, darkening the stones in the square.',
+    'The old workshop was quiet except for a clock left by an unknown maker.',
+    'Across the river, windows slowly lit up while the train entered the forest.',
+    'A folded map rested on the shelf with a pencil mark near the edge of the paper.',
+    'The garden smelled of mint, wet soil, and apples hidden in the tall grass.',
+    'She wrote the thought in the margin so she could find it again the next morning.',
+    'The wind turned the pages while the room filled with a gentle evening light.',
+    'No one knew who sent the letter, yet every word felt strangely familiar.',
+    'At the empty station they sold coffee, newspapers, and bread from a small oven.',
+    'When the storm moved beyond the horizon, a narrow band of gold appeared.',
+    'The librarian opened another door and found one more room without an ending.',
+    'Every book waited for the reader who would one day speak its exact address.',
+)
 RUSSIAN_WALK_MODEL = ROOT / 'models/russian_walk_v1.json'
 COUNTING_PROOF_MODEL = ROOT / 'models/cluster_chunk_counts_v1/len256_block16.json'
 
@@ -172,6 +208,43 @@ def gen(seed='42', length=512):
         out.append(ch); rep=rep+1 if ch==last else 0; last=ch; prev=c
     return ''.join(out)
 
+def atlas_page(q=0, r=0, book=0, page=0, language='mix'):
+    q, r, book, page = int(q), int(r), int(book), int(page)
+    if abs(q) > 10**12 or abs(r) > 10**12 or not 0 <= book < 6 or page < 0 or page > 10**15:
+        raise ValueError('atlas coordinates, book or page are outside supported bounds')
+    language = str(language).lower()
+    if language not in {'ru', 'en', 'mix'}:
+        raise ValueError('language must be ru, en or mix')
+    seed_text = f'atlas-v1:{q}:{r}:{book}:{page}:{language}'
+    rng = random.Random(int(hashlib.sha256(seed_text.encode()).hexdigest()[:16], 16))
+    ru_title = ATLAS_RU_TITLES[(abs(q * 7 + r * 11 + book * 3) + page) % len(ATLAS_RU_TITLES)]
+    en_title = ATLAS_EN_TITLES[(abs(q * 7 + r * 11 + book * 3) + page) % len(ATLAS_EN_TITLES)]
+    ru = rng.sample(ATLAS_RU_SENTENCES, 2)
+    en = rng.sample(ATLAS_EN_SENTENCES, 2)
+    shelf_mark = f'{q}:{r}:{book + 1}:{page + 1}'
+    if language == 'ru':
+        title, text = ru_title, f'Архивная метка {shelf_mark}. {" ".join(ru)}'
+    elif language == 'en':
+        title, text = en_title, f'Archive mark {shelf_mark}. {" ".join(en)}'
+    else:
+        title = f'{ru_title} / {en_title}'
+        text = f'Archive mark / архивная метка {shelf_mark}. {ru[0]} {en[0]}'
+    # The public reader is one exact 256-symbol block. Trim on a word boundary
+    # so generated prose stays readable before exact padding is applied.
+    if len(text) > EXACT_CLUSTER_MAX_LENGTH:
+        text = text[:EXACT_CLUSTER_MAX_LENGTH - 1].rsplit(' ', 1)[0] + '…'
+    result = exact_cluster_ranker(EXACT_CLUSTER_MAX_LENGTH).rank_text(text)
+    return {
+        'version':'babel_hex_atlas_v1',
+        'q':q, 'r':r, 'book':book, 'page_index':page, 'language':language,
+        'title':title,
+        'text':text,
+        'exact_length':EXACT_CLUSTER_MAX_LENGTH,
+        'rank':str(result['rank']),
+        'rank_hex':hex(result['rank']),
+        'energy':result['energy'],
+    }
+
 @app.get('/')
 def index(): return send_from_directory(SITE,'index.html')
 @app.get('/<path:path>')
@@ -286,6 +359,16 @@ def api_search():
 def api_generate():
     body=request.json or {}; text=gen(body.get('seed','42'), int(body.get('length',512)))
     return jsonify({'text':text,'score':score_text(text)})
+@app.get('/api/atlas-page')
+def api_atlas_page():
+    try:
+        return jsonify(atlas_page(
+            request.args.get('q', 0), request.args.get('r', 0),
+            request.args.get('book', 0), request.args.get('page', 0),
+            request.args.get('lang', 'mix'),
+        ))
+    except (ValueError, TypeError) as exc:
+        return jsonify({'error':str(exc),'version':'babel_hex_atlas_v1'}),400
 
 if __name__=='__main__':
     app.run(

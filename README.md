@@ -1,169 +1,92 @@
-# Topology of the Space of All Texts
+# Топология пространства всех текстов
 
-## Why this project exists
+Проект строит координатную систему для пространства всех возможных страниц.
 
-Imagine the complete space of all possible pages.
-
-Every book.
-Every conversation.
-Every scientific paper.
-Every future idea.
-Every typo.
-Every random sequence of symbols.
-
-All of them already exist inside:
+Главная мысль проста: генератор придумывает текст, а адресатор находит место уже существующего текста в полном пространстве. Для страницы длиной 4096 символов над алфавитом из 256 знаков существует ровно:
 
 ```text
-Σ^L
+256^4096 = 2^32768 страниц
 ```
 
-The question is not:
+Raw-слой уже даёт взаимно однозначное соответствие:
 
 ```text
-"Can we generate text?"
+целое число ↔ страница из 4096 символов
 ```
 
-The question is:
+Следующий слой проекта пытается изменить порядок: страницы, похожие на человеческую речь, должны лежать ближе к нулю, а всё более шумные — дальше. Для этого конечный student assigns integer energy to every transition, а exact counting считает, сколько страниц находится ниже заданной энергии.
 
-```text
-Can we build coordinates for the space of all texts?
-```
+## Что можно проверить сейчас
 
-A raw Library of Babel already gives a coordinate system:
+Публичный explorer: [all.bezrabotnyi.com](https://all.bezrabotnyi.com/).
 
-```text
-integer ↔ page
-```
+На главной странице доступны три разных, явно разделённых режима:
 
-but it treats:
+1. **Raw space.** Все `2^32768` страниц, exact rank/unrank для 4096 символов. Это полный лексикографический base-256 порядок, не semantic order.
+2. **Cluster-energy exact MVP.** Полная energy-сортировка страниц длиной до 256 символов: сначала integer energy, затем точный raw tie-break.
+3. **Hierarchical exact 4096.** 4096 символов собираются из 16 точных 256-символьных блоков. Биекция и обратимость сохраняются; это пока блочно-лексикографическая композиция, а не один глобальный energy-порядок всей страницы.
 
-```text
-human language
-and
-random noise
-```
+Atlas — отдельный литературный режим: он показывает детерминированные русские/английские тексты, книги и deep links. Это удобный интерфейс для чтения, но его процедурные координаты нельзя принимать за глобальную semantic-сортировку.
 
-as equally close.
-
-This project asks whether a different topology can exist:
-
-```text
-small ranks
-→ meaningful pages
-
-large ranks
-→ increasingly noisy pages
-```
-
-while preserving:
-
-```text
-no missing pages
-no duplicate pages
-exact reversibility
-```
-
----
-
-## Core goal
-
-Build:
-
-```text
-rank ↔ page
-```
-
-for:
-
-```text
-all pages = Σ^L
-```
-
-while preserving strict bijection and introducing human-shaped ordering.
-
----
-
-## Current architecture
+## Архитектура
 
 ```text
 raw corpus
-→ token/context vectors
-→ k-means clusters
-→ cluster transition graph
-→ finite student states
-→ integer energies
-→ exact counting
-→ rank/unrank
+  → top-256 alphabet
+  → context vectors / cluster student v2
+  → finite transitions and integer energy
+  → exact counting of paths
+  → rank / unrank
+  → public address-space explorer
 ```
 
-Current main student:
+Основные реализации:
+
+- `experiments/cluster_counting_mvp.py` — exact cluster ranker и hierarchical block composition;
+- `experiments/cluster_chunk_counting.py` — chunked counting experiments;
+- `experiments/backend_app.py` — Flask API raw/rank/unrank/score/Atlas;
+- `site/index.html` и `site/assets/address-space.js` — главный address-space explorer;
+- `site/search.html` — полный режим Search / Rank / Score;
+- `site/atlas.html` — литературная библиотека;
+- `graphify-out/` — актуальный граф связей кода и документации.
+
+## API-маршруты
 
 ```text
-cluster student v2
+POST /api/rank
+POST /api/unrank
+POST /api/score
+POST /api/search
+GET  /api/counting-proof
+GET  /api/atlas-page
 ```
 
----
+Точные rank-значения передаются как строки и hex, потому что JavaScript Number не способен безопасно хранить такие целые числа.
 
-## Current status
+## Исследовательская граница
 
-Completed:
+Глобальный порядок «все 4096 символов сразу по общей semantic energy» ещё не заявлен как готовый результат. Для него нужны масштабируемые exact counting tables, компактные energy buckets и доказательство того, что порядок одновременно полон, бездубликов, обратим и соответствует выбранному student.
 
-- dataset pipeline
-- top alphabet
-- raw page/address bijection
-- hierarchical students
-- cluster student v1/v2
-- LLM arena evaluation
-- student_rank MVP
-- sparse counting experiments
-- website explorer
+Это не декоративная оговорка, а центральная задача проекта: превратить человеческую вероятностную геометрию в строгую адресацию бесконечно большого на практике пространства.
 
-In progress:
+## Где читать дальше
 
-- exact counting layer
-- production rank/unrank
-- cluster-path counting
+1. [Текущая архитектура](notes/current/architecture.md)
+2. [Текущий статус](notes/current/status.md)
+3. [Открытые задачи](notes/current/open_problems.md)
+4. [План](notes/current/roadmap.md)
 
----
+История экспериментов лежит в `notes/phases/`, `notes/research/` и `notes/experiments/`.
 
-## Read order
-
-Start here:
+## Структура репозитория
 
 ```text
-1. notes/current/architecture.md
-2. notes/current/status.md
-3. notes/current/open_problems.md
-4. notes/current/roadmap.md
+site/          интерактивный explorer и reader-режимы
+experiments/   обучение моделей и counting experiments
+models/        компактные версионированные модели
+notes/current/ текущая правда проекта
+notes/phases/  история архитектуры
+notes/         research и рабочие записи
 ```
 
-Then historical evolution:
-
-```text
-notes/phases/*
-```
-
-Then research and experiments:
-
-```text
-notes/research/*
-notes/experiments/*
-```
-
----
-
-## Repository structure
-
-```text
-site/          interactive explorer and generators
-experiments/   training and research code
-models/        compact versioned models
-notes/current/ current truth
-notes/phases/  historical evolution
-notes/         research and worklogs
-```
-
-## Screenshot
-
-![Topology of the Space of All Texts site screenshot](docs/screenshots/site.png)
-
+![Скриншот сайта](docs/screenshots/site.png)
