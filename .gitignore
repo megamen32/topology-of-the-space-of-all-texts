@@ -17,3 +17,12 @@ node_modules/
 *.log
 *.tmp
 .DS_Store
+
+# local browser and agent diagnostics (reproducible; never product assets)
+.playwright-mcp/
+.agents/shared-session/time/
+atlas-*.png
+
+# graphify caches and dated run snapshots; keep graph.json/report tracked
+graphify-out/cache/
+graphify-out/20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]/
