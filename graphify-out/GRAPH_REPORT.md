@@ -1,16 +1,16 @@
 # Graph Report - babel-experiments  (2026-08-17)
 
 ## Corpus Check
-- 127 files · ~2,326,865 words
+- 128 files · ~2,328,062 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 964 nodes · 1330 edges · 120 communities (88 shown, 32 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.66)
+- 980 nodes · 1361 edges · 120 communities (88 shown, 32 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `53514833`
+- Built from commit: `b69257d3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -115,10 +115,10 @@
 - STAGE 0. Формализация объекта библиотеки
 
 ## God Nodes (most connected - your core abstractions)
-1. `ClusterRanker` - 18 edges
-2. `RawClusterRanker` - 18 edges
-3. `BinaryShellRanker` - 16 edges
-4. `HierarchicalEnumeratorV1` - 14 edges
+1. `HierarchicalEnumeratorV1` - 24 edges
+2. `ClusterRanker` - 18 edges
+3. `RawClusterRanker` - 18 edges
+4. `BinaryShellRanker` - 16 edges
 5. `boot()` - 14 edges
 6. `atlasBoot()` - 12 edges
 7. `ChunkedRawCounter` - 11 edges
@@ -168,8 +168,8 @@ Cohesion: 0.29
 Nodes (16): corpus_profile(), detok(), gen_fsm(), gen_paragraph(), gen_sentence(), gen_sentence_from_template(), gen_word(), generate() (+8 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.18
-Nodes (5): demo(), HierarchicalEnumeratorV1, ParagraphShape, Foundational exact hierarchy layer.      NOT yet a production counter.      Purp, SentenceTemplate
+Cohesion: 0.11
+Nodes (10): demo(), HierarchicalEnumeratorV1, ParagraphShape, Normalize to the project alphabet, then right-pad to page length., Exactly count either one shape's token programs or the catalogue., Count the full space and its finite readable prefix exactly., A finite paragraph catalogue plus an exact raw-space fallback.      A structured, SentenceTemplate (+2 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.12
@@ -408,7 +408,7 @@ Cohesion: 0.33
 Nodes (6): STAGE 0. Формализация объекта библиотеки, Критерий завершения, Научный вопрос, Обязательный научный результат Stage 0, Отдельная проблема коротких текстов, Рекомендуемое определение
 
 ## Knowledge Gaps
-- **323 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+318 more)
+- **324 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+319 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -416,13 +416,13 @@ Nodes (6): STAGE 0. Формализация объекта библиотеки
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `STAGE 5. Определение того, что должно находиться около нуля` connect `STAGE 5. Определение того, что должно находиться около нуля` to `ROADMAP.md`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
-  _323 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _324 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
