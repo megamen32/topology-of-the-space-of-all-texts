@@ -1,5 +1,6 @@
 let model;
 let babelRank = null;
+let babelRouteIndex = null;
 const B64URL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 const B64MAP = new Map([...B64URL].map((c,i)=>[c,BigInt(i)]));
 const MAX_ADDR = 1n << 32768n;
@@ -94,16 +95,25 @@ function makeAddressItems(n,page){
 }
 function makeBabelItems(result){
   const rank = String(result.rank);
-  return [
+  const items = [
     {k:'издание', v:'Babel-1', s:'точная обратимая нумерация'},
     {k:'номер Babel-1', v:decimalSci(rank), s:'нажмите, чтобы раскрыть целиком', full:rank},
     {k:'шестнадцатеричный номер', v:result.rank_hex.slice(0,42)+'…', full:result.rank_hex},
     {k:'оболочка', v:String(result.shell), s:'сколько позиций использовало редкие слоты'},
     {k:'что гарантировано', v:'биекция', s:'языковое сходство — открытая проверяемая гипотеза'}
   ];
+  if(result.route){
+    items.unshift({k:'читательский маршрут',v:`${Number(result.route_index)+1} / ${result.route_total}`,s:`${result.author}: ${result.source_text}`});
+  }
+  return items;
+}
+function setRawNavLabels(){
+  document.getElementById('prevPage').textContent = '← Предыдущая';
+  document.getElementById('nextPage').textContent = 'Следующая →';
 }
 function setAddress(n, writeMode='page64'){
   babelRank = null;
+  babelRouteIndex = null;
   n = ((BigInt(n) % MAX_ADDR) + MAX_ADDR) % MAX_ADDR;
   const page = numberToPage(n);
   document.getElementById('addrFormat').value = writeMode;
@@ -112,12 +122,16 @@ function setAddress(n, writeMode='page64'){
   const currentShort = document.getElementById('currentShort');
   if(currentShort) currentShort.textContent = writeMode === 'page64' ? visibleAddress : decimalSci(visibleAddress);
   document.getElementById('readerFormat').textContent = 'обычный адрес';
+  setRawNavLabels();
   document.getElementById('page').value = page;
   renderInfo(document.getElementById('addressInfo'), makeAddressItems(n,page));
   return n;
 }
 function randomAddress(){ const bytes=new Uint8Array(4096); crypto.getRandomValues(bytes); let n=0n; for(const b of bytes) n=(n<<8n)|BigInt(b); return n; }
 function niceNav(delta){
+  if(babelRouteIndex !== null){
+    return openReadingRoute(babelRouteIndex + delta);
+  }
   if(babelRank !== null){
     return openBabelRank((babelRank + BigInt(delta) + MAX_ADDR) % MAX_ADDR);
   }
@@ -135,10 +149,13 @@ async function babelApi(path, payload){
 }
 function showBabel(result){
   babelRank = BigInt(result.rank);
+  babelRouteIndex = result.route ? Number(result.route_index) : null;
   document.getElementById('babelAddress').value = result.rank;
   document.getElementById('page').value = result.page;
   document.getElementById('currentShort').textContent = `Babel-1: ${decimalSci(result.rank)}`;
-  document.getElementById('readerFormat').textContent = `Babel-1 · оболочка ${result.shell}`;
+  document.getElementById('readerFormat').textContent = result.route ? `Читательский маршрут · ${result.author}` : `Babel-1 · оболочка ${result.shell}`;
+  document.getElementById('prevPage').textContent = result.route ? '← Предыдущая в маршруте' : '← Точный номер −1';
+  document.getElementById('nextPage').textContent = result.route ? 'Следующая в маршруте →' : 'Точный номер +1 →';
   renderInfo(document.getElementById('babelOut'), makeBabelItems(result));
   renderInfo(document.getElementById('addressInfo'), makeBabelItems(result));
 }
@@ -146,9 +163,14 @@ async function openBabelRank(rank){
   const result = await babelApi('/api/unrank',{mode:'babel_1_shell',rank:String(rank)});
   showBabel(result);
 }
+async function openReadingRoute(index){
+  const result = await babelApi('/api/babel-1-route',{index});
+  showBabel(result);
+}
 async function boot(){
   model = await loadCore();
   document.getElementById('findAddress').onclick = () => {
+    babelRank = null; babelRouteIndex = null; setRawNavLabels();
     const page = pageFromText(model,document.getElementById('query').value);
     const n = pageToNumber(page);
     // Product default: show page64, decimal as secondary expandable card.
@@ -168,6 +190,10 @@ async function boot(){
   document.getElementById('prevPage').onclick = () => { try{ niceNav(-1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('nextPage').onclick = () => { try{ niceNav(1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('randomPage').onclick = () => setAddress(randomAddress(),'page64');
+  document.getElementById('openReadingRoute').onclick = async () => {
+    try { await openReadingRoute(0); }
+    catch(e){ document.getElementById('babelOut').textContent=String(e); }
+  };
   document.getElementById('findBabelAddress').onclick = async () => {
     try { showBabel(await babelApi('/api/rank',{mode:'babel_1_shell',text:document.getElementById('query').value})); }
     catch(e){ document.getElementById('babelOut').textContent=String(e); }

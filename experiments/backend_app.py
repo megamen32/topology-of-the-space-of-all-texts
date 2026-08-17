@@ -21,6 +21,14 @@ EXACT_CLUSTER_MAX_LENGTH = 256
 HIERARCHICAL_BLOCK_LENGTH = 256
 HIERARCHICAL_MAX_LENGTH = 4096
 BABEL_1_LENGTH = 4096
+READING_ROUTE = (
+    ('Александр Пушкин', 'Мороз и солнце; день чудесный!'),
+    ('Александр Пушкин', 'Я вас любил: любовь ещё, быть может, в душе моей угасла не совсем.'),
+    ('Михаил Лермонтов', 'Белеет парус одинокий в тумане моря голубом.'),
+    ('Михаил Лермонтов', 'Выхожу один я на дорогу; сквозь туман кремнистый путь блестит.'),
+    ('Фёдор Тютчев', 'Люблю грозу в начале мая, когда весенний первый гром.'),
+    ('Александр Блок', 'Ночь, улица, фонарь, аптека, бессмысленный и тусклый свет.'),
+)
 RUSSIAN_WALK_TEXTS = (
     ('Тихое утро', 'утром над городом пошёл тёплый дождь, и улицы стали тихими.'),
     ('Карта', 'на полке нашлась старая карта с пометкой карандашом на полях.'),
@@ -121,6 +129,21 @@ def babel_1_payload(result):
         'page': result['page'],
         'rank_order': 'binary_shell_then_context_permutation_markov5',
     }
+
+def babel_1_route_payload(index):
+    index = int(index) % len(READING_ROUTE)
+    author, source_text = READING_ROUTE[index]
+    ranker = babel_1_ranker()
+    page = normalized_page(source_text, BABEL_1_LENGTH, ranker.alphabet)
+    payload = babel_1_payload(ranker.rank_page(page))
+    payload.update({
+        'route': 'russian_public_domain_v1',
+        'route_index': index,
+        'route_total': len(READING_ROUTE),
+        'author': author,
+        'source_text': source_text,
+    })
+    return payload
 
 def parse_rank(value):
     value = str(value)
@@ -354,6 +377,13 @@ def api_unrank():
     n=int(val,16) if val.startswith('0x') else int(val)
     page=unrank_int(n)
     return jsonify({'text':page,'preview':page[:512]})
+@app.post('/api/babel-1-route')
+def api_babel_1_route():
+    body = request.json or {}
+    try:
+        return jsonify(babel_1_route_payload(body.get('index', 0)))
+    except (ValueError, TypeError) as exc:
+        return jsonify({'error': str(exc), 'mode': 'babel_1_route'}), 400
 @app.get('/api/russian-walk')
 def api_russian_walk():
     return jsonify({'mode':'semantic_waypoints','length':64,'pages':russian_walk_pages()})

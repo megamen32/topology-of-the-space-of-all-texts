@@ -33,6 +33,13 @@ def main() -> None:
         ranked = post(client, "/api/rank", {"mode": "babel_1_shell", "text": opened["page"]})
         assert ranked["rank"] == str(rank)
 
+    route = post(client, "/api/babel-1-route", {"index": 0})
+    assert route["route"] == "russian_public_domain_v1"
+    assert route["author"] == "Александр Пушкин"
+    assert route["source_text"].startswith("Мороз и солнце")
+    assert len(route["page"]) == 4096
+    assert post(client, "/api/rank", {"mode": "babel_1_shell", "text": route["page"]})["rank"] == route["rank"]
+
     print("Babel-1 API smoke tests passed")
 
 
