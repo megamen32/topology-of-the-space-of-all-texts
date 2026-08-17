@@ -5,8 +5,8 @@
     "semantic_hash": "95347da46fdad9e1f2e2ba92e54e69f0"
   },
   "experiments/backend_app.py": {
-    "mtime": 1786963691.3052454,
-    "ast_hash": "5ef5142b7201c03bd41d7787706aa437",
+    "mtime": 1786964735.50597,
+    "ast_hash": "25b6bfcd560af379cf8a5cf8f1eaaf25",
     "semantic_hash": ""
   },
   "experiments/build_dataset_sample.py": {
@@ -695,8 +695,8 @@
     "semantic_hash": ""
   },
   "experiments/babel_shell_v1.py": {
-    "mtime": 1786953271.6064942,
-    "ast_hash": "cfd11296c41396d3e4e21cb228611d47",
+    "mtime": 1786964735.5039701,
+    "ast_hash": "baf857955990deccfec6567990a6ba0b",
     "semantic_hash": ""
   },
   "docs/screenshots/site.png": {
@@ -727,6 +727,11 @@
   "notes/proposed/babel-1-work-breakdown.md": {
     "mtime": 1786963355.1084428,
     "ast_hash": "a612bed144695d9876ce1510318a14bd",
+    "semantic_hash": ""
+  },
+  "experiments/evaluate_babel_1_shell.py": {
+    "mtime": 1786964562.607919,
+    "ast_hash": "3518ccb0f6e5a76cffa83b7341bda42e",
     "semantic_hash": ""
   }
 }
