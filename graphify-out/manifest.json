@@ -650,8 +650,8 @@
     "semantic_hash": ""
   },
   "scripts/deploy-babel-walk.sh": {
-    "mtime": 1786567273.1764116,
-    "ast_hash": "a8c75fe8105bed580c8730a344bc6538",
+    "mtime": 1786965399.6254203,
+    "ast_hash": "da44afc286cd14b70aaae9f5df99ecfa",
     "semantic_hash": ""
   },
   "site/assets/walk.js": {
@@ -695,8 +695,8 @@
     "semantic_hash": ""
   },
   "experiments/babel_shell_v1.py": {
-    "mtime": 1786964735.5039701,
-    "ast_hash": "baf857955990deccfec6567990a6ba0b",
+    "mtime": 1786965247.0385246,
+    "ast_hash": "b08b5a22879e41d15259224cd32fafb5",
     "semantic_hash": ""
   },
   "docs/screenshots/site.png": {
