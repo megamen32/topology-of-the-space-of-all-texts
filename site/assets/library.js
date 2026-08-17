@@ -1,4 +1,5 @@
 let model;
+let babelRank = null;
 const B64URL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 const B64MAP = new Map([...B64URL].map((c,i)=>[c,BigInt(i)]));
 const MAX_ADDR = 1n << 32768n;
@@ -84,14 +85,25 @@ function makeAddressItems(n,page){
   const visible = p64 === '∅' ? 0 : p64.length;
   const hidden = PAGE64_LEN - visible;
   return [
-    {k:'page64', v:p64, s:`hidden trailing A: ${hidden}`, full:encodeFixedPage64(n)},
-    {k:'decimal address', v:decimalSci(dec), s:'tap to expand full decimal', full:dec},
-    {k:'visible navigation step', v:`64^${hidden}`, s:'next/prev changes the last visible page64 symbol'},
-    {k:'page preview', v:page.slice(0,180), full:page.slice(0,1024)},
-    {k:'energy / symbol', v:sc.energyPerSymbol.toFixed(2)}
+    {k:'page64', v:p64, s:`скрытых завершающих A: ${hidden}`, full:encodeFixedPage64(n)},
+    {k:'десятичный адрес', v:decimalSci(dec), s:'нажмите, чтобы раскрыть целиком', full:dec},
+    {k:'шаг навигации', v:`64^${hidden}`, s:'меняет последний видимый знак page64'},
+    {k:'начало страницы', v:page.slice(0,180), full:page.slice(0,1024)},
+    {k:'стоимость / знак', v:sc.energyPerSymbol.toFixed(2)}
+  ];
+}
+function makeBabelItems(result){
+  const rank = String(result.rank);
+  return [
+    {k:'издание', v:'Babel-1', s:'точная обратимая нумерация'},
+    {k:'номер Babel-1', v:decimalSci(rank), s:'нажмите, чтобы раскрыть целиком', full:rank},
+    {k:'шестнадцатеричный номер', v:result.rank_hex.slice(0,42)+'…', full:result.rank_hex},
+    {k:'оболочка', v:String(result.shell), s:'сколько позиций использовало редкие слоты'},
+    {k:'что гарантировано', v:'биекция', s:'языковое сходство — открытая проверяемая гипотеза'}
   ];
 }
 function setAddress(n, writeMode='page64'){
+  babelRank = null;
   n = ((BigInt(n) % MAX_ADDR) + MAX_ADDR) % MAX_ADDR;
   const page = numberToPage(n);
   document.getElementById('addrFormat').value = writeMode;
@@ -99,17 +111,40 @@ function setAddress(n, writeMode='page64'){
   document.getElementById('address').value = visibleAddress;
   const currentShort = document.getElementById('currentShort');
   if(currentShort) currentShort.textContent = writeMode === 'page64' ? visibleAddress : decimalSci(visibleAddress);
+  document.getElementById('readerFormat').textContent = 'обычный адрес';
   document.getElementById('page').value = page;
   renderInfo(document.getElementById('addressInfo'), makeAddressItems(n,page));
   return n;
 }
 function randomAddress(){ const bytes=new Uint8Array(4096); crypto.getRandomValues(bytes); let n=0n; for(const b of bytes) n=(n<<8n)|BigInt(b); return n; }
 function niceNav(delta){
+  if(babelRank !== null){
+    return openBabelRank((babelRank + BigInt(delta) + MAX_ADDR) % MAX_ADDR);
+  }
   const n = decodeAddressInput();
   const p64 = visiblePage64FromCurrent();
   const step = visibleStepFromPage64(p64);
   // Always navigate at the visible page64 scale. This makes B263 -> B264, and backwards B263 -> B262.
   setAddress(n + BigInt(delta) * step, 'page64');
+}
+async function babelApi(path, payload){
+  const response = await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const result = await response.json();
+  if(!response.ok) throw new Error(result.error || `API ${response.status}`);
+  return result;
+}
+function showBabel(result){
+  babelRank = BigInt(result.rank);
+  document.getElementById('babelAddress').value = result.rank;
+  document.getElementById('page').value = result.page;
+  document.getElementById('currentShort').textContent = `Babel-1: ${decimalSci(result.rank)}`;
+  document.getElementById('readerFormat').textContent = `Babel-1 · оболочка ${result.shell}`;
+  renderInfo(document.getElementById('babelOut'), makeBabelItems(result));
+  renderInfo(document.getElementById('addressInfo'), makeBabelItems(result));
+}
+async function openBabelRank(rank){
+  const result = await babelApi('/api/unrank',{mode:'babel_1_shell',rank:String(rank)});
+  showBabel(result);
 }
 async function boot(){
   model = await loadCore();
@@ -124,7 +159,7 @@ async function boot(){
     if(currentShort) currentShort.textContent = visibleAddress;
     document.getElementById('page').value = page;
     const items = makeAddressItems(n,page);
-    items.push({k:'normalized query score', v:scoreText(model,document.getElementById('query').value).energyPerSymbol.toFixed(2)});
+    items.push({k:'стоимость нормализованного запроса', v:scoreText(model,document.getElementById('query').value).energyPerSymbol.toFixed(2)});
     renderInfo(document.getElementById('searchOut'), items);
     renderInfo(document.getElementById('addressInfo'), makeAddressItems(n,page));
   };
@@ -133,6 +168,14 @@ async function boot(){
   document.getElementById('prevPage').onclick = () => { try{ niceNav(-1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('nextPage').onclick = () => { try{ niceNav(1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('randomPage').onclick = () => setAddress(randomAddress(),'page64');
+  document.getElementById('findBabelAddress').onclick = async () => {
+    try { showBabel(await babelApi('/api/rank',{mode:'babel_1_shell',text:document.getElementById('query').value})); }
+    catch(e){ document.getElementById('babelOut').textContent=String(e); }
+  };
+  document.getElementById('openBabelAddress').onclick = async () => {
+    try { await openBabelRank(document.getElementById('babelAddress').value.trim() || '0'); }
+    catch(e){ document.getElementById('babelOut').textContent=String(e); }
+  };
   document.getElementById('findAddress').click();
 }
 boot();

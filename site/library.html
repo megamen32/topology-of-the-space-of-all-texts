@@ -1,47 +1,56 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Library</title><link rel="stylesheet" href="assets/style.css" /></head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Библиотека</title><link rel="stylesheet" href="assets/style.css" /></head>
 <body><main class="libraryMain">
-  <nav class="topnav"><a href="/">Главная</a><a href="student-rank.html">Student Rank</a><a href="proof.html">Доказательство</a><a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a><a href="search.html">Search</a><a href="analytics.html">Analytics</a></nav>
+  <nav class="topnav"><a href="/">Главная</a><a href="proof.html">Доказательство</a><a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a><a href="search.html">Поиск и адреса</a><a href="analytics.html">Аналитика</a></nav>
 
   <section class="libraryHero">
     <div>
-      <div class="kicker">Addressable Library</div>
-      <h1>Библиотека</h1>
-      <p>4096-symbol pages. Decimal address + page64 coordinate with right-side vacuum omitted.</p>
+      <div class="kicker">Все возможные страницы</div>
+      <h1>Библиотека Вавилона</h1>
+      <p>Каждая 4096-символьная страница имеет ровно один обычный адрес. Ниже можно также открыть экспериментальный порядок Babel-1: его биекция точна, а гипотеза о близости к языку проверяется на данных.</p>
     </div>
-    <div class="libraryStats"><span>256 symbols</span><span>4096 positions</span><span>2³²⁷⁶⁸ pages</span></div>
+    <div class="libraryStats"><span>256 знаков</span><span>4096 позиций</span><span>2³²⁷⁶⁸ страниц</span></div>
   </section>
 
   <section class="libraryShell">
     <aside class="libraryControls">
       <div class="controlBlock">
-        <h2>Find page</h2>
+        <h2>Найти обычный адрес</h2>
         <textarea id="query" class="smallText" spellcheck="false">привет лол 😂 hello</textarea>
-        <button id="findAddress">Find address</button>
+        <button id="findAddress">Найти обычный адрес</button>
       </div>
 
       <div class="controlBlock">
-        <h2>Open address</h2>
-        <label>Format <select id="addrFormat"><option value="page64">page64</option><option value="dec">decimal</option></select></label>
+        <h2>Открыть обычный адрес</h2>
+        <label>Формат <select id="addrFormat"><option value="page64">page64</option><option value="dec">десятичный</option></select></label>
         <textarea id="address" class="smallText addressBox" spellcheck="false">∅</textarea>
-        <div class="miniButtons"><button id="openAddress">Open</button><button id="copyAddress">Copy</button><button id="randomPage">Random</button></div>
+        <div class="miniButtons"><button id="openAddress">Открыть</button><button id="copyAddress">Скопировать</button><button id="randomPage">Случайная</button></div>
+      </div>
+
+      <div class="controlBlock">
+        <h2>Эксперимент Babel-1</h2>
+        <p>Другой точный порядок тех же страниц. Его обратимость доказуема; качество ранних страниц — открытая, измеряемая гипотеза.</p>
+        <button id="findBabelAddress">Найти номер Babel-1</button>
+        <label>Номер Babel-1 <textarea id="babelAddress" class="smallText addressBox" spellcheck="false">0</textarea></label>
+        <button id="openBabelAddress">Открыть номер Babel-1</button>
       </div>
 
       <div id="searchOut" class="cardResult compactInfo"></div>
+      <div id="babelOut" class="cardResult compactInfo"></div>
     </aside>
 
     <section class="readerPane">
       <div class="readerTop">
-        <div><span class="readerLabel">Current page</span><strong id="currentShort">…</strong></div>
-        <div class="readerFormat">page64</div>
+        <div><span class="readerLabel">Открытая страница</span><strong id="currentShort">…</strong></div>
+        <div id="readerFormat" class="readerFormat">обычный page64</div>
       </div>
       <textarea id="page" class="page monoPage readerPage" spellcheck="false"></textarea>
       <div class="readerNav">
-        <button id="prevPage" class="pageNav">← Назад</button>
-        <button id="nextPage" class="pageNav primaryNav">Вперёд →</button>
+        <button id="prevPage" class="pageNav">← Предыдущая</button>
+        <button id="nextPage" class="pageNav primaryNav">Следующая →</button>
       </div>
       <div id="addressInfo" class="cardResult compactInfo"></div>
     </section>
   </section>
-</main><script src="assets/shared.js"></script><script src="assets/library.js?v=20260518-reader-layout"></script></body></html>
+</main><script src="assets/shared.js"></script><script src="assets/library.js?v=20260817-babel1-reader"></script></body></html>
