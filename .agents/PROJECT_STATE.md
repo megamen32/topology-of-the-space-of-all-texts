@@ -40,10 +40,10 @@
   букв без слов. Это baseline биекции, не кандидат для читательского начала.
 
 ## Ближайший честный canary
-Пройдено локально: reader/API открывают №0 и №1 как читаемые, №961 как raw
-fallback; API round-trip проходит. Следующий шаг — production deploy и public
-canary, затем расширять catalogue или обучать новый смысловой student.
+Пройдено на `all.bezrabotnyi.com`: reader/API открывают №0 и №1 как читаемые,
+№961 как raw fallback; public round-trip проходит. `babel` делает 308 на `all`.
+Следующий шаг — расширять catalogue или обучать новый смысловой student.
 
 ## Последние опорные коммиты
 `5351483` читательский маршрут; `7189d4f` его граф; `8a21d11` TLS/домен;
-`b69257d` срез студентов; `468b7fc` exact catalogue-MVP.
+`468b7fc` exact catalogue-MVP; `ab941e6` reader/API и production deploy.
