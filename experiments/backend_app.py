@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, send_from_directory
 import regex as re
 from functools import lru_cache
 from cluster_counting_mvp import HierarchicalRawRanker, RawClusterRanker
+from babel_shell_v1 import BabelRanker4096
 ROOT=Path(os.environ.get('BABEL_ROOT', Path(__file__).resolve().parents[1]))
 # A 4096-byte page has ~9,865 decimal digits. The API historically exposed
 # rank_dec, so allow that intentional conversion instead of failing at Python's
@@ -19,6 +20,7 @@ app=Flask(__name__, static_folder=str(SITE), static_url_path='')
 EXACT_CLUSTER_MAX_LENGTH = 256
 HIERARCHICAL_BLOCK_LENGTH = 256
 HIERARCHICAL_MAX_LENGTH = 4096
+BABEL_1_LENGTH = 4096
 RUSSIAN_WALK_TEXTS = (
     ('Тихое утро', 'утром над городом пошёл тёплый дождь, и улицы стали тихими.'),
     ('Карта', 'на полке нашлась старая карта с пометкой карандашом на полях.'),
@@ -103,6 +105,23 @@ def hierarchical_ranker(length):
         )
     return HierarchicalRawRanker(length=length, block_length=HIERARCHICAL_BLOCK_LENGTH)
 
+@lru_cache(maxsize=1)
+def babel_1_ranker():
+    """The product 4096-symbol bijection; language ordering is not counted."""
+    return BabelRanker4096(length=BABEL_1_LENGTH, k=16)
+
+def babel_1_payload(result):
+    return {
+        'mode': 'babel_1_shell',
+        'edition': 'Babel-1',
+        'length': BABEL_1_LENGTH,
+        'rank': str(result['rank']),
+        'rank_hex': hex(result['rank']),
+        'shell': result['shell'],
+        'page': result['page'],
+        'rank_order': 'binary_shell_then_context_permutation_v1',
+    }
+
 def parse_rank(value):
     value = str(value)
     return int(value, 16) if value.lower().startswith('0x') else int(value)
@@ -181,6 +200,20 @@ def rank_text(s):
         n=(n<<8)|IDX.get(ch,0)
     return n, page
 
+def normalized_page(s, length=4096, alphabet=ALPHA):
+    """Accept an exact page verbatim; otherwise normalize into this mode's alphabet."""
+    symbols = set(alphabet)
+    filler = ' ' if ' ' in symbols else alphabet[0]
+    if len(s) == int(length) and all(ch in symbols for ch in s):
+        return s
+    out = []
+    for raw in s:
+        ch = norm_char(raw)
+        if not ch:
+            continue
+        out.append(ch if ch in symbols else filler)
+    return (''.join(out) + filler * int(length))[:int(length)]
+
 def unrank_int(n):
     xs=[]
     for _ in range(4096):
@@ -254,6 +287,13 @@ def api_score(): return jsonify(score_text((request.json or {}).get('text','')))
 @app.post('/api/rank')
 def api_rank():
     body=request.json or {}
+    if body.get('mode') == 'babel_1_shell':
+        try:
+            ranker = babel_1_ranker()
+            page = normalized_page(body.get('text', ''), BABEL_1_LENGTH, ranker.alphabet)
+            return jsonify(babel_1_payload(ranker.rank_page(page)))
+        except (ValueError, TypeError) as exc:
+            return jsonify({'error':str(exc),'mode':'babel_1_shell'}),400
     if body.get('mode') == 'exact_cluster_mvp':
         try:
             length=int(body.get('length', 8))
@@ -284,6 +324,11 @@ def api_rank():
 @app.post('/api/unrank')
 def api_unrank():
     body=request.json or {}; val=str(body.get('rank','0'))
+    if body.get('mode') == 'babel_1_shell':
+        try:
+            return jsonify(babel_1_payload(babel_1_ranker().unrank_page(parse_rank(val))))
+        except (ValueError, TypeError) as exc:
+            return jsonify({'error':str(exc),'mode':'babel_1_shell'}),400
     if body.get('mode') == 'exact_cluster_mvp':
         try:
             length=int(body.get('length', 8))
