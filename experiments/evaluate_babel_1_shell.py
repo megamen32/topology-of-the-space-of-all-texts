@@ -8,10 +8,11 @@ the separate product hypothesis inspectable.
 from __future__ import annotations
 
 from collections import Counter
+import argparse
 import json
 import sys
 
-from babel_shell_v1 import BabelRanker4096
+from babel_shell_v1 import BabelRanker4096, ContextPermutationMarkov5
 
 if hasattr(sys, "set_int_max_str_digits"):
     sys.set_int_max_str_digits(20_000)
@@ -32,7 +33,11 @@ def metrics(page: str) -> dict[str, float | int | str]:
 
 
 def main() -> None:
-    ranker = BabelRanker4096()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--permutation", choices=("cluster", "markov5"), default="cluster")
+    args = parser.parse_args()
+    permutation = ContextPermutationMarkov5() if args.permutation == "markov5" else None
+    ranker = BabelRanker4096(permutation=permutation)
     ranks = (0, 1, 2, 15, 16, 255, 256, ranker.space_size // 2, ranker.space_size - 1)
     samples = []
     for position, rank in enumerate(ranks):
@@ -40,7 +45,7 @@ def main() -> None:
         assert ranker.rank_page(result["page"])["rank"] == rank
         label = str(rank) if rank < 1_000 else ("middle" if position == len(ranks) - 2 else "last")
         samples.append({"rank": label, "shell": result["shell"], **metrics(result["page"])})
-    print(json.dumps({"edition": "Babel-1", "samples": samples}, ensure_ascii=False, indent=2))
+    print(json.dumps({"edition": "Babel-1", "permutation": args.permutation, "samples": samples}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

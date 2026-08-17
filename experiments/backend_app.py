@@ -119,7 +119,7 @@ def babel_1_payload(result):
         'rank_hex': hex(result['rank']),
         'shell': result['shell'],
         'page': result['page'],
-        'rank_order': 'binary_shell_then_context_permutation_v1',
+        'rank_order': 'binary_shell_then_context_permutation_markov5',
     }
 
 def parse_rank(value):

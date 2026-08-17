@@ -6,29 +6,31 @@ coupled in the long-page ranker:
 
 * :class:`BinaryShellRanker` is a proved bijection over ``q ** length`` internal
   digits.  It orders an internal page by the number of digits outside ``[0, k)``.
-* :class:`ContextPermutationV1` maps every internal digit to one of the 256
+* :class:`ContextPermutationMarkov5` maps every internal digit to one of the 256
   project symbols and back.  It is allowed to be an approximate language model;
   its only hard contract is to return a deterministic permutation.
 
 The composition is therefore a bijection even if the language ordering is
-imperfect.  ``ContextPermutationV1`` is intentionally conservative: it reuses
-the learned cluster transition costs and the frequency order of the existing
-top-256 alphabet, but never participates in counting.
+imperfect. The default permutation uses the versioned top-256 Markov-5 model,
+but never participates in counting.
 """
 from __future__ import annotations
 
-from bisect import bisect_right
+from bisect import bisect_left, bisect_right
 from functools import lru_cache
 from hashlib import sha256
 from math import comb, gcd, log2
 from pathlib import Path
 from typing import Iterable, Protocol, Sequence
 import json
+import mmap
+import struct
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ALPHABET = ROOT / "models/top256_alphabet/alphabet_top256.json"
 DEFAULT_MODEL = ROOT / "models/cluster_student_v2/model.json"
+MARKOV5_META = ROOT / "models/top256_markov5/markov5_meta.json"
 
 
 class Permutation(Protocol):
@@ -195,11 +197,80 @@ class ContextPermutationV1:
         return self._order_for_state(self.symbol_clusters[previous], previous)
 
 
+class ContextPermutationMarkov5:
+    """Total byte ordering derived from the stored top-256 Markov-5 model.
+
+    The model supplies a cost for every byte after an observed five-byte context
+    and a complete unigram fallback for every other prefix. Small deterministic
+    penalties prevent the trivial space/repetition collapse of a greedy path;
+    they only reorder slots and cannot affect the Babel-1 bijection.
+    """
+
+    def __init__(self, meta_path: Path = MARKOV5_META):
+        meta = json.loads(Path(meta_path).read_text(encoding="utf-8"))
+        self.alphabet = tuple(meta["alphabet"])
+        if len(self.alphabet) != 256 or len(set(self.alphabet)) != 256:
+            raise ValueError("Markov-5 model must expose 256 unique symbols")
+        self.context_symbols = int(meta["context_symbols"])
+        self.fallback_costs = tuple(int(cost) for cost in meta["fallback_costs"])
+        self.index = Path(meta["index_file"]).read_bytes()
+        self.row_file = Path(meta["rows_file"]).open("rb")
+        self.rows = mmap.mmap(self.row_file.fileno(), 0, access=mmap.ACCESS_READ)
+        self.state_count = len(self.index) // 8
+        self.space = self.alphabet.index(" ") if " " in self.alphabet else 0
+        self.newline = self.alphabet.index("\n") if "\n" in self.alphabet else -1
+
+    def _state_row(self, prefix: Sequence[int]) -> tuple[int, ...]:
+        if len(prefix) < self.context_symbols:
+            return self.fallback_costs
+        state = 0
+        for symbol in prefix[-self.context_symbols:]:
+            state = (state << 8) | int(symbol)
+        low, high = 0, self.state_count
+        while low < high:
+            middle = (low + high) // 2
+            candidate = struct.unpack_from("<Q", self.index, middle * 8)[0]
+            if candidate < state:
+                low = middle + 1
+            else:
+                high = middle
+        if low >= self.state_count or struct.unpack_from("<Q", self.index, low * 8)[0] != state:
+            return self.fallback_costs
+        return struct.unpack_from("<256H", self.rows, low * 512)
+
+    def order(self, prefix: Sequence[int]) -> Sequence[int]:
+        costs = self._state_row(prefix)
+        if not prefix:
+            return tuple(sorted(range(256), key=lambda candidate: (
+                costs[candidate] + (4096 if candidate in {self.space, self.newline} else 0), candidate,
+            )))
+        last = prefix[-1]
+        run = 1
+        for symbol in reversed(prefix[-33:-1]):
+            if symbol != last:
+                break
+            run += 1
+        word_length = 0
+        for symbol in reversed(prefix[-32:]):
+            if symbol in {self.space, self.newline}:
+                break
+            word_length += 1
+
+        def penalty(candidate: int) -> int:
+            if candidate == last:
+                return 2048 * run
+            if candidate in {self.space, self.newline}:
+                return 4096 if last in {self.space, self.newline} else (1024 if word_length < 2 else 0)
+            return 0
+
+        return tuple(sorted(range(256), key=lambda candidate: (costs[candidate] + penalty(candidate), candidate)))
+
+
 class BabelRanker4096:
     """The Babel-1 composition: exact shell code followed by contextual decoding."""
 
     def __init__(self, length: int = 4096, k: int = 16, permutation: Permutation | None = None):
-        self.permutation = permutation or ContextPermutationV1()
+        self.permutation = permutation or ContextPermutationMarkov5()
         self.shell = BinaryShellRanker(length=length, q=len(self.permutation.alphabet), k=k)
         self.length = length
         self.alphabet = tuple(self.permutation.alphabet)
