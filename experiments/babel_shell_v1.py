@@ -49,7 +49,7 @@ class BinaryShellRanker:
     The optional affine map is a permutation within, never across, shells.
     """
 
-    def __init__(self, length: int, q: int = 256, k: int = 16, edition: str = "Babel-1", scramble: bool = False):
+    def __init__(self, length: int, q: int = 256, k: int = 16, edition: str = "Babel-1", scramble: bool = True):
         if length < 1:
             raise ValueError("length must be positive")
         if not 1 <= k < q:
@@ -360,7 +360,7 @@ class ContextPermutationWordV1:
 class BabelRanker4096:
     """The Babel-1 composition: exact shell code followed by contextual decoding."""
 
-    def __init__(self, length: int = 4096, k: int = 16, permutation: Permutation | None = None, scramble: bool = False):
+    def __init__(self, length: int = 4096, k: int = 16, permutation: Permutation | None = None, scramble: bool = True):
         self.permutation = permutation or ContextPermutationMarkov5()
         self.shell = BinaryShellRanker(length=length, q=len(self.permutation.alphabet), k=k, scramble=scramble)
         self.length = length
