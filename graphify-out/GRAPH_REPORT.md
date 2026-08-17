@@ -1,16 +1,16 @@
 # Graph Report - babel-experiments  (2026-08-17)
 
 ## Corpus Check
-- 127 files · ~2,326,576 words
+- 127 files · ~2,326,865 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 960 nodes · 1316 edges · 120 communities (88 shown, 32 thin omitted)
+- 964 nodes · 1330 edges · 120 communities (88 shown, 32 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.66)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8a21d119`
+- Built from commit: `53514833`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -119,8 +119,8 @@
 2. `RawClusterRanker` - 18 edges
 3. `BinaryShellRanker` - 16 edges
 4. `HierarchicalEnumeratorV1` - 14 edges
-5. `atlasBoot()` - 12 edges
-6. `boot()` - 12 edges
+5. `boot()` - 14 edges
+6. `atlasBoot()` - 12 edges
 7. `ChunkedRawCounter` - 11 edges
 8. `atlasDraw()` - 11 edges
 9. `Babel-1: инженерная декомпозиция после научного решения` - 11 edges
@@ -144,12 +144,12 @@
 ## Communities (120 total, 32 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.09
+Cohesion: 0.10
 Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+5 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.10
-Nodes (33): api_atlas_page(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score(), api_search() (+25 more)
+Nodes (35): api_atlas_page(), api_babel_1_route(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score() (+27 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.19
@@ -157,7 +157,7 @@ Nodes (21): boot(), cls(), detok(), escapeHtml(), generateFSM(), generateSentenc
 
 ### Community 3 - "Community 3"
 Cohesion: 0.20
-Nodes (24): attachExpand(), B64MAP, babelApi(), boot(), decimalSci(), decodeAddressInput(), decodePage64(), encodeFixedPage64() (+16 more)
+Nodes (26): attachExpand(), B64MAP, babelApi(), boot(), decimalSci(), decodeAddressInput(), decodePage64(), encodeFixedPage64() (+18 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.13
@@ -184,7 +184,7 @@ Cohesion: 0.28
 Nodes (15): boot(), buildTinyRanker(), detok(), generateFSM(), generateParagraphStudent(), generateSentenceFromTemplate(), generateSentenceStudent(), isPunct() (+7 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.31
+Cohesion: 0.28
 Nodes (6): ChunkedRawCounter, main(), Counter, Apply one exact raw-symbol transition to a state/energy vector., Return T[source][destination][energy] for exactly ``span`` steps., Count every raw page exactly, composing complete blocks then a tail.
 
 ### Community 11 - "Community 11"
@@ -416,7 +416,7 @@ Nodes (6): STAGE 0. Формализация объекта библиотеки
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `STAGE 5. Определение того, что должно находиться около нуля` connect `STAGE 5. Определение того, что должно находиться около нуля` to `ROADMAP.md`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
@@ -424,8 +424,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
   _323 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.09494949494949495 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.10241820768136557 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
   _Cohesion score 0.13157894736842105 - nodes in this community are weakly interconnected._
