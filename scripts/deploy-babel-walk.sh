@@ -8,12 +8,15 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 rsync -a --delete \
   --include '/experiments/' \
   --include '/experiments/backend_app.py' \
+  --include '/experiments/babel_shell_v1.py' \
   --include '/experiments/cluster_counting_mvp.py' \
   --include '/models/' \
   --include '/models/cluster_student_v2/' \
   --include '/models/cluster_student_v2/model.json' \
   --include '/models/top256_alphabet/' \
   --include '/models/top256_alphabet/alphabet_top256.json' \
+  --include '/models/top256_markov5/' \
+  --include '/models/top256_markov5/***' \
   --include '/models/student_fsm_v1/' \
   --include '/models/student_fsm_v1/student_fsm_v1.json' \
   --include '/models/russian_walk_v1.json' \

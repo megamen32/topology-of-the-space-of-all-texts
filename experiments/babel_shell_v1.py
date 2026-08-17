@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ALPHABET = ROOT / "models/top256_alphabet/alphabet_top256.json"
 DEFAULT_MODEL = ROOT / "models/cluster_student_v2/model.json"
 MARKOV5_META = ROOT / "models/top256_markov5/markov5_meta.json"
+WORD_MODEL = ROOT / "models/word_student_v1/word_student_v1.json"
 
 
 class Permutation(Protocol):
@@ -48,7 +49,7 @@ class BinaryShellRanker:
     The optional affine map is a permutation within, never across, shells.
     """
 
-    def __init__(self, length: int, q: int = 256, k: int = 16, edition: str = "Babel-1"):
+    def __init__(self, length: int, q: int = 256, k: int = 16, edition: str = "Babel-1", scramble: bool = False):
         if length < 1:
             raise ValueError("length must be positive")
         if not 1 <= k < q:
@@ -56,6 +57,7 @@ class BinaryShellRanker:
         self.length, self.q, self.k = int(length), int(q), int(k)
         self.bad = self.q - self.k
         self.edition = edition
+        self.scramble = bool(scramble)
         counts = [self.k ** self.length]
         for s in range(self.length):
             counts.append(counts[-1] * (self.length - s) * self.bad // ((s + 1) * self.k))
@@ -76,6 +78,8 @@ class BinaryShellRanker:
 
     def _affine(self, shell: int) -> tuple[int, int, int]:
         modulus = self.shell_counts[shell]
+        if not self.scramble:
+            return 1, 0, modulus
         if modulus == 1:
             return 0, 0, 1
         digest = sha256(f"{self.edition}:{self.length}:{self.q}:{self.k}:{shell}".encode()).digest()
@@ -207,14 +211,21 @@ class ContextPermutationMarkov5:
     """
 
     def __init__(self, meta_path: Path = MARKOV5_META):
-        meta = json.loads(Path(meta_path).read_text(encoding="utf-8"))
+        meta_path = Path(meta_path)
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
         self.alphabet = tuple(meta["alphabet"])
         if len(self.alphabet) != 256 or len(set(self.alphabet)) != 256:
             raise ValueError("Markov-5 model must expose 256 unique symbols")
         self.context_symbols = int(meta["context_symbols"])
         self.fallback_costs = tuple(int(cost) for cost in meta["fallback_costs"])
-        self.index = Path(meta["index_file"]).read_bytes()
-        self.row_file = Path(meta["rows_file"]).open("rb")
+        index_path = Path(meta["index_file"])
+        rows_path = Path(meta["rows_file"])
+        if not index_path.exists():
+            index_path = meta_path.parent / index_path.name
+        if not rows_path.exists():
+            rows_path = meta_path.parent / rows_path.name
+        self.index = index_path.read_bytes()
+        self.row_file = rows_path.open("rb")
         self.rows = mmap.mmap(self.row_file.fileno(), 0, access=mmap.ACCESS_READ)
         self.state_count = len(self.index) // 8
         self.space = self.alphabet.index(" ") if " " in self.alphabet else 0
@@ -266,12 +277,92 @@ class ContextPermutationMarkov5:
         return tuple(sorted(range(256), key=lambda candidate: (costs[candidate] + penalty(candidate), candidate)))
 
 
+class ContextPermutationWordV1:
+    """Word-transition prior completed by the total Markov-5 byte ordering.
+
+    At a word boundary it favours initial letters of observed next words. Inside
+    a word it favours only continuations present in that same transition row.
+    Every other project symbol retains its Markov-5 position, so this is still a
+    total deterministic permutation rather than a text generator.
+    """
+
+    def __init__(self, word_path: Path = WORD_MODEL):
+        self.fallback = ContextPermutationMarkov5()
+        self.alphabet = self.fallback.alphabet
+        self.index = {symbol: position for position, symbol in enumerate(self.alphabet)}
+        model = json.loads(Path(word_path).read_text(encoding="utf-8"))
+        self.transitions = {
+            previous: tuple(sorted(row.items(), key=lambda item: (-int(item[1]), item[0]))[:256])
+            for previous, row in model["transitions"].items()
+        }
+        self.abstract = {key: tuple(value) for key, value in model.get("abstract_emissions", {}).items()}
+
+    def _state(self, prefix: Sequence[int]) -> tuple[str, str]:
+        text = "".join(self.alphabet[symbol] for symbol in prefix)
+        end = len(text)
+        while end and (text[end - 1].isalpha() or text[end - 1] in "-'"):
+            end -= 1
+        partial = text[end:].lower()
+        before = text[:end].rstrip()
+        start = len(before)
+        while start and (before[start - 1].isalpha() or before[start - 1] in "-'"):
+            start -= 1
+        previous = before[start:].lower() or "<s>"
+        return previous, partial
+
+    def _recent_words(self, prefix: Sequence[int]) -> tuple[str, ...]:
+        text = "".join(self.alphabet[symbol] for symbol in prefix).lower()
+        words, current = [], []
+        for char in text:
+            if char.isalpha() or char in "-'":
+                current.append(char)
+            elif current:
+                words.append("".join(current)); current = []
+        if current:
+            words.append("".join(current))
+        return tuple(words[-12:])
+
+    def _word_scores(self, prefix: Sequence[int]) -> tuple[int, ...]:
+        previous, partial = self._state(prefix)
+        primary = self.transitions.get(previous) or self.transitions.get("<s>", ())
+        choices = list(primary)
+        if not partial:
+            seen = {token for token, _ in choices}
+            choices.extend((token, count) for token, count in self.transitions.get("<s>", ()) if token not in seen)
+        recent = set(self._recent_words(prefix))
+        scores = [0] * 256
+        for token, count in choices:
+            words = self.abstract.get(token, (token,))
+            weight = max(1, int(count))
+            for word in words[:64]:
+                candidate = str(word).lower()
+                if not partial and candidate in recent:
+                    weight = max(1, weight // 128)
+                if not candidate.startswith(partial):
+                    continue
+                if len(candidate) == len(partial):
+                    symbol = self.index.get(" ")
+                    if symbol is not None:
+                        scores[symbol] += weight
+                    continue
+                symbol = self.index.get(candidate[len(partial)])
+                if symbol is not None:
+                    scores[symbol] += weight
+        return tuple(scores)
+
+    def order(self, prefix: Sequence[int]) -> Sequence[int]:
+        base = self.fallback.order(prefix)
+        base_rank = {symbol: position for position, symbol in enumerate(base)}
+        scores = self._word_scores(prefix)
+        return tuple(sorted(range(256), key=lambda symbol: (-scores[symbol], base_rank[symbol])))
+
+
 class BabelRanker4096:
     """The Babel-1 composition: exact shell code followed by contextual decoding."""
 
-    def __init__(self, length: int = 4096, k: int = 16, permutation: Permutation | None = None):
+    def __init__(self, length: int = 4096, k: int = 16, permutation: Permutation | None = None, scramble: bool = False):
         self.permutation = permutation or ContextPermutationMarkov5()
-        self.shell = BinaryShellRanker(length=length, q=len(self.permutation.alphabet), k=k)
+        self.shell = BinaryShellRanker(length=length, q=len(self.permutation.alphabet), k=k, scramble=scramble)
         self.length = length
         self.alphabet = tuple(self.permutation.alphabet)
         self.symbol_index = {symbol: index for index, symbol in enumerate(self.alphabet)}
