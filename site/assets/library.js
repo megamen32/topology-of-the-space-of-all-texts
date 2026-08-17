@@ -1,6 +1,7 @@
 let model;
 let babelRank = null;
 let babelRouteIndex = null;
+let catalogueRank = null;
 const B64URL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 const B64MAP = new Map([...B64URL].map((c,i)=>[c,BigInt(i)]));
 const MAX_ADDR = 1n << 32768n;
@@ -107,6 +108,16 @@ function makeBabelItems(result){
   }
   return items;
 }
+function makeCatalogueItems(result){
+  const rank = String(result.rank);
+  return [
+    {k:'режим', v:'читаемое начало', s:'конечный каталог русских абзацев'},
+    {k:'точный номер', v:rank, s:`первые ${result.structured_pages} номера — catalogue-MVP`},
+    {k:'тип страницы', v:result.page_kind === 'structured_catalogue' ? 'читаемая страница' : 'raw fallback', s:result.page_kind === 'structured_catalogue' ? 'две страницы каталога' : 'обычная страница полного пространства'},
+    {k:'что гарантировано', v:'полная биекция', s:result.ordering_note},
+    {k:'абзацев в каталоге', v:String(result.paragraphs), s:`${result.structured_pages} двухабзацных страниц`},
+  ];
+}
 function setRawNavLabels(){
   document.getElementById('prevPage').textContent = '← Предыдущая';
   document.getElementById('nextPage').textContent = 'Следующая →';
@@ -114,6 +125,7 @@ function setRawNavLabels(){
 function setAddress(n, writeMode='page64'){
   babelRank = null;
   babelRouteIndex = null;
+  catalogueRank = null;
   n = ((BigInt(n) % MAX_ADDR) + MAX_ADDR) % MAX_ADDR;
   const page = numberToPage(n);
   document.getElementById('addrFormat').value = writeMode;
@@ -129,6 +141,9 @@ function setAddress(n, writeMode='page64'){
 }
 function randomAddress(){ const bytes=new Uint8Array(4096); crypto.getRandomValues(bytes); let n=0n; for(const b of bytes) n=(n<<8n)|BigInt(b); return n; }
 function niceNav(delta){
+  if(catalogueRank !== null){
+    return openCatalogueRank((catalogueRank + BigInt(delta) + MAX_ADDR) % MAX_ADDR);
+  }
   if(babelRouteIndex !== null){
     return openReadingRoute(babelRouteIndex + delta);
   }
@@ -148,6 +163,7 @@ async function babelApi(path, payload){
   return result;
 }
 function showBabel(result){
+  catalogueRank = null;
   babelRank = BigInt(result.rank);
   babelRouteIndex = result.route ? Number(result.route_index) : null;
   document.getElementById('babelAddress').value = result.rank;
@@ -158,6 +174,25 @@ function showBabel(result){
   document.getElementById('nextPage').textContent = result.route ? 'Следующая в маршруте →' : 'Точный номер +1 →';
   renderInfo(document.getElementById('babelOut'), makeBabelItems(result));
   renderInfo(document.getElementById('addressInfo'), makeBabelItems(result));
+}
+function showCatalogue(result){
+  catalogueRank = BigInt(result.rank);
+  babelRank = null;
+  babelRouteIndex = null;
+  document.getElementById('catalogueAddress').value = result.rank;
+  document.getElementById('page').value = result.page;
+  document.getElementById('currentShort').textContent = `Каталог: ${result.rank}`;
+  document.getElementById('readerFormat').textContent = result.page_kind === 'structured_catalogue'
+    ? 'читаемое начало · точный каталог'
+    : 'точный raw fallback';
+  document.getElementById('prevPage').textContent = '← Точный номер −1';
+  document.getElementById('nextPage').textContent = 'Точный номер +1 →';
+  renderInfo(document.getElementById('catalogueOut'), makeCatalogueItems(result));
+  renderInfo(document.getElementById('addressInfo'), makeCatalogueItems(result));
+}
+async function openCatalogueRank(rank){
+  const result = await babelApi('/api/unrank',{mode:'hierarchical_catalogue_v1',rank:String(rank)});
+  showCatalogue(result);
 }
 async function openBabelRank(rank){
   const result = await babelApi('/api/unrank',{mode:'babel_1_shell',rank:String(rank)});
@@ -190,9 +225,9 @@ async function boot(){
   document.getElementById('prevPage').onclick = () => { try{ niceNav(-1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('nextPage').onclick = () => { try{ niceNav(1); }catch(e){ document.getElementById('addressInfo').textContent=String(e); } };
   document.getElementById('randomPage').onclick = () => setAddress(randomAddress(),'page64');
-  document.getElementById('openReadingRoute').onclick = async () => {
-    try { await openReadingRoute(0); }
-    catch(e){ document.getElementById('babelOut').textContent=String(e); }
+  document.getElementById('openCatalogueAddress').onclick = async () => {
+    try { await openCatalogueRank(document.getElementById('catalogueAddress').value.trim() || '0'); }
+    catch(e){ document.getElementById('catalogueOut').textContent=String(e); }
   };
   document.getElementById('findBabelAddress').onclick = async () => {
     try { showBabel(await babelApi('/api/rank',{mode:'babel_1_shell',text:document.getElementById('query').value})); }
@@ -202,6 +237,6 @@ async function boot(){
     try { await openBabelRank(document.getElementById('babelAddress').value.trim() || '0'); }
     catch(e){ document.getElementById('babelOut').textContent=String(e); }
   };
-  document.getElementById('findAddress').click();
+  await openCatalogueRank(0);
 }
 boot();

@@ -29,16 +29,23 @@
       </div>
 
       <div class="controlBlock">
+        <h2>Читаемое начало</h2>
+        <p>Первые 961 номера открывают разные страницы из конечного русского каталога. После них начинается точный raw fallback: ни одна возможная страница не потеряна.</p>
+        <label>Номер каталога <textarea id="catalogueAddress" class="smallText addressBox" spellcheck="false">0</textarea></label>
+        <button id="openCatalogueAddress">Открыть читаемую страницу</button>
+        <p>Это работающий конечный MVP, а не заявление, будто вся библиотека уже отсортирована по смыслу.</p>
+      </div>
+
+      <div class="controlBlock">
         <h2>Эксперимент Babel-1</h2>
         <p>Другой точный порядок тех же страниц. Его обратимость доказуема; качество ранних страниц — открытая, измеряемая гипотеза.</p>
-        <button id="openReadingRoute">Начать читательский маршрут</button>
-        <p>Маршрут — реальные строки русской классики из public domain. Это контрольные страницы, а не «соседние номера».</p>
         <button id="findBabelAddress">Найти номер Babel-1</button>
         <label>Номер Babel-1 <textarea id="babelAddress" class="smallText addressBox" spellcheck="false">0</textarea></label>
         <button id="openBabelAddress">Открыть номер Babel-1</button>
       </div>
 
       <div id="searchOut" class="cardResult compactInfo"></div>
+      <div id="catalogueOut" class="cardResult compactInfo"></div>
       <div id="babelOut" class="cardResult compactInfo"></div>
     </aside>
 
@@ -55,4 +62,4 @@
       <div id="addressInfo" class="cardResult compactInfo"></div>
     </section>
   </section>
-</main><script src="assets/shared.js"></script><script src="assets/library.js?v=20260817-babel1-reader"></script></body></html>
+</main><script src="assets/shared.js"></script><script src="assets/library.js?v=20260817-catalogue-reader"></script></body></html>

@@ -6,6 +6,7 @@ import regex as re
 from functools import lru_cache
 from cluster_counting_mvp import HierarchicalRawRanker, RawClusterRanker
 from babel_shell_v1 import BabelRanker4096
+from hierarchical_enumerator_v1 import HierarchicalEnumeratorV1
 ROOT=Path(os.environ.get('BABEL_ROOT', Path(__file__).resolve().parents[1]))
 # A 4096-byte page has ~9,865 decimal digits. The API historically exposed
 # rank_dec, so allow that intentional conversion instead of failing at Python's
@@ -117,6 +118,28 @@ def hierarchical_ranker(length):
 def babel_1_ranker():
     """The product 4096-symbol bijection; language ordering is not counted."""
     return BabelRanker4096(length=BABEL_1_LENGTH, k=16)
+
+@lru_cache(maxsize=1)
+def catalogue_ranker():
+    """Small exact readable prefix, followed by the complete raw fallback."""
+    return HierarchicalEnumeratorV1(page_length=BABEL_1_LENGTH)
+
+def catalogue_payload(result):
+    ranker = catalogue_ranker()
+    return {
+        'mode': 'hierarchical_catalogue_v1',
+        'edition': 'Ранний читаемый каталог',
+        'version': ranker.version,
+        'length': ranker.page_length,
+        'rank': str(result['rank']),
+        'rank_hex': hex(result['rank']),
+        'page': result['page'],
+        'page_kind': result['mode'],
+        'paragraphs': len(ranker.paragraphs),
+        'structured_pages': ranker.structured_page_count,
+        'coverage': 'точная перестановка всего raw-пространства',
+        'ordering_note': 'Первые 961 номера — конечный catalogue-MVP; это не глобальная сортировка смысла.',
+    }
 
 def babel_1_payload(result):
     return {
@@ -310,6 +333,18 @@ def api_score(): return jsonify(score_text((request.json or {}).get('text','')))
 @app.post('/api/rank')
 def api_rank():
     body=request.json or {}
+    if body.get('mode') == 'hierarchical_catalogue_v1':
+        try:
+            ranker = catalogue_ranker()
+            text = str(body.get('text', ''))
+            # Exact pages must remain verbatim; normalizing them again would
+            # destroy a raw fallback symbol such as an uppercase letter.
+            page = text if len(text) == ranker.page_length and all(
+                symbol in ranker.symbol_index for symbol in text
+            ) else ranker.normalize_page(text)
+            return jsonify(catalogue_payload(ranker.rank_page(page)))
+        except (ValueError, TypeError) as exc:
+            return jsonify({'error':str(exc),'mode':'hierarchical_catalogue_v1'}),400
     if body.get('mode') == 'babel_1_shell':
         try:
             ranker = babel_1_ranker()
@@ -347,6 +382,11 @@ def api_rank():
 @app.post('/api/unrank')
 def api_unrank():
     body=request.json or {}; val=str(body.get('rank','0'))
+    if body.get('mode') == 'hierarchical_catalogue_v1':
+        try:
+            return jsonify(catalogue_payload(catalogue_ranker().unrank_page(parse_rank(val))))
+        except (ValueError, TypeError) as exc:
+            return jsonify({'error':str(exc),'mode':'hierarchical_catalogue_v1'}),400
     if body.get('mode') == 'babel_1_shell':
         try:
             return jsonify(babel_1_payload(babel_1_ranker().unrank_page(parse_rank(val))))

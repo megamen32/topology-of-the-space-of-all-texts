@@ -1,16 +1,16 @@
 # Graph Report - babel-experiments  (2026-08-17)
 
 ## Corpus Check
-- 128 files · ~2,328,062 words
+- 128 files · ~2,328,453 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 980 nodes · 1361 edges · 120 communities (88 shown, 32 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.67)
+- 986 nodes · 1379 edges · 120 communities (88 shown, 32 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.68)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b69257d3`
+- Built from commit: `468b7fcf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -115,7 +115,7 @@
 - STAGE 0. Формализация объекта библиотеки
 
 ## God Nodes (most connected - your core abstractions)
-1. `HierarchicalEnumeratorV1` - 24 edges
+1. `HierarchicalEnumeratorV1` - 25 edges
 2. `ClusterRanker` - 18 edges
 3. `RawClusterRanker` - 18 edges
 4. `BinaryShellRanker` - 16 edges
@@ -124,7 +124,7 @@
 7. `ChunkedRawCounter` - 11 edges
 8. `atlasDraw()` - 11 edges
 9. `Babel-1: инженерная декомпозиция после научного решения` - 11 edges
-10. `main()` - 10 edges
+10. `api_rank()` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `babel_1_ranker()` --calls--> `BabelRanker4096`  [INFERRED]
@@ -135,8 +135,8 @@
   experiments/build_russian_walk.py → experiments/backend_app.py
 - `hierarchical_ranker()` --calls--> `HierarchicalRawRanker`  [INFERRED]
   experiments/backend_app.py → experiments/cluster_counting_mvp.py
-- `ChunkedRawCounter` --uses--> `RawClusterRanker`  [INFERRED]
-  experiments/cluster_chunk_counting.py → experiments/cluster_counting_mvp.py
+- `catalogue_ranker()` --calls--> `HierarchicalEnumeratorV1`  [INFERRED]
+  experiments/backend_app.py → experiments/hierarchical_enumerator_v1.py
 
 ## Import Cycles
 - None detected.
@@ -149,15 +149,15 @@ Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Ex
 
 ### Community 1 - "Community 1"
 Cohesion: 0.10
-Nodes (35): api_atlas_page(), api_babel_1_route(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score() (+27 more)
+Nodes (38): api_atlas_page(), api_babel_1_route(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score() (+30 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.19
 Nodes (21): boot(), cls(), detok(), escapeHtml(), generateFSM(), generateSentenceFromTemplate(), generateSentenceStudent(), hashSeed() (+13 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.20
-Nodes (26): attachExpand(), B64MAP, babelApi(), boot(), decimalSci(), decodeAddressInput(), decodePage64(), encodeFixedPage64() (+18 more)
+Cohesion: 0.18
+Nodes (29): attachExpand(), B64MAP, babelApi(), boot(), decimalSci(), decodeAddressInput(), decodePage64(), encodeFixedPage64() (+21 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.13
@@ -416,9 +416,11 @@ Nodes (6): STAGE 0. Формализация объекта библиотеки
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `STAGE 5. Определение того, что должно находиться около нуля` connect `STAGE 5. Определение того, что должно находиться около нуля` to `ROADMAP.md`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
+  _`HierarchicalEnumeratorV1` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
@@ -426,6 +428,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
-- **Should `Community 4` be split into smaller, more focused modules?**
-  _Cohesion score 0.13157894736842105 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._

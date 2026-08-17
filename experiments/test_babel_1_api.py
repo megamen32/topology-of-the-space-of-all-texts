@@ -18,6 +18,23 @@ def post(client, path, payload):
 
 def main() -> None:
     client = backend_app.app.test_client()
+    catalogue = post(client, "/api/unrank", {"mode": "hierarchical_catalogue_v1", "rank": "0"})
+    assert catalogue["edition"] == "Ранний читаемый каталог"
+    assert catalogue["page_kind"] == "structured_catalogue"
+    assert catalogue["structured_pages"] >= 20
+    assert "михаил лермонтов" in catalogue["page"]
+    assert post(client, "/api/rank", {
+        "mode": "hierarchical_catalogue_v1", "text": catalogue["page"],
+    })["rank"] == "0"
+
+    fallback = post(client, "/api/unrank", {
+        "mode": "hierarchical_catalogue_v1", "rank": str(catalogue["structured_pages"]),
+    })
+    assert fallback["page_kind"] == "raw_fallback"
+    assert post(client, "/api/rank", {
+        "mode": "hierarchical_catalogue_v1", "text": fallback["page"],
+    })["rank"] == fallback["rank"]
+
     for text in ("", "hello", "привет, библиотека"):
         ranked = post(client, "/api/rank", {"mode": "babel_1_shell", "text": text})
         assert ranked["mode"] == "babel_1_shell"
