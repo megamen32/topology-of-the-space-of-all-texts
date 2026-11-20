@@ -24,6 +24,20 @@
       "opened_address": "32",
       "returned_address": "32",
       "page_matches": true
+    },
+    "independent_host_rank": {
+      "host": "server-100",
+      "input_sha256": "9d78db13a4f38d30aa6fd09b3d1dc938f8b4f4f1d5d831325385f9a1fb579123",
+      "returned_address": "0x20",
+      "seconds": 288.6,
+      "image_id": "sha256:62e81663d9ce76766986789cf8208c3f7c4347b8e9fee59deb9b514a5fffef11"
+    },
+    "public_web": {
+      "url": "https://all.bezrabotnyi.com/search.html?mode=qwen35_reference_v1",
+      "unrank": "32",
+      "rank": "32",
+      "edition": "babel-qwen35-ref-v1",
+      "page_matches": true
     }
   },
   "runtime": "Ollama 0.32.1 runtime, llama.cpp b9888, Linux x86-64 CPU Haswell, four threads.",
