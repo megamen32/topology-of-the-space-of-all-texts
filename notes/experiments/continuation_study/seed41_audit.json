@@ -1,0 +1,296 @@
+{
+  "purpose": "Isolate the first divergent writer call on address 41, without rerunning the planner between seed conditions.",
+  "edition": "v3.1-greedy",
+  "ollama": "0.32.1",
+  "llama_cpp_ref": "b9888",
+  "body_file": "seed41_request.json",
+  "body_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+  "model_and_runtimes": "Original model, model digest, quantization, GPU model, per-host drivers and complete editions are in verification.json.",
+  "original_calls": {
+    "44": {
+      "accepted_chars": 1255,
+      "discarded_chars": 1,
+      "done_reason": "stop",
+      "normalized_chars": 1256,
+      "options_sha256": "7fe1c55a95b04362155f08bf34dbb7cf3a71cf77bf5e7dbef2d1632c8e09eced",
+      "prompt_sha256": "6d889698e85080275fcc794c4079830f475cb490ed110b43d6901aba65cb84fd",
+      "raw_chars": 1256,
+      "request_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+      "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+      "seed": 58063167,
+      "stage": "write"
+    },
+    "88": {
+      "accepted_chars": 1463,
+      "discarded_chars": 1,
+      "done_reason": "stop",
+      "normalized_chars": 1464,
+      "options_sha256": "7fe1c55a95b04362155f08bf34dbb7cf3a71cf77bf5e7dbef2d1632c8e09eced",
+      "prompt_sha256": "6d889698e85080275fcc794c4079830f475cb490ed110b43d6901aba65cb84fd",
+      "raw_chars": 1464,
+      "request_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+      "response_sha256": "32a60c3310bb154f563be70903bcad360a3e6bfd76d9e39d6d90c3241791c671",
+      "seed": 58063167,
+      "stage": "write"
+    }
+  },
+  "first_different_codepoint_in_page_zero_based": 2084,
+  "common_text_before_difference": "left behind this strange object. He ",
+  "original_phrases": {
+    "44": "reached into his coat aga",
+    "88": "paused at the edge of the"
+  },
+  "check": "Recovered the exact first writer request with matching archived SHA-256. Send the same cold POST on each host; only the options.seed field varies. With omitted input the seed key is absent on the wire. Order differs by host. other=7. Each server validates model and runtime before its series.",
+  "replays": {
+    "44": [
+      {
+        "condition": "fixed",
+        "seed": 58063167,
+        "request_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "omitted",
+        "seed": null,
+        "request_sha256": "9f43351e71dd454df6892893d6a9be16bfefcc91b960dcda72ccde265c9c1d2c",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "other",
+        "seed": 7,
+        "request_sha256": "4d5461209878296754da0a6eb5da962cf47d0cc213825cb98435583a303b0a38",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "omitted",
+        "seed": null,
+        "request_sha256": "9f43351e71dd454df6892893d6a9be16bfefcc91b960dcda72ccde265c9c1d2c",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "fixed",
+        "seed": 58063167,
+        "request_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      }
+    ],
+    "88": [
+      {
+        "condition": "omitted",
+        "seed": null,
+        "request_sha256": "9f43351e71dd454df6892893d6a9be16bfefcc91b960dcda72ccde265c9c1d2c",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "fixed",
+        "seed": 58063167,
+        "request_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "other",
+        "seed": 7,
+        "request_sha256": "4d5461209878296754da0a6eb5da962cf47d0cc213825cb98435583a303b0a38",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "fixed",
+        "seed": 58063167,
+        "request_sha256": "bd8b69ccc5024e97c5c5f2449e27bf1e75c8092f3b1189a9a8453922b74ffa12",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      },
+      {
+        "condition": "omitted",
+        "seed": null,
+        "request_sha256": "9f43351e71dd454df6892893d6a9be16bfefcc91b960dcda72ccde265c9c1d2c",
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "raw_chars": 1256,
+        "done_reason": "stop"
+      }
+    ]
+  },
+  "all_ten_identical": true,
+  "instrumented_calls": {
+    "extra_request_fields": {
+      "logprobs": true,
+      "top_logprobs": 5
+    },
+    "selected_token_zero_based": 7,
+    "hosts": {
+      "44": {
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "token": {
+          "token": " reached",
+          "logprob": -0.9967061281204224,
+          "bytes": [
+            32,
+            114,
+            101,
+            97,
+            99,
+            104,
+            101,
+            100
+          ],
+          "top_logprobs": [
+            {
+              "token": " reached",
+              "logprob": -0.9967061281204224,
+              "bytes": [
+                32,
+                114,
+                101,
+                97,
+                99,
+                104,
+                101,
+                100
+              ]
+            },
+            {
+              "token": " paused",
+              "logprob": -1.048717737197876,
+              "bytes": [
+                32,
+                112,
+                97,
+                117,
+                115,
+                101,
+                100
+              ]
+            },
+            {
+              "token": " had",
+              "logprob": -2.087747812271118,
+              "bytes": [
+                32,
+                104,
+                97,
+                100
+              ]
+            },
+            {
+              "token": " knew",
+              "logprob": -3.670297622680664,
+              "bytes": [
+                32,
+                107,
+                110,
+                101,
+                119
+              ]
+            },
+            {
+              "token": " hes",
+              "logprob": -4.12016487121582,
+              "bytes": [
+                32,
+                104,
+                101,
+                115
+              ]
+            }
+          ]
+        }
+      },
+      "88": {
+        "response_sha256": "56eb0639d10112610a8e37687a59872c53c8afe2d96f7a33195afdd7be221e9e",
+        "token": {
+          "token": " reached",
+          "logprob": -0.9967061281204224,
+          "bytes": [
+            32,
+            114,
+            101,
+            97,
+            99,
+            104,
+            101,
+            100
+          ],
+          "top_logprobs": [
+            {
+              "token": " reached",
+              "logprob": -0.9967061281204224,
+              "bytes": [
+                32,
+                114,
+                101,
+                97,
+                99,
+                104,
+                101,
+                100
+              ]
+            },
+            {
+              "token": " paused",
+              "logprob": -1.048717737197876,
+              "bytes": [
+                32,
+                112,
+                97,
+                117,
+                115,
+                101,
+                100
+              ]
+            },
+            {
+              "token": " had",
+              "logprob": -2.087747812271118,
+              "bytes": [
+                32,
+                104,
+                97,
+                100
+              ]
+            },
+            {
+              "token": " knew",
+              "logprob": -3.670297622680664,
+              "bytes": [
+                32,
+                107,
+                110,
+                101,
+                119
+              ]
+            },
+            {
+              "token": " hes",
+              "logprob": -4.12016487121582,
+              "bytes": [
+                32,
+                104,
+                101,
+                115
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "limit": "Only a later replay recorded scores. No scores exist for the original dissenting run."
+  },
+  "sampling_implementation": "https://github.com/ggml-org/llama.cpp/blob/b9888/src/llama-sampler.cpp#L266-L285"
+}
