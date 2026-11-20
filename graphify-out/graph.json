@@ -2196,8 +2196,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "eval_harness_v1.py"
     },
     {
@@ -2207,8 +2207,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1_tokenize",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "tokenize()"
     },
     {
@@ -2218,8 +2218,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1_build_clusterer",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "build_clusterer()"
     },
     {
@@ -2229,8 +2229,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1_build_model",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "build_model()"
     },
     {
@@ -2240,8 +2240,8 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1_sentence_energy",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "sentence_energy()"
     },
     {
@@ -2251,8 +2251,8 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1_frontier_sample",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "frontier_sample()"
     },
     {
@@ -2262,8 +2262,8 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "experiments_eval_harness_v1_collapse_score",
-      "community": 32,
-      "community_name": "implementation_plan.md",
+      "community": 23,
+      "community_name": "Community 23",
       "norm_label": "collapse_score()"
     },
     {
@@ -2779,8 +2779,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "experiments_generative_coupling",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": "generative_coupling.py"
     },
     {
@@ -2790,8 +2790,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "experiments_generative_coupling_generativeaddress",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": "generativeaddress"
     },
     {
@@ -2801,8 +2801,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "experiments_generative_coupling_generativeaddress_init",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": ".__init__()"
     },
     {
@@ -2812,8 +2812,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "experiments_generative_coupling_generativeaddress_xor_prediction",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": "._xor_prediction()"
     },
     {
@@ -2823,8 +2823,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "experiments_generative_coupling_generativeaddress_unrank",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": ".unrank()"
     },
     {
@@ -2834,8 +2834,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "experiments_generative_coupling_generativeaddress_rank",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": ".rank()"
     },
     {
@@ -2845,8 +2845,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "experiments_generative_coupling_self_test",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": "_self_test()"
     },
     {
@@ -2856,8 +2856,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "experiments_generative_coupling_rationale_1",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 32,
+      "community_name": "implementation_plan.md",
       "norm_label": "exact experimental addresses for two generated half-pages of alphabet indices."
     },
     {
@@ -3474,6 +3474,259 @@
       "norm_label": "look up a five-symbol context in the original or the packaged markov tables."
     },
     {
+      "label": "ollama_generative_address.py",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "ollama_generative_address.py"
+    },
+    {
+      "label": "canonical_json()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L78",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_canonical_json",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "canonical_json()"
+    },
+    {
+      "label": "digest()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L82",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_digest",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "digest()"
+    },
+    {
+      "label": "decode()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L86",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_decode",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "decode()"
+    },
+    {
+      "label": "strict_indices()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_strict_indices",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "strict_indices()"
+    },
+    {
+      "label": "normalize_response()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_normalize_response",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "normalize_response()"
+    },
+    {
+      "label": "seed_language()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_seed_language",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "seed_language()"
+    },
+    {
+      "label": "text_language()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_text_language",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "text_language()"
+    },
+    {
+      "label": "raw_prompt()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L128",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_raw_prompt",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "raw_prompt()"
+    },
+    {
+      "label": "http_transport()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_http_transport",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "http_transport()"
+    },
+    {
+      "label": "verify_edition()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L167",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_verify_edition",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "verify_edition()"
+    },
+    {
+      "label": "cold_generate()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L183",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_cold_generate",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "cold_generate()"
+    },
+    {
+      "label": "QwenPredictors",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L205",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_qwenpredictors",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "qwenpredictors"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_qwenpredictors_init",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".opening()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L213",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_qwenpredictors_opening",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": ".opening()"
+    },
+    {
+      "label": ".continuation()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L216",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_qwenpredictors_continuation",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": ".continuation()"
+    },
+    {
+      "label": "._predict()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L219",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "._predict()"
+    },
+    {
+      "label": "parse_number()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L265",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_parse_number",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "parse_number()"
+    },
+    {
+      "label": "write_output()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L279",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_write_output",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "write_output()"
+    },
+    {
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_py_path",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "path"
+    },
+    {
+      "label": "self_test()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L291",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_self_test",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "self_test()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L333",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_main",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "main()"
+    },
+    {
+      "label": "Inject request(path, body=None) to run the same checks and predictions offline.",
+      "file_type": "rationale",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L206",
+      "_origin": "ast",
+      "id": "experiments_ollama_generative_address_rationale_206",
+      "community": 32,
+      "community_name": "implementation_plan.md",
+      "norm_label": "inject request(path, body=none) to run the same checks and predictions offline."
+    },
+    {
       "label": "pack_markov5.py",
       "file_type": "code",
       "source_file": "experiments/pack_markov5.py",
@@ -3871,8 +4124,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "sentence_astar_frontier.py"
     },
     {
@@ -3882,8 +4135,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_template_energy",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "template_energy()"
     },
     {
@@ -3893,8 +4146,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_realize",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "realize()"
     },
     {
@@ -3904,8 +4157,8 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_detok",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "detok()"
     },
     {
@@ -3915,8 +4168,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_type_ok",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "type_ok()"
     },
     {
@@ -3926,8 +4179,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_generate_sentence",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "generate_sentence()"
     },
     {
@@ -3937,8 +4190,8 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_sentence_frontier",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "sentence_frontier()"
     },
     {
@@ -3948,8 +4201,8 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_paragraph_frontier",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "paragraph_frontier()"
     },
     {
@@ -3959,8 +4212,8 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "experiments_sentence_astar_frontier_main",
-      "community": 23,
-      "community_name": "Community 23",
+      "community": 93,
+      "community_name": "README.md",
       "norm_label": "main()"
     },
     {
@@ -6678,10 +6931,21 @@
       "norm_label": "\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430 \u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430"
     },
     {
+      "label": "\u041a\u0430\u0440\u0442\u0430 \u0441\u0430\u0439\u0442\u0430",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "readme_\u043a\u0430\u0440\u0442\u0430_\u0441\u0430\u0439\u0442\u0430",
+      "community": 48,
+      "community_name": "Community 48",
+      "norm_label": "\u043a\u0430\u0440\u0442\u0430 \u0441\u0430\u0438\u0442\u0430"
+    },
+    {
       "label": "\u041a\u0430\u043a \u0442\u0435\u043a\u0441\u0442 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0430\u0434\u0440\u0435\u0441",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L5",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "readme_\u043a\u0430\u043a_\u0442\u0435\u043a\u0441\u0442_\u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442_\u0430\u0434\u0440\u0435\u0441",
       "community": 48,
@@ -6692,7 +6956,7 @@
       "label": "\u041e\u0442\u043a\u0443\u0434\u0430 \u0431\u0435\u0440\u0451\u0442\u0441\u044f \u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0435 \u043d\u0430\u0447\u0430\u043b\u043e",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L11",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "readme_\u043e\u0442\u043a\u0443\u0434\u0430_\u0431\u0435\u0440\u0451\u0442\u0441\u044f_\u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0435_\u043d\u0430\u0447\u0430\u043b\u043e",
       "community": 48,
@@ -6703,7 +6967,7 @@
       "label": "\u0427\u0442\u043e \u0438\u0437\u043c\u0435\u0440\u044f\u0435\u0442 \u044d\u043d\u0435\u0440\u0433\u0438\u044f Babel-1",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L17",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "readme_\u0447\u0442\u043e_\u0438\u0437\u043c\u0435\u0440\u044f\u0435\u0442_\u044d\u043d\u0435\u0440\u0433\u0438\u044f_babel_1",
       "community": 48,
@@ -6714,7 +6978,7 @@
       "label": "\u0427\u0442\u043e \u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0430 \u0441\u043b\u0435\u043f\u0430\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L25",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "readme_\u0447\u0442\u043e_\u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0430_\u0441\u043b\u0435\u043f\u0430\u044f_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430",
       "community": 48,
@@ -6725,7 +6989,7 @@
       "label": "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L31",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "readme_\u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439_\u0437\u0430\u043f\u0443\u0441\u043a",
       "community": 48,
@@ -6739,8 +7003,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "roadmap",
-      "community": 31,
-      "community_name": "Community 31",
+      "community": 116,
+      "community_name": "ROADMAP.md",
       "norm_label": "roadmap.md"
     },
     {
@@ -8026,8 +8290,8 @@
       "source_location": "L1786",
       "_origin": "ast",
       "id": "roadmap_11_\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0430\u044f_\u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u044c_\u0441\u0442\u0430\u0434\u0438\u0439",
-      "community": 31,
-      "community_name": "Community 31",
+      "community": 116,
+      "community_name": "ROADMAP.md",
       "norm_label": "11. \u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u044c \u0441\u0442\u0430\u0434\u0438\u0438"
     },
     {
@@ -8202,8 +8466,8 @@
       "source_location": "L1938",
       "_origin": "ast",
       "id": "roadmap_14_\u0441\u0430\u043c\u0430\u044f_\u0432\u0430\u0436\u043d\u0430\u044f_\u0444\u043e\u0440\u043c\u0443\u043b\u0438\u0440\u043e\u0432\u043a\u0430_\u0434\u043b\u044f_\u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e_\u0430\u0433\u0435\u043d\u0442\u0430",
-      "community": 31,
-      "community_name": "Community 31",
+      "community": 116,
+      "community_name": "ROADMAP.md",
       "norm_label": "14. \u0441\u0430\u043c\u0430\u044f \u0432\u0430\u0436\u043d\u0430\u044f \u0444\u043e\u0440\u043c\u0443\u043b\u0438\u0440\u043e\u0432\u043a\u0430 \u0434\u043b\u044f \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e \u0430\u0433\u0435\u043d\u0442\u0430"
     },
     {
@@ -8488,8 +8752,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "notes_current_architecture",
-      "community": 26,
-      "community_name": "Community 26",
+      "community": 31,
+      "community_name": "Community 31",
       "norm_label": "architecture.md"
     },
     {
@@ -8504,70 +8768,59 @@
       "norm_label": "\u0442\u0435\u043a\u0443\u0449\u0430\u044f \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430"
     },
     {
-      "label": "\u0414\u0432\u0430 \u0441\u043b\u043e\u044f \u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u0438",
+      "label": "\u0413\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f \u043f\u043e\u00a0seed",
       "file_type": "document",
       "source_file": "notes/current/architecture.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "notes_current_architecture_\u0434\u0432\u0430_\u0441\u043b\u043e\u044f_\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u0438",
+      "id": "notes_current_architecture_\u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f_\u043f\u043e_seed",
       "community": 26,
       "community_name": "Community 26",
-      "norm_label": "\u0434\u0432\u0430 \u0441\u043b\u043e\u044f \u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u0438"
+      "norm_label": "\u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f \u043f\u043e seed"
     },
     {
-      "label": "1. \u041f\u043e\u043b\u043d\u043e\u0435 raw-\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "label": "\u041e\u0431\u044b\u0447\u043d\u044b\u0439 \u0430\u0434\u0440\u0435\u0441",
       "file_type": "document",
       "source_file": "notes/current/architecture.md",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "notes_current_architecture_1_\u043f\u043e\u043b\u043d\u043e\u0435_raw_\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "id": "notes_current_architecture_\u043e\u0431\u044b\u0447\u043d\u044b\u0439_\u0430\u0434\u0440\u0435\u0441",
       "community": 26,
       "community_name": "Community 26",
-      "norm_label": "1. \u043f\u043e\u043b\u043d\u043e\u0435 raw-\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e"
+      "norm_label": "\u043e\u0431\u044b\u0447\u043d\u044b\u0438 \u0430\u0434\u0440\u0435\u0441"
     },
     {
-      "label": "2. Energy-\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "label": "\u041a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0435 \u0431\u043b\u043e\u043a\u0438",
       "file_type": "document",
       "source_file": "notes/current/architecture.md",
-      "source_location": "L21",
+      "source_location": "L13",
       "_origin": "ast",
-      "id": "notes_current_architecture_2_energy_\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "id": "notes_current_architecture_\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0435_\u0431\u043b\u043e\u043a\u0438",
       "community": 26,
       "community_name": "Community 26",
-      "norm_label": "2. energy-\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e"
+      "norm_label": "\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0435 \u0431\u043b\u043e\u043a\u0438"
     },
     {
-      "label": "\u0420\u0435\u0430\u043b\u044c\u043d\u044b\u0435 \u0440\u0435\u0436\u0438\u043c\u044b",
+      "label": "\u041a\u0430\u0442\u0430\u043b\u043e\u0433 \u0438\u00a0\u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438 Babel-1",
       "file_type": "document",
       "source_file": "notes/current/architecture.md",
-      "source_location": "L31",
+      "source_location": "L19",
       "_origin": "ast",
-      "id": "notes_current_architecture_\u0440\u0435\u0430\u043b\u044c\u043d\u044b\u0435_\u0440\u0435\u0436\u0438\u043c\u044b",
+      "id": "notes_current_architecture_\u043a\u0430\u0442\u0430\u043b\u043e\u0433_\u0438_\u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438_babel_1",
       "community": 26,
       "community_name": "Community 26",
-      "norm_label": "\u0440\u0435\u0430\u043b\u044c\u043d\u044b\u0435 \u0440\u0435\u0436\u0438\u043c\u044b"
+      "norm_label": "\u043a\u0430\u0442\u0430\u043b\u043e\u0433 \u0438 \u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438 babel-1"
     },
     {
-      "label": "\u041f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u043f\u0443\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0445",
+      "label": "\u042d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u0441\u00a0\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439 \u043c\u043e\u0434\u0435\u043b\u044c\u044e",
       "file_type": "document",
       "source_file": "notes/current/architecture.md",
-      "source_location": "L43",
+      "source_location": "L25",
       "_origin": "ast",
-      "id": "notes_current_architecture_\u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439_\u043f\u0443\u0442\u044c_\u0434\u0430\u043d\u043d\u044b\u0445",
+      "id": "notes_current_architecture_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442_\u0441_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u044c\u044e",
       "community": 26,
       "community_name": "Community 26",
-      "norm_label": "\u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0438 \u043f\u0443\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0445"
-    },
-    {
-      "label": "\u041f\u0440\u0430\u0432\u0438\u043b\u043e \u0447\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u0438 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430",
-      "file_type": "document",
-      "source_file": "notes/current/architecture.md",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "notes_current_architecture_\u043f\u0440\u0430\u0432\u0438\u043b\u043e_\u0447\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u0438_\u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430",
-      "community": 26,
-      "community_name": "Community 26",
-      "norm_label": "\u043f\u0440\u0430\u0432\u0438\u043b\u043e \u0447\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u0438 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0438\u0441\u0430"
+      "norm_label": "\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u0441 \u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0438 \u043c\u043e\u0434\u0435\u043b\u044c\u044e"
     },
     {
       "label": "implementation_plan.md",
@@ -8576,8 +8829,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "notes_current_implementation_plan",
-      "community": 35,
-      "community_name": "Community 35",
+      "community": 31,
+      "community_name": "Community 31",
       "norm_label": "implementation_plan.md"
     },
     {
@@ -8592,202 +8845,37 @@
       "norm_label": "\u043f\u043b\u0430\u043d \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u043e\u043a \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438"
     },
     {
-      "label": "\u0420\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0430\u044f \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f",
+      "label": "\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u043e\u0432",
       "file_type": "document",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L5",
+      "source_location": "L3",
       "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0430\u044f_\u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f",
+      "id": "notes_current_implementation_plan_\u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u043e\u0432",
       "community": 35,
       "community_name": "Community 35",
-      "norm_label": "\u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0430\u044f \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f"
+      "norm_label": "\u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u043e\u0432"
     },
     {
-      "label": "\u042d\u0442\u0430\u043f 0. \u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0433\u043e\u0442\u043e\u0432\u043e\u0439 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
+      "label": "\u041a\u0430\u043a \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0443 \u0441\u0430\u0439\u0442\u0430",
       "file_type": "document",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L13",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_0_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438_\u0433\u043e\u0442\u043e\u0432\u043e\u0439_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
+      "id": "notes_current_implementation_plan_\u043a\u0430\u043a_\u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0443_\u0441\u0430\u0439\u0442\u0430",
       "community": 35,
       "community_name": "Community 35",
-      "norm_label": "\u044d\u0442\u0430\u043f 0. \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u0433\u043e\u0442\u043e\u0432\u043e\u0438 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438"
+      "norm_label": "\u043a\u0430\u043a \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0443 \u0441\u0430\u0438\u0442\u0430"
     },
     {
-      "label": "0.1. \u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0430\u0443\u0434\u0438\u0442 reader-\u0430",
+      "label": "\u0418\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u043e\u043b\u043d\u043e\u0433\u043e \u043f\u043e\u0440\u044f\u0434\u043a\u0430 \u043f\u043e\u00a0\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438",
       "file_type": "document",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L15",
+      "source_location": "L17",
       "_origin": "ast",
-      "id": "notes_current_implementation_plan_0_1_\u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439_\u0430\u0443\u0434\u0438\u0442_reader_\u0430",
+      "id": "notes_current_implementation_plan_\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435_\u043f\u043e\u043b\u043d\u043e\u0433\u043e_\u043f\u043e\u0440\u044f\u0434\u043a\u0430_\u043f\u043e_\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438",
       "community": 35,
       "community_name": "Community 35",
-      "norm_label": "0.1. \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0438 \u0430\u0443\u0434\u0438\u0442 reader-\u0430"
-    },
-    {
-      "label": "0.2. \u041a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 API-\u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_0_2_\u043a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439_api_\u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "0.2. \u043a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0438 api-\u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442"
-    },
-    {
-      "label": "0.3. \u041e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 \u0432\u0445\u043e\u0434",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_0_3_\u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0439_\u0432\u0445\u043e\u0434",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "0.3. \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0438 \u0432\u0445\u043e\u0434"
-    },
-    {
-      "label": "\u042d\u0442\u0430\u043f 1. \u0418\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0447\u0438\u0442\u0430\u043b\u043a\u0438",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_1_\u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441_\u0447\u0438\u0442\u0430\u043b\u043a\u0438",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "\u044d\u0442\u0430\u043f 1. \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0438\u0441 \u0447\u0438\u0442\u0430\u043b\u043a\u0438"
-    },
-    {
-      "label": "\u042d\u0442\u0430\u043f 2. \u041a\u043e\u0440\u043e\u0442\u043a\u0438\u0439 \u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0439 \u043e\u043f\u044b\u0442",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L54",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_2_\u043a\u043e\u0440\u043e\u0442\u043a\u0438\u0439_\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0439_\u043e\u043f\u044b\u0442",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "\u044d\u0442\u0430\u043f 2. \u043a\u043e\u0440\u043e\u0442\u043a\u0438\u0438 \u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0438 \u043e\u043f\u044b\u0442"
-    },
-    {
-      "label": "\u042d\u0442\u0430\u043f 3. \u0413\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u043f\u043e\u00a0\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438 \u0438\u0441\u0445\u043e\u0434\u043d\u043e\u0439 \u043c\u043e\u0434\u0435\u043b\u0438",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L70",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_3_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u043f\u043e\u0440\u044f\u0434\u043e\u043a_\u043f\u043e_\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438_\u0438\u0441\u0445\u043e\u0434\u043d\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u0438",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "\u044d\u0442\u0430\u043f 3. \u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0438 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u043f\u043e \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438 \u0438\u0441\u0445\u043e\u0434\u043d\u043e\u0438 \u043c\u043e\u0434\u0435\u043b\u0438"
-    },
-    {
-      "label": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L74",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "\u0437\u0430\u0434\u0430\u0447\u0438"
-    },
-    {
-      "label": "3.1. \u042d\u0442\u0430\u043b\u043e\u043d\u043d\u044b\u0439 direct-DP",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L76",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_1_\u044d\u0442\u0430\u043b\u043e\u043d\u043d\u044b\u0439_direct_dp",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.1. \u044d\u0442\u0430\u043b\u043e\u043d\u043d\u044b\u0438 direct-dp"
-    },
-    {
-      "label": "3.2. \u0421\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u0433\u0440\u0430\u043d\u0438\u0446\u044b \u0431\u043b\u043e\u043a\u0430",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L82",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_2_\u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435_\u0433\u0440\u0430\u043d\u0438\u0446\u044b_\u0431\u043b\u043e\u043a\u0430",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.2. \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u0433\u0440\u0430\u043d\u0438\u0446\u044b \u0431\u043b\u043e\u043a\u0430"
-    },
-    {
-      "label": "3.3. Chunked counting",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L91",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_3_chunked_counting",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.3. chunked counting"
-    },
-    {
-      "label": "3.4. \u0421\u0432\u0435\u0440\u043a\u0430 \u043e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u0438 \u0441 oracle",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L95",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_4_\u0441\u0432\u0435\u0440\u043a\u0430_\u043e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u0438_\u0441_oracle",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.4. \u0441\u0432\u0435\u0440\u043a\u0430 \u043e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u0438 \u0441 oracle"
-    },
-    {
-      "label": "3.5. \u0413\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0439 rank",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L103",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_5_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0439_rank",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.5. \u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0438 \u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0438 rank"
-    },
-    {
-      "label": "3.6. \u0413\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439 \u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0439 unrank",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L112",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_6_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0439_unrank",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.6. \u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0438 \u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0438 unrank"
-    },
-    {
-      "label": "3.7. \u0414\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L121",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_3_7_\u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430",
-      "community": 120,
-      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
-      "norm_label": "3.7. \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430"
-    },
-    {
-      "label": "\u042d\u0442\u0430\u043f 4. \u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0439 \u0447\u0438\u0442\u0430\u043b\u043a\u0438",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L138",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_4_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430_\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0439_\u0447\u0438\u0442\u0430\u043b\u043a\u0438",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "\u044d\u0442\u0430\u043f 4. \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0438 \u0447\u0438\u0442\u0430\u043b\u043a\u0438"
-    },
-    {
-      "label": "\u042d\u0442\u0430\u043f 5. \u0414\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f \u0438\u00a0\u0432\u044b\u043f\u0443\u0441\u043a",
-      "file_type": "document",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L144",
-      "_origin": "ast",
-      "id": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_5_\u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f_\u0438_\u0432\u044b\u043f\u0443\u0441\u043a",
-      "community": 35,
-      "community_name": "Community 35",
-      "norm_label": "\u044d\u0442\u0430\u043f 5. \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f \u0438 \u0432\u044b\u043f\u0443\u0441\u043a"
+      "norm_label": "\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u043e\u043b\u043d\u043e\u0433\u043e \u043f\u043e\u0440\u044f\u0434\u043a\u0430 \u043f\u043e \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438"
     },
     {
       "label": "open_problems.md",
@@ -8856,15 +8944,15 @@
       "norm_label": "4. \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 \u043d\u043e\u0432\u043e\u0433\u043e \u043f\u043e\u0440\u044f\u0434\u043a\u0430"
     },
     {
-      "label": "5. \u041d\u0430\u0437\u0432\u0430\u043d\u0438\u044f \u0440\u0435\u0436\u0438\u043c\u043e\u0432",
+      "label": "5. \u0421\u0432\u044f\u0437\u043d\u043e\u0441\u0442\u044c \u0438\u00a0\u0430\u0434\u0440\u0435\u0441\u0430 \u0432\u00a0\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0435 \u0441\u00a0LLM",
       "file_type": "document",
       "source_file": "notes/current/open_problems.md",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "notes_current_open_problems_5_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_\u0440\u0435\u0436\u0438\u043c\u043e\u0432",
+      "id": "notes_current_open_problems_5_\u0441\u0432\u044f\u0437\u043d\u043e\u0441\u0442\u044c_\u0438_\u0430\u0434\u0440\u0435\u0441\u0430_\u0432_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0435_\u0441_llm",
       "community": 40,
       "community_name": "Community 40",
-      "norm_label": "5. \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f \u0440\u0435\u0436\u0438\u043c\u043e\u0432"
+      "norm_label": "5. \u0441\u0432\u044f\u0437\u043d\u043e\u0441\u0442\u044c \u0438 \u0430\u0434\u0440\u0435\u0441\u0430 \u0432 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0435 \u0441 llm"
     },
     {
       "label": "roadmap.md",
@@ -8889,48 +8977,37 @@
       "norm_label": "\u0442\u0435\u043a\u0443\u0449\u0438\u0438 \u043f\u043b\u0430\u043d"
     },
     {
-      "label": "\u042d\u0442\u0430\u043f\u044b 1\u20133. \u041e\u0431\u044b\u0447\u043d\u0430\u044f \u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f \u0438\u00a0\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0439 \u043e\u043f\u044b\u0442",
+      "label": "\u0421\u0440\u0430\u0432\u043d\u0438\u0442\u044c \u043f\u043e\u043b\u043d\u044b\u0435 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b",
       "file_type": "document",
       "source_file": "notes/current/roadmap.md",
-      "source_location": "L5",
+      "source_location": "L3",
       "_origin": "ast",
-      "id": "notes_current_roadmap_\u044d\u0442\u0430\u043f\u044b_1_3_\u043e\u0431\u044b\u0447\u043d\u0430\u044f_\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f_\u0438_\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0439_\u043e\u043f\u044b\u0442",
+      "id": "notes_current_roadmap_\u0441\u0440\u0430\u0432\u043d\u0438\u0442\u044c_\u043f\u043e\u043b\u043d\u044b\u0435_\u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b",
       "community": 67,
       "community_name": "\u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u043f\u043b\u0430\u043d",
-      "norm_label": "\u044d\u0442\u0430\u043f\u044b 1\u20133. \u043e\u0431\u044b\u0447\u043d\u0430\u044f \u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f \u0438 \u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0438 \u043e\u043f\u044b\u0442"
+      "norm_label": "\u0441\u0440\u0430\u0432\u043d\u0438\u0442\u044c \u043f\u043e\u043b\u043d\u044b\u0435 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b"
     },
     {
-      "label": "\u042d\u0442\u0430\u043f 4. \u0411\u0438\u043d\u0430\u0440\u043d\u044b\u0435 \u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438 Babel-1\u00a0\u2014 \u0440\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043e",
+      "label": "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0432\u044b\u0432\u043e\u0434\u044b \u043e\u00a0\u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0441\u0442\u0438",
       "file_type": "document",
       "source_file": "notes/current/roadmap.md",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "notes_current_roadmap_\u044d\u0442\u0430\u043f_4_\u0431\u0438\u043d\u0430\u0440\u043d\u044b\u0435_\u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438_babel_1_\u0440\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043e",
+      "id": "notes_current_roadmap_\u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c_\u0432\u044b\u0432\u043e\u0434\u044b_\u043e_\u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0441\u0442\u0438",
       "community": 67,
       "community_name": "\u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u043f\u043b\u0430\u043d",
-      "norm_label": "\u044d\u0442\u0430\u043f 4. \u0431\u0438\u043d\u0430\u0440\u043d\u044b\u0435 \u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438 babel-1 \u2014 \u0440\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043e"
+      "norm_label": "\u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0432\u044b\u0432\u043e\u0434\u044b \u043e \u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0441\u0442\u0438"
     },
     {
-      "label": "\u042d\u0442\u0430\u043f 5. \u0427\u0438\u0442\u0430\u0431\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u043f\u0435\u0440\u0432\u044b\u0445 \u0441\u0442\u0440\u0430\u043d\u0438\u0446",
+      "label": "\u041f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u043e\u0447\u043d\u043e\u0439 \u043d\u0443\u043c\u0435\u0440\u0430\u0446\u0438\u0438",
       "file_type": "document",
       "source_file": "notes/current/roadmap.md",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "notes_current_roadmap_\u044d\u0442\u0430\u043f_5_\u0447\u0438\u0442\u0430\u0431\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c_\u043f\u0435\u0440\u0432\u044b\u0445_\u0441\u0442\u0440\u0430\u043d\u0438\u0446",
+      "id": "notes_current_roadmap_\u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c_\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435_\u0442\u043e\u0447\u043d\u043e\u0439_\u043d\u0443\u043c\u0435\u0440\u0430\u0446\u0438\u0438",
       "community": 67,
       "community_name": "\u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u043f\u043b\u0430\u043d",
-      "norm_label": "\u044d\u0442\u0430\u043f 5. \u0447\u0438\u0442\u0430\u0431\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u043f\u0435\u0440\u0432\u044b\u0445 \u0441\u0442\u0440\u0430\u043d\u0438\u0446"
-    },
-    {
-      "label": "\u0418\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u0432\u0435\u0442\u043a\u0430",
-      "file_type": "document",
-      "source_file": "notes/current/roadmap.md",
-      "source_location": "L19",
-      "_origin": "ast",
-      "id": "notes_current_roadmap_\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f_\u0432\u0435\u0442\u043a\u0430",
-      "community": 67,
-      "community_name": "\u0422\u0435\u043a\u0443\u0449\u0438\u0439 \u043f\u043b\u0430\u043d",
-      "norm_label": "\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u0432\u0435\u0442\u043a\u0430"
+      "norm_label": "\u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u043e\u0447\u043d\u043e\u0438 \u043d\u0443\u043c\u0435\u0440\u0430\u0446\u0438\u0438"
     },
     {
       "label": "status.md",
@@ -8955,21 +9032,21 @@
       "norm_label": "\u0442\u0435\u043a\u0443\u0449\u0438\u0438 \u0441\u0442\u0430\u0442\u0443\u0441"
     },
     {
-      "label": "\u0427\u0442\u043e \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0432\u00a0\u0447\u0438\u0442\u0430\u043b\u043a\u0435",
+      "label": "\u0427\u0442\u043e \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e \u043d\u0430 \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u043c \u0441\u0430\u0439\u0442\u0435",
       "file_type": "document",
       "source_file": "notes/current/status.md",
-      "source_location": "L5",
+      "source_location": "L3",
       "_origin": "ast",
-      "id": "notes_current_status_\u0447\u0442\u043e_\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442_\u0432_\u0447\u0438\u0442\u0430\u043b\u043a\u0435",
+      "id": "notes_current_status_\u0447\u0442\u043e_\u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e_\u043d\u0430_\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u043c_\u0441\u0430\u0439\u0442\u0435",
       "community": 41,
       "community_name": "Community 41",
-      "norm_label": "\u0447\u0442\u043e \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0432 \u0447\u0438\u0442\u0430\u043b\u043a\u0435"
+      "norm_label": "\u0447\u0442\u043e \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e \u043d\u0430 \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u043c \u0441\u0430\u0438\u0442\u0435"
     },
     {
       "label": "\u041a\u0430\u043a \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u0438\u0441\u0445\u043e\u0434\u043d\u0443\u044e \u0442\u0430\u0431\u043b\u0438\u0446\u0443 Markov-5",
       "file_type": "document",
       "source_file": "notes/current/status.md",
-      "source_location": "L15",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "notes_current_status_\u043a\u0430\u043a_\u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c_\u0438\u0441\u0445\u043e\u0434\u043d\u0443\u044e_\u0442\u0430\u0431\u043b\u0438\u0446\u0443_markov_5",
       "community": 41,
@@ -8977,21 +9054,32 @@
       "norm_label": "\u043a\u0430\u043a \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u0438\u0441\u0445\u043e\u0434\u043d\u0443\u044e \u0442\u0430\u0431\u043b\u0438\u0446\u0443 markov-5"
     },
     {
-      "label": "\u0427\u0442\u043e \u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u043e\u043f\u044b\u0442\u044b",
+      "label": "\u0427\u0442\u043e \u0443\u0434\u0430\u0432\u0430\u043b\u043e\u0441\u044c \u0440\u0430\u043d\u043d\u0438\u043c \u043c\u043e\u0434\u0435\u043b\u044f\u043c",
       "file_type": "document",
       "source_file": "notes/current/status.md",
-      "source_location": "L26",
+      "source_location": "L24",
       "_origin": "ast",
-      "id": "notes_current_status_\u0447\u0442\u043e_\u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0438_\u0434\u0440\u0443\u0433\u0438\u0435_\u043e\u043f\u044b\u0442\u044b",
+      "id": "notes_current_status_\u0447\u0442\u043e_\u0443\u0434\u0430\u0432\u0430\u043b\u043e\u0441\u044c_\u0440\u0430\u043d\u043d\u0438\u043c_\u043c\u043e\u0434\u0435\u043b\u044f\u043c",
       "community": 41,
       "community_name": "Community 41",
-      "norm_label": "\u0447\u0442\u043e \u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u043e\u043f\u044b\u0442\u044b"
+      "norm_label": "\u0447\u0442\u043e \u0443\u0434\u0430\u0432\u0430\u043b\u043e\u0441\u044c \u0440\u0430\u043d\u043d\u0438\u043c \u043c\u043e\u0434\u0435\u043b\u044f\u043c"
+    },
+    {
+      "label": "\u042d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u0441\u00a0Qwen3",
+      "file_type": "document",
+      "source_file": "notes/current/status.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "notes_current_status_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442_\u0441_qwen3",
+      "community": 41,
+      "community_name": "Community 41",
+      "norm_label": "\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u0441 qwen3"
     },
     {
       "label": "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0441\u043b\u0435\u043f\u043e\u0439 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438",
       "file_type": "document",
       "source_file": "notes/current/status.md",
-      "source_location": "L30",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "notes_current_status_\u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b_\u0441\u043b\u0435\u043f\u043e\u0439_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438",
       "community": 41,
@@ -9002,7 +9090,7 @@
       "label": "\u0427\u0442\u043e \u043e\u0441\u0442\u0430\u0451\u0442\u0441\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c",
       "file_type": "document",
       "source_file": "notes/current/status.md",
-      "source_location": "L44",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "notes_current_status_\u0447\u0442\u043e_\u043e\u0441\u0442\u0430\u0451\u0442\u0441\u044f_\u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c",
       "community": 41,
@@ -9321,7 +9409,7 @@
       "label": "\u0427\u0442\u043e \u0443\u0436\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e",
       "file_type": "document",
       "source_file": "notes/experiments/generative_coupling.md",
-      "source_location": "L18",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "notes_experiments_generative_coupling_\u0447\u0442\u043e_\u0443\u0436\u0435_\u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e",
       "community": 69,
@@ -9329,10 +9417,21 @@
       "norm_label": "\u0447\u0442\u043e \u0443\u0436\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e"
     },
     {
+      "label": "\u041f\u0435\u0440\u0432\u0430\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0441 \u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439 \u043c\u043e\u0434\u0435\u043b\u044c\u044e, 20 \u043d\u043e\u044f\u0431\u0440\u044f 2026 \u0433\u043e\u0434\u0430",
+      "file_type": "document",
+      "source_file": "notes/experiments/generative_coupling.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "notes_experiments_generative_coupling_\u043f\u0435\u0440\u0432\u0430\u044f_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430_\u0441_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u044c\u044e_20_\u043d\u043e\u044f\u0431\u0440\u044f_2026_\u0433\u043e\u0434\u0430",
+      "community": 69,
+      "community_name": "\u041c\u043e\u0436\u043d\u043e \u043b\u0438 \u043e\u0442\u0434\u0430\u0442\u044c \u043d\u0430\u0447\u0430\u043b\u043e \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438 \u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439 \u043c\u043e\u0434\u0435\u043b\u0438?",
+      "norm_label": "\u043f\u0435\u0440\u0432\u0430\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0441 \u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0438 \u043c\u043e\u0434\u0435\u043b\u044c\u044e, 20 \u043d\u043e\u044f\u0431\u0440\u044f 2026 \u0433\u043e\u0434\u0430"
+    },
+    {
       "label": "\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u0438 \u043a\u0440\u0438\u0442\u0435\u0440\u0438\u0438 \u0440\u0435\u0448\u0435\u043d\u0438\u044f",
       "file_type": "document",
       "source_file": "notes/experiments/generative_coupling.md",
-      "source_location": "L28",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "notes_experiments_generative_coupling_\u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442_\u0438_\u043a\u0440\u0438\u0442\u0435\u0440\u0438\u0438_\u0440\u0435\u0448\u0435\u043d\u0438\u044f",
       "community": 69,
@@ -11139,20 +11238,53 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "site_readme",
-      "community": 93,
-      "community_name": "README.md",
+      "community": 31,
+      "community_name": "Community 31",
       "norm_label": "readme.md"
     },
     {
-      "label": "Static site prototype",
+      "label": "\u0413\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b \u0432\u00a0\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435",
       "file_type": "document",
       "source_file": "site/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "site_readme_static_site_prototype",
-      "community": 93,
-      "community_name": "README.md",
-      "norm_label": "static site prototype"
+      "id": "site_readme_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b_\u0432_\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435",
+      "community": 120,
+      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
+      "norm_label": "\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435"
+    },
+    {
+      "label": "\u0428\u0435\u0441\u0442\u044c \u0440\u0435\u0436\u0438\u043c\u043e\u0432 \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u0430",
+      "file_type": "document",
+      "source_file": "site/README.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "site_readme_\u0448\u0435\u0441\u0442\u044c_\u0440\u0435\u0436\u0438\u043c\u043e\u0432_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u0430",
+      "community": 120,
+      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
+      "norm_label": "\u0448\u0435\u0441\u0442\u044c \u0440\u0435\u0436\u0438\u043c\u043e\u0432 \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u0430"
+    },
+    {
+      "label": "\u0427\u0442\u043e \u0441\u0447\u0438\u0442\u0430\u0435\u0442 Score",
+      "file_type": "document",
+      "source_file": "site/README.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "site_readme_\u0447\u0442\u043e_\u0441\u0447\u0438\u0442\u0430\u0435\u0442_score",
+      "community": 120,
+      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
+      "norm_label": "\u0447\u0442\u043e \u0441\u0447\u0438\u0442\u0430\u0435\u0442 score"
+    },
+    {
+      "label": "\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a",
+      "file_type": "document",
+      "source_file": "site/README.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "site_readme_\u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439_\u0437\u0430\u043f\u0443\u0441\u043a",
+      "community": 120,
+      "community_name": "\u0417\u0430\u0434\u0430\u0447\u0438",
+      "norm_label": "\u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0438 \u0437\u0430\u043f\u0443\u0441\u043a"
     }
   ],
   "links": [
@@ -16751,6 +16883,18 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_generative_coupling",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "experiments/generative_coupling.py",
@@ -16807,6 +16951,53 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_generative_coupling_generativeaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L368",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_generative_coupling_generativeaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L21",
+      "weight": 0.8,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors",
+      "target": "experiments_generative_coupling_generativeaddress",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L312",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_generative_coupling_generativeaddress",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -16853,6 +17044,30 @@
       "source": "experiments_generative_coupling_self_test",
       "target": "experiments_generative_coupling_generativeaddress_rank",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "experiments/generative_coupling.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_generative_coupling_self_test",
+      "target": "experiments_ollama_generative_address_qwenpredictors_continuation"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "experiments/generative_coupling.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_generative_coupling_self_test",
+      "target": "experiments_ollama_generative_address_qwenpredictors_opening"
     },
     {
       "relation": "contains",
@@ -17789,6 +18004,633 @@
       "_origin": "ast",
       "source": "experiments_markov5_storage_markov5rows_init",
       "target": "experiments_markov5_storage_markov5rows_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_canonical_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L183",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_cold_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_digest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L144",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_http_transport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L333",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_normalize_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L265",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_parse_number",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L205",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_qwenpredictors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L128",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_raw_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_seed_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L291",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_self_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_strict_indices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_text_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L167",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_verify_edition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L279",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address",
+      "target": "experiments_ollama_generative_address_write_output",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L388",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_canonical_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L260",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_canonical_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L388",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_digest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L222",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_digest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L381",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L223",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L140",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_raw_prompt",
+      "target": "experiments_ollama_generative_address_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L314",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_strict_indices",
+      "target": "experiments_ollama_generative_address_decode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L356",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_strict_indices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L314",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_strict_indices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L251",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_normalize_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L315",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_normalize_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L224",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_seed_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L124",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_text_language",
+      "target": "experiments_ollama_generative_address_seed_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L224",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_text_language",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L242",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_raw_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L367",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_http_transport",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L209",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_init",
+      "target": "experiments_ollama_generative_address_verify_edition",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "target": "experiments_ollama_generative_address_cold_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L367",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_qwenpredictors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L216",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors",
+      "target": "experiments_ollama_generative_address_qwenpredictors_continuation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L208",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors",
+      "target": "experiments_ollama_generative_address_qwenpredictors_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L213",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors",
+      "target": "experiments_ollama_generative_address_qwenpredictors_opening",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L219",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors",
+      "target": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L206",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_rationale_206",
+      "target": "experiments_ollama_generative_address_qwenpredictors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L311",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_qwenpredictors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L377",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_qwenpredictors_opening",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L214",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_opening",
+      "target": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L324",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_qwenpredictors_opening",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L380",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_qwenpredictors_continuation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L217",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_qwenpredictors_continuation",
+      "target": "experiments_ollama_generative_address_qwenpredictors_predict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L327",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_qwenpredictors_continuation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L358",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_parse_number",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L321",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_self_test",
+      "target": "experiments_ollama_generative_address_parse_number",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L383",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_write_output",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L279",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_write_output",
+      "target": "experiments_ollama_generative_address_py_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "experiments/ollama_generative_address.py",
+      "source_location": "L353",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "experiments_ollama_generative_address_main",
+      "target": "experiments_ollama_generative_address_self_test",
       "confidence_score": 1.0
     },
     {
@@ -23477,23 +24319,56 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L47",
+      "source_file": "notes/current/architecture.md",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "readme",
-      "target": "notes_current_status",
+      "source": "notes_current_architecture",
+      "target": "readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/implementation_plan.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_implementation_plan",
+      "target": "readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/status.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_status",
+      "target": "readme",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L29",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme",
       "target": "notes_experiments_babel1_readability",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme",
+      "target": "notes_experiments_generative_coupling",
       "confidence_score": 1.0
     },
     {
@@ -23511,7 +24386,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L47",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme",
@@ -23519,10 +24394,21 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme",
+      "target": "site_readme",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L5",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430_\u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430",
@@ -23533,7 +24419,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L31",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430_\u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430",
+      "target": "readme_\u043a\u0430\u0440\u0442\u0430_\u0441\u0430\u0439\u0442\u0430",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430_\u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430",
@@ -23544,7 +24441,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L11",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430_\u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430",
@@ -23555,7 +24452,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L17",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430_\u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430",
@@ -23566,22 +24463,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L25",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "readme_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430_\u0432\u0430\u0432\u0438\u043b\u043e\u043d\u0430",
       "target": "readme_\u0447\u0442\u043e_\u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0430_\u0441\u043b\u0435\u043f\u0430\u044f_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan",
-      "target": "roadmap",
       "confidence_score": 1.0
     },
     {
@@ -23599,7 +24485,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/roadmap.md",
-      "source_location": "L23",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_roadmap",
@@ -23610,7 +24496,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/experiments/generative_coupling.md",
-      "source_location": "L14",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_experiments_generative_coupling",
@@ -25301,6 +26187,50 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/architecture.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_architecture",
+      "target": "notes_experiments_generative_coupling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/architecture.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_architecture",
+      "target": "site_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/open_problems.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_open_problems",
+      "target": "notes_current_architecture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/roadmap.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_roadmap",
+      "target": "notes_current_architecture",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/architecture.md",
@@ -25308,40 +26238,29 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_architecture_\u0442\u0435\u043a\u0443\u0449\u0430\u044f_\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
-      "target": "notes_current_architecture_\u0434\u0432\u0430_\u0441\u043b\u043e\u044f_\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u0438",
+      "target": "notes_current_architecture_\u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f_\u043f\u043e_seed",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/architecture.md",
-      "source_location": "L68",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_architecture_\u0442\u0435\u043a\u0443\u0449\u0430\u044f_\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
-      "target": "notes_current_architecture_\u043f\u0440\u0430\u0432\u0438\u043b\u043e_\u0447\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u0438_\u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430",
+      "target": "notes_current_architecture_\u043a\u0430\u0442\u0430\u043b\u043e\u0433_\u0438_\u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438_babel_1",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/architecture.md",
-      "source_location": "L43",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_architecture_\u0442\u0435\u043a\u0443\u0449\u0430\u044f_\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
-      "target": "notes_current_architecture_\u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439_\u043f\u0443\u0442\u044c_\u0434\u0430\u043d\u043d\u044b\u0445",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/architecture.md",
-      "source_location": "L31",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_architecture_\u0442\u0435\u043a\u0443\u0449\u0430\u044f_\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
-      "target": "notes_current_architecture_\u0440\u0435\u0430\u043b\u044c\u043d\u044b\u0435_\u0440\u0435\u0436\u0438\u043c\u044b",
+      "target": "notes_current_architecture_\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0435_\u0431\u043b\u043e\u043a\u0438",
       "confidence_score": 1.0
     },
     {
@@ -25351,19 +26270,19 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "notes_current_architecture_\u0434\u0432\u0430_\u0441\u043b\u043e\u044f_\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u0438",
-      "target": "notes_current_architecture_1_\u043f\u043e\u043b\u043d\u043e\u0435_raw_\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "source": "notes_current_architecture_\u0442\u0435\u043a\u0443\u0449\u0430\u044f_\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
+      "target": "notes_current_architecture_\u043e\u0431\u044b\u0447\u043d\u044b\u0439_\u0430\u0434\u0440\u0435\u0441",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/architecture.md",
-      "source_location": "L21",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "notes_current_architecture_\u0434\u0432\u0430_\u0441\u043b\u043e\u044f_\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u0438",
-      "target": "notes_current_architecture_2_energy_\u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "source": "notes_current_architecture_\u0442\u0435\u043a\u0443\u0449\u0430\u044f_\u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0430",
+      "target": "notes_current_architecture_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442_\u0441_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u044c\u044e",
       "confidence_score": 1.0
     },
     {
@@ -25378,87 +26297,32 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L13",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_implementation_plan",
-      "target": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_0_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438_\u0433\u043e\u0442\u043e\u0432\u043e\u0439_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L46",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan",
-      "target": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_1_\u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441_\u0447\u0438\u0442\u0430\u043b\u043a\u0438",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L54",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan",
-      "target": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_2_\u043a\u043e\u0440\u043e\u0442\u043a\u0438\u0439_\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0439_\u043e\u043f\u044b\u0442",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L70",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan",
-      "target": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_3_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u043f\u043e\u0440\u044f\u0434\u043e\u043a_\u043f\u043e_\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438_\u0438\u0441\u0445\u043e\u0434\u043d\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u0438",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L138",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan",
-      "target": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_4_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430_\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0439_\u0447\u0438\u0442\u0430\u043b\u043a\u0438",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L144",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan",
-      "target": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_5_\u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f_\u0438_\u0432\u044b\u043f\u0443\u0441\u043a",
+      "target": "notes_current_open_problems",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_implementation_plan",
-      "target": "notes_current_roadmap",
+      "target": "notes_current_status",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L3",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_implementation_plan",
@@ -25466,135 +26330,58 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/implementation_plan.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_implementation_plan",
+      "target": "site_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/roadmap.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_roadmap",
+      "target": "notes_current_implementation_plan",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L5",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_implementation_plan_\u043f\u043b\u0430\u043d_\u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438_\u0438_\u043f\u0440\u043e\u0432\u0435\u0440\u043e\u043a_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
-      "target": "notes_current_implementation_plan_\u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0430\u044f_\u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u044f",
+      "target": "notes_current_implementation_plan_\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435_\u043f\u043e\u043b\u043d\u043e\u0433\u043e_\u043f\u043e\u0440\u044f\u0434\u043a\u0430_\u043f\u043e_\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L15",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_0_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438_\u0433\u043e\u0442\u043e\u0432\u043e\u0439_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
-      "target": "notes_current_implementation_plan_0_1_\u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439_\u0430\u0443\u0434\u0438\u0442_reader_\u0430",
+      "source": "notes_current_implementation_plan_\u043f\u043b\u0430\u043d_\u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438_\u0438_\u043f\u0440\u043e\u0432\u0435\u0440\u043e\u043a_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
+      "target": "notes_current_implementation_plan_\u043a\u0430\u043a_\u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0443_\u0441\u0430\u0439\u0442\u0430",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L29",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_0_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438_\u0433\u043e\u0442\u043e\u0432\u043e\u0439_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
-      "target": "notes_current_implementation_plan_0_2_\u043a\u0430\u043d\u043e\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439_api_\u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_0_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438_\u0433\u043e\u0442\u043e\u0432\u043e\u0439_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
-      "target": "notes_current_implementation_plan_0_3_\u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0439_\u0432\u0445\u043e\u0434",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L74",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u044d\u0442\u0430\u043f_3_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u043f\u043e\u0440\u044f\u0434\u043e\u043a_\u043f\u043e_\u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438_\u0438\u0441\u0445\u043e\u0434\u043d\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u0438",
-      "target": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L76",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_1_\u044d\u0442\u0430\u043b\u043e\u043d\u043d\u044b\u0439_direct_dp",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L82",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_2_\u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435_\u0433\u0440\u0430\u043d\u0438\u0446\u044b_\u0431\u043b\u043e\u043a\u0430",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L91",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_3_chunked_counting",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L95",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_4_\u0441\u0432\u0435\u0440\u043a\u0430_\u043e\u043f\u0442\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u0438_\u0441_oracle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L103",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_5_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0439_rank",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L112",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_6_\u0433\u043b\u043e\u0431\u0430\u043b\u044c\u043d\u044b\u0439_\u0441\u043c\u044b\u0441\u043b\u043e\u0432\u043e\u0439_unrank",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/implementation_plan.md",
-      "source_location": "L121",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_implementation_plan_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_implementation_plan_3_7_\u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430",
+      "source": "notes_current_implementation_plan_\u043f\u043b\u0430\u043d_\u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438_\u0438_\u043f\u0440\u043e\u0432\u0435\u0440\u043e\u043a_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438",
+      "target": "notes_current_implementation_plan_\u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u043e\u0432",
       "confidence_score": 1.0
     },
     {
@@ -25622,8 +26409,30 @@
     {
       "relation": "references",
       "confidence": "EXTRACTED",
+      "source_file": "notes/current/open_problems.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_open_problems",
+      "target": "notes_experiments_generative_coupling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/roadmap.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_roadmap",
+      "target": "notes_current_open_problems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L48",
+      "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status",
@@ -25682,7 +26491,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_open_problems_\u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0435_\u0437\u0430\u0434\u0430\u0447\u0438",
-      "target": "notes_current_open_problems_5_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_\u0440\u0435\u0436\u0438\u043c\u043e\u0432",
+      "target": "notes_current_open_problems_5_\u0441\u0432\u044f\u0437\u043d\u043e\u0441\u0442\u044c_\u0438_\u0430\u0434\u0440\u0435\u0441\u0430_\u0432_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0435_\u0441_llm",
       "confidence_score": 1.0
     },
     {
@@ -25700,7 +26509,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/roadmap.md",
-      "source_location": "L15",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_roadmap",
+      "target": "notes_current_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/roadmap.md",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_roadmap",
@@ -25711,33 +26531,11 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/roadmap.md",
-      "source_location": "L21",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_roadmap",
       "target": "notes_experiments_generative_coupling",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/status.md",
-      "source_location": "L48",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_status",
-      "target": "notes_current_roadmap",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "notes/current/roadmap.md",
-      "source_location": "L19",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "notes_current_roadmap_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u043f\u043b\u0430\u043d",
-      "target": "notes_current_roadmap_\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f_\u0432\u0435\u0442\u043a\u0430",
       "confidence_score": 1.0
     },
     {
@@ -25748,7 +26546,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_roadmap_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u043f\u043b\u0430\u043d",
-      "target": "notes_current_roadmap_\u044d\u0442\u0430\u043f_4_\u0431\u0438\u043d\u0430\u0440\u043d\u044b\u0435_\u043e\u0431\u043e\u043b\u043e\u0447\u043a\u0438_babel_1_\u0440\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043e",
+      "target": "notes_current_roadmap_\u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c_\u0432\u044b\u0432\u043e\u0434\u044b_\u043e_\u0447\u0438\u0442\u0430\u0435\u043c\u043e\u0441\u0442\u0438",
       "confidence_score": 1.0
     },
     {
@@ -25759,18 +26557,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_roadmap_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u043f\u043b\u0430\u043d",
-      "target": "notes_current_roadmap_\u044d\u0442\u0430\u043f_5_\u0447\u0438\u0442\u0430\u0431\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c_\u043f\u0435\u0440\u0432\u044b\u0445_\u0441\u0442\u0440\u0430\u043d\u0438\u0446",
+      "target": "notes_current_roadmap_\u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u044c_\u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435_\u0442\u043e\u0447\u043d\u043e\u0439_\u043d\u0443\u043c\u0435\u0440\u0430\u0446\u0438\u0438",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/roadmap.md",
-      "source_location": "L5",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_roadmap_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u043f\u043b\u0430\u043d",
-      "target": "notes_current_roadmap_\u044d\u0442\u0430\u043f\u044b_1_3_\u043e\u0431\u044b\u0447\u043d\u0430\u044f_\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f_\u0438_\u043a\u043b\u0430\u0441\u0442\u0435\u0440\u043d\u044b\u0439_\u043e\u043f\u044b\u0442",
+      "target": "notes_current_roadmap_\u0441\u0440\u0430\u0432\u043d\u0438\u0442\u044c_\u043f\u043e\u043b\u043d\u044b\u0435_\u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b",
       "confidence_score": 1.0
     },
     {
@@ -25788,7 +26586,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L42",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status",
@@ -25796,10 +26594,32 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/status.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_status",
+      "target": "notes_experiments_generative_coupling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/status.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_status",
+      "target": "site_readme",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L15",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u0441\u0442\u0430\u0442\u0443\u0441",
@@ -25810,7 +26630,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L30",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u0441\u0442\u0430\u0442\u0443\u0441",
@@ -25821,7 +26641,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L44",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u0441\u0442\u0430\u0442\u0443\u0441",
@@ -25832,22 +26652,33 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L26",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u0441\u0442\u0430\u0442\u0443\u0441",
-      "target": "notes_current_status_\u0447\u0442\u043e_\u043f\u043e\u043a\u0430\u0437\u0430\u043b\u0438_\u0434\u0440\u0443\u0433\u0438\u0435_\u043e\u043f\u044b\u0442\u044b",
+      "target": "notes_current_status_\u0447\u0442\u043e_\u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e_\u043d\u0430_\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u043c_\u0441\u0430\u0439\u0442\u0435",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/current/status.md",
-      "source_location": "L5",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_current_status_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u0441\u0442\u0430\u0442\u0443\u0441",
-      "target": "notes_current_status_\u0447\u0442\u043e_\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442_\u0432_\u0447\u0438\u0442\u0430\u043b\u043a\u0435",
+      "target": "notes_current_status_\u0447\u0442\u043e_\u0443\u0434\u0430\u0432\u0430\u043b\u043e\u0441\u044c_\u0440\u0430\u043d\u043d\u0438\u043c_\u043c\u043e\u0434\u0435\u043b\u044f\u043c",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/current/status.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_current_status_\u0442\u0435\u043a\u0443\u0449\u0438\u0439_\u0441\u0442\u0430\u0442\u0443\u0441",
+      "target": "notes_current_status_\u044d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442_\u0441_qwen3",
       "confidence_score": 1.0
     },
     {
@@ -26074,7 +26905,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/experiments/generative_coupling.md",
-      "source_location": "L28",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "notes_experiments_generative_coupling_\u043c\u043e\u0436\u043d\u043e_\u043b\u0438_\u043e\u0442\u0434\u0430\u0442\u044c_\u043d\u0430\u0447\u0430\u043b\u043e_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u0438",
+      "target": "notes_experiments_generative_coupling_\u043f\u0435\u0440\u0432\u0430\u044f_\u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430_\u0441_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u044c\u044e_20_\u043d\u043e\u044f\u0431\u0440\u044f_2026_\u0433\u043e\u0434\u0430",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notes/experiments/generative_coupling.md",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_experiments_generative_coupling_\u043c\u043e\u0436\u043d\u043e_\u043b\u0438_\u043e\u0442\u0434\u0430\u0442\u044c_\u043d\u0430\u0447\u0430\u043b\u043e_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u0438",
@@ -26085,7 +26927,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "notes/experiments/generative_coupling.md",
-      "source_location": "L18",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "notes_experiments_generative_coupling_\u043c\u043e\u0436\u043d\u043e_\u043b\u0438_\u043e\u0442\u0434\u0430\u0442\u044c_\u043d\u0430\u0447\u0430\u043b\u043e_\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0438_\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439_\u043c\u043e\u0434\u0435\u043b\u0438",
@@ -27640,10 +28482,43 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "site_readme",
-      "target": "site_readme_static_site_prototype",
+      "target": "site_readme_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b_\u0432_\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "site/README.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "site_readme_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b_\u0432_\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435",
+      "target": "site_readme_\u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0439_\u0437\u0430\u043f\u0443\u0441\u043a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "site/README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "site_readme_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b_\u0432_\u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435",
+      "target": "site_readme_\u0448\u0435\u0441\u0442\u044c_\u0440\u0435\u0436\u0438\u043c\u043e\u0432_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u0430",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "site/README.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "site_readme_\u0448\u0435\u0441\u0442\u044c_\u0440\u0435\u0436\u0438\u043c\u043e\u0432_\u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u0430",
+      "target": "site_readme_\u0447\u0442\u043e_\u0441\u0447\u0438\u0442\u0430\u0435\u0442_score",
       "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6e5ca040a11b0922408385e21075e43473203e4c"
+  "built_at_commit": "d15345d3d792f4263bb738cd3934a73cb0734004"
 }

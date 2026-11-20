@@ -1,16 +1,16 @@
-# Graph Report - remote-clean  (2026-11-20)
+# Graph Report - graph-clean  (2026-11-20)
 
 ## Corpus Check
-- 137 files · ~2,334,776 words
+- 138 files · ~2,339,065 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1001 nodes · 1448 edges · 121 communities (90 shown, 31 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 23 edges (avg confidence: 0.64)
+- 1013 nodes · 1512 edges · 121 communities (92 shown, 29 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.65)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6e5ca040`
+- Built from commit: `d15345d3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,7 +46,6 @@
 - Community 28
 - Community 29
 - Community 30
-- Community 31
 - implementation_plan.md
 - Community 33
 - Community 34
@@ -124,10 +123,10 @@
 4. `RawClusterRanker` - 18 edges
 5. `boot()` - 14 edges
 6. `Markov5Rows` - 13 edges
-7. `BabelRanker4096` - 12 edges
-8. `atlasBoot()` - 12 edges
-9. `ChunkedRawCounter` - 11 edges
-10. `atlasDraw()` - 11 edges
+7. `main()` - 13 edges
+8. `BabelRanker4096` - 12 edges
+9. `atlasBoot()` - 12 edges
+10. `ChunkedRawCounter` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `main()` --calls--> `ContextPermutationV1`  [INFERRED]
@@ -144,7 +143,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (121 total, 31 thin omitted)
+## Communities (121 total, 29 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.10
@@ -235,8 +234,8 @@ Cohesion: 0.39
 Nodes (6): fail(), log(), main(), need_file(), run_step(), run_pipeline.sh script
 
 ### Community 23 - "Community 23"
-Cohesion: 0.06
-Nodes (32): template(), tok_type(), blind_plan(), distinct_ranks(), load_prose(), main(), metrics(), Draw and swap out each selected slot without materializing the address range. (+24 more)
+Cohesion: 0.07
+Nodes (26): template(), tok_type(), build_clusterer(), build_model(), sentence_energy(), tokenize(), blind_plan(), distinct_ranks() (+18 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.53
@@ -247,8 +246,8 @@ Cohesion: 0.25
 Nodes (3): Path, write_texts(), Redirect
 
 ### Community 26 - "Community 26"
-Cohesion: 0.25
-Nodes (7): 1. Полное raw-пространство, 2. Energy-пространство, Два слоя адресации, Правило честности интерфейса, Производственный путь данных, Реальные режимы, Текущая архитектура
+Cohesion: 0.33
+Nodes (6): Генерация по seed, Каталог и оболочки Babel-1, Кластерные блоки, Обычный адрес, Текущая архитектура, Эксперимент с языковой моделью
 
 ### Community 27 - "Community 27"
 Cohesion: 0.25
@@ -267,8 +266,8 @@ Cohesion: 0.53
 Nodes (8): api(), baseRank(), boot(), exactRank(), rankAddress(), selectedLength(), selectedMode(), usesServerExact()
 
 ### Community 32 - "implementation_plan.md"
-Cohesion: 0.48
-Nodes (4): build_clusterer(), build_model(), sentence_energy(), tokenize()
+Cohesion: 0.16
+Nodes (21): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), http_transport() (+13 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.29
@@ -279,8 +278,8 @@ Cohesion: 0.62
 Nodes (6): esc(), load(), render(), showCluster(), summarizeFromMapping(), topTransitions()
 
 ### Community 35 - "Community 35"
-Cohesion: 0.17
-Nodes (11): 0.1. Технический аудит reader-а, 0.2. Канонический API-контракт, 0.3. Основной вход, План реализации и проверок библиотеки, Работающая реализация, Этап 0. Проверки готовой библиотеки, Этап 1. Интерфейс читалки, Этап 2. Короткий кластерный опыт (+3 more)
+Cohesion: 0.50
+Nodes (4): Исследование полного порядка по стоимости, Как повторить проверку сайта, План реализации и проверок библиотеки, Сравнение генераторов
 
 ### Community 36 - "Community 36"
 Cohesion: 0.53
@@ -300,11 +299,11 @@ Nodes (5): Alphabet and corpus, Counting Infinity — Results, Exact rank MVP, M
 
 ### Community 40 - "Community 40"
 Cohesion: 0.33
-Nodes (6): 1. Порядок всех страниц по стоимости исходной модели, 2. Масштабирование точного подсчёта, 3. Читаемость, 4. Проверки нового порядка, 5. Названия режимов, Открытые задачи
+Nodes (6): 1. Порядок всех страниц по стоимости исходной модели, 2. Масштабирование точного подсчёта, 3. Читаемость, 4. Проверки нового порядка, 5. Связность и адреса в эксперименте с LLM, Открытые задачи
 
 ### Community 41 - "Community 41"
-Cohesion: 0.33
-Nodes (6): Как восстановить исходную таблицу Markov-5, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что показали другие опыты, Что работает в читалке
+Cohesion: 0.29
+Nodes (7): Как восстановить исходную таблицу Markov-5, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что проверено на публичном сайте, Что удавалось ранним моделям, Эксперимент с Qwen3
 
 ### Community 42 - "Community 42"
 Cohesion: 0.40
@@ -331,8 +330,8 @@ Cohesion: 0.83
 Nodes (3): human_int(), main(), run()
 
 ### Community 48 - "Community 48"
-Cohesion: 0.33
-Nodes (6): Библиотека Вавилона, Как текст получает адрес, Локальный запуск, Откуда берётся читаемое начало, Что измеряет энергия Babel-1, Что показала слепая проверка
+Cohesion: 0.29
+Nodes (7): Библиотека Вавилона, Как текст получает адрес, Карта сайта, Локальный запуск, Откуда берётся читаемое начало, Что измеряет энергия Babel-1, Что показала слепая проверка
 
 ### Community 50 - "Community 50"
 Cohesion: 0.50
@@ -351,12 +350,16 @@ Cohesion: 0.50
 Nodes (4): Как повторить, Результаты, Связность текста по первым адресам Babel-1, Условия проверки 20 ноября 2026 года
 
 ### Community 67 - "Текущий план"
-Cohesion: 0.40
-Nodes (5): Исследовательская ветка, Текущий план, Этап 4. Бинарные оболочки Babel-1 — реализовано, Этап 5. Читабельность первых страниц, Этапы 1–3. Обычная адресация и кластерный опыт
+Cohesion: 0.50
+Nodes (4): Проверить выводы о читаемости, Продолжить исследование точной нумерации, Сравнить полные страницы, Текущий план
 
 ### Community 69 - "Можно ли отдать начало библиотеки языковой модели?"
-Cohesion: 0.50
-Nodes (4): Как номер превращается в страницу, Можно ли отдать начало библиотеки языковой модели?, Следующий эксперимент и критерии решения, Что уже проверено
+Cohesion: 0.40
+Nodes (5): Как номер превращается в страницу, Можно ли отдать начало библиотеки языковой модели?, Первая проверка с языковой моделью, 20 ноября 2026 года, Следующий эксперимент и критерии решения, Что уже проверено
+
+### Community 93 - "README.md"
+Cohesion: 0.42
+Nodes (7): detok(), generate_sentence(), main(), paragraph_frontier(), realize(), sentence_frontier(), type_ok()
 
 ### Community 104 - "atlas.js"
 Cohesion: 0.19
@@ -407,8 +410,8 @@ Cohesion: 0.22
 Nodes (9): STAGE 8. Условное расширение выразительности, Критерий завершения, Критерий перехода на Stage 8, Принципиальное отличие от старого пути, Проблема фиксированного спектра, Расширение 8A. Позиционно-зависимые спектры, Расширение 8B. Периодические или блочные спектры, Расширение 8C. Малое латентное состояние (+1 more)
 
 ### Community 116 - "ROADMAP.md"
-Cohesion: 0.40
-Nodes (5): 13. Условия, при которых научная работа считается законченной, Математическая готовность, Модельная готовность, Репродуктивная готовность, Эмпирическая готовность
+Cohesion: 0.25
+Nodes (7): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Самая важная формулировка для следующего агента, Математическая готовность, Модельная готовность, Репродуктивная готовность, Эмпирическая готовность
 
 ### Community 117 - "2. Центральная математическая гипотеза"
 Cohesion: 0.25
@@ -423,13 +426,13 @@ Cohesion: 0.33
 Nodes (6): STAGE 0. Формализация объекта библиотеки, Критерий завершения, Научный вопрос, Обязательный научный результат Stage 0, Отдельная проблема коротких текстов, Рекомендуемое определение
 
 ### Community 120 - "Задачи"
-Cohesion: 0.25
-Nodes (8): 3.1. Эталонный direct-DP, 3.2. Состояние границы блока, 3.3. Chunked counting, 3.4. Сверка оптимизации с oracle, 3.5. Глобальный смысловой rank, 3.6. Глобальный смысловой unrank, 3.7. Доказательства, Задачи
+Cohesion: 0.50
+Nodes (4): Генераторы в браузере, Локальный запуск, Что считает Score, Шесть режимов генератора
 
 ## Knowledge Gaps
-- **313 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+308 more)
+- **304 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+299 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -437,7 +440,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
   _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Why does `BinaryShellRanker` connect `Community 29` to `Community 23`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
@@ -445,6 +448,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
-  _313 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _304 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
