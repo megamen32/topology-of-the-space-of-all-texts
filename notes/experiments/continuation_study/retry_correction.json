@@ -1,0 +1,7 @@
+{
+  "registered_utc": "2026-11-20T06:29:50.292823+00:00",
+  "trigger": "Independent CPU QA reproduced a lost scene after an empty prose reply when the source supplied a final partial word. QA also found that a malformed plan and an empty valid plan could have identical diagnostics. Only mocks and development inputs were used to diagnose these issues. No holdout texts or ratings have been consulted for this amendment.",
+  "original_candidate": "v3 and its prespecified thresholds and sample remain the primary experiment.",
+  "revision": "Introduce v3.1 as a separately pinned correction. Keep the v3 continuation seed domain and every successful retry-independent prompt. A suffix restored from the source alone does not count as a newly written scene. On retry without accepted new prose, keep the opening in the input. Collect plan parse status, useful fields and raw/normalized output lengths even when replies terminate early.",
+  "comparison": "Open the same twelve addresses under v3.1 and compare full UTF-8 with the frozen v3 artefacts. Transfer old blind judgments only to byte-identical pages. If any pages change, label them ungraded in this experiment. Test the triggering case on mocks, verify representative cross-machine inversion and keep earlier editions available."
+}
