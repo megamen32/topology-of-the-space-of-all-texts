@@ -1,16 +1,16 @@
-# Graph Report - graph-search-preserve-file  (2026-11-20)
+# Graph Report - babel-experiments  (2026-11-20)
 
 ## Corpus Check
-- 181 files · ~2,395,783 words
+- 187 files · ~2,397,502 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1262 nodes · 2040 edges · 135 communities (104 shown, 31 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 78 edges (avg confidence: 0.6)
+- 1290 nodes · 2076 edges · 139 communities (105 shown, 34 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 82 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `40f2b548`
+- Built from commit: `77296c90`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -126,8 +126,12 @@
 - Издание Babel Qwen v1
 - ReferenceTests
 - Текущий план
+- STAGE 9. Масштабирование, точная арифметика и воспроизводимость
+- build.sh
 - build.sh
 - serve.sh
+- serve.sh
+- README.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `HierarchicalEnumeratorV1` - 25 edges
@@ -156,15 +160,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (135 total, 31 thin omitted)
+## Communities (139 total, 34 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.10
 Nodes (14): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+6 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.09
-Nodes (41): api_atlas_page(), api_babel_1_route(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score() (+33 more)
+Cohesion: 0.08
+Nodes (44): api_atlas_page(), api_babel_1_route(), api_counting_proof(), api_exact_neighbor(), api_generate(), api_rank(), api_russian_walk(), api_score() (+36 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.19
@@ -199,8 +203,8 @@ Cohesion: 0.28
 Nodes (15): boot(), buildTinyRanker(), detok(), generateFSM(), generateParagraphStudent(), generateSentenceFromTemplate(), generateSentenceStudent(), isPunct() (+7 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.06
-Nodes (30): Exception, compose(), escaped(), finish_word(), Causal continuation for the v3 Qwen edition. The long excerpt goes only to the s, Only restore the end of a word witnessed after exactly the same context in U., generate returns the raw JSON for cards and alphabet-normalized text for prose., read_fields() (+22 more)
+Cohesion: 0.07
+Nodes (17): Exception, An unavailable calculation has no addressable result and is never cached., ReferenceUnavailable, job_input(), job_result(), QueueFull, QwenJobs, Short-lived Search jobs for the single-slot Qwen address service. (+9 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.14
@@ -276,11 +280,11 @@ Nodes (27): BabelRanker4096, BinaryShellRanker, ContextPermutationMarkov5, Conte
 
 ### Community 30 - "Community 30"
 Cohesion: 0.10
-Nodes (34): addressDetails, addressFormats, api(), byId(), changeMode(), charCount, clearAddressReceipt(), codePointLength() (+26 more)
+Nodes (36): addressDetails, addressFormats, api(), byId(), changeMode(), charCount, clearAddressReceipt(), codePointLength() (+28 more)
 
 ### Community 32 - "implementation_plan.md"
-Cohesion: 0.10
-Nodes (35): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), generated_text() (+27 more)
+Cohesion: 0.06
+Nodes (45): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), generated_text() (+37 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.29
@@ -431,12 +435,12 @@ Cohesion: 0.25
 Nodes (8): 1. Назначение документа, 2.1. Латентная страница, 2.2. Контекстная перестановка, 2.3. Главное математическое упрощение, 2. Центральная математическая гипотеза, Научная программа завершения математического ядра «Библиотеки Вавилона», Статистические свойства, Строго математические свойства
 
 ### Community 118 - "STAGE 9. Масштабирование, точная арифметика и воспроизводимость"
-Cohesion: 0.12
-Nodes (15): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Математическая конструкция Babel-1, 9.1. Целочисленный порядок кандидатов, 9.2. Точные размеры оболочек, 9.3. Версионирование, 9.4. Набор канонических тест-векторов, 9.5. Независимые реализации (+7 more)
+Cohesion: 0.14
+Nodes (13): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Математическая конструкция Babel-1, STAGE 0. Формализация объекта библиотеки, Критерий завершения, Математическая готовность, Модельная готовность, Научный вопрос (+5 more)
 
 ### Community 119 - "STAGE 0. Формализация объекта библиотеки"
 Cohesion: 0.33
-Nodes (6): STAGE 0. Формализация объекта библиотеки, Критерий завершения, Научный вопрос, Обязательный научный результат Stage 0, Отдельная проблема коротких текстов, Рекомендуемое определение
+Nodes (7): compose(), escaped(), finish_word(), Causal continuation for the v3 Qwen edition. The long excerpt goes only to the s, Only restore the end of a word witnessed after exactly the same context in U., generate returns the raw JSON for cards and alphabet-normalized text for prose., read_fields()
 
 ### Community 120 - "Задачи"
 Cohesion: 0.40
@@ -486,25 +490,29 @@ Nodes (3): completion(), Offline regression checks for the native reference tran
 Cohesion: 0.67
 Nodes (3): Qwen3 с обратимой нумерацией, Следующий исследовательский вопрос, Текущий план
 
+### Community 133 - "STAGE 9. Масштабирование, точная арифметика и воспроизводимость"
+Cohesion: 0.25
+Nodes (8): 9.1. Целочисленный порядок кандидатов, 9.2. Точные размеры оболочек, 9.3. Версионирование, 9.4. Набор канонических тест-векторов, 9.5. Независимые реализации, STAGE 9. Масштабирование, точная арифметика и воспроизводимость, Критерий завершения, Научный вопрос
+
 ## Knowledge Gaps
-- **350 isolated node(s):** `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script` (+345 more)
+- **353 isolated node(s):** `serve.sh script`, `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` (+348 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ReferenceClient` connect `Community 10` to `implementation_plan.md`, `Текущий план`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `generate()` connect `Текущий план` to `Community 10`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `ReferenceClient` connect `implementation_plan.md` to `Community 10`, `Текущий план`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `ReferenceUnavailable` connect `Community 10` to `implementation_plan.md`, `Community 0`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+  _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
   _`HierarchicalEnumeratorV1` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `QwenWebTest` (e.g. with `ReferenceClient` and `ReferenceUnavailable`) actually correct?**
   _`QwenWebTest` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 8 inferred relationships involving `GenerativeAddress` (e.g. with `QwenPredictors` and `QwenPredictorsGreedy`) actually correct?**
   _`GenerativeAddress` has 8 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script` to the rest of the system?**
-  _350 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `serve.sh script`, `serve.sh script`, `clone_tg_economic.sh script` to the rest of the system?**
+  _353 weakly-connected nodes found - possible documentation gaps or missing edges._
