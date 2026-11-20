@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101e28">
-  <title>Поиск по Вавилонской библиотеке · Babel</title>
+  <meta name="theme-color" content="#152b28">
+  <title>Вавилонская библиотека · Чтение и поиск</title>
   <link rel="preload" href="assets/babel-serif.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/search.css?v=folio-2">
+  <link rel="stylesheet" href="assets/search.css?v=reading-1">
 </head>
 <body>
-  <a class="skip" href="#workbench">Перейти к поиску</a>
+  <a class="skip" href="#workbench">Перейти к книге</a>
   <header class="masthead">
     <div class="wrap masthead-inner">
-      <a class="brand" href="/" aria-label="Babel — на главную">
+      <h1><a class="brand" href="/" aria-label="Вавилонская библиотека — на главную">
         <span class="book-mark" aria-hidden="true"><i></i><i></i></span>
-        <span>Babel</span>
-      </a>
+        <span>Вавилонская <em>библиотека</em></span>
+      </a></h1>
       <nav class="nav" aria-label="Разделы библиотеки">
-        <a class="current" aria-current="page" href="#workbench">Поиск</a>
-        <a href="library.html">Читалка</a>
-        <a class="research-link" href="#qwenFeatured">Результаты</a>
+        <a href="library.html">Каталог</a>
+        <a class="research-link" href="#qwenFeatured">Исследование</a>
         <details class="nav-more">
           <summary>Разделы</summary>
           <div>
-            <a href="/">Главная</a><a href="proof.html">Доказательство</a>
-            <a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a>
+            <a href="/">Главная</a><a class="compact-nav" href="library.html">Каталог</a>
+            <a class="compact-nav" href="#qwenFeatured">Исследование</a><a href="alphabet.html">Алфавит</a>
+            <a href="proof.html">Доказательство</a><a href="generate.html">Генераторы</a>
             <a href="analytics.html">Аналитика</a><a href="walk.html">Русская прогулка</a>
             <a href="student-rank.html">Student Rank</a>
           </div>
@@ -33,56 +33,54 @@
     </div>
   </header>
 
-  <main>
-    <section class="cover" aria-labelledby="title">
-      <div class="cover-picture" aria-hidden="true">
-        <img src="assets/babel-stacks.webp" alt="" width="960" height="640" fetchpriority="high">
-      </div>
-      <div class="wrap cover-inner">
-        <h1 id="title">Вавилонская<br><em>библиотека</em></h1>
-        <p class="intro">У&nbsp;каждой страницы есть адрес. Найдите номер своей фразы или откройте текст по&nbsp;номеру.</p>
-        <dl class="dimensions" aria-label="Размер библиотеки">
-          <div><dt>Возможных страниц</dt><dd>2<sup>32&#8239;768</sup></dd></div>
-          <div><dt>Знаков на странице</dt><dd>4&#8239;096</dd></div>
-          <div><dt>Знаков в алфавите</dt><dd>256</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <div class="wrap workspace" id="workbench">
+  <main id="workbench" class="wrap workspace" data-mode="qwen">
+    <div class="reader-tools">
       <div class="toolbar">
         <div class="select-group">
-          <label for="rankMode">Порядок страниц</label>
+          <label for="rankMode">Издание</label>
           <select id="rankMode">
+            <option value="qwen35_reference_v1" selected>Qwen3.5 4B</option>
+            <option value="qwen_reference_v1">Qwen3 1.7B</option>
             <option value="base256">Base-256 address</option>
-            <option value="qwen_reference_v1">Qwen3 1.7B · 4096 знаков</option>
-            <option value="qwen35_reference_v1">Qwen3.5 4B · 4096 знаков</option>
             <option value="exact_cluster_mvp">Cluster energy exact</option>
             <option value="exact_hierarchical_v1">Hierarchical exact</option>
           </select>
-          <label id="lengthControl">Длина
+          <label id="lengthControl" hidden>Длина
             <select id="rankLength">
               <option value="4">4</option><option value="8" selected>8</option>
-              <option value="16">16</option><option value="32">32</option><option value="64">64</option>
-              <option value="128">128</option><option value="256">256</option><option value="512">512</option>
-              <option value="1024">1024</option><option value="2048">2048</option><option value="4096">4096</option>
+              <option value="16">16</option><option value="32">32</option>
+              <option value="64">64</option><option value="128">128</option>
+              <option value="256">256</option><option value="512">512</option>
+              <option value="1024">1024</option><option value="2048">2048</option>
+              <option value="4096">4096</option>
             </select>
           </label>
         </div>
-        <a class="alphabet-link" href="alphabet.html">Алфавит библиотеки <span aria-hidden="true">↗</span></a>
+        <div class="go-to">
+          <label for="rankInput">Номер страницы</label>
+          <div class="address-control">
+            <input id="rankInput" type="text" value="32" size="12" autocomplete="off"
+                   autocapitalize="off" spellcheck="false" aria-describedby="numberHint editionHint">
+            <button id="unrankBtn" type="button" aria-label="Открыть страницу">Открыть</button>
+          </div>
+          <span id="numberHint" class="sr-only">Введите десятичное число или шестнадцатеричное число с префиксом 0x.</span>
+          <span id="editionHint" class="sr-only">Номер относится к выбранному изданию.</span>
+        </div>
       </div>
-
-      <div class="spread">
-        <section class="operation" aria-labelledby="from-text">
-          <h2 id="from-text">Из текста в номер</h2>
+      <details id="reverseLookup" class="lookup">
+        <summary><span class="lookup-sign" aria-hidden="true"></span>Найти номер по тексту</summary>
+        <div class="lookup-body">
           <div class="field-row">
             <label for="query">Текст страницы</label>
-            <label class="file-control" id="fileControl" hidden>
-              <input id="pageFile" type="file" aria-label="Загрузить текст из файла UTF-8">
-              <span aria-hidden="true">↑</span> Загрузить UTF-8
-            </label>
+            <div class="source-tools">
+              <button type="button" id="useOpenedPage" disabled>Вставить открытую страницу</button>
+              <label class="file-control" id="fileControl" hidden>
+                <input id="pageFile" type="file" aria-label="Загрузить текст из файла UTF-8">
+                <span aria-hidden="true">↑</span> Загрузить UTF-8
+              </label>
+            </div>
           </div>
-          <textarea id="query" rows="3" spellcheck="false" placeholder="Напишите свою фразу…" aria-describedby="qwenHint charCount replacementHint">Привет лол 😂 hello</textarea>
+          <textarea id="query" rows="3" spellcheck="false" placeholder="Напишите свою фразу…" aria-describedby="qwenHint charCount replacementHint"></textarea>
           <div class="field-notes">
             <p id="qwenHint" hidden></p>
             <span class="counter" id="counterWrap" hidden><span id="charCount"></span></span>
@@ -116,43 +114,73 @@
               <pre id="addressFormats" class="output" aria-label="Полный номер страницы"></pre>
             </details>
           </div>
-        </section>
-
-        <section class="operation" aria-labelledby="from-number">
-          <h2 id="from-number">Из номера в текст</h2>
-          <div class="field-row"><label for="rankInput">Номер страницы</label></div>
-          <textarea id="rankInput" rows="3" spellcheck="false" autocapitalize="off" aria-describedby="numberHint">0x0</textarea>
-          <div class="field-notes"><p id="numberHint">Десятичное число или шестнадцатеричное с&nbsp;префиксом <code>0x</code>.</p><p id="editionHint" hidden>Номера относятся к выбранному изданию.</p></div>
-          <div class="actions"><button id="unrankBtn" class="primary" type="button">Unrank</button></div>
-          <p class="mode-note" id="clusterHint">Кластерный режим работает с текстами до 256 знаков, иерархический — со страницами до 4096.</p>
-          <pre id="unrankResult" class="output" role="status" aria-label="Результат открытия страницы"></pre>
-        </section>
-      </div>
-
-      <section class="research" id="qwenFeatured" aria-labelledby="research-title">
-        <div class="research-copy">
-          <p class="eyebrow">Слепая проверка · Qwen v1</p>
-          <h2 id="research-title">Что читается на&nbsp;малых номерах?</h2>
-          <p>Два ИИ-читателя независимо оценили 16 страниц. Номера были скрыты. В&nbsp;таблице учтены оценки, которые подтвердили оба читателя.</p>
-          <a class="text-link" href="https://github.com/megamen32/topology-of-the-space-of-all-texts/blob/master/notes/experiments/reference_readability/result.md">Прочитать страницы и оценки <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="study-table">
-          <table>
-            <caption class="sr-only">Сравнение восьми малых и восьми далёких адресов издания Qwen</caption>
-            <thead><tr><th scope="col">Критерий</th><th scope="col">Малые адреса</th><th scope="col">Далёкие адреса</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Есть понятный абзац</th><td>7<span>/8</span></td><td>0<span>/8</span></td></tr>
-              <tr><th scope="row">Событие или мысль развивается во&nbsp;второй половине</th><td>5<span>/8</span></td><td>0<span>/8</span></td></tr>
-            </tbody>
-          </table>
-          <p>На восьмой малой странице одна цитата превысила лимит. Итог по абзацу для этой страницы остался открытым.</p>
-        </div>
-      </section>
+      </details>
     </div>
+
+    <article id="readingPaper" class="book" aria-labelledby="pageTitle">
+      <header class="book-heading">
+        <h2 id="pageTitle">Страница</h2>
+        <div class="book-heading-actions">
+          <nav class="address-turns" aria-label="Страницы библиотеки">
+            <button type="button" id="prevAddress" aria-label="Предыдущая страница" title="Предыдущая страница" disabled>
+              <span aria-hidden="true">←</span><span class="wide-label">Предыдущая</span><span class="short-label">Пред.</span>
+            </button>
+            <button type="button" id="nextAddress" aria-label="Следующая страница" title="Следующая страница" disabled>
+              <span class="wide-label">Следующая</span><span class="short-label">След.</span><span aria-hidden="true">→</span>
+            </button>
+          </nav>
+          <details id="bookTools" class="book-menu">
+            <summary aria-label="Действия с открытой страницей" title="Действия с открытой страницей"><span aria-hidden="true">⋯</span></summary>
+            <div>
+              <button type="button" id="copyOpenedPage" disabled>Скопировать страницу</button>
+              <button type="button" id="downloadOpenedPage" disabled>Скачать страницу в UTF-8</button>
+              <p id="bookActionStatus" role="status"></p>
+            </div>
+          </details>
+        </div>
+      </header>
+      <p id="bookStatus" class="book-status" role="status"></p>
+      <div class="paper-body">
+        <div id="leafWindow" tabindex="0" role="region" aria-label="Текст открытой страницы">
+          <div id="unrankResult" class="book-text"></div>
+        </div>
+      </div>
+      <nav class="leaf-turns" aria-label="Чтение внутри открытой страницы">
+        <button type="button" id="prevLeaf" aria-label="Назад по тексту" disabled><span aria-hidden="true">‹</span> <span>Назад<span class="wide-label"> по тексту</span></span></button>
+        <span id="leafPosition" role="status" aria-atomic="true"></span>
+        <button type="button" id="nextLeaf" aria-label="Дальше по тексту" disabled><span>Дальше<span class="wide-label"> по тексту</span></span> <span aria-hidden="true">›</span></button>
+      </nav>
+    </article>
+    <pre id="legacyUnrank" class="output" role="status" aria-label="Результат открытия страницы"></pre>
+    <p class="mode-note" id="clusterHint" hidden>Кластерный режим работает с текстами до 256 знаков, иерархический — со страницами до 4096.</p>
+
+    <section class="research" id="qwenFeatured" aria-labelledby="research-title">
+      <div class="research-copy">
+        <p class="eyebrow">Слепая проверка · Qwen v1</p>
+        <h2 id="research-title">Что читается на&nbsp;малых номерах?</h2>
+        <p>Два ИИ-читателя независимо оценили 16 страниц. Номера были скрыты. В&nbsp;таблице учтены оценки, которые подтвердили оба читателя.</p>
+        <a class="text-link" href="https://github.com/megamen32/topology-of-the-space-of-all-texts/blob/master/notes/experiments/reference_readability/result.md">Прочитать страницы и оценки <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="study-table">
+        <table>
+          <caption class="sr-only">Сравнение восьми малых и восьми далёких адресов издания Qwen</caption>
+          <thead><tr><th scope="col">Критерий</th><th scope="col">Малые адреса</th><th scope="col">Далёкие адреса</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Есть понятный абзац</th><td>7<span>/8</span></td><td>0<span>/8</span></td></tr>
+            <tr><th scope="row">Событие или мысль развивается во&nbsp;второй половине</th><td>5<span>/8</span></td><td>0<span>/8</span></td></tr>
+          </tbody>
+        </table>
+        <p>На восьмой малой странице одна цитата превысила лимит. Итог по абзацу для этой страницы остался открытым.</p>
+      </div>
+    </section>
   </main>
   <footer>
     <div class="wrap foot-inner">
-      <a class="foot-brand" href="/">Вавилонская библиотека</a>
+      <div class="colophon">
+        <a class="foot-brand" href="/">Вавилонская библиотека</a>
+        <p><a href="alphabet.html">256 знаков в алфавите</a> · 4 096 знаков на странице · 2<sup>32 768</sup> страниц в издании</p>
+      </div>
       <div>
         <a href="https://github.com/megamen32/topology-of-the-space-of-all-texts/blob/master/notes/experiments/qwen_reference.md">Как устроен адрес</a>
         <a href="https://github.com/megamen32/topology-of-the-space-of-all-texts/releases/tag/babel-qwen3-ref-v1">Скачать издание <span aria-hidden="true">↗</span></a>
@@ -160,6 +188,7 @@
     </div>
   </footer>
   <script src="assets/shared.js"></script>
-  <script src="assets/search.js?v=folio-qwen35-4"></script>
+  <script src="assets/reader.js?v=reading-1"></script>
+  <script src="assets/search.js?v=reading-1"></script>
 </body>
 </html>

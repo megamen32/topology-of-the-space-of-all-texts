@@ -1,4 +1,5 @@
-"""Search rank/unrank and exact UTF-8 in a browser, with a single injected Qwen client."""
+"""Search rank/unrank and exact UTF-8 with local services for both Qwen editions."""
+import json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from shutil import which
@@ -16,14 +17,19 @@ except ImportError:
 
 import backend_app
 from ollama_generative_address import ALPHABET
+from qwen35_reference import EDITION as EDITION_35, Qwen35Client
 from qwen_reference import EDITION, PAGE, ReferenceClient, ReferenceUnavailable
-from qwen_web_jobs import MODE, QwenJobs
+from qwen_web_jobs import MODE, MODE_35, QwenJobs
 
 
 MAXIMUM = (1 << (8 * PAGE)) - 1
 PHRASE = "Привет лол 😂 hello"
 LITERAL = "\ufeff  ПAе\u0301  😀\nтекст\n  "
+EXPERIMENT_DATA = Path(__file__).resolve().parents[1] / "notes" / "experiments"
+QWEN35_PAGE_32 = (EXPERIMENT_DATA / "qwen35_reference/32-ru.txt").read_text(encoding="utf-8")
+QWEN3_VERIFICATION = EXPERIMENT_DATA / "qwen_reference_verification.json"
 PAGES = {
+    41: json.loads(QWEN3_VERIFICATION.read_text(encoding="utf-8"))["address_first"]["page_utf8"],
     MAXIMUM: ("\ufeff  😀\nтекст\n\n" + ALPHABET).ljust(PAGE),
     42: LITERAL.ljust(PAGE),
     7: PHRASE + " " * 4078,
@@ -32,12 +38,17 @@ PAGES = {
     10: "\ufeff строка \n  😀\n".ljust(PAGE),
 }
 FILE_WITH_CR = "\ufeff\rстрока\r\n  😀\n".ljust(PAGE)
+INITIAL_BOOKS = {MODE: (41, PAGES[41]), MODE_35: (32, QWEN35_PAGE_32)}
 
 
-class FakeReferenceClient(ReferenceClient):
+class FakeReferenceClient:
     """Use real client validation and an in-memory address service."""
 
-    def __init__(self):
+    def __init__(self, client_type, edition, pages):
+        self.client = client_type(endpoint="http://unused.invalid")
+        self.client.request = self.request
+        self.edition = edition
+        self.pages = pages.copy()
         self.started = Event()
         self.release = Event()
         self.release.set()
@@ -45,27 +56,31 @@ class FakeReferenceClient(ReferenceClient):
 
     def request(self, path, payload):
         if path == "/rank":
-            for number, original in PAGES.items():
+            for number, original in self.pages.items():
                 if payload["page"] == original:
-                    return {"edition": EDITION, "address": hex(number)}
+                    return {"edition": self.edition, "address": hex(number)}
             raise ValueError("Страница вне тестового издания.")
         assert path == "/unrank"
         self.started.set()
         if not self.release.wait(5):
             raise RuntimeError("test did not release the worker")
         number = int(payload["address"], 16)
-        if number not in PAGES:
+        if number not in self.pages:
             raise ReferenceUnavailable("test service offline")
-        return {"edition": EDITION, "address": hex(number), "page": PAGES[number]}
+        return {"edition": self.edition, "address": hex(number), "page": self.pages[number]}
+
+    def unrank(self, number):
+        return self.client.unrank(number)
 
     def rank(self, page):
         self.ranked_page = page
-        return super().rank(page)
+        return self.client.rank(page)
 
 
-class QwenWebTest(TestCase):
+class QwenSearchCase(TestCase):
     def setUp(self):
-        self.fake = FakeReferenceClient()
+        self.fake = FakeReferenceClient(ReferenceClient, EDITION, PAGES)
+        self.fake35 = FakeReferenceClient(Qwen35Client, EDITION_35, {32: QWEN35_PAGE_32})
         self.endpoints = []
 
         def client_factory(*, endpoint):
@@ -73,13 +88,88 @@ class QwenWebTest(TestCase):
             return self.fake
 
         self.jobs = QwenJobs(client_factory, max_active=3, max_results=3)
+        self.jobs35 = QwenJobs(lambda *, endpoint: self.fake35, edition=EDITION_35)
         self.addCleanup(self.jobs.executor.shutdown)
+        self.addCleanup(self.jobs35.executor.shutdown)
         self.addCleanup(self.fake.release.set)
-        jobs_patch = patch.object(backend_app, "qwen_jobs", self.jobs)
+        self.addCleanup(self.fake35.release.set)
+        jobs_patch = patch.multiple(backend_app, qwen_jobs=self.jobs, qwen35_jobs=self.jobs35)
         jobs_patch.start()
         self.addCleanup(jobs_patch.stop)
         self.web = backend_app.app.test_client()
 
+    def open_search(self, mode=None, *, viewport=None):
+        if sync_playwright is None:
+            self.skipTest("Playwright is required for the browser check")
+        server = make_server("127.0.0.1", 0, backend_app.app, threaded=True)
+        thread = Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        self.addCleanup(server.server_close)
+        self.addCleanup(thread.join, 5)
+        self.addCleanup(server.shutdown)
+        url = f"http://127.0.0.1:{server.server_port}/search.html"
+        pw = sync_playwright().start()
+        self.addCleanup(pw.stop)
+        chrome = which("google-chrome") or which("chromium") or pw.chromium.executable_path
+        if not Path(chrome).is_file():
+            self.skipTest("Chromium is required for the browser check")
+        browser = pw.chromium.launch(executable_path=chrome)
+        self.addCleanup(browser.close)
+        tab = browser.new_page(viewport=viewport, permissions=["clipboard-read", "clipboard-write"])
+        script_errors = []
+        tab.on("pageerror", lambda error: script_errors.append(str(error)))
+        self.addCleanup(self.assertEqual, script_errors, [])
+        opens = []
+
+        def record_open(request):
+            if request.url.endswith("/api/unrank") and request.method == "POST":
+                opens.append(request.post_data_json)
+
+        tab.on("request", record_open)
+        tab.goto(url if mode is None else f"{url}?mode={mode}")
+        selected = mode or MODE_35
+        expect(tab.locator("#rankMode")).to_have_value(selected)
+        if selected in INITIAL_BOOKS:
+            number, _ = INITIAL_BOOKS[selected]
+            self.assert_initial_book(tab, selected)
+            self.assertEqual(opens, [{"mode": selected, "rank": str(number)}])
+        else:
+            self.assertEqual(opens, [])
+        tab.remove_listener("request", record_open)
+        return tab
+
+    def assert_initial_book(self, tab, mode):
+        number, page = INITIAL_BOOKS[mode]
+        expect(tab.locator("#unrankResult")).to_have_js_property("textContent", page)
+        expect(tab.locator("#rankInput")).to_have_value(str(number))
+
+    def reveal_editor(self, tab):
+        details = tab.locator("details#reverseLookup")
+        if not details.evaluate("details => details.open"):
+            details.locator(":scope > summary").click()
+        expect(tab.locator("#query")).to_be_visible()
+
+    def open_editor(self, mode=MODE, *, viewport=None):
+        tab = self.open_search(mode, viewport=viewport)
+        self.reveal_editor(tab)
+        return tab
+
+    def select_editor_mode(self, tab, mode):
+        tab.select_option("#rankMode", mode)
+        if mode in INITIAL_BOOKS:
+            self.assert_initial_book(tab, mode)
+        self.reveal_editor(tab)
+
+    def assert_page_exports(self, tab, page):
+        tab.click("#copyPage")
+        expect(tab.locator("#result")).to_contain_text("скопирована")
+        self.assertEqual(tab.evaluate("navigator.clipboard.readText()"), page)
+        with tab.expect_download() as download:
+            tab.click("#downloadPage")
+        self.assertEqual(download.value.path().read_bytes(), page.encode("utf-8"))
+
+
+class QwenWebTest(QwenSearchCase):
     def submit(self, operation, **fields):
         response = backend_app.app.test_client().post("/api/" + operation, json={"mode": MODE, **fields})
         self.assertEqual(response.status_code, 202, response.get_json())
@@ -198,44 +288,13 @@ class QwenWebTest(TestCase):
             self.assertIn("error", qwen.get_json())
         self.assertFalse(self.endpoints)
 
-    def open_search(self, *, qwen=True):
-        if sync_playwright is None:
-            self.skipTest("Playwright is required for the browser check")
-        server = make_server("127.0.0.1", 0, backend_app.app, threaded=True)
-        thread = Thread(target=server.serve_forever, daemon=True)
-        thread.start()
-        self.addCleanup(server.server_close)
-        self.addCleanup(thread.join, 5)
-        self.addCleanup(server.shutdown)
-        url = f"http://127.0.0.1:{server.server_port}/search.html"
-        pw = sync_playwright().start()
-        self.addCleanup(pw.stop)
-        chrome = which("google-chrome") or which("chromium") or pw.chromium.executable_path
-        if not Path(chrome).is_file():
-            self.skipTest("Chromium is required for the browser check")
-        browser = pw.chromium.launch(executable_path=chrome)
-        self.addCleanup(browser.close)
-        tab = browser.new_page(permissions=["clipboard-read", "clipboard-write"])
-        script_errors = []
-        tab.on("pageerror", lambda error: script_errors.append(str(error)))
-        self.addCleanup(self.assertEqual, script_errors, [])
-        tab.goto(url + ("?mode=" + MODE if qwen else ""))
-        return tab
-
-    def assert_page_exports(self, tab, page):
-        tab.click("#copyPage")
-        expect(tab.locator("#result")).to_contain_text("скопирована")
-        self.assertEqual(tab.evaluate("navigator.clipboard.readText()"), page)
-        with tab.expect_download() as download:
-            tab.click("#downloadPage")
-        self.assertEqual(download.value.path().read_bytes(), page.encode("utf-8"))
-
     def assert_browser_rank(self, tab, number):
         source = tab.input_value("#query")
         with tab.expect_request("**/api/rank") as request:
             tab.click("#rankBtn")
         self.assertEqual(request.value.post_data_json, {"mode": MODE, "text": PAGES[number]})
         expect(tab.locator("#result")).to_contain_text("Адрес найден")
+        expect(tab.locator("#unrankResult")).to_have_js_property("textContent", PAGES[number])
         expect(tab.locator("#numberReceipt")).to_be_visible()
         expect(tab.locator("#addressDetails")).to_have_js_property("open", False)
         formats = f"Десятичный номер\n{number}\n\nШестнадцатеричный номер\n{hex(number)}"
@@ -250,12 +309,18 @@ class QwenWebTest(TestCase):
         expect(tab.locator("#addressFormats")).to_have_js_property("textContent", "")
 
     def test_search_ui_unrank(self):
-        tab = self.open_search()
+        tab = self.open_editor()
         self.assertEqual(tab.input_value("#rankInput"), "41")
         self.assert_receipt_cleared(tab)
+        expect(tab.locator("#query")).to_have_value("")
+        tab.fill("#query", PHRASE)
         tab.fill("#rankInput", str(MAXIMUM))
         tab.click("#unrankBtn")
         expect(tab.locator("#unrankResult")).to_have_js_property("textContent", PAGES[MAXIMUM])
+        expect(tab.locator("#query")).to_have_value(PHRASE)
+        expect(tab.locator("#charCount")).to_have_text("18 / 4 096")
+        self.assert_page_exports(tab, PAGES[7])
+        tab.click("#useOpenedPage")
         self.assertEqual(tab.input_value("#query"), PAGES[MAXIMUM])
         expect(tab.locator("#charCount")).to_have_text("4 096 / 4 096")
         expect(tab.locator("#qwenHint")).to_contain_text("полная")
@@ -275,10 +340,15 @@ class QwenWebTest(TestCase):
         expect(tab.locator("#addressFormats")).to_be_visible()
         tab.click("#unrankBtn")
         self.assert_receipt_cleared(tab)
+        expect(tab.locator("#unrankBtn")).to_be_enabled()
         expect(tab.locator("#unrankResult")).to_have_js_property("textContent", PAGES[MAXIMUM])
+        tab.fill("#rankInput", "42")
+        tab.click("#unrankBtn")
+        expect(tab.locator("#unrankResult")).to_have_js_property("textContent", PAGES[42])
+        expect(tab.locator("#query")).to_have_value(PAGES[MAXIMUM])
 
     def test_search_ui_phrase_and_modes(self):
-        tab = self.open_search(qwen=False)
+        tab = self.open_editor("base256")
         self.assertEqual(tab.input_value("#rankMode"), "base256")
         self.assertEqual(tab.input_value("#rankInput"), "0x0")
         expect(tab.locator("#counterWrap")).to_be_hidden()
@@ -289,9 +359,10 @@ class QwenWebTest(TestCase):
         self.assertEqual(model.value.status, 200)
         expect(tab.locator("#result")).to_contain_text(PHRASE.lower())
         tab.fill("#rankInput", "0xabc")
-        tab.select_option("#rankMode", MODE)
-        self.assertEqual(tab.input_value("#rankInput"), "0xabc")
+        self.select_editor_mode(tab, MODE)
         self.assertEqual(tab.input_value("#query"), PHRASE)
+        # Choose hexadecimal display for receipts in the newly opened edition.
+        tab.fill("#rankInput", "0xabc")
         expect(tab.locator("#counterWrap")).to_be_visible()
         expect(tab.locator("#charCount")).to_have_text("18 / 4 096")
         expect(tab.locator("#qwenHint")).to_be_visible()
@@ -308,15 +379,16 @@ class QwenWebTest(TestCase):
         expect(tab.locator("#charCount")).to_have_text("0 / 4 096")
         self.assert_page_exports(tab, PAGES[8])
         self.assert_browser_rank(tab, 8)
+        self.assertEqual(tab.input_value("#rankInput"), "0x8")
 
-        tab.select_option("#rankMode", "exact_cluster_mvp")
+        self.select_editor_mode(tab, "exact_cluster_mvp")
         self.assert_receipt_cleared(tab)
         self.assertEqual(tab.input_value("#query"), "")
         tab.fill("#query", PHRASE)
         expect(tab.locator("#counterWrap")).to_be_hidden()
         expect(tab.locator("#qwenHint")).to_be_hidden()
         expect(tab.locator("#qwenFeatured")).to_be_visible()
-        self.assertEqual(tab.input_value("#rankInput"), "0x8")
+        self.assertEqual(tab.input_value("#rankInput"), "0x0")
         with tab.expect_request("**/api/rank") as request:
             tab.click("#rankBtn")
         self.assertEqual(request.value.post_data_json, {"mode": "exact_cluster_mvp", "length": 8, "text": PHRASE})
@@ -330,7 +402,7 @@ class QwenWebTest(TestCase):
         expect(tab.locator("#counterWrap")).to_be_hidden()
 
     def test_search_ui_files(self):
-        tab = self.open_search()
+        tab = self.open_editor()
         for source, number in [("", 8), (LITERAL, 42), (PAGES[9], 9)]:
             with self.subTest(length=len(source)):
                 tab.set_input_files("#pageFile", {"name": "page.txt", "mimeType": "text/plain", "buffer": source.encode()})
@@ -364,12 +436,13 @@ class QwenWebTest(TestCase):
         self.assert_page_exports(tab, "\ufeffX \nYA \n😀 B".ljust(PAGE))
 
     def test_search_ui_receipt_after_restore_and_errors(self):
-        tab = self.open_search()
+        tab = self.open_editor()
         tab.fill("#query", PHRASE)
         self.assert_browser_rank(tab, 7)
         tab.click("#addressDetails summary")
         tab.evaluate("window.dispatchEvent(new PageTransitionEvent('pageshow', {persisted: true}))")
-        self.assert_receipt_cleared(tab)
+        with self.subTest(event="restored from back-forward cache"):
+            self.assert_receipt_cleared(tab)
         self.assertEqual(tab.input_value("#query"), PHRASE)
         self.assertEqual(tab.input_value("#rankInput"), "7")
         self.assert_browser_rank(tab, 7)
@@ -377,11 +450,13 @@ class QwenWebTest(TestCase):
             tab.click("#rankBtn")
             self.assert_receipt_cleared(tab)
             expect(tab.locator("#result")).to_contain_text("недоступна")
+            expect(tab.locator("#bookStatus")).to_be_empty()
+            expect(tab.locator("#unrankResult")).to_have_js_property("textContent", PAGES[7])
         self.assert_receipt_cleared(tab)
         self.assertNotIn("Адрес найден", tab.text_content("#result"))
 
     def test_search_ui_rejects_bad_files_and_long_text(self):
-        tab = self.open_search()
+        tab = self.open_editor()
         tab.fill("#query", PHRASE)
         self.assert_browser_rank(tab, 7)
         for data, message in [(b"a" * (PAGE + 1), "превышает"), (b"x" * (4 * PAGE + 1), "16 КиБ"),

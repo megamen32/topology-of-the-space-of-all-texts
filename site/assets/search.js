@@ -1,5 +1,7 @@
 const QWEN_MODE = 'qwen_reference_v1';
 const QWEN35_MODE = 'qwen35_reference_v1';
+const MAX_ADDRESS = (1n << 32768n) - 1n;
+const MAX_DECIMAL_DIGITS = MAX_ADDRESS.toString().length;
 const isQwen = () => mode.value === QWEN_MODE || mode.value === QWEN35_MODE;
 const byId = id => document.getElementById(id);
 const mode = byId('rankMode');
@@ -7,7 +9,11 @@ const lengthSelect = byId('rankLength');
 const query = byId('query');
 const rankInput = byId('rankInput');
 const result = byId('result');
-const unrankResult = byId('unrankResult');
+const legacyUnrank = byId('legacyUnrank');
+const bookStatus = byId('bookStatus');
+const bookActionStatus = byId('bookActionStatus');
+const reverseLookup = byId('reverseLookup');
+const nativeQuerySizing = window.CSS?.supports('field-sizing', 'content');
 const charCount = byId('charCount');
 const counterWrap = byId('counterWrap');
 const numberReceipt = byId('numberReceipt');
@@ -21,6 +27,10 @@ const pageLimit = formatCount(PAGE_LEN);
 const tooLong = 'Текст превышает лимит в ' + pageLimit + ' знаков.';
 let model;
 let revision = 0;
+let activeOperation = null;
+let displayedMode = null;
+let openedBook = null;
+let observedUrl = null;
 let originalUnits = null;
 let editStart = null;
 let decimalAddress = null;
@@ -44,6 +54,14 @@ function setPage(page) {
   query.value = page;
   originalUnits = page.includes('\r') ? textareaUnits(page) : null;
   updateQwenHint();
+  resizeQuery();
+}
+
+function resizeQuery() {
+  if (nativeQuerySizing || !reverseLookup.open) return;
+  query.style.boxSizing = 'border-box';
+  query.style.height = 'auto';
+  query.style.height = (query.scrollHeight + query.offsetHeight - query.clientHeight) + 'px';
 }
 
 // A textarea selection counts UTF-16 units and treats CRLF as one line break.
@@ -212,12 +230,29 @@ function clearAddressReceipt() {
   result.textContent = '';
 }
 
-function showAddressReceipt(decimal, hexadecimal) {
-  const edge = 10;
-  let preview = decimal;
-  if (decimal.length > 2 * edge) {
-    preview = decimal.slice(0, edge) + '…' + decimal.slice(-edge) + '\nЦифр в номере — ' + formatCount(decimal.length);
+function parseAddress(value) {
+  const maxLength = /^0x/i.test(value) ? 2 + 8192 : MAX_DECIMAL_DIGITS;
+  if (typeof value === 'string' && value.length > maxLength) throw new Error('Слишком много цифр в номере страницы.');
+  if (typeof value !== 'string' || !/^(?:[0-9]+|0x[0-9a-f]+)$/i.test(value)) {
+    throw new Error('Введите десятичный номер или шестнадцатеричный номер с префиксом 0x.');
   }
+  const address = BigInt(value);
+  if (address > MAX_ADDRESS) throw new Error('Номер страницы превышает 2³²⁷⁶⁸ − 1.');
+  return address;
+}
+
+function compactAddress(decimal) {
+  const edge = 10;
+  return decimal.length > 2 * edge ? decimal.slice(0, edge) + '…' + decimal.slice(-edge) : decimal;
+}
+
+function setAddressInput(address) {
+  rankInput.value = /^0x/i.test(rankInput.value.trim()) ? '0x' + address.toString(16) : address.toString();
+}
+
+function showAddressReceipt(decimal, hexadecimal) {
+  let preview = compactAddress(decimal);
+  if (preview !== decimal) preview += '\nЦифр в номере — ' + formatCount(decimal.length);
   result.textContent = 'Адрес найден\n' + preview;
   addressFormats.textContent = 'Десятичный номер\n' + decimal + '\n\nШестнадцатеричный номер\n' + hexadecimal;
   decimalAddress = decimal;
@@ -225,20 +260,43 @@ function showAddressReceipt(decimal, hexadecimal) {
 }
 
 function updatePageButtons() {
-  const disabled = query.readOnly || (isQwen() && !qwenAlphabet);
+  const busy = activeOperation !== null;
+  const disabled = busy || (isQwen() && !qwenAlphabet);
   for (const id of ['rankBtn', 'copyPage', 'downloadPage']) byId(id).disabled = disabled;
+  byId('prevAddress').disabled = busy || !openedBook || openedBook.address === 0n;
+  byId('nextAddress').disabled = busy || !openedBook || openedBook.address === MAX_ADDRESS;
+  byId('copyOpenedPage').disabled = byId('downloadOpenedPage').disabled = !openedBook;
+  byId('useOpenedPage').disabled = !openedBook || query.readOnly;
 }
 
-function setBusy(busy) {
+function setOperation(operation) {
+  activeOperation = operation;
+  const busy = operation !== null;
   byId('unrankBtn').disabled = byId('pageFile').disabled = busy;
-  query.readOnly = rankInput.readOnly = busy;
+  byId('scoreBtn').disabled = byId('searchBtn').disabled = busy;
+  rankInput.readOnly = busy;
+  query.readOnly = busy && operation !== 'unrank';
   updatePageButtons();
 }
 
+const initialAddress = () => mode.value === QWEN35_MODE ? '32' : '41';
+
 function changeMode() {
   ++revision;
-  setBusy(false);
   const qwen = isQwen();
+  const layout = qwen ? 'qwen' : 'legacy';
+  const workbench = byId('workbench');
+  if (displayedMode === null || workbench.dataset.mode !== layout) reverseLookup.open = !qwen;
+  if (displayedMode !== mode.value) rankInput.value = qwen ? initialAddress() : '0x0';
+  displayedMode = mode.value;
+  workbench.dataset.mode = layout;
+  byId('readingPaper').hidden = !qwen;
+  legacyUnrank.hidden = qwen;
+  legacyUnrank.textContent = '';
+  window.BabelReader.clear();
+  openedBook = null;
+  byId('pageTitle').textContent = 'Страница';
+  bookStatus.textContent = bookActionStatus.textContent = '';
   for (const id of ['fileControl', 'qwenHint', 'copyPage', 'downloadPage', 'editionHint']) byId(id).hidden = !qwen;
   counterWrap.hidden = !qwen;
   byId('alphabetStatus').hidden = !qwen || Boolean(qwenAlphabet);
@@ -248,48 +306,61 @@ function changeMode() {
   } else showReplacements([]);
   for (const id of ['lengthControl', 'scoreBtn', 'searchBtn', 'clusterHint']) byId(id).hidden = qwen;
   result.classList.toggle('smallResult', qwen);
-  unrankResult.classList.toggle('smallResult', qwen);
   byId('rankBtn').textContent = qwen ? 'Найти номер страницы' : 'Rank';
-  byId('unrankBtn').textContent = qwen ? 'Открыть страницу' : 'Unrank';
+  byId('unrankBtn').textContent = qwen ? 'Открыть' : 'Unrank';
   if (mode.value === 'exact_hierarchical_v1' && Number(lengthSelect.value) < 256) lengthSelect.value = '4096';
   if (mode.value === 'exact_cluster_mvp' && Number(lengthSelect.value) > 256) lengthSelect.value = '256';
   clearAddressReceipt();
-  unrankResult.textContent = '';
+  setOperation(null);
+  resizeQuery();
 }
 
-async function runQwen(operation, current, output) {
-  const input = operation === 'rank' ? {text: paddedPage()} : {rank: rankInput.value.trim()};
+async function runQwen(operation, current, output, rank) {
+  const requested = operation === 'unrank' ? parseAddress(rank) : null;
+  const input = operation === 'rank' ? {text: paddedPage()} : {rank};
   output.textContent = 'Отправляем запрос…';
   const selectedMode = mode.value;
   const jobsPath = selectedMode === QWEN35_MODE ? '/api/qwen35/jobs/' : '/api/qwen/jobs/';
   let job = await api('/api/' + operation, {mode: selectedMode, ...input});
   const id = job.job_id;
   if (!id) throw new Error('Служба не выдала номер задания.');
-  for (let poll = 0; current === revision && (job.status === 'queued' || job.status === 'running'); poll++) {
+  for (let poll = 0; current === revision; poll++) {
+    if (job.job_id !== id || (job.mode && job.mode !== selectedMode)) {
+      throw new Error('Служба вернула ответ на другое задание.');
+    }
+    if (job.status !== 'queued' && job.status !== 'running') break;
     output.textContent = job.status === 'queued' ? 'Задание в очереди…' : 'Qwen вычисляет страницу. Это может занять несколько минут.';
     if (poll > 0) {
       await new Promise(resolve => setTimeout(resolve, 2000));
       if (current !== revision) return;
     }
     job = await api(jobsPath + encodeURIComponent(id));
-    if (job.job_id !== id) throw new Error('Служба вернула ответ на другое задание.');
   }
   if (current !== revision) return;
   if (job.status !== 'done') throw new Error(job.error || 'Служба вернула неизвестное состояние задания.');
-  if (operation === 'unrank') {
-    setPage(job.page);
-    output.textContent = job.page;
-  } else {
-    rankInput.value = /^0x/i.test(rankInput.value.trim()) ? job.rank_hex : job.rank;
-    showAddressReceipt(job.rank, job.rank_hex);
+  const address = parseAddress(job.rank ?? job.rank_hex ?? input.rank);
+  if (requested !== null && address !== requested) throw new Error('Служба вернула другой номер страницы.');
+  const page = operation === 'rank' && job.page === undefined ? input.text : job.page;
+  if (typeof page !== 'string' || codePointLength(page) !== PAGE_LEN) {
+    throw new Error('Служба должна вернуть страницу длиной ровно ' + pageLimit + ' знаков.');
   }
+  if (operation === 'rank' && page !== input.text) throw new Error('Текст в ответе отличается от отправленной страницы.');
+
+  const decimal = address.toString();
+  window.BabelReader.show(page);
+  openedBook = {address, page};
+  byId('pageTitle').textContent = 'Страница ' + compactAddress(decimal);
+  setAddressInput(address);
+  if (operation === 'rank') showAddressReceipt(decimal, '0x' + address.toString(16));
+  else clearAddressReceipt();
+  bookStatus.textContent = bookActionStatus.textContent = '';
+  return decimal;
 }
 
-async function runLegacy(operation, current, output) {
+async function runLegacy(operation, current, output, rank) {
   const selected = mode.value;
   const length = Number(lengthSelect.value);
   const text = query.value;
-  const rank = rankInput.value;
   if (!model) model = await loadCore();
   if (current !== revision) return;
   if (operation === 'score') {
@@ -297,7 +368,9 @@ async function runLegacy(operation, current, output) {
   } else if (operation === 'unrank') {
     const data = selected === 'base256' ? {page: unrank(model, rank)}
       : await api('/api/unrank', {mode: selected, length, rank});
-    if (current === revision) output.textContent = show(data);
+    if (current !== revision) return;
+    output.textContent = show(data);
+    return data.rank ?? (rank.trim() || '0');
   } else {
     let data;
     if (selected === 'base256') {
@@ -315,45 +388,72 @@ async function runLegacy(operation, current, output) {
   }
 }
 
-async function run(operation) {
+function writeLocation(rank, method) {
+  const url = new URL(location.href);
+  url.searchParams.set('mode', mode.value);
+  url.hash = rank === null ? '' : new URLSearchParams({rank}).toString();
+  if (url.href !== location.href) history[method](history.state, '', url);
+  observedUrl = url.href;
+}
+
+async function run(operation, rank = rankInput.value, historyMethod = 'pushState') {
+  if (activeOperation !== null) return;
+  const qwen = isQwen();
+  if (qwen && operation !== 'rank' && operation !== 'unrank') return;
   const current = ++revision;
-  const output = operation === 'unrank' ? unrankResult : result;
+  const startedAt = location.href;
+  const output = operation === 'unrank' ? (qwen ? bookStatus : legacyUnrank) : result;
+  setOperation(operation);
   try {
-    if (isQwen()) {
+    if (qwen && operation === 'rank') {
       clearAddressReceipt();
-      setBusy(true);
-      await runQwen(operation, current, output);
-    } else {
-      await runLegacy(operation, current, output);
+      bookStatus.textContent = '';
+    }
+    const address = qwen ? await runQwen(operation, current, output, rank.trim())
+      : await runLegacy(operation, current, output, rank);
+    if (current === revision && address !== undefined && location.href === startedAt) {
+      writeLocation(address, historyMethod);
     }
   } catch (error) {
     if (current === revision) output.textContent = error.message;
   } finally {
-    if (current === revision) setBusy(false);
+    if (current === revision) setOperation(null);
   }
 }
 
-mode.onchange = changeMode;
+function selectMode() {
+  changeMode();
+  writeLocation(null, 'pushState');
+  if (isQwen()) run('unrank', initialAddress(), 'replaceState');
+}
+
+mode.onchange = selectMode;
 byId('retryAlphabet').onclick = () => loadQwenAlphabet(true);
 lengthSelect.onchange = () => {
   if (Number(lengthSelect.value) > 256) mode.value = 'exact_hierarchical_v1';
-  changeMode();
+  selectMode();
 };
 function pageEdited() {
-  ++revision;
+  resizeQuery();
+  if (!isQwen()) return;
+  if (activeOperation === null) {
+    ++revision;
+    bookStatus.textContent = '';
+  }
   clearAddressReceipt();
   updateQwenHint();
-  unrankResult.textContent = '';
 }
 query.onbeforeinput = () => { editStart = query.selectionStart; };
 query.oninput = () => {
   if (isQwen()) {
     if (originalUnits) keepSourceLineEndings();
-    pageEdited();
   } else originalUnits = null;
   editStart = null;
+  pageEdited();
 };
 rankInput.oninput = () => {
+  if (activeOperation !== null) return;
+  bookStatus.textContent = '';
   if (decimalAddress !== null) {
     ++revision;
     clearAddressReceipt();
@@ -379,7 +479,7 @@ byId('pageFile').onchange = async event => {
   event.target.value = '';
   const current = ++revision;
   clearAddressReceipt();
-  setBusy(true);
+  setOperation('file');
   try {
     if (file.size > 4 * PAGE_LEN) throw new Error('Файл превышает 16 КиБ.');
     // ignoreBOM keeps an initial U+FEFF as the first character of the page.
@@ -388,49 +488,121 @@ byId('pageFile').onchange = async event => {
     if (current !== revision) return;
     setPage(page);
     result.textContent = 'Файл загружен.';
-    unrankResult.textContent = '';
   } catch (error) {
     if (current === revision) result.textContent = error instanceof TypeError ? 'Файл содержит некорректный UTF-8.' : error.message;
   } finally {
-    if (current === revision) setBusy(false);
+    if (current === revision) setOperation(null);
   }
+};
+byId('useOpenedPage').onclick = () => {
+  if (!openedBook || query.readOnly) return;
+  if (activeOperation === null) ++revision;
+  clearAddressReceipt();
+  setPage(openedBook.page);
 };
 async function copyText(event) {
   const current = revision;
-  const copyingAddress = event.currentTarget.id === 'copyAddress';
-  if (copyingAddress && decimalAddress === null) return;
+  const action = event.currentTarget.id;
+  const copyingAddress = action === 'copyAddress';
+  const copyingBook = action === 'copyOpenedPage';
+  const address = decimalAddress;
+  const book = openedBook;
+  if (copyingAddress && address === null) return;
+  if (copyingBook && !book) return;
+  const output = copyingBook ? bookActionStatus : result;
+  const stillCurrent = () => copyingBook ? book === openedBook
+    : current === revision && (!copyingAddress || address === decimalAddress);
   try {
-    await navigator.clipboard.writeText(copyingAddress ? decimalAddress : paddedPage());
-    if (current === revision) result.textContent = copyingAddress ? 'Адрес скопирован.' : 'Страница скопирована.';
+    let text;
+    if (copyingAddress) text = address;
+    else if (copyingBook) text = book.page;
+    else text = paddedPage();
+    await navigator.clipboard.writeText(text);
+    if (stillCurrent()) output.textContent = copyingAddress ? 'Адрес скопирован.' : 'Страница скопирована.';
   } catch (error) {
-    if (current !== revision) return;
+    if (!stillCurrent()) return;
     if (error instanceof TypeError || error instanceof DOMException) {
-      result.textContent = copyingAddress ? 'Браузер не разрешил копирование номера.'
+      output.textContent = copyingAddress ? 'Браузер не разрешил копирование номера.'
         : 'Браузер не разрешил копирование. Страницу можно скачать в UTF-8.';
-    } else result.textContent = error.message;
+    } else output.textContent = error.message;
   }
 }
-byId('copyPage').onclick = byId('copyAddress').onclick = copyText;
-byId('downloadPage').onclick = () => {
+for (const id of ['copyPage', 'copyAddress', 'copyOpenedPage']) byId(id).onclick = copyText;
+function downloadText(event) {
+  const fromBook = event.currentTarget.id === 'downloadOpenedPage';
+  if (fromBook && !openedBook) return;
   try {
-    const bytes = new TextEncoder().encode(paddedPage());
+    const bytes = new TextEncoder().encode(fromBook ? openedBook.page : paddedPage());
     const url = URL.createObjectURL(new Blob([bytes], {type: 'text/plain;charset=utf-8'}));
     const link = document.createElement('a');
     link.href = url;
     link.download = 'babel-qwen-page.txt';
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
+    if (fromBook) bookActionStatus.textContent = 'Скачивание страницы началось.';
   } catch (error) {
-    result.textContent = error.message;
+    (fromBook ? bookActionStatus : result).textContent = error.message;
   }
-};
-for (const name of ['score', 'rank', 'search', 'unrank']) byId(name + 'Btn').onclick = () => run(name);
-const requestedMode = new URLSearchParams(location.search).get('mode');
-if (requestedMode === QWEN_MODE || requestedMode === QWEN35_MODE) {
-  mode.value = requestedMode;
-  rankInput.value = '41';
 }
+byId('downloadPage').onclick = byId('downloadOpenedPage').onclick = downloadText;
+for (const name of ['score', 'rank', 'search', 'unrank']) byId(name + 'Btn').onclick = () => run(name);
+rankInput.onkeydown = event => {
+  if (event.key !== 'Enter' || event.isComposing) return;
+  event.preventDefault();
+  if (!event.repeat) run('unrank');
+};
+
+function stepAddress(event, step) {
+  if (event.detail > 1 || activeOperation !== null || !openedBook) return;
+  const next = openedBook.address + step;
+  if (next < 0n || next > MAX_ADDRESS) return;
+  setAddressInput(openedBook.address);
+  run('unrank', next.toString());
+}
+byId('prevAddress').onclick = event => stepAddress(event, -1n);
+byId('nextAddress').onclick = event => stepAddress(event, 1n);
+reverseLookup.addEventListener('toggle', resizeQuery);
+
+function readLocation() {
+  const url = new URL(location.href);
+  if (url.href === observedUrl) return;
+  observedUrl = url.href;
+  const requestedMode = url.searchParams.get('mode');
+  const selected = Array.from(mode.options).some(option => option.value === requestedMode)
+    ? requestedMode : QWEN35_MODE;
+  const rank = new URLSearchParams(url.hash.slice(1)).get('rank');
+  if (selected !== displayedMode) {
+    mode.value = selected;
+    changeMode();
+  } else {
+    if (rank === null && url.hash) return; // A section link on the same page.
+    ++revision;
+    if (activeOperation === 'rank') clearAddressReceipt();
+    bookStatus.textContent = '';
+    setOperation(null);
+  }
+  const target = rank ?? (isQwen() ? initialAddress() : null);
+  if (target === null) {
+    legacyUnrank.textContent = '';
+    return;
+  }
+  if (openedBook && target === openedBook.address.toString()) {
+    rankInput.value = target;
+    return;
+  }
+  if (!openedBook) rankInput.value = target;
+  run('unrank', target, 'replaceState');
+}
+window.addEventListener('popstate', readLocation);
+window.addEventListener('hashchange', readLocation);
 window.addEventListener('pageshow', event => {
-  if (event.persisted && isQwen()) changeMode();
+  if (event.persisted && isQwen()) {
+    if (activeOperation !== 'unrank') {
+      ++revision;
+      setOperation(null);
+    }
+    clearAddressReceipt();
+  }
+  readLocation();
 });
-changeMode();
+readLocation();
