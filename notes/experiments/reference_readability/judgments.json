@@ -1,0 +1,366 @@
+{
+  "a": {
+    "3b5d5bb48aa78a8317cd04f963193bc6": {
+      "id": "3b5d5bb48aa78a8317cd04f963193bc6",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0b5e6483027f18cf016b000c7c87fc87d0a48bfc31604d042f",
+      "status": "completed",
+      "packet_sha256": "257bf1bf8410880a8797107116e61c20a273e4d5248f30533492838defff3a94",
+      "raw": "{\n  \"id\": \"3b5d5bb48aa78a8317cd04f963193bc6\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи не складываются в связный отрывок, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не удаётся выделить событие, цель, вопрос или мысль. Во второй повторяются отдельные символы, но смыслового продолжения нет.\"\n}"
+    },
+    "87f8a3f1bb29abcaeffbd07d9a207248": {
+      "id": "87f8a3f1bb29abcaeffbd07d9a207248",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_07c326e7b6d31db7016b000c85ba4c87d0bf09212d35b7149e",
+      "status": "completed",
+      "packet_sha256": "e826913ed81ce70df371890863c80bec9cc7aa6301c3e57d4b69249c83f22d18",
+      "raw": "{\n  \"id\": \"87f8a3f1bb29abcaeffbd07d9a207248\",\n  \"readable\": true,\n  \"paragraph_quote\": \"подумав немного, он умокнул перо и написал адрес: на деревню дедушке. потом почесался, подумал и прибавил: «константину макарычу».\",\n  \"paragraph_reason\": \"Ванька пишет деду письмо с просьбой забрать его. На конверте вместо названия деревни он указывает лишь, что письмо дедушке, а затем добавляет имя и отчество.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"Первая половина заканчивается тем, что Миша отвечает на вопрос Порфирия о чине. Вместо реакции Порфирия во второй половине даны воспоминания Ваньки о деде и его письмо; они не продолжают разговор приятелей.\"\n}"
+    },
+    "ae8662827318fd048a0d7caea1b520ee": {
+      "id": "ae8662827318fd048a0d7caea1b520ee",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0b8d426c2f700cdb016b000c8e27c487d0a6217db7d7e3a090",
+      "status": "completed",
+      "packet_sha256": "1581f3fa868b61fa4610d2e8830b63b8150f1fa8265586f698aeac001cfc1a19",
+      "raw": "{\n  \"id\": \"ae8662827318fd048a0d7caea1b520ee\",\n  \"readable\": true,\n  \"paragraph_quote\": \"she stood several minutes before the picture, in earnest contemplation, and returned to it again before they quitted the gallery.\",\n  \"paragraph_reason\": \"В галерее Элизабет находит портрет мистера Дарси и узнаёт улыбку, с которой он иногда смотрел на неё. Она долго рассматривает портрет и перед уходом возвращается к нему.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"Осмотр портрета Дарси в Пемберли не получает продолжения. Во второй половине действие происходит в Рэндоллсе: Эмма успокаивает отца, а мистер Найтли проверяет, можно ли проехать домой по заснеженной дороге.\"\n}"
+    },
+    "fa88db44756ce8a878a4c49ecc8bdbec": {
+      "id": "fa88db44756ce8a878a4c49ecc8bdbec",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0379ef0011b655f3016b000c99552087d099f89519c0328205",
+      "status": "completed",
+      "packet_sha256": "094e88e91f35319bc02678bce008918377f384782be72f84d94605d7308c977e",
+      "raw": "{\n  \"id\": \"fa88db44756ce8a878a4c49ecc8bdbec\",\n  \"readable\": true,\n  \"paragraph_quote\": \"The courier’s fingers trembled as he opened the envelope, the contents a single sheet of paper with a name and an address. It was a request, but the urgency in the handwriting was unmistakable.\",\n  \"paragraph_reason\": \"Курьер вскрывает конверт и находит лист с именем и адресом. По почерку он понимает, что просьба срочная.\",\n  \"through\": true,\n  \"first_quote\": \"He had to find the right place, the right person, before the deadline.\",\n  \"second_quote\": \"He reached out, almost hesitating before placing a small package on the counter.\",\n  \"through_reason\": \"Сначала курьер ищет на почте человека, которому должен успеть передать отправление. Затем он замечает у стойки человека, привлекает его внимание и кладёт свёрток перед ним: поиск переходит в передачу.\"\n}"
+    },
+    "12d385514cb427815e474a0b20b76a70": {
+      "id": "12d385514cb427815e474a0b20b76a70",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0b13aab5ac89c0fe016b000ca0e8c087d0a48674d2c8deb67a",
+      "status": "completed",
+      "packet_sha256": "adacf370d807940b2656c5a65964dfcd57097c1b6d0eff2ff46ccbb80f3f049d",
+      "raw": "{\n  \"id\": \"12d385514cb427815e474a0b20b76a70\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Внутри компаса был какой-то странной формы шарик, с выцветшей желтой меткой, которая не совпадала с тем, что на карте. Он медленно поворачивал шарик, сравнивая каждую из глянцевых отметок с марками на бумаге.\",\n  \"paragraph_reason\": \"Садовник замечает, что жёлтая метка на шарике внутри компаса не совпадает с картой. Он поворачивает шарик и сверяет остальные отметки.\",\n  \"through\": true,\n  \"first_quote\": \"Он взял чертёж, впившись в него взглядом, и пошёл к двери.\",\n  \"second_quote\": \"Он медленно поворачивал шарик, сравнивая каждую из глянцевых отметок с марками на бумаге.\",\n  \"through_reason\": \"Сначала садовник берёт и внимательно разглядывает чертёж. Затем у бумаги появляется конкретное применение: с её помощью он проверяет отметки внутри компаса.\"\n}"
+    },
+    "7ea16e4d31824aef2de93c049733061c": {
+      "id": "7ea16e4d31824aef2de93c049733061c",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0ed247b6982f93ad016b000caa4fa887d0a01696d6b3e66e4a",
+      "status": "completed",
+      "packet_sha256": "82f11b9894557587f95263009d59385d073ecd98db6b085ae18ce32fe768c74c",
+      "raw": "{\n  \"id\": \"7ea16e4d31824aef2de93c049733061c\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Потом она аккуратно переставляет документы, стараясь не выронить ни одного из них. Каждый раз, когда она приближается к чемодью, она делает паузу, чтобы убедиться, что всё правильно.\",\n  \"paragraph_reason\": \"Героиня осторожно перекладывает документы и делает паузы, чтобы проверить, всё ли на месте.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"Переводчица находит письмо, затем в зале вспыхивает огонь. Во второй половине героиня укладывает документы в чемодан: не сказано, что среди них то самое письмо или что её действия вызваны огнём. Через границу переходит лишь повтор строки о вокзале.\"\n}"
+    },
+    "154aea9c96378f44ebedd6ffcf6ffb4c": {
+      "id": "154aea9c96378f44ebedd6ffcf6ffb4c",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_01bd64d6d6cdc193016b000cb2b6e487d0b9c96471f485c167",
+      "status": "completed",
+      "packet_sha256": "7eced3b6bbcf292210a4ad9935007713ba57d8a518e6e7f0fdb36fe1b3bd1d5f",
+      "raw": "{\n  \"id\": \"154aea9c96378f44ebedd6ffcf6ffb4c\",\n  \"readable\": true,\n  \"paragraph_quote\": \"The camera was not calibrated for the night, and the light from the city was seeping through the windows, making the image look unnatural.\",\n  \"paragraph_reason\": \"Элиас получает резкий снимок звёзд, но замечает, что из-за настроек камеры и городского света небо на нём выглядит неестественно.\",\n  \"through\": true,\n  \"first_quote\": \"It was a beautiful image, but it didn’t capture the essence of the night.\",\n  \"second_quote\": \"It was a simple act, yet it carried meaning—a symbol of his commitment to preserving moments that would otherwise fade into memory.\",\n  \"through_reason\": \"После съёмки Элиас замечает, что даже красивый кадр не передаёт пережитого. Место действия резко меняется, но эта мысль развивается: в ущелье он снова устанавливает камеру, теперь уже с целью сохранить то, что иначе останется лишь в памяти.\"\n}"
+    },
+    "c7990c7a0551eff7a0a3c89606b7834d": {
+      "id": "c7990c7a0551eff7a0a3c89606b7834d",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0cab8bfd9abde6ba016b000cbc260c87d0b903ea15b6f7b4e6",
+      "status": "completed",
+      "packet_sha256": "7037e447eb22741fe0a0eb7074f1fe0b3336760a7ef9ae9de6604366e05afe8f",
+      "raw": "{\n  \"id\": \"c7990c7a0551eff7a0a3c89606b7834d\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах буквы, цифры, знаки и эмодзи не образуют связного отрывка, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нет различимого события, вопроса или мысли. Во второй повторяются отдельные символы, но смыслового продолжения нет.\"\n}"
+    },
+    "4cb096f5d82af98023509c1bed512dda": {
+      "id": "4cb096f5d82af98023509c1bed512dda",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0413dfa4a06e7245016b000cc3ed8887d09d185116085060b1",
+      "status": "completed",
+      "packet_sha256": "36e55bf211620d4ee56ac019295b9d8aeb86e7cd678bd6d9c36a4f3edfde62c1",
+      "raw": "{\n  \"id\": \"4cb096f5d82af98023509c1bed512dda\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи не образуют ни одного связного отрывка, содержание которого можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нельзя выделить событие, цель, вопрос или мысль. Во второй продолжается лишь чередование символов, а не смысловой эпизод.\"\n}"
+    },
+    "af8653d1cd16d0ca34c2cae586c6b3ea": {
+      "id": "af8653d1cd16d0ca34c2cae586c6b3ea",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0db400d5636d0b53016b000ccab7b487d08d0d314bd0f0821d",
+      "status": "completed",
+      "packet_sha256": "48c4d015087bff697b2c1cef89b3402a0a54310f70a5778bb41f30b7d92e127d",
+      "raw": "{\n  \"id\": \"af8653d1cd16d0ca34c2cae586c6b3ea\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи не складываются в связный отрывок: ни в одной части страницы нет мысли или описания, которое можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нельзя выделить событие или вопрос. Во второй повторяются отдельные символы, но смыслового продолжения нет.\"\n}"
+    },
+    "be2e7d31b0ecfb82d677091895060625": {
+      "id": "be2e7d31b0ecfb82d677091895060625",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_029921bab10a61dc016b000cd1078087d08fdf79e2b88984d8",
+      "status": "completed",
+      "packet_sha256": "86ace1d58c91ba9fc7bb70630fee1ea4001a8a3e0d7ae3b1226466107636bdbb",
+      "raw": "{\n  \"id\": \"be2e7d31b0ecfb82d677091895060625\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи нигде не складываются в связный отрывок, который можно пересказать, в том числе на стыке половин.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нельзя выделить конкретное событие или мысль. Во второй повторяются отдельные символы, но они не выражают ни продолжения, ни следствия.\"\n}"
+    },
+    "03b6b4c07cee4c2d3041f33036a9cf04": {
+      "id": "03b6b4c07cee4c2d3041f33036a9cf04",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0e4f98cd45575d45016b000cd7adb487d09163561196c921ce",
+      "status": "completed",
+      "packet_sha256": "e65c1f532256e5b5e903d1544defbef643852f09ef6b879fcbada71cb8555a55",
+      "raw": "{\n  \"id\": \"03b6b4c07cee4c2d3041f33036a9cf04\",\n  \"readable\": true,\n  \"paragraph_quote\": \"в чемодане щелкнул замок. яркий свет ударил тетку по глазам; она прыгнула вон из чемодана и, оглушенная ревом, быстро, во всю прыть забегала вокруг своего хозяина и залилась звонким лаем.\",\n  \"paragraph_reason\": \"Когда чемодан открывается, Тётка выскакивает на яркий свет и с лаем носится вокруг хозяина под рёв публики.\",\n  \"through\": true,\n  \"first_quote\": \"сначала мы с вами споем, а потом попляшем.\",\n  \"second_quote\": \"он вынул из кармана дудочку и заиграл. тетка, не вынося музыки, беспокойно задвигалась на стуле и завыла.\",\n  \"through_reason\": \"Хозяин объявляет, что они с Тёткой споют, а затем начинает номер: играет на дудочке, и собака подвывает. Во время выступления Федюшка узнаёт в ней Каштанку.\"\n}"
+    },
+    "4bbfbd2bd2146bc8e50272b61e7df046": {
+      "id": "4bbfbd2bd2146bc8e50272b61e7df046",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0607e2bf8f0e949d016b000ce30c7487d0903ad91ee1707ddd",
+      "status": "completed",
+      "packet_sha256": "b9d8acd75751abc40c60c648f6e80e0d27c5eecd6e8ec3364e07ed0d28a0fa00",
+      "raw": "{\n  \"id\": \"4bbfbd2bd2146bc8e50272b61e7df046\",\n  \"readable\": true,\n  \"paragraph_quote\": \"It was a pass to the research facility, a key that would grant access to the deepest layers of the earth. Elias had been searching for it for weeks, chasing a lead that had eluded him.\",\n  \"paragraph_reason\": \"На столе перед Элиасом лежит пропуск, который он искал несколько недель: с ним геолог сможет попасть в исследовательский центр и изучить глубинные слои Земли.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"Элиас берёт пропуск, но дальше вместо его использования описаны резьба по дереву и посетитель, которому Элиас показывает семейную фотографию. Текст не связывает ни фотографию, ни последующую находку странного света с пропуском или исследованиями геолога.\"\n}"
+    },
+    "ee11bc31633ee15593d9e53581cb3fab": {
+      "id": "ee11bc31633ee15593d9e53581cb3fab",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0cd3b1201cc7933a016b000cec033487d082e16b92c52f8a8c",
+      "status": "completed",
+      "packet_sha256": "f50e228d690c63420b9c17d494a6586da4e533fba666de9fd81b1c84a8e6620e",
+      "raw": "{\n  \"id\": \"ee11bc31633ee15593d9e53581cb3fab\",\n  \"readable\": true,\n  \"paragraph_quote\": \"He had come to the observatory to find a place to sit, to be alone, to think. The garden was his refuge, but the sky was his truest companion.\",\n  \"paragraph_reason\": \"Элиас приходит в обсерваторию, чтобы побыть одному и подумать. В саду он отдыхает, но именно небо заменяет ему собеседника.\",\n  \"through\": true,\n  \"first_quote\": \"The wind was stronger, and the rain was coming.\",\n  \"second_quote\": \"the storm raged around him, his heart steady despite the chaos. He crouched down, squinting through the eyepiece, and noticed the glow again—this time, more intense.\",\n  \"through_reason\": \"Надвигающаяся непогода переходит в бурю. Элиас сохраняет спокойствие, снова смотрит в телескоп и замечает свечение.\"\n}"
+    },
+    "0f6c78a6cee1680ca8f50da40a072958": {
+      "id": "0f6c78a6cee1680ca8f50da40a072958",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0d4fa07b5d2965ee016b000cf4504887d0af78c98aae9861d8",
+      "status": "completed",
+      "packet_sha256": "11dc31948868fec9a78de9eb027b2c4c96fbcff24b2ac2e43983f3271da376ef",
+      "raw": "{\n  \"id\": \"0f6c78a6cee1680ca8f50da40a072958\",\n  \"readable\": true,\n  \"paragraph_quote\": \"she then joined them soon enough to see lydia, with anxious parade, walk up to her mother's right hand, and hear her say to her eldest sister,-- \\\"ah, jane, i take your place now, and you must go lower, because i am a married woman.\\\"\",\n  \"paragraph_reason\": \"Перед обедом Лидия демонстративно занимает место справа от матери и объявляет Джейн, что теперь, как замужняя женщина, имеет перед ней преимущество.\",\n  \"through\": true,\n  \"first_quote\": \"and so i let down the side glass next to him, and took off my glove and let my hand just rest upon the window frame, so that he might see the ring, and then i bowed and smiled like anything.\",\n  \"second_quote\": \"elizabeth could bear it no longer. she got up and ran out of the room; and returned no more, till she heard them passing through the hall to the dining-parlour.\",\n  \"through_reason\": \"Лидия рассказывает, как сняла перчатку, чтобы знакомый заметил обручальное кольцо. Элизабет, уже смущённая её бестактностью, не выдерживает этого рассказа и выбегает из комнаты.\"\n}"
+    },
+    "3e1ce548e82df256d343e459cabb87ce": {
+      "id": "3e1ce548e82df256d343e459cabb87ce",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_085f5df3fa460efa016b000cfd309087d0b3d6cddf2bad63c4",
+      "status": "completed",
+      "packet_sha256": "57a9279f0312b6669e1f5a361d08bd062954c81cd28d86f5508c817a9b8d6f3d",
+      "raw": "{\n  \"id\": \"3e1ce548e82df256d343e459cabb87ce\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Он поднял компас, который лежал на столе, и посмотрел на него. Показалось, что стрелка не направлена в нужном направлении.\",\n  \"paragraph_reason\": \"Когда в оранжерее становится тише, садовник проверяет компас. Ему кажется, что стрелка указывает не туда. Вспомнив прошлогоднюю бурю, он боится её повторения.\",\n  \"through\": true,\n  \"first_quote\": \"Он вспомнил, как в тот раз ветер ворвался в оранжерею, и тогда он не мог ничего сделать. Теперь он понял, что ветер возвращается, и он должен действовать.\",\n  \"second_quote\": \"Он хотел взять компас обратно, но в тот миг, когда он приблизился к нему, ветер снова пронзил его лицо, и он потерял сознание.\",\n  \"through_reason\": \"В первой половине садовник замечает возвращение ветра и решает действовать. Во второй ветер уже мешает ему вернуть упавший компас: при попытке приблизиться к нему садовник теряет сознание.\"\n}"
+    },
+    "197d3065ea2993cfc4f44e9f32e165ad": {
+      "id": "197d3065ea2993cfc4f44e9f32e165ad",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0636477165070a08016b000d07073887d081507af1f42b689c",
+      "status": "completed",
+      "packet_sha256": "faa630da46ef794d582fd6b22d145115584b7c673f3de427f77802bc554a5069",
+      "raw": "{\n  \"id\": \"197d3065ea2993cfc4f44e9f32e165ad\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Он медленно поднял ключ, чувствуя его твёрдость и холод. Каждый пальцем пошевелил его поверхность, и то, что раньше казалось незаметным, теперь стало явной призраком.\",\n  \"paragraph_reason\": \"Несмотря на языковые сбои, эпизод понятен: герой ощупывает холодный ключ, и ему кажется, что ключ живой и создан для особой цели.\",\n  \"through\": true,\n  \"first_quote\": \"Он подошёл к воротам, включил ключ, и ворота отворились. Внутри обсерватории тихо, как будто время остановилось.\",\n  \"second_quote\": \"Внутри ключа ощущение того, что он живёт, а не просто состоит из металла и гравировки. Он вздохнул, поняв: этот ключ был создан для чего-то особенного.\",\n  \"through_reason\": \"Сначала садовник пользуется ключом, чтобы открыть ворота обсерватории. Позже, после того как механизм приходит в движение, он рассматривает сам ключ и начинает подозревать, что тот нужен не только для входа.\"\n}"
+    },
+    "53234c01426054d6bb5b1b9f2366900a": {
+      "id": "53234c01426054d6bb5b1b9f2366900a",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0d3a6277d4d50d06016b000d10f1f887d09cb1fa9ca97afdc8",
+      "status": "completed",
+      "packet_sha256": "5536ae7a15af1a40c3e9699bb03494542b82dbf6831de0bbeab920ae273caa9c",
+      "raw": "{\n  \"id\": \"53234c01426054d6bb5b1b9f2366900a\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи не складываются в связный отрывок, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не удаётся выделить событие или мысль, а во второй — распознать их развитие.\"\n}"
+    },
+    "39ec64bec35cf8db8dfffa8862757311": {
+      "id": "39ec64bec35cf8db8dfffa8862757311",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_0f06ed15208e57d3016b000d1876b487d083ae363e1ee5e6f2",
+      "status": "completed",
+      "packet_sha256": "43f82335ebc07fbebe5c50d0f9495027bedde9b78c90c82212b8a5031377e85b",
+      "raw": "{\n  \"id\": \"39ec64bec35cf8db8dfffa8862757311\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи не складываются в связный отрывок, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не удаётся выделить событие, вопрос или мысль, а во второй — их продолжение. Половины сходны только набором символов.\"\n}"
+    },
+    "bd242839a26f8434c489165c17af6bd2": {
+      "id": "bd242839a26f8434c489165c17af6bd2",
+      "reader": "gpt-6.2-astra",
+      "actual_model": "gpt-6.2-astra",
+      "response_id": "resp_07aa1f2ec60ad87e016b000d1e1ef887d0ba272e0a4a484a57",
+      "status": "completed",
+      "packet_sha256": "1f6d8e3ce9d6ecf17c7b8c982fbd1be05600f46de7541583a7a9cdc7a23b593c",
+      "raw": "{\n  \"id\": \"bd242839a26f8434c489165c17af6bd2\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Буквы, цифры, знаки и эмодзи не складываются в связный отрывок, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не удаётся выделить событие или мысль, а во второй — какое-либо их развитие. Повторяются лишь отдельные символы.\"\n}"
+    }
+  },
+  "b": {
+    "aeb4137b185838c056edf8de3aa59917": {
+      "id": "aeb4137b185838c056edf8de3aa59917",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_013b9519e8f1ee47016b000c7c916487d0bc5538efedf59fdd",
+      "status": "completed",
+      "packet_sha256": "48c166a77afacfacf5d8812f04fc131b4acda37f6e279403a8952de504a1a1e3",
+      "raw": "{\n  \"id\": \"aeb4137b185838c056edf8de3aa59917\",\n  \"readable\": true,\n  \"paragraph_quote\": \"they seemed each of them to have the happiest memories in the world. nothing of the past was recollected with pain; and lydia led voluntarily to subjects which her sisters would not have alluded to for the world.\",\n  \"paragraph_reason\": \"Лидия и Уикхем вспоминают прошлое без смущения, а Лидия сама заговаривает о том, чего её сёстры предпочли бы не касаться.\",\n  \"through\": true,\n  \"first_quote\": \"so that he might see the ring, and then i bowed and smiled like anything.\",\n  \"second_quote\": \"elizabeth could bear it no longer. she got up and ran out of the room;\",\n  \"through_reason\": \"В первой половине Лидия хвастается тем, как выставила напоказ обручальное кольцо. Во второй Элизабет не выдерживает её хвастовства и выбегает из комнаты.\"\n}"
+    },
+    "262ad23477e7cb8ed436fc3c82df6033": {
+      "id": "262ad23477e7cb8ed436fc3c82df6033",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0ccee787c50f0c2f016b000c83953887d083abae40ef6b7ecd",
+      "status": "completed",
+      "packet_sha256": "04de9418329da2bac84693a14a70751773c81e3f987af580f37bca81f8ebd224",
+      "raw": "{\n  \"id\": \"262ad23477e7cb8ed436fc3c82df6033\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах перемешаны буквы, цифры, знаки и эмодзи; ни один непрерывный отрезок не выражает связной мысли, события или описания, которое можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не прослеживается конкретное событие, цель или вопрос, а во второй нет различимого продолжения или ответа.\"\n}"
+    },
+    "ee200d478b367dff20cc22102769a834": {
+      "id": "ee200d478b367dff20cc22102769a834",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0740dec11854f84b016b000c888ebc87d09275495868998d98",
+      "status": "completed",
+      "packet_sha256": "6193111411e5ee889b512eaa1ed22ade1cf8cbe5e8949ccd49206aa2ec508359",
+      "raw": "{\n  \"id\": \"ee200d478b367dff20cc22102769a834\",\n  \"readable\": true,\n  \"paragraph_quote\": \"With careful precision, they unfolded the envelope, revealing a small, pressed flower—a symbol of resilience and memory. The figure’s eyes widened, caught between wonder and sorrow.\",\n  \"paragraph_reason\": \"В конверте обнаруживается засушенный цветок. Получатель узнаёт, что он от матери, и реагирует с удивлением и печалью.\",\n  \"through\": true,\n  \"first_quote\": \"He had to find the right place, the right person, before the deadline.\",\n  \"second_quote\": \"He reached out, almost hesitating before placing a small package on the counter.\",\n  \"through_reason\": \"В первой половине курьер ищет нужного человека, чтобы успеть с доставкой. Во второй он подходит к человеку и кладёт свёрток на стойку, переходя от поисков к вручению, хотя личность получателя прямо не подтверждается.\"\n}"
+    },
+    "7972c454875c77f8b0303ac641bc2c50": {
+      "id": "7972c454875c77f8b0303ac641bc2c50",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_00e32e14bd287ec8016b000c8f9aa087d09e3211a0af8befa9",
+      "status": "completed",
+      "packet_sha256": "9480094f1ef64a5adb9404d86591bab2bb03499effc55d460fd14c7792708bd6",
+      "raw": "{\n  \"id\": \"7972c454875c77f8b0303ac641bc2c50\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Он шагнул внутрь, и внизу, у основания пола, скрывалась пещера. Пальцы прижались к полу, чтобы не потерять равновесие. Стены были покрыты остатками старых механизмов, и каждая деталь казалась живой.\",\n  \"paragraph_reason\": \"Герой обнаруживает пещеру под полом и, опираясь рукой, чтобы не упасть, замечает на стенах остатки старых механизмов.\",\n  \"through\": true,\n  \"first_quote\": \"Он подошёл к воротам, включил ключ, и ворота отворились. Внутри обсерватории тихо, как будто время остановилось.\",\n  \"second_quote\": \"Ворота шатнулись, и из них вышла дверь, которая была закрыта не просто стыком, а по-настоящему. Он шагнул внутрь, и внизу, у основания пола, скрывалась пещера.\",\n  \"through_reason\": \"В первой половине садовник открывает ворота и входит в обсерваторию. Во второй он продвигается дальше: появляется ещё одна дверь, за которой он обнаруживает скрытую пещеру.\"\n}"
+    },
+    "0bb67fbe9204b5603055d56e7ecbd596": {
+      "id": "0bb67fbe9204b5603055d56e7ecbd596",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_074b10481376efa1016b000c98f72887d0846834a91cebb327",
+      "status": "completed",
+      "packet_sha256": "de7f99440fedf72ee194b1cb7ba02bdb57334b46ac94c395ef2c542d20061f5c",
+      "raw": "{\n  \"id\": \"0bb67fbe9204b5603055d56e7ecbd596\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Внутри компаса был какой-то странной формы шарик, с выцветшей желтой меткой, которая не совпадала с тем, что на карте. Он медленно поворачивал шарик, сравнивая каждую из глянцевых отметок с марками на бумаге.\",\n  \"paragraph_reason\": \"Садовник замечает, что метка на шарике внутри компаса не совпадает с обозначением на карте, и поворачивает шарик, чтобы сверить остальные отметки.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине садовник берёт чертёж и идёт вдоль берега, думая о предстоящем выборе. Во второй он изучает компас и сверяет отметки с картой, но текст не связывает это действие с чертежом и не показывает, какой выбор он сделал. Общие герой и место сохраняются, а начатое действие не получает ясного развития.\"\n}"
+    },
+    "951e4062913c326a5cdaf08cf922ffc3": {
+      "id": "951e4062913c326a5cdaf08cf922ffc3",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0d6c79804592cb77016b000ca2359087d08236b8c9f59b3c19",
+      "status": "completed",
+      "packet_sha256": "74aca0413c43b7749b32f4e73684c916ad081162ec875ec5a72648a8ba9696a7",
+      "raw": "{\n  \"id\": \"951e4062913c326a5cdaf08cf922ffc3\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах буквы, цифры, знаки и эмодзи перемешаны и не образуют связного отрывка, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нет различимого события, цели, вопроса или мысли, а во второй нет действия или ответа, который можно было бы связать с первой.\"\n}"
+    },
+    "f07fb1df61514d628e553eb96fcf6558": {
+      "id": "f07fb1df61514d628e553eb96fcf6558",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0d6332e7c1f54eb5016b000ca7592487d0b09bd539500da88e",
+      "status": "completed",
+      "packet_sha256": "30514ba83dce6fab4832d96260fa1e42a836c6c84482b1df7bfa3d1bd064d803",
+      "raw": "{\n  \"id\": \"f07fb1df61514d628e553eb96fcf6558\",\n  \"readable\": true,\n  \"paragraph_quote\": \"The ticket, a small, yellowed piece of paper, lay on the table beside him. It was a pass to the research facility, a key that would grant access to the deepest layers of the earth.\",\n  \"paragraph_reason\": \"На столе рядом с геологом лежит пожелтевший пропуск в исследовательский центр, который даст ему доступ к глубинным слоям Земли.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине Элиас находит пропуск, который искал несколько недель. Во второй он без объяснения рассматривает гравировку и говорит с посетителем о семейной фотографии, а затем замечает мерцание под листвой. Не показано, как эти события связаны с находкой пропуска или с целью геолога.\"\n}"
+    },
+    "5ea68a0ca2bcd4adf3682e31220e35e6": {
+      "id": "5ea68a0ca2bcd4adf3682e31220e35e6",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_02a6acd1cf0d262f016b000caf085487d09c0d73a4d041d7cf",
+      "status": "completed",
+      "packet_sha256": "442ba1d7e8a74746d3368277fc381a325c0994ab594ddc57faad8a69984dbd94",
+      "raw": "{\n  \"id\": \"5ea68a0ca2bcd4adf3682e31220e35e6\",\n  \"readable\": true,\n  \"paragraph_quote\": \"когда еще была жива ванькина мать пелагея и служила у господ в горничных, ольга игнатьевна кормила ваньку леденцами и от нечего делать выучила его читать, писать, считать до ста и даже танцевать кадриль.\",\n  \"paragraph_reason\": \"Ванька вспоминает, как при жизни матери Ольга Игнатьевна угощала его леденцами и научила грамоте, счёту и кадрили.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине встречаются друзья детства и Толстый сообщает Тонкому о своём высоком чине. Во второй начинается другой эпизод: Ванька вспоминает деда и пишет ему письмо. Разговор друзей не получает продолжения.\"\n}"
+    },
+    "b27601fe52b1b0ba3af893e9b6551007": {
+      "id": "b27601fe52b1b0ba3af893e9b6551007",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_04244596c59d12e3016b000cb5ee7087d0b327fc4385694306",
+      "status": "completed",
+      "packet_sha256": "f44dfe9de37d24632f6ea9420e809a8a0236acb4e338341ecf459445a381113b",
+      "raw": "{\n  \"id\": \"b27601fe52b1b0ba3af893e9b6551007\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Обе половины состоят из бессвязных сочетаний букв, цифр, знаков и эмодзи. Ни внутри половин, ни на их стыке нет отрезка со связной мыслью, событием или описанием, которое можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нельзя выделить конкретное событие, цель, вопрос или мысль, а во второй нет действия, ответа или следствия, которое можно было бы связать с первой.\"\n}"
+    },
+    "754f29bb4ae238e6845a6902f4f108cc": {
+      "id": "754f29bb4ae238e6845a6902f4f108cc",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0e6274305e5f26ff016b000cbb1e7087d0b3fdac30705a885e",
+      "status": "completed",
+      "packet_sha256": "bf553165781497ccf36536c074f996bd01f37e57a1ed11c18ac7b7932dafb720",
+      "raw": "{\n  \"id\": \"754f29bb4ae238e6845a6902f4f108cc\",\n  \"readable\": true,\n  \"paragraph_quote\": \"затем она переходила с рук на руки, лизала чьи-то руки и лица, подвигалась все выше и выше и наконец попала на галерку...\",\n  \"paragraph_reason\": \"Зрители передают собаку с рук на руки, помогая ей добраться до галёрки.\",\n  \"through\": true,\n  \"first_quote\": \"- ну-с, тетушка, - сказал хозяин, - сначала мы с вами споем, а потом попляшем.\",\n  \"second_quote\": \"он вынул из кармана дудочку и заиграл. тетка, не вынося музыки, беспокойно задвигалась на стуле и завыла.\",\n  \"through_reason\": \"В первой половине хозяин объявляет, что они с Тёткой сначала споют, а во второй начинает играть на дудочке, и её вой становится частью номера.\"\n}"
+    },
+    "862640d49f0bc28c46bf8aee20d8d187": {
+      "id": "862640d49f0bc28c46bf8aee20d8d187",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0ea470aada07c0e7016b000cc2710887d0bc85225a2e32f58d",
+      "status": "completed",
+      "packet_sha256": "a2ce8a1f1245605c7df6788c11d16ca7dfeb5c97a10bd0a35f5be1ee01505d47",
+      "raw": "{\n  \"id\": \"862640d49f0bc28c46bf8aee20d8d187\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Потом она аккуратно переставляет документы, стараясь не выронить ни одного из них. Каждый раз, когда она приближается к чемодью, она делает паузу, чтобы убедиться, что всё правильно.\",\n  \"paragraph_reason\": \"Героиня осторожно перекладывает документы и несколько раз проверяет, всё ли в порядке.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине переводчица находит письмо в конверте, а во второй героиня осматривает чемодан и перекладывает документы. Текст не связывает эти документы с письмом, а повтор строки о вокзале на стыке не развивает первый эпизод.\"\n}"
+    },
+    "4b7112f17f9d3c605e11ea0c3ecf36c4": {
+      "id": "4b7112f17f9d3c605e11ea0c3ecf36c4",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_056a84dd731dc78a016b000cc9147887d08e17046d173b0eb6",
+      "status": "completed",
+      "packet_sha256": "515f96148caf6885790af7244b73b41f06824547f4d1aee647196f81c26a19ea",
+      "raw": "{\n  \"id\": \"4b7112f17f9d3c605e11ea0c3ecf36c4\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах буквы, цифры, знаки и эмодзи перемешаны и не образуют связного отрывка, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нельзя выделить конкретное событие, вопрос или мысль, а во второй — распознать их продолжение, ответ или следствие.\"\n}"
+    },
+    "f8518c7706202a97d9ef339a85b8a619": {
+      "id": "f8518c7706202a97d9ef339a85b8a619",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0657769764a5219a016b000ccdfc6487d0b136eb2b88e2b5ad",
+      "status": "completed",
+      "packet_sha256": "3521332bbc5f95570a7da9a23a924585334e3c4b9569d5f740e2cc9dc5f1e1e8",
+      "raw": "{\n  \"id\": \"f8518c7706202a97d9ef339a85b8a619\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах буквы, цифры, знаки и эмодзи перемешаны. Ни один непрерывный отрезок не выражает связной мысли, события или описания, которое можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не удаётся выделить конкретное событие, цель, вопрос или мысль, а во второй — ответ, следствие или продолжение.\"\n}"
+    },
+    "47b8712f9e2d86ea5f8079fb18eee5ba": {
+      "id": "47b8712f9e2d86ea5f8079fb18eee5ba",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_08ccbed047bb2723016b000cd3e37c87d0bbf0df1c78be38b6",
+      "status": "completed",
+      "packet_sha256": "b920189b03ce3ccd4a8437b2dc0b384dfe1c5c0f93d5752c12b668a96ec453b4",
+      "raw": "{\n  \"id\": \"47b8712f9e2d86ea5f8079fb18eee5ba\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах перемешаны буквы, цифры, знаки и эмодзи. Ни в одной из них, ни на их стыке нет связного отрывка, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не прослеживается конкретное событие, цель, вопрос или мысль, а во второй нет различимого продолжения или ответа.\"\n}"
+    },
+    "c52195bc6e984ff25604ae3ccddc4f8d": {
+      "id": "c52195bc6e984ff25604ae3ccddc4f8d",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_08529330d576a3fa016b000cd942f487d084231bd87d43e6c5",
+      "status": "completed",
+      "packet_sha256": "aef85cb8f75ac6caf643eb8e6395b12624534e66e3e8f8e9a5c4f56751c71ea0",
+      "raw": "{\n  \"id\": \"c52195bc6e984ff25604ae3ccddc4f8d\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"Обе половины состоят из разрозненных букв, цифр, знаков и эмодзи. Ни в одной из них, ни на их стыке нет связного отрезка, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине нельзя выделить конкретное событие, вопрос или мысль, а во второй — действие, ответ или следствие, которое их развивает.\"\n}"
+    },
+    "b00d518120855d8f7123bd6d1c3dfbb1": {
+      "id": "b00d518120855d8f7123bd6d1c3dfbb1",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_034929ec3cfacded016b000cdee29c87d0a2fcd4a384d7cdc6",
+      "status": "completed",
+      "packet_sha256": "9e3ae6eb558414e4dc51dc0892303da3cbb5b9e654b8221809a16876741c5a93",
+      "raw": "{\n  \"id\": \"b00d518120855d8f7123bd6d1c3dfbb1\",\n  \"readable\": true,\n  \"paragraph_quote\": \"The ticket, he knew, was still in his pocket, tucked beneath his coat. It was a small thing, but it was the only proof that he had ever been here.\",\n  \"paragraph_reason\": \"Элиас хранит билет в кармане под пальто: для него это единственное доказательство того, что он побывал в обсерватории.\",\n  \"through\": true,\n  \"first_quote\": \"The ticket, he knew, was still in his pocket, tucked beneath his coat.\",\n  \"second_quote\": \"He reached into his coat pocket, pulled out the ticket, and lifted it up to the glowing spot.\",\n  \"through_reason\": \"В первой половине Элиас держит билет в кармане как свидетельство своего посещения. Во второй он достаёт тот же билет и подносит его к светящемуся пятну, переходя от наблюдения к действию.\"\n}"
+    },
+    "5be6648b3d3eed7922ac30babd6a069f": {
+      "id": "5be6648b3d3eed7922ac30babd6a069f",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0271fb0d3552a43d016b000ce6d19c87d0a1fedb8ed502f98f",
+      "status": "completed",
+      "packet_sha256": "a080a0a0f09e7037d10fe47256c0a2a4cdaa3bfaa594b405947e8f516fac2ef0",
+      "raw": "{\n  \"id\": \"5be6648b3d3eed7922ac30babd6a069f\",\n  \"readable\": true,\n  \"paragraph_quote\": \"elizabeth walked on in quest of the only face whose features would be known to her. at last it arrested her--and she beheld a striking resemblance of mr. darcy, with such a smile over the face, as she remembered to have sometimes seen,\",\n  \"paragraph_reason\": \"В галерее Элизабет ищет знакомое лицо и находит портрет мистера Дарси. Его улыбка напоминает ей ту, которую она прежде видела у него.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"Первая половина заканчивается осмотром портрета Дарси в Пемберли. Во второй Эмма и её близкие решают, можно ли ехать домой после снегопада. Этот эпизод не продолжает сцену в галерее.\"\n}"
+    },
+    "aa3c4b57ce46bc5af8e900cb47c95472": {
+      "id": "aa3c4b57ce46bc5af8e900cb47c95472",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_01ecf06e3fdf505c016b000cf09e9887d09b493aae782ddd27",
+      "status": "completed",
+      "packet_sha256": "c54ba4b3d65ef43f7b2dcc0b142673cb8d3b0b5cc92fc0d8d20714e39375abe0",
+      "raw": "{\n  \"id\": \"aa3c4b57ce46bc5af8e900cb47c95472\",\n  \"readable\": false,\n  \"paragraph_quote\": \"\",\n  \"paragraph_reason\": \"В обеих половинах буквы, цифры, знаки и эмодзи перемешаны. Ни внутри половин, ни на их стыке нет связного отрезка, который можно пересказать.\",\n  \"through\": false,\n  \"first_quote\": \"\",\n  \"second_quote\": \"\",\n  \"through_reason\": \"В первой половине не различимо конкретное событие, цель, вопрос или мысль, а во второй нет фрагмента, который можно было бы прочитать как их развитие.\"\n}"
+    },
+    "e7c64faba757e8b4c103c010993cf86b": {
+      "id": "e7c64faba757e8b4c103c010993cf86b",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0408495238f338ef016b000cf6999c87d0b938bd2d2d45a0dc",
+      "status": "completed",
+      "packet_sha256": "aceb4908a0122f95cd820ecce56365d60b30cd9fc76d0605ffb7d424f9b17fa4",
+      "raw": "{\n  \"id\": \"e7c64faba757e8b4c103c010993cf86b\",\n  \"readable\": true,\n  \"paragraph_quote\": \"The image was sharp, the sky a deep indigo, the stars scattered like diamonds in the dark. It was a perfect shot, but it didn’t feel quite right. The light was too bright, the colors too vivid.\",\n  \"paragraph_reason\": \"Элиас получает резкий снимок звёздного неба, но остаётся недоволен: свет на снимке слишком яркий, а цвета слишком насыщенные.\",\n  \"through\": true,\n  \"first_quote\": \"It was a beautiful image, but it didn’t capture the essence of the night.\",\n  \"second_quote\": \"The villagers hesitated, then slowly reached out, taking the camera and immediately beginning to set up a makeshift film reel.\",\n  \"through_reason\": \"Несмотря на резкий переход от ночной обсерватории к оврагу на закате, попытка сохранить ускользающий момент получает развитие: сначала Элиас сам снимает небо и понимает, что красивый кадр не передаёт пережитого, а затем отдаёт камеру жителям, и они берутся за съёмку сами.\"\n}"
+    },
+    "c2af9875fc88959d59b40abf93069724": {
+      "id": "c2af9875fc88959d59b40abf93069724",
+      "reader": "gpt-6.2-sol",
+      "actual_model": "gpt-6.2-sol",
+      "response_id": "resp_0e72649afcadb21d016b000cffdccc87d08319e5495ce05da9",
+      "status": "completed",
+      "packet_sha256": "2362459056ac8921909a677008e159eae979aeeade48ff60558744451317c32f",
+      "raw": "{\n  \"id\": \"c2af9875fc88959d59b40abf93069724\",\n  \"readable\": true,\n  \"paragraph_quote\": \"Садовник, стоявший у оранжереи, вдруг замер. В темноте оранжереи, где обычно шумели пчелы и шелестели листья, стало тише. Он поднял компас, который лежал на столе, и посмотрел на него. Показалось, что стрелка не направлена в нужном направлении.\",\n  \"paragraph_reason\": \"Садовник замечает, что в оранжерее стало непривычно тихо, и смотрит на компас: ему кажется, что стрелка указывает не туда.\",\n  \"through\": true,\n  \"first_quote\": \"Он взял его, и вновь стрелка показала направление. В этот момент в оранжерею влетел ветер\",\n  \"second_quote\": \"Но в тот миг, когда он приблизился к компасу, ветер пронзил его лицо, и он потерял контроль над собой.\",\n  \"through_reason\": \"В первой половине садовник берёт компас, когда налетает ветер. Во второй ветер уже мешает ему удержать компас: садовник теряет контроль над собой, а компас падает.\"\n}"
+    }
+  }
+}

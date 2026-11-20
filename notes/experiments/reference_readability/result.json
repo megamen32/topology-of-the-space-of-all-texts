@@ -1,0 +1,754 @@
+{
+  "input_sha256": {
+    "protocol.json": "0771e4aaa3b99013d9ea22a4237c62bb9811156bdb221dc8dc292dc6ab0b8cf9",
+    "runtime.json": "822f05e827376da7bc965b834fbfdd746b97977960cf3f1ebf785e85fdb5df8f",
+    "readers.json": "1564dfa0f63c7eadc32546bde78faffb91a69a831f556f4a350a43875358605e",
+    "corpus.json": "809f1c32164e6aef9aebe0805b2a093977120b2ddc9ae4fe26e8f4aae96e806f",
+    "judgments.json": "d1aeceef3569658b70c8d496773988ccf2f0b6f4840745840bb213f6bb480237"
+  },
+  "summary": {
+    "readable": {
+      "near": {
+        "n": 8,
+        "both_yes": 7,
+        "disagree": 0,
+        "both_no": 0,
+        "unknown": 1,
+        "panels": {
+          "a": {
+            "yes": 8,
+            "no": 0,
+            "unknown": 0
+          },
+          "b": {
+            "yes": 7,
+            "no": 0,
+            "unknown": 1
+          }
+        },
+        "possible_fraction": [
+          0.875,
+          1.0
+        ],
+        "wilson95": null
+      },
+      "far": {
+        "n": 8,
+        "both_yes": 0,
+        "disagree": 0,
+        "both_no": 8,
+        "unknown": 0,
+        "panels": {
+          "a": {
+            "yes": 0,
+            "no": 8,
+            "unknown": 0
+          },
+          "b": {
+            "yes": 0,
+            "no": 8,
+            "unknown": 0
+          }
+        },
+        "possible_fraction": [
+          0.0,
+          0.0
+        ],
+        "wilson95": [
+          0.0,
+          0.3244075648838801
+        ]
+      }
+    },
+    "through": {
+      "near": {
+        "n": 8,
+        "both_yes": 5,
+        "disagree": 1,
+        "both_no": 2,
+        "unknown": 0,
+        "panels": {
+          "a": {
+            "yes": 6,
+            "no": 2,
+            "unknown": 0
+          },
+          "b": {
+            "yes": 5,
+            "no": 3,
+            "unknown": 0
+          }
+        },
+        "possible_fraction": [
+          0.625,
+          0.625
+        ],
+        "wilson95": [
+          0.3057423946026274,
+          0.8631557141764026
+        ]
+      },
+      "far": {
+        "n": 8,
+        "both_yes": 0,
+        "disagree": 0,
+        "both_no": 8,
+        "unknown": 0,
+        "panels": {
+          "a": {
+            "yes": 0,
+            "no": 8,
+            "unknown": 0
+          },
+          "b": {
+            "yes": 0,
+            "no": 8,
+            "unknown": 0
+          }
+        },
+        "possible_fraction": [
+          0.0,
+          0.0
+        ],
+        "wilson95": [
+          0.0,
+          0.3244075648838801
+        ]
+      }
+    }
+  },
+  "effect": {
+    "readable": {
+      "possible_pp": [
+        87.5,
+        100.0
+      ],
+      "pp": null,
+      "newcombe95_pp": null
+    },
+    "through": {
+      "possible_pp": [
+        62.5,
+        62.5
+      ],
+      "pp": 62.5,
+      "newcombe95_pp": [
+        16.984542542345753,
+        86.31557141764026
+      ]
+    }
+  },
+  "by_item": {
+    "even-01": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Он поднял компас, который лежал на столе, и посмотрел на него. Показалось, что стрелка не направлена в нужном направлении.",
+          "paragraph_reason": "Когда в оранжерее становится тише, садовник проверяет компас. Ему кажется, что стрелка указывает не туда. Вспомнив прошлогоднюю бурю, он боится её повторения."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "Он вспомнил, как в тот раз ветер ворвался в оранжерею, и тогда он не мог ничего сделать. Теперь он понял, что ветер возвращается, и он должен действовать.",
+          "second_quote": "Он хотел взять компас обратно, но в тот миг, когда он приблизился к нему, ветер снова пронзил его лицо, и он потерял сознание.",
+          "through_reason": "В первой половине садовник замечает возвращение ветра и решает действовать. Во второй ветер уже мешает ему вернуть упавший компас: при попытке приблизиться к нему садовник теряет сознание."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": null,
+          "issue": "цитата дословная, длина в знаках — 244 при допустимых 12–240"
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "Он взял его, и вновь стрелка показала направление. В этот момент в оранжерею влетел ветер",
+          "second_quote": "Но в тот миг, когда он приблизился к компасу, ветер пронзил его лицо, и он потерял контроль над собой.",
+          "through_reason": "В первой половине садовник берёт компас, когда налетает ветер. Во второй ветер уже мешает ему удержать компас: садовник теряет контроль над собой, а компас падает."
+        }
+      }
+    },
+    "even-02": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Внутри компаса был какой-то странной формы шарик, с выцветшей желтой меткой, которая не совпадала с тем, что на карте. Он медленно поворачивал шарик, сравнивая каждую из глянцевых отметок с марками на бумаге.",
+          "paragraph_reason": "Садовник замечает, что жёлтая метка на шарике внутри компаса не совпадает с картой. Он поворачивает шарик и сверяет остальные отметки."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "Он взял чертёж, впившись в него взглядом, и пошёл к двери.",
+          "second_quote": "Он медленно поворачивал шарик, сравнивая каждую из глянцевых отметок с марками на бумаге.",
+          "through_reason": "Сначала садовник берёт и внимательно разглядывает чертёж. Затем у бумаги появляется конкретное применение: с её помощью он проверяет отметки внутри компаса."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Внутри компаса был какой-то странной формы шарик, с выцветшей желтой меткой, которая не совпадала с тем, что на карте. Он медленно поворачивал шарик, сравнивая каждую из глянцевых отметок с марками на бумаге.",
+          "paragraph_reason": "Садовник замечает, что метка на шарике внутри компаса не совпадает с обозначением на карте, и поворачивает шарик, чтобы сверить остальные отметки."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "even-03": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Он медленно поднял ключ, чувствуя его твёрдость и холод. Каждый пальцем пошевелил его поверхность, и то, что раньше казалось незаметным, теперь стало явной призраком.",
+          "paragraph_reason": "Несмотря на языковые сбои, эпизод понятен: герой ощупывает холодный ключ, и ему кажется, что ключ живой и создан для особой цели."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "Он подошёл к воротам, включил ключ, и ворота отворились. Внутри обсерватории тихо, как будто время остановилось.",
+          "second_quote": "Внутри ключа ощущение того, что он живёт, а не просто состоит из металла и гравировки. Он вздохнул, поняв: этот ключ был создан для чего-то особенного.",
+          "through_reason": "Сначала садовник пользуется ключом, чтобы открыть ворота обсерватории. Позже, после того как механизм приходит в движение, он рассматривает сам ключ и начинает подозревать, что тот нужен не только для входа."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Он шагнул внутрь, и внизу, у основания пола, скрывалась пещера. Пальцы прижались к полу, чтобы не потерять равновесие. Стены были покрыты остатками старых механизмов, и каждая деталь казалась живой.",
+          "paragraph_reason": "Герой обнаруживает пещеру под полом и, опираясь рукой, чтобы не упасть, замечает на стенах остатки старых механизмов."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "Он подошёл к воротам, включил ключ, и ворота отворились. Внутри обсерватории тихо, как будто время остановилось.",
+          "second_quote": "Ворота шатнулись, и из них вышла дверь, которая была закрыта не просто стыком, а по-настоящему. Он шагнул внутрь, и внизу, у основания пола, скрывалась пещера.",
+          "through_reason": "В первой половине садовник открывает ворота и входит в обсерваторию. Во второй он продвигается дальше: появляется ещё одна дверь, за которой он обнаруживает скрытую пещеру."
+        }
+      }
+    },
+    "even-04": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Потом она аккуратно переставляет документы, стараясь не выронить ни одного из них. Каждый раз, когда она приближается к чемодью, она делает паузу, чтобы убедиться, что всё правильно.",
+          "paragraph_reason": "Героиня осторожно перекладывает документы и делает паузы, чтобы проверить, всё ли на месте."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "Потом она аккуратно переставляет документы, стараясь не выронить ни одного из них. Каждый раз, когда она приближается к чемодью, она делает паузу, чтобы убедиться, что всё правильно.",
+          "paragraph_reason": "Героиня осторожно перекладывает документы и несколько раз проверяет, всё ли в порядке."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "odd-01": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "He had come to the observatory to find a place to sit, to be alone, to think. The garden was his refuge, but the sky was his truest companion.",
+          "paragraph_reason": "Элиас приходит в обсерваторию, чтобы побыть одному и подумать. В саду он отдыхает, но именно небо заменяет ему собеседника."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "The wind was stronger, and the rain was coming.",
+          "second_quote": "the storm raged around him, his heart steady despite the chaos. He crouched down, squinting through the eyepiece, and noticed the glow again—this time, more intense.",
+          "through_reason": "Надвигающаяся непогода переходит в бурю. Элиас сохраняет спокойствие, снова смотрит в телескоп и замечает свечение."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "The ticket, he knew, was still in his pocket, tucked beneath his coat. It was a small thing, but it was the only proof that he had ever been here.",
+          "paragraph_reason": "Элиас хранит билет в кармане под пальто: для него это единственное доказательство того, что он побывал в обсерватории."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "The ticket, he knew, was still in his pocket, tucked beneath his coat.",
+          "second_quote": "He reached into his coat pocket, pulled out the ticket, and lifted it up to the glowing spot.",
+          "through_reason": "В первой половине Элиас держит билет в кармане как свидетельство своего посещения. Во второй он достаёт тот же билет и подносит его к светящемуся пятну, переходя от наблюдения к действию."
+        }
+      }
+    },
+    "odd-02": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "The courier’s fingers trembled as he opened the envelope, the contents a single sheet of paper with a name and an address. It was a request, but the urgency in the handwriting was unmistakable.",
+          "paragraph_reason": "Курьер вскрывает конверт и находит лист с именем и адресом. По почерку он понимает, что просьба срочная."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "He had to find the right place, the right person, before the deadline.",
+          "second_quote": "He reached out, almost hesitating before placing a small package on the counter.",
+          "through_reason": "Сначала курьер ищет на почте человека, которому должен успеть передать отправление. Затем он замечает у стойки человека, привлекает его внимание и кладёт свёрток перед ним: поиск переходит в передачу."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "With careful precision, they unfolded the envelope, revealing a small, pressed flower—a symbol of resilience and memory. The figure’s eyes widened, caught between wonder and sorrow.",
+          "paragraph_reason": "В конверте обнаруживается засушенный цветок. Получатель узнаёт, что он от матери, и реагирует с удивлением и печалью."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "He had to find the right place, the right person, before the deadline.",
+          "second_quote": "He reached out, almost hesitating before placing a small package on the counter.",
+          "through_reason": "В первой половине курьер ищет нужного человека, чтобы успеть с доставкой. Во второй он подходит к человеку и кладёт свёрток на стойку, переходя от поисков к вручению, хотя личность получателя прямо не подтверждается."
+        }
+      }
+    },
+    "odd-03": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "The camera was not calibrated for the night, and the light from the city was seeping through the windows, making the image look unnatural.",
+          "paragraph_reason": "Элиас получает резкий снимок звёзд, но замечает, что из-за настроек камеры и городского света небо на нём выглядит неестественно."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "It was a beautiful image, but it didn’t capture the essence of the night.",
+          "second_quote": "It was a simple act, yet it carried meaning—a symbol of his commitment to preserving moments that would otherwise fade into memory.",
+          "through_reason": "После съёмки Элиас замечает, что даже красивый кадр не передаёт пережитого. Место действия резко меняется, но эта мысль развивается: в ущелье он снова устанавливает камеру, теперь уже с целью сохранить то, что иначе останется лишь в памяти."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "The image was sharp, the sky a deep indigo, the stars scattered like diamonds in the dark. It was a perfect shot, but it didn’t feel quite right. The light was too bright, the colors too vivid.",
+          "paragraph_reason": "Элиас получает резкий снимок звёздного неба, но остаётся недоволен: свет на снимке слишком яркий, а цвета слишком насыщенные."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "It was a beautiful image, but it didn’t capture the essence of the night.",
+          "second_quote": "The villagers hesitated, then slowly reached out, taking the camera and immediately beginning to set up a makeshift film reel.",
+          "through_reason": "Несмотря на резкий переход от ночной обсерватории к оврагу на закате, попытка сохранить ускользающий момент получает развитие: сначала Элиас сам снимает небо и понимает, что красивый кадр не передаёт пережитого, а затем отдаёт камеру жителям, и они берутся за съёмку сами."
+        }
+      }
+    },
+    "odd-04": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "It was a pass to the research facility, a key that would grant access to the deepest layers of the earth. Elias had been searching for it for weeks, chasing a lead that had eluded him.",
+          "paragraph_reason": "На столе перед Элиасом лежит пропуск, который он искал несколько недель: с ним геолог сможет попасть в исследовательский центр и изучить глубинные слои Земли."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "The ticket, a small, yellowed piece of paper, lay on the table beside him. It was a pass to the research facility, a key that would grant access to the deepest layers of the earth.",
+          "paragraph_reason": "На столе рядом с геологом лежит пожелтевший пропуск в исследовательский центр, который даст ему доступ к глубинным слоям Земли."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-01": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-02": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-03": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-04": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-05": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-06": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-07": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "far-08": {
+      "a": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "en_pos": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "she then joined them soon enough to see lydia, with anxious parade, walk up to her mother's right hand, and hear her say to her eldest sister,-- \"ah, jane, i take your place now, and you must go lower, because i am a married woman.\"",
+          "paragraph_reason": "Перед обедом Лидия демонстративно занимает место справа от матери и объявляет Джейн, что теперь, как замужняя женщина, имеет перед ней преимущество."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "and so i let down the side glass next to him, and took off my glove and let my hand just rest upon the window frame, so that he might see the ring, and then i bowed and smiled like anything.",
+          "second_quote": "elizabeth could bear it no longer. she got up and ran out of the room; and returned no more, till she heard them passing through the hall to the dining-parlour.",
+          "through_reason": "Лидия рассказывает, как сняла перчатку, чтобы знакомый заметил обручальное кольцо. Элизабет, уже смущённая её бестактностью, не выдерживает этого рассказа и выбегает из комнаты."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "they seemed each of them to have the happiest memories in the world. nothing of the past was recollected with pain; and lydia led voluntarily to subjects which her sisters would not have alluded to for the world.",
+          "paragraph_reason": "Лидия и Уикхем вспоминают прошлое без смущения, а Лидия сама заговаривает о том, чего её сёстры предпочли бы не касаться."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "so that he might see the ring, and then i bowed and smiled like anything.",
+          "second_quote": "elizabeth could bear it no longer. she got up and ran out of the room;",
+          "through_reason": "В первой половине Лидия хвастается тем, как выставила напоказ обручальное кольцо. Во второй Элизабет не выдерживает её хвастовства и выбегает из комнаты."
+        }
+      }
+    },
+    "ru_pos": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "в чемодане щелкнул замок. яркий свет ударил тетку по глазам; она прыгнула вон из чемодана и, оглушенная ревом, быстро, во всю прыть забегала вокруг своего хозяина и залилась звонким лаем.",
+          "paragraph_reason": "Когда чемодан открывается, Тётка выскакивает на яркий свет и с лаем носится вокруг хозяина под рёв публики."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "сначала мы с вами споем, а потом попляшем.",
+          "second_quote": "он вынул из кармана дудочку и заиграл. тетка, не вынося музыки, беспокойно задвигалась на стуле и завыла.",
+          "through_reason": "Хозяин объявляет, что они с Тёткой споют, а затем начинает номер: играет на дудочке, и собака подвывает. Во время выступления Федюшка узнаёт в ней Каштанку."
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "затем она переходила с рук на руки, лизала чьи-то руки и лица, подвигалась все выше и выше и наконец попала на галерку...",
+          "paragraph_reason": "Зрители передают собаку с рук на руки, помогая ей добраться до галёрки."
+        },
+        "through": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "first_quote": "- ну-с, тетушка, - сказал хозяин, - сначала мы с вами споем, а потом попляшем.",
+          "second_quote": "он вынул из кармана дудочку и заиграл. тетка, не вынося музыки, беспокойно задвигалась на стуле и завыла.",
+          "through_reason": "В первой половине хозяин объявляет, что они с Тёткой сначала споют, а во второй начинает играть на дудочке, и её вой становится частью номера."
+        }
+      }
+    },
+    "en_neg": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "she stood several minutes before the picture, in earnest contemplation, and returned to it again before they quitted the gallery.",
+          "paragraph_reason": "В галерее Элизабет находит портрет мистера Дарси и узнаёт улыбку, с которой он иногда смотрел на неё. Она долго рассматривает портрет и перед уходом возвращается к нему."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "elizabeth walked on in quest of the only face whose features would be known to her. at last it arrested her--and she beheld a striking resemblance of mr. darcy, with such a smile over the face, as she remembered to have sometimes seen,",
+          "paragraph_reason": "В галерее Элизабет ищет знакомое лицо и находит портрет мистера Дарси. Его улыбка напоминает ей ту, которую она прежде видела у него."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    },
+    "ru_neg": {
+      "a": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "подумав немного, он умокнул перо и написал адрес: на деревню дедушке. потом почесался, подумал и прибавил: «константину макарычу».",
+          "paragraph_reason": "Ванька пишет деду письмо с просьбой забрать его. На конверте вместо названия деревни он указывает лишь, что письмо дедушке, а затем добавляет имя и отчество."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      },
+      "b": {
+        "readable": {
+          "raw_vote": true,
+          "value": true,
+          "issue": "",
+          "paragraph_quote": "когда еще была жива ванькина мать пелагея и служила у господ в горничных, ольга игнатьевна кормила ваньку леденцами и от нечего делать выучила его читать, писать, считать до ста и даже танцевать кадриль.",
+          "paragraph_reason": "Ванька вспоминает, как при жизни матери Ольга Игнатьевна угощала его леденцами и научила грамоте, счёту и кадрили."
+        },
+        "through": {
+          "raw_vote": false,
+          "value": false,
+          "issue": ""
+        }
+      }
+    }
+  }
+}

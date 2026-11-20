@@ -1,16 +1,16 @@
-# Graph Report - graph-container-reference  (2026-11-20)
+# Graph Report - graph-reference-reading-final  (2026-11-20)
 
 ## Corpus Check
-- 174 files · ~2,364,887 words
+- 181 files · ~2,383,878 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1171 nodes · 1792 edges · 137 communities (103 shown, 34 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 62 edges (avg confidence: 0.6)
+- 1231 nodes · 1962 edges · 135 communities (104 shown, 31 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 71 edges (avg confidence: 0.59)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `06e74f74`
+- Built from commit: `28689a00`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,7 +46,6 @@
 - Community 28
 - Community 29
 - Community 30
-- Community 31
 - implementation_plan.md
 - Community 33
 - Community 34
@@ -122,14 +121,11 @@
 - evaluate_continuations.py
 - Сохраняет ли Qwen смысл между половинами страницы
 - Точный адрес страницы в издании Qwen
-- sentence_astar_frontier.py
-- BabelRanker4096
-- eval_harness_v1.py
+- Слепое чтение одного контейнерного издания Qwen
+- Как повторить слепое чтение
+- Издание Babel Qwen v1
 - ReferenceTests
-- ContextPermutationWordV1
-- llm_arena_judge_v2.py
-- llm_arena_judge_v3.py
-- llm_arena_judge.py
+- Текущий план
 - build.sh
 - serve.sh
 
@@ -137,34 +133,34 @@
 1. `HierarchicalEnumeratorV1` - 25 edges
 2. `GenerativeAddress` - 20 edges
 3. `BinaryShellRanker` - 19 edges
-4. `ClusterRanker` - 18 edges
-5. `RawClusterRanker` - 18 edges
-6. `self_test()` - 14 edges
-7. `ReferenceUnavailable` - 14 edges
-8. `boot()` - 14 edges
-9. `Markov5Rows` - 13 edges
-10. `QwenWebTest` - 13 edges
+4. `require()` - 19 edges
+5. `ClusterRanker` - 18 edges
+6. `RawClusterRanker` - 18 edges
+7. `generate()` - 14 edges
+8. `self_test()` - 14 edges
+9. `ReferenceUnavailable` - 14 edges
+10. `boot()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `submit_qwen()` --calls--> `job_input()`  [INFERRED]
   experiments/backend_app.py → experiments/qwen_web_jobs.py
-- `Permutation` --uses--> `Markov5Rows`  [INFERRED]
-  experiments/babel_shell_v1.py → experiments/markov5_storage.py
-- `BinaryShellRanker` --uses--> `Markov5Rows`  [INFERRED]
-  experiments/babel_shell_v1.py → experiments/markov5_storage.py
-- `ContextPermutationV1` --uses--> `Markov5Rows`  [INFERRED]
-  experiments/babel_shell_v1.py → experiments/markov5_storage.py
 - `main()` --calls--> `ContextPermutationV1`  [INFERRED]
   experiments/evaluate_babel_1_shell.py → experiments/babel_shell_v1.py
+- `main()` --calls--> `ContextPermutationMarkov5`  [INFERRED]
+  experiments/evaluate_babel_1_shell.py → experiments/babel_shell_v1.py
+- `babel_1_ranker()` --calls--> `BabelRanker4096`  [INFERRED]
+  experiments/backend_app.py → experiments/babel_shell_v1.py
+- `exact_cluster_ranker()` --calls--> `RawClusterRanker`  [INFERRED]
+  experiments/backend_app.py → experiments/cluster_counting_mvp.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (137 total, 34 thin omitted)
+## Communities (135 total, 31 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.07
-Nodes (19): ChunkedRawCounter, main(), Counter, Apply one exact raw-symbol transition to a state/energy vector., Return T[source][destination][energy] for exactly ``span`` steps., Count every raw page exactly, composing complete blocks then a tail., ClusterRanker, HierarchicalRawRanker (+11 more)
+Cohesion: 0.10
+Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+5 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.09
@@ -251,8 +247,8 @@ Cohesion: 0.39
 Nodes (6): fail(), log(), main(), need_file(), run_step(), run_pipeline.sh script
 
 ### Community 23 - "Community 23"
-Cohesion: 0.15
-Nodes (14): template(), tok_type(), blind_plan(), distinct_ranks(), load_prose(), main(), metrics(), Draw and swap out each selected slot without materializing the address range. (+6 more)
+Cohesion: 0.06
+Nodes (33): template(), tok_type(), build_clusterer(), build_model(), sentence_energy(), tokenize(), blind_plan(), distinct_ranks() (+25 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.53
@@ -275,8 +271,8 @@ Cohesion: 0.25
 Nodes (7): Phase 1, Phase 2, Phase 3, Phase 4, Phase 5, Phase 6 (current), Project Phase Summary
 
 ### Community 29 - "Community 29"
-Cohesion: 0.17
-Nodes (13): beam(), greedy(), load_model(), main(), state_of(), Markov5Rows, model_file(), Path (+5 more)
+Cohesion: 0.06
+Nodes (27): BabelRanker4096, BinaryShellRanker, ContextPermutationMarkov5, ContextPermutationV1, ContextPermutationWordV1, _exhaustive_reduced_space_test(), Permutation, Path (+19 more)
 
 ### Community 30 - "Community 30"
 Cohesion: 0.21
@@ -296,7 +292,7 @@ Nodes (6): esc(), load(), render(), showCluster(), summarizeFromMapping(), topTr
 
 ### Community 35 - "Community 35"
 Cohesion: 0.50
-Nodes (4): Как повторить проверку сайта, План реализации и проверок библиотеки, Проверка Qwen3, Справка о полном порядке по стоимости
+Nodes (4): Как повторить проверки библиотеки, Как повторить проверку сайта, Проверка Qwen3, Справка о полном порядке по стоимости
 
 ### Community 36 - "Community 36"
 Cohesion: 0.53
@@ -319,8 +315,8 @@ Cohesion: 0.33
 Nodes (6): 1. Порядок всех страниц по стоимости исходной модели, 2. Масштабирование точного подсчёта, 3. Читаемость, 4. Проверки нового порядка, 5. Связность и адреса в эксперименте с LLM, Открытые задачи
 
 ### Community 41 - "Community 41"
-Cohesion: 0.22
-Nodes (9): Как восстановить исходную таблицу Markov-5, Полные страницы Qwen3, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что показало сравнение малых языковых моделей, Что проверено на публичном сайте, Что удавалось ранним моделям (+1 more)
+Cohesion: 0.18
+Nodes (11): Как восстановить исходную таблицу Markov-5, Полные страницы Qwen3, Результаты слепой проверки, Слепое чтение эталонного издания, Текущий статус, Что остаётся проверить, Что показало сравнение малых языковых моделей, Что проверено на публичном сайте (+3 more)
 
 ### Community 42 - "Community 42"
 Cohesion: 0.40
@@ -347,8 +343,8 @@ Cohesion: 0.83
 Nodes (3): human_int(), main(), run()
 
 ### Community 48 - "Community 48"
-Cohesion: 0.29
-Nodes (7): Библиотека Вавилона, Как текст получает адрес, Карта сайта, Локальный запуск, Откуда берётся читаемое начало, Что измеряет энергия Babel-1, Что показала слепая проверка
+Cohesion: 0.25
+Nodes (8): Библиотека Вавилона, Как текст получает адрес, Карта сайта, Локальный запуск, Откуда берётся читаемое начало, Предыдущие слепые проверки, Слепое чтение эталонного издания, Что измеряет энергия Babel-1
 
 ### Community 50 - "Community 50"
 Cohesion: 0.50
@@ -367,8 +363,8 @@ Cohesion: 0.50
 Nodes (4): Как повторить, Результаты, Связность текста по первым адресам Babel-1, Условия проверки 20 ноября 2026 года
 
 ### Community 67 - "Текущий план"
-Cohesion: 0.22
-Nodes (3): BinaryShellRanker, _exhaustive_reduced_space_test(), Rank internal digits by the count of non-top-``k`` choices.      Shell ``s`` con
+Cohesion: 0.16
+Nodes (37): address_digest(), analyze(), check_flag(), collect(), corpus_for(), counts(), difference(), draw() (+29 more)
 
 ### Community 69 - "Можно ли отдать начало библиотеки языковой модели?"
 Cohesion: 0.33
@@ -427,8 +423,8 @@ Cohesion: 0.22
 Nodes (9): STAGE 8. Условное расширение выразительности, Критерий завершения, Критерий перехода на Stage 8, Принципиальное отличие от старого пути, Проблема фиксированного спектра, Расширение 8A. Позиционно-зависимые спектры, Расширение 8B. Периодические или блочные спектры, Расширение 8C. Малое латентное состояние (+1 more)
 
 ### Community 116 - "ROADMAP.md"
-Cohesion: 0.21
-Nodes (5): ContextPermutationMarkov5, ContextPermutationV1, Path, A total 256-symbol ordering based on the existing student transition model., Total byte ordering derived from the stored top-256 Markov-5 model.      The mod
+Cohesion: 0.28
+Nodes (6): ChunkedRawCounter, main(), Counter, Apply one exact raw-symbol transition to a state/energy vector., Return T[source][destination][energy] for exactly ``span`` steps., Count every raw page exactly, composing complete blocks then a tail.
 
 ### Community 117 - "2. Центральная математическая гипотеза"
 Cohesion: 0.25
@@ -467,52 +463,48 @@ Cohesion: 0.29
 Nodes (7): Для чего проверяли на двух компьютерах, Как повторить, Как сравнивали, Следующий шаг, Сохраняет ли Qwen смысл между половинами страницы, Температура и seed у страницы № 41, Что изменили в генераторе
 
 ### Community 126 - "Точный адрес страницы в издании Qwen"
-Cohesion: 0.20
-Nodes (8): Издание Babel Qwen v1, Сборка и запуск, Как проверить свой файл, Почему работают оба направления, Проверенные факты и открытые вопросы, Сколько токенов помещается при любом входе, Текст, короткий ответ и отказ службы, Точный адрес страницы в издании Qwen
+Cohesion: 0.33
+Nodes (6): Как проверить свой файл, Почему работают оба направления, Проверенные факты и открытые вопросы, Сколько токенов помещается при любом входе, Текст, короткий ответ и отказ службы, Точный адрес страницы в издании Qwen
 
-### Community 127 - "sentence_astar_frontier.py"
-Cohesion: 0.42
-Nodes (7): detok(), generate_sentence(), main(), paragraph_frontier(), realize(), sentence_frontier(), type_ok()
+### Community 127 - "Слепое чтение одного контейнерного издания Qwen"
+Cohesion: 0.33
+Nodes (6): Генерация и слепая выдача, Границы вывода, Контроли, Один понятный абзац, Развитие между половинами, Слепое чтение одного контейнерного издания Qwen
 
-### Community 128 - "BabelRanker4096"
-Cohesion: 0.25
-Nodes (5): BabelRanker4096, Permutation, The Babel-1 composition: exact shell code followed by contextual decoding., A deterministic full ordering of every symbol after ``prefix``., Protocol
+### Community 128 - "Как повторить слепое чтение"
+Cohesion: 0.40
+Nodes (4): Выдача читателям, Как повторить слепое чтение, Открытие страниц, Подсчёт
 
-### Community 129 - "eval_harness_v1.py"
-Cohesion: 0.48
-Nodes (4): build_clusterer(), build_model(), sentence_energy(), tokenize()
+### Community 129 - "Издание Babel Qwen v1"
+Cohesion: 0.67
+Nodes (3): Запуск готового образа, Издание Babel Qwen v1, Сборка из исходного кода
 
 ### Community 130 - "ReferenceTests"
 Cohesion: 0.38
 Nodes (3): completion(), Offline regression checks for the native reference transport, including early EO, ReferenceTests
 
-### Community 132 - "llm_arena_judge_v2.py"
-Cohesion: 0.60
-Nodes (3): call_ollama(), gibberish_score(), judge_pair()
-
-### Community 133 - "llm_arena_judge_v3.py"
-Cohesion: 0.60
-Nodes (3): chat(), gibberish_score(), judge_pair()
+### Community 131 - "Текущий план"
+Cohesion: 0.67
+Nodes (3): Qwen3 с обратимой нумерацией, Следующий исследовательский вопрос, Текущий план
 
 ## Knowledge Gaps
-- **328 isolated node(s):** `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script` (+323 more)
+- **341 isolated node(s):** `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script` (+336 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `RawClusterRanker` connect `Community 0` to `Community 1`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
-- **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+- **Why does `ReferenceClient` connect `Community 10` to `implementation_plan.md`, `Текущий план`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Why does `ReferenceUnavailable` connect `Community 10` to `implementation_plan.md`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `generate()` connect `Текущий план` to `Community 10`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
   _`HierarchicalEnumeratorV1` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 8 inferred relationships involving `GenerativeAddress` (e.g. with `QwenPredictors` and `QwenPredictorsGreedy`) actually correct?**
   _`GenerativeAddress` has 8 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
-  _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script` to the rest of the system?**
-  _328 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _341 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.07305669199298656 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
