@@ -23,7 +23,10 @@ from math import comb, gcd, log2
 from pathlib import Path
 from typing import Iterable, Protocol, Sequence
 import json
-from markov5_storage import Markov5Rows
+if __package__:
+    from .markov5_storage import Markov5Rows
+else:
+    from markov5_storage import Markov5Rows
 
 
 ROOT = Path(__file__).resolve().parents[1]

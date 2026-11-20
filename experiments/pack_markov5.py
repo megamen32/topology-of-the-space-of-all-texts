@@ -9,7 +9,10 @@ import shutil
 from tempfile import TemporaryDirectory
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-from markov5_storage import model_file, ROW, STATE, ZIP_FORMAT
+if __package__:
+    from .markov5_storage import model_file, ROW, STATE, ZIP_FORMAT
+else:
+    from markov5_storage import model_file, ROW, STATE, ZIP_FORMAT
 
 
 def pack(manifest: Path, destination: Path) -> None:

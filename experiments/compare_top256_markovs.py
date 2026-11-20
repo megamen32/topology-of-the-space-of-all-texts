@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json, argparse
-from markov5_storage import Markov5Rows
+if __package__:
+    from .markov5_storage import Markov5Rows
+else:
+    from markov5_storage import Markov5Rows
 
 ROOT=Path(__file__).resolve().parents[1]
 
