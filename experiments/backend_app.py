@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json, hashlib, os, random, math, unicodedata, sys
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, url_for
 import regex as re
 from functools import lru_cache
 from cluster_counting_mvp import HierarchicalRawRanker, RawClusterRanker
 from babel_shell_v1 import BabelRanker4096
 from hierarchical_enumerator_v1 import HierarchicalEnumeratorV1
+from qwen_web_jobs import MODE as QWEN_MODE, QueueFull, QwenJobs, job_input
 ROOT=Path(os.environ.get('BABEL_ROOT', Path(__file__).resolve().parents[1]))
 # A 4096-byte page has ~9,865 decimal digits. The API historically exposed
 # rank_dec, so allow that intentional conversion instead of failing at Python's
@@ -18,6 +19,9 @@ MODEL=json.loads((ROOT/'models/student_fsm_v1/student_fsm_v1.json').read_text(en
 ALPHA=MODEL['alphabet']; ASET=set(ALPHA); IDX={c:i for i,c in enumerate(ALPHA)}
 emoji_re=re.compile(r'\p{Emoji}')
 app=Flask(__name__, static_folder=str(SITE), static_url_path='')
+qwen_jobs = QwenJobs()
+# A JSON-escaped page of 4096 supplementary characters takes 49,152 bytes.
+QWEN_BODY_LIMIT = 64 * 1024
 EXACT_CLUSTER_MAX_LENGTH = 256
 HIERARCHICAL_BLOCK_LENGTH = 256
 HIERARCHICAL_MAX_LENGTH = 4096
@@ -330,9 +334,43 @@ def index(): return send_from_directory(SITE,'index.html')
 def static_proxy(path): return send_from_directory(SITE,path)
 @app.post('/api/score')
 def api_score(): return jsonify(score_text((request.json or {}).get('text','')))
+
+def qwen_reply(data, code, job_id=None):
+    payload = dict(data, mode=QWEN_MODE)
+    if job_id:
+        payload['job_id'] = job_id
+    response = jsonify(payload)
+    response.status_code = code
+    response.cache_control.no_store = True
+    if code in (202, 429):
+        response.headers['Retry-After'] = '2'
+    return response
+
+def submit_qwen(operation, body):
+    # Mode is in the JSON body. Flask has cached its bytes; legacy rank accepts long texts.
+    if len(request.get_data()) > QWEN_BODY_LIMIT:
+        return qwen_reply({'error': 'Запрос Qwen превышает 64 КиБ.'}, 413)
+    try:
+        job_id = qwen_jobs.submit(operation, job_input(operation, body))
+    except ValueError as exc:
+        return qwen_reply({'error': str(exc)}, 400)
+    except QueueFull:
+        return qwen_reply({'error': 'Очередь Qwen заполнена. Попробуйте позже.'}, 429)
+    response = qwen_reply({'status': 'queued'}, 202, job_id)
+    response.autocorrect_location_header = False  # Keep Location relative behind the TLS proxy.
+    response.headers['Location'] = url_for('qwen_job', job_id=job_id)
+    return response
+
+@app.get('/api/qwen/jobs/<job_id>')
+def qwen_job(job_id):
+    data, code = qwen_jobs.poll(job_id)
+    return qwen_reply(data, code, job_id)
+
 @app.post('/api/rank')
 def api_rank():
-    body=request.json or {}
+    body = request.json or {}
+    if body.get('mode') == QWEN_MODE:
+        return submit_qwen('rank', body)
     if body.get('mode') == 'hierarchical_catalogue_v1':
         try:
             ranker = catalogue_ranker()
@@ -381,7 +419,10 @@ def api_rank():
     return jsonify({'rank_hex':hex(n),'rank_dec':str(n),'page_preview':page[:512]})
 @app.post('/api/unrank')
 def api_unrank():
-    body=request.json or {}; val=str(body.get('rank','0'))
+    body = request.json or {}
+    if body.get('mode') == QWEN_MODE:
+        return submit_qwen('unrank', body)
+    val = str(body.get('rank', '0'))
     if body.get('mode') == 'hierarchical_catalogue_v1':
         try:
             return jsonify(catalogue_payload(catalogue_ranker().unrank_page(parse_rank(val))))

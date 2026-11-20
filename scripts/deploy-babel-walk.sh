@@ -5,6 +5,7 @@ host="${1:-bezrabotnyi.com}"
 target="/home/roomhacker/apps/babel-walk"
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+# Sender-only rules let the final exclude protect missing Qwen modules on the receiver.
 rsync -a --delete \
   --include '/experiments/' \
   --include '/experiments/backend_app.py' \
@@ -12,6 +13,11 @@ rsync -a --delete \
   --include '/experiments/babel_shell_v1.py' \
   --include '/experiments/markov5_storage.py' \
   --include '/experiments/cluster_counting_mvp.py' \
+  --filter 'show /experiments/generative_coupling.py' \
+  --filter 'show /experiments/ollama_continuation_v3.py' \
+  --filter 'show /experiments/ollama_generative_address.py' \
+  --filter 'show /experiments/qwen_reference.py' \
+  --filter 'show /experiments/qwen_web_jobs.py' \
   --include '/models/' \
   --include '/models/cluster_student_v2/' \
   --include '/models/cluster_student_v2/model.json' \
