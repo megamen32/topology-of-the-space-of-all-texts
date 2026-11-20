@@ -18,7 +18,8 @@ const pageLimit = formatCount(PAGE_LEN);
 const tooLong = 'Текст превышает лимит в ' + pageLimit + ' знаков.';
 let model;
 let revision = 0;
-let originalPage = null;
+let originalUnits = null;
+let editStart = null;
 let decimalAddress = null;
 
 async function api(path, payload) {
@@ -36,9 +37,35 @@ async function api(path, payload) {
 
 function setPage(page) {
   query.value = page;
-  // The browser converts CR and CRLF to LF in textarea.value.
-  originalPage = page;
+  originalUnits = page.includes('\r') ? textareaUnits(page) : null;
   updateQwenHint();
+}
+
+// A textarea selection counts UTF-16 units and treats CRLF as one line break.
+const textareaUnits = text => text.match(/\r\n|[\s\S]/g) ?? [];
+const sourceText = () => originalUnits?.join('') ?? query.value;
+
+function replaceSourceRange(start, end, replacement) {
+  const units = originalUnits ?? query.value.split('');
+  const edited = units.slice(0, start).concat(textareaUnits(replacement), units.slice(end));
+  originalUnits = edited.some(unit => unit.startsWith('\r')) ? edited : null;
+}
+
+function keepSourceLineEndings() {
+  // Retain the original breaks on either side of a native edit, including
+  // adjacent breaks that look identical in the textarea but differ in the file.
+  const before = originalUnits.map(unit => unit.startsWith('\r') ? '\n' : unit).join('');
+  const after = query.value;
+  const startLimit = Math.min(editStart ?? query.selectionStart, query.selectionStart, before.length);
+  let start = 0;
+  while (start < startLimit && before[start] === after[start]) start++;
+  let oldEnd = before.length;
+  let newEnd = after.length;
+  while (oldEnd > start && newEnd > query.selectionEnd && before[oldEnd - 1] === after[newEnd - 1]) {
+    oldEnd--;
+    newEnd--;
+  }
+  replaceSourceRange(start, oldEnd, after.slice(start, newEnd));
 }
 
 function codePointLength(text) {
@@ -48,7 +75,7 @@ function codePointLength(text) {
 }
 
 function paddedPage() {
-  const text = originalPage ?? query.value;
+  const text = sourceText();
   const remaining = PAGE_LEN - codePointLength(text);
   if (remaining < 0) throw new Error(tooLong);
   if (/[\uD800-\uDFFF]/u.test(text)) throw new Error('Текст содержит недопустимый символ Unicode.');
@@ -56,7 +83,7 @@ function paddedPage() {
 }
 
 function updateQwenHint() {
-  const count = codePointLength(originalPage ?? query.value);
+  const count = codePointLength(sourceText());
   const remaining = PAGE_LEN - count;
   charCount.textContent = formatCount(count) + ' / ' + pageLimit;
   counterWrap.classList.toggle('over-limit', remaining < 0);
@@ -186,14 +213,19 @@ lengthSelect.onchange = () => {
   if (Number(lengthSelect.value) > 256) mode.value = 'exact_hierarchical_v1';
   changeMode();
 };
+function pageEdited() {
+  ++revision;
+  clearAddressReceipt();
+  updateQwenHint();
+  unrankResult.textContent = '';
+}
+query.onbeforeinput = () => { editStart = query.selectionStart; };
 query.oninput = () => {
-  originalPage = null;
   if (mode.value === QWEN_MODE) {
-    ++revision;
-    clearAddressReceipt();
-    updateQwenHint();
-    unrankResult.textContent = '';
-  }
+    if (originalUnits) keepSourceLineEndings();
+    pageEdited();
+  } else originalUnits = null;
+  editStart = null;
 };
 rankInput.oninput = () => {
   if (decimalAddress !== null) {
@@ -202,13 +234,17 @@ rankInput.oninput = () => {
   }
 };
 query.onpaste = event => {
-  if (mode.value !== QWEN_MODE || query.readOnly || query.selectionStart !== 0 ||
-      query.selectionEnd !== query.value.length || !event.clipboardData) return;
+  if (mode.value !== QWEN_MODE || query.readOnly || !event.clipboardData) return;
+  const pasted = event.clipboardData.getData('text/plain');
+  const start = query.selectionStart;
+  const end = query.selectionEnd;
+  const replaceAll = start === 0 && end === query.value.length;
+  if (!replaceAll && !pasted.includes('\r')) return;
   event.preventDefault();
-  ++revision;
-  clearAddressReceipt();
-  setPage(event.clipboardData.getData('text/plain'));
-  unrankResult.textContent = '';
+  if (replaceAll) originalUnits = pasted.includes('\r') ? textareaUnits(pasted) : null;
+  else replaceSourceRange(start, end, pasted);
+  query.setRangeText(pasted.replace(/\r\n?/g, '\n'), start, end, 'end');
+  pageEdited();
 };
 
 byId('pageFile').onchange = async event => {

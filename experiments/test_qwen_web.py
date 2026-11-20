@@ -336,6 +336,19 @@ class QwenWebTest(TestCase):
         self.assertEqual(self.fake.ranked_page, FILE_WITH_CR)
         self.assert_receipt_cleared(tab)
 
+        source = "\ufeffA\r\n\n😀\rB"
+        tab.set_input_files("#pageFile", {"name": "short-cr.txt", "mimeType": "text/plain", "buffer": source.encode()})
+        expect(tab.locator("#result")).to_contain_text("загружен")
+        query = tab.locator("#query")
+        # Delete the LF immediately following CRLF. They look identical in the textarea.
+        query.evaluate("q => { q.focus(); q.setSelectionRange(3, 4); }")
+        query.press("Backspace")
+        self.assert_page_exports(tab, "\ufeffA\r\n😀\rB".ljust(PAGE))
+        query.evaluate("q => { q.focus(); q.setSelectionRange(1, 1); }")
+        tab.evaluate("text => navigator.clipboard.writeText(text)", "X\r\nY")
+        query.press("Control+v")
+        self.assert_page_exports(tab, "\ufeffX\r\nYA\r\n😀\rB".ljust(PAGE))
+
     def test_search_ui_receipt_after_restore_and_errors(self):
         tab = self.open_search()
         tab.fill("#query", PHRASE)

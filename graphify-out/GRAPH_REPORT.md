@@ -1,16 +1,16 @@
-# Graph Report - graph-search-padding-folio  (2026-11-20)
+# Graph Report - graph-search-preserve-file  (2026-11-20)
 
 ## Corpus Check
-- 181 files · ~2,395,531 words
+- 181 files · ~2,395,783 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1257 nodes · 2028 edges · 135 communities (104 shown, 31 thin omitted)
+- 1262 nodes · 2040 edges · 135 communities (104 shown, 31 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 78 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `967fc25e`
+- Built from commit: `40f2b548`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -275,8 +275,8 @@ Cohesion: 0.06
 Nodes (27): BabelRanker4096, BinaryShellRanker, ContextPermutationMarkov5, ContextPermutationV1, ContextPermutationWordV1, _exhaustive_reduced_space_test(), Permutation, Path (+19 more)
 
 ### Community 30 - "Community 30"
-Cohesion: 0.11
-Nodes (29): addressDetails, addressFormats, api(), byId(), changeMode(), charCount, clearAddressReceipt(), codePointLength() (+21 more)
+Cohesion: 0.10
+Nodes (34): addressDetails, addressFormats, api(), byId(), changeMode(), charCount, clearAddressReceipt(), codePointLength() (+26 more)
 
 ### Community 32 - "implementation_plan.md"
 Cohesion: 0.10
@@ -431,12 +431,12 @@ Cohesion: 0.25
 Nodes (8): 1. Назначение документа, 2.1. Латентная страница, 2.2. Контекстная перестановка, 2.3. Главное математическое упрощение, 2. Центральная математическая гипотеза, Научная программа завершения математического ядра «Библиотеки Вавилона», Статистические свойства, Строго математические свойства
 
 ### Community 118 - "STAGE 9. Масштабирование, точная арифметика и воспроизводимость"
-Cohesion: 0.25
-Nodes (8): 9.1. Целочисленный порядок кандидатов, 9.2. Точные размеры оболочек, 9.3. Версионирование, 9.4. Набор канонических тест-векторов, 9.5. Независимые реализации, STAGE 9. Масштабирование, точная арифметика и воспроизводимость, Критерий завершения, Научный вопрос
+Cohesion: 0.12
+Nodes (15): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Математическая конструкция Babel-1, 9.1. Целочисленный порядок кандидатов, 9.2. Точные размеры оболочек, 9.3. Версионирование, 9.4. Набор канонических тест-векторов, 9.5. Независимые реализации (+7 more)
 
 ### Community 119 - "STAGE 0. Формализация объекта библиотеки"
-Cohesion: 0.14
-Nodes (13): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Математическая конструкция Babel-1, STAGE 0. Формализация объекта библиотеки, Критерий завершения, Математическая готовность, Модельная готовность, Научный вопрос (+5 more)
+Cohesion: 0.33
+Nodes (6): STAGE 0. Формализация объекта библиотеки, Критерий завершения, Научный вопрос, Обязательный научный результат Stage 0, Отдельная проблема коротких текстов, Рекомендуемое определение
 
 ### Community 120 - "Задачи"
 Cohesion: 0.40
@@ -495,7 +495,7 @@ Nodes (3): Qwen3 с обратимой нумерацией, Следующий
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ReferenceClient` connect `Community 10` to `implementation_plan.md`, `Текущий план`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `generate()` connect `Текущий план` to `Community 10`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
