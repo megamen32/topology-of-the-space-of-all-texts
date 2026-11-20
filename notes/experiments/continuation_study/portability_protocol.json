@@ -1,0 +1,8 @@
+{
+  "registered_utc": "2026-11-20T06:42:57.605952+00:00",
+  "observation": "Prior to unmasking any semantic scores, only 9 of 12 sampled-writer v3 pages matched between the two hosts (40, 41, 42 differed); all v2 pages matched.",
+  "diagnosis": "Compare independent within-host replays for a discordant address, Ollama layer placement and actual response signatures. Keep the first run on each host as data.",
+  "diagnostic_variant": "Freeze one greedy alternative using the same published F, read, plan, write prompt, penalty settings, original v3 key and normalization. In the corrected composer, only the prose choice changes to temperature 0, top_k 1, top_p 1. The empty-retry correction remains as registered separately.",
+  "schedule": "First test discordant addresses 41, 40 and 42, one Russian and one English development example if necessary, then the full 32–43 interval if the three match. Run each host locally with its own service. If a greedy gate fails, report the negative result. No claim about other devices or addresses.",
+  "semantic_transfer": "The primary sample is always the original v2/44, v3/88, paragraph and word. A changed page gets no score from its predecessor. If a corrected execution profile can reproduce all original graded bytes, their scores apply to those bytes. Greedy diagnostic pages with different text are outside the present blinded trial."
+}
