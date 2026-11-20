@@ -1,0 +1,241 @@
+{
+  "utc": "2026-11-20T06:23:50.036898+00:00",
+  "preregistration": "d1170d6d48db92b752326ca45a4fa68c1fdf1256",
+  "protocol_sha256": "65f487aaa46c9ac82adbe7bd2bba2002094769b269a50efdf271d5f8dc4c870f",
+  "v2": {
+    "experiments/generative_coupling.py": "737d7c1fc25fc5e67bfac4df68ee05517a13f7afa05ddaa07796124e648d4bd8",
+    "experiments/ollama_generative_address.py": "7ff822374107bd4d9a44914f7ad758bd55719277f9804f32d3883ec5207ba35c",
+    "models/top256_alphabet/alphabet_top256.json": "2b193a3c8d7139c575d49785c7a7a76ae79a53d506c88a51677b8df687618ca6"
+  },
+  "v3": {
+    "experiments/generative_coupling.py": "737d7c1fc25fc5e67bfac4df68ee05517a13f7afa05ddaa07796124e648d4bd8",
+    "experiments/ollama_generative_address.py": "5c140cffe7a509a7000631edb5ce79aea958406373492a63ddb83dfae85462d6",
+    "models/top256_alphabet/alphabet_top256.json": "2b193a3c8d7139c575d49785c7a7a76ae79a53d506c88a51677b8df687618ca6",
+    "experiments/ollama_continuation_v3.py": "ea720e6448144eaec8778a17ccc485290e2287289faef716679ce46a8f3467f4"
+  },
+  "student_sources": {
+    "experiments/eval_harness_v2.py": "c5b719ab4dce651db4d94519ecd7ffeee562712cc7dbf34cdd85da842cb02e3a",
+    "experiments/student_comparison_pages.py": "e44a16bb1a777f9807ecc235038bd95ea4826cda4fa83a2b65616dc60582f4e9"
+  },
+  "blinding_allocation_sha256": "db60bd888f45e2a3aaa729952e2e637b0e6bc7271b22717796440e2440c37a22",
+  "candidate": {
+    "edition": "babel-qwen3-1.7b-ollama0.32.1-gpu-b128-v3",
+    "spec_sha256": "8454f571169bfabef9b8761a2e36f9231200200b2ec7f7a665cd09a03be20015",
+    "files_sha256": {
+      "experiments/ollama_generative_address.py": "5c140cffe7a509a7000631edb5ce79aea958406373492a63ddb83dfae85462d6",
+      "experiments/ollama_continuation_v3.py": "ea720e6448144eaec8778a17ccc485290e2287289faef716679ce46a8f3467f4",
+      "experiments/generative_coupling.py": "737d7c1fc25fc5e67bfac4df68ee05517a13f7afa05ddaa07796124e648d4bd8",
+      "models/top256_alphabet/alphabet_top256.json": "2b193a3c8d7139c575d49785c7a7a76ae79a53d506c88a51677b8df687618ca6",
+      "spec.json": "8454f571169bfabef9b8761a2e36f9231200200b2ec7f7a665cd09a03be20015",
+      "prompts.json": "20b12a4d9ad78881873f36176c90c2aa2cf2d89e7468d0d3c285ef3c899014b5",
+      "options.json": "2d6de5e1385a34c121e41ba1eb507fd972913cfdca11aaa5f75dbe823d7e8683"
+    },
+    "python": "3.10.12",
+    "ollama_version": "0.32.1",
+    "model": "qwen3:1.7b",
+    "manifest_sha256": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+    "gguf_sha256": "3d0b790534fe4b79525fc3692950408dca41171676ed7e21db57af5c65ef6ab6",
+    "development_addresses": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "variants": {
+      "v2": {
+        "source_sha256": "7ff822374107bd4d9a44914f7ad758bd55719277f9804f32d3883ec5207ba35c",
+        "longest_common_substring_symbols": [
+          325,
+          251,
+          364,
+          140,
+          720,
+          55
+        ],
+        "median": 288.0,
+        "g_calls": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "seconds": [
+          15.38,
+          15.15,
+          16.52,
+          14.55,
+          16.36,
+          15.33
+        ],
+        "timing_scope": "F+G unrank CLI wall"
+      },
+      "trial1": {
+        "source_sha256": "9df7b07550644aae803540c880223f12f2508944796d47a331390b636a3d6822",
+        "longest_common_substring_symbols": [
+          19,
+          18,
+          21,
+          17,
+          22,
+          19
+        ],
+        "median": 19.0,
+        "g_calls": [
+          4,
+          5,
+          4,
+          5,
+          4,
+          5
+        ],
+        "seconds": [
+          23.779,
+          27.215,
+          24.37,
+          27.189,
+          24.674,
+          26.741
+        ],
+        "timing_scope": "G cumulative cold request wall"
+      },
+      "trial2": {
+        "source_sha256": "db2e64774cbe1a978ea8c4050d8a520004e56a8166f06c5d6ecd5c6029a04b5b",
+        "longest_common_substring_symbols": [
+          36,
+          24,
+          22,
+          23,
+          67,
+          20
+        ],
+        "median": 23.5,
+        "g_calls": [
+          4,
+          2,
+          4,
+          4,
+          4,
+          2
+        ],
+        "seconds": [
+          24.581,
+          12.746,
+          25.511,
+          24.166,
+          25.785,
+          13.008
+        ],
+        "timing_scope": "G cumulative cold request wall"
+      },
+      "trial3": {
+        "source_sha256": "e82ba7b786c0157b31cc21a77f3f19af64613d3346f7f88a7a33e91da7172cf2",
+        "longest_common_substring_symbols": [
+          31,
+          22,
+          21,
+          19,
+          24,
+          24
+        ],
+        "median": 23.0,
+        "g_calls": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "seconds": [
+          35.229,
+          33.793,
+          35.136,
+          33.076,
+          34.715,
+          33.804
+        ],
+        "timing_scope": "G cumulative cold request wall"
+      },
+      "trial4": {
+        "source_sha256": "35456ff60322ef566ef3b2848c64efb56c74058f457dd049c97a144ae8b60ed9",
+        "longest_common_substring_symbols": [
+          19,
+          16,
+          20,
+          36,
+          17,
+          26
+        ],
+        "median": 19.5,
+        "g_calls": [
+          6,
+          9,
+          6,
+          6,
+          6,
+          6
+        ],
+        "seconds": [
+          33.453,
+          47.719,
+          34.004,
+          32.485,
+          34.011,
+          32.324
+        ],
+        "timing_scope": "G cumulative cold request wall"
+      }
+    },
+    "selected": "trial4",
+    "replay": {
+      "commands": "continue --edition v3, UTF-8 on even addresses, --indices on odd addresses",
+      "matched_canonical_payloads": 39,
+      "matched_halves": 6,
+      "fallback_indices_each": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "live_final_cli": {
+      "10": {
+        "command": "unrank",
+        "language": "ru",
+        "address": "10",
+        "indices_sha256": "7119c6c97a4aa3ec978ff9752042b96d9bc5eee5cb885a5160707d8fa72e88c0",
+        "receipt_sha256": "98612f98e918f2ebe8c942fd54329e4dc5463e3fc8ff441ceeae73207810ced9",
+        "seconds": 42.62
+      },
+      "11": {
+        "command": "rank",
+        "language": "en",
+        "address": "11",
+        "indices_sha256": "b659cb3adc80148d33a259b3a67b952999cda53bf7fa46486f6b5527c92f91ce",
+        "receipt_sha256": "86586445ab7c5d92bc776bcf872398745d891f65f4fe907e215ef9eeaeeb3588",
+        "seconds": 55.07
+      }
+    },
+    "mock_v2_cli_byte_identical": true,
+    "offline_checks": [
+      "v2 self-test",
+      "v3 self-test with positive forced unload before each decode",
+      "both directions of rank/unrank, arbitrary 256-symbol page and maximum address",
+      "nine spec tamper cases rejected before transport",
+      "exhaustive 65,536 two-symbol codec pairs"
+    ]
+  },
+  "controls_sha256": {
+    "en_neg": "a8374c2e7bad47eae60a34e87e4c7b0c21bd26b3e5ef08d48f9a95db0ca5e7ef",
+    "en_pos": "a7648be2c40a1003b42db2626cae2ebac78316aaf3ba995e0c55fce5bcc03bc9",
+    "ru_neg": "f0bde8faf5ba61de2653d85e86ff056867ff74a59719dd49babe7d067a6f9c69",
+    "ru_pos": "42f46b2aff29be6357dcc201fac0df7c57e6d4ccece528ca32e0255b92c591e2"
+  },
+  "blind_protocol_sha256": "65f487aaa46c9ac82adbe7bd2bba2002094769b269a50efdf271d5f8dc4c870f"
+}

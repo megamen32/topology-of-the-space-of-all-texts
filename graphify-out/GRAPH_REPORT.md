@@ -1,16 +1,16 @@
-# Graph Report - compare-clean  (2026-11-20)
+# Graph Report - graph-edition  (2026-11-20)
 
 ## Corpus Check
-- 143 files · ~2,341,543 words
+- 151 files · ~2,349,327 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1022 nodes · 1523 edges · 122 communities (93 shown, 29 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.65)
+- 1056 nodes · 1592 edges · 124 communities (95 shown, 29 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 29 edges (avg confidence: 0.64)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e1056dcd`
+- Built from commit: `d1170d6d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -116,6 +116,8 @@
 - STAGE 0. Формализация объекта библиотеки
 - Задачи
 - Какая маленькая модель удерживает развязку рассказа?
+- student_comparison_pages.py
+- Что открывается на восьми малых и восьми далёких адресах Qwen3
 
 ## God Nodes (most connected - your core abstractions)
 1. `HierarchicalEnumeratorV1` - 25 edges
@@ -124,10 +126,10 @@
 4. `RawClusterRanker` - 18 edges
 5. `boot()` - 14 edges
 6. `Markov5Rows` - 13 edges
-7. `main()` - 13 edges
-8. `BabelRanker4096` - 12 edges
-9. `atlasBoot()` - 12 edges
-10. `ChunkedRawCounter` - 11 edges
+7. `BabelRanker4096` - 12 edges
+8. `GenerativeAddress` - 12 edges
+9. `main()` - 12 edges
+10. `atlasBoot()` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `main()` --calls--> `ContextPermutationV1`  [INFERRED]
@@ -144,10 +146,10 @@
 ## Import Cycles
 - None detected.
 
-## Communities (122 total, 29 thin omitted)
+## Communities (124 total, 29 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.10
+Cohesion: 0.09
 Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+5 more)
 
 ### Community 1 - "Community 1"
@@ -167,8 +169,8 @@ Cohesion: 0.13
 Nodes (7): cls(), isCombining(), normalizeText(), normChar(), pageFromText(), rankText(), scoreText()
 
 ### Community 5 - "Community 5"
-Cohesion: 0.29
-Nodes (16): corpus_profile(), detok(), gen_fsm(), gen_paragraph(), gen_sentence(), gen_sentence_from_template(), gen_word(), generate() (+8 more)
+Cohesion: 0.16
+Nodes (23): corpus_profile(), detok(), gen_fsm(), gen_paragraph(), gen_sentence(), gen_sentence_from_template(), gen_word(), generate() (+15 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.11
@@ -187,7 +189,7 @@ Cohesion: 0.28
 Nodes (15): boot(), buildTinyRanker(), detok(), generateFSM(), generateParagraphStudent(), generateSentenceFromTemplate(), generateSentenceStudent(), isPunct() (+7 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.28
+Cohesion: 0.31
 Nodes (6): ChunkedRawCounter, main(), Counter, Apply one exact raw-symbol transition to a state/energy vector., Return T[source][destination][energy] for exactly ``span`` steps., Count every raw page exactly, composing complete blocks then a tail.
 
 ### Community 11 - "Community 11"
@@ -267,8 +269,8 @@ Cohesion: 0.53
 Nodes (8): api(), baseRank(), boot(), exactRank(), rankAddress(), selectedLength(), selectedMode(), usesServerExact()
 
 ### Community 32 - "implementation_plan.md"
-Cohesion: 0.16
-Nodes (21): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), http_transport() (+13 more)
+Cohesion: 0.13
+Nodes (27): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), generated_text() (+19 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.29
@@ -303,8 +305,8 @@ Cohesion: 0.33
 Nodes (6): 1. Порядок всех страниц по стоимости исходной модели, 2. Масштабирование точного подсчёта, 3. Читаемость, 4. Проверки нового порядка, 5. Связность и адреса в эксперименте с LLM, Открытые задачи
 
 ### Community 41 - "Community 41"
-Cohesion: 0.25
-Nodes (8): Как восстановить исходную таблицу Markov-5, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что показало сравнение малых языковых моделей, Что проверено на публичном сайте, Что удавалось ранним моделям, Эксперимент с Qwen3
+Cohesion: 0.22
+Nodes (9): Как восстановить исходную таблицу Markov-5, Полные страницы Qwen3, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что показало сравнение малых языковых моделей, Что проверено на публичном сайте, Что удавалось ранним моделям (+1 more)
 
 ### Community 42 - "Community 42"
 Cohesion: 0.40
@@ -355,8 +357,8 @@ Cohesion: 0.50
 Nodes (4): Проверить выводы о читаемости, Продолжить исследование точной нумерации, Сравнить полные страницы, Текущий план
 
 ### Community 69 - "Можно ли отдать начало библиотеки языковой модели?"
-Cohesion: 0.40
-Nodes (5): Как номер превращается в страницу, Можно ли отдать начало библиотеки языковой модели?, Первая проверка с языковой моделью, 20 ноября 2026 года, Следующий эксперимент и критерии решения, Что уже проверено
+Cohesion: 0.33
+Nodes (6): Как номер превращается в страницу, Можно ли отдать начало библиотеки языковой модели?, Первая проверка с языковой моделью, 20 ноября 2026 года, Следующий эксперимент и критерии решения, Что показали ещё 16 страниц, Что уже проверено
 
 ### Community 93 - "README.md"
 Cohesion: 0.67
@@ -434,25 +436,33 @@ Nodes (4): Генераторы в браузере, Локальный зап�
 Cohesion: 0.67
 Nodes (3): Из чего выбирали, Как перепроверить, Какая маленькая модель удерживает развязку рассказа?
 
+### Community 122 - "student_comparison_pages.py"
+Cohesion: 0.42
+Nodes (8): main(), measure(), provenance(), Path, require_prefix(), seed_range(), write_sample(), range
+
+### Community 123 - "Что открывается на восьми малых и восьми далёких адресах Qwen3"
+Cohesion: 0.67
+Nodes (3): Как воспроизвести адрес, Как отбирали страницы, Что открывается на восьми малых и восьми далёких адресах Qwen3
+
 ## Knowledge Gaps
-- **307 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+302 more)
+- **311 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+306 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
-- **Why does `BinaryShellRanker` connect `Community 29` to `Community 23`?**
-  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
   _`HierarchicalEnumeratorV1` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
-  _307 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _311 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09494949494949495 - nodes in this community are weakly interconnected._
+- **Should `Community 1` be split into smaller, more focused modules?**
+  _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._

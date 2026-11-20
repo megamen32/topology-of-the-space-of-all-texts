@@ -1,0 +1,625 @@
+{
+  "schema_version": 1,
+  "title": "Четыре литературные контрольные страницы для проверки продолжения",
+  "audience": "Ключ организатора. Условия, исходные имена файлов, источники и ответы раскрывают разметку.",
+  "prepared_utc": "2026-11-20T06:19:48+00:00",
+  "format": {
+    "encoding": "UTF-8",
+    "page_codepoints": 4096,
+    "split_after_codepoints": 2048,
+    "half_codepoints": 2048,
+    "offset_convention": "Все интервалы в кодовых точках Unicode, от нуля, начало включено, конец исключён. В locations отсчёт идёт от начала всего представления источника после указанного преобразования. В evidence отсчёт идёт от начала готовой страницы.",
+    "join": "Левая половина + правая, разделитель пуст. Пробел непосредственно перед границей принадлежит левой половине.",
+    "serialization": "Кодировать страницу как UTF-8 без BOM и завершающего перевода строки. Срезы сохраняются посимвольно.",
+    "hash": "SHA-256. Для raw_sha256 берутся все исходные байты, для view_sha256 — вся преобразованная строка в UTF-8, для sha256 карточек и половин — соответствующие байты готового текста."
+  },
+  "question": "Продолжает ли правая половина конкретное действие или событие из левой так, что около границы можно указать причину и новое действие?",
+  "normalization": {
+    "identity": "Строго декодировать UTF-8, сохранить все символы корпуса.",
+    "book": "Декодировать UTF-8 с удалением начального BOM, если он есть. Собрать слова из Python str.split() через один пробел. Применить Unicode NFKC, посимвольные замены punctuation и str.lower(). Смещения включают плоское заглавие и все служебные части исходника.",
+    "book_archive_double_dash": "Выполнить book, затем заменить каждую неперекрывающуюся пару ASCII-дефисов одним дефисом. Это представление тире в архивной версии «Эммы».",
+    "punctuation": {
+      "“": "\"",
+      "”": "\"",
+      "„": "\"",
+      "‟": "\"",
+      "’": "'",
+      "‘": "'",
+      "‚": "'",
+      "`": "'",
+      "´": "'",
+      "–": "-",
+      "—": "-",
+      "−": "-"
+    },
+    "unicode_version_used": "13.0.0"
+  },
+  "rebuild": {
+    "requirements": "Python 3, стандартная библиотека. Для маршрутов с babel_cache нужен Git и клон указанного репозитория с зафиксированным коммитом.",
+    "routes": {
+      "primary": "Семь половин из объекта Git корпуса Babel. Правая половина en_neg из издания Project Gutenberg № 158.",
+      "public": "Все восемь половин из публичных книжных файлов RusLit и Project Gutenberg. Локальный корпус не требуется.",
+      "archive": "Семь половин из зафиксированного коммита Babel. Правая половина en_neg из зафиксированного коммита GITenberg. Оба исходника привязаны к конкретным объектам Git."
+    },
+    "method": "Для каждой половины выбрать locations[route], а при отсутствии ключа взять locations.primary. Проверить SHA-256 исходника, применить его transform и проверить SHA-256 представления. Взять указанный срез, проверить длину и SHA-256. Объединить левую и правую половины, записать по format.serialization, сверить хеш страницы.",
+    "python3": "import hashlib\nimport json\nfrom functools import lru_cache\nfrom pathlib import Path\nimport subprocess\nimport sys\nimport unicodedata\nfrom urllib.request import urlopen\n\nmanifest_file, destination, route, *repo_arg = sys.argv[1:]\nif route not in {\"primary\", \"public\", \"archive\"}:\n    raise ValueError(\"route must be primary, public or archive\")\nmanifest = json.loads(Path(manifest_file).read_text(encoding=\"utf-8\"))\nrepo = Path(repo_arg[0]) if repo_arg else Path(\".\")\ndigest = lambda data: hashlib.sha256(data).hexdigest()\n\n@lru_cache(None)\ndef source_view(key):\n    source = manifest[\"sources\"][key]\n    if \"git_path\" in source:\n        obj = source[\"git_commit\"] + \":\" + source[\"git_path\"]\n        raw = subprocess.check_output([\"git\", \"-C\", str(repo), \"show\", obj])\n    else:\n        for url in source[\"download_urls\"]:\n            try:\n                with urlopen(url, timeout=25) as response:\n                    raw = response.read()\n            except OSError:\n                continue\n            if digest(raw) == source[\"raw_sha256\"]:\n                break\n        else:\n            raise ValueError(\"could not fetch pinned bytes for \" + key)\n    if digest(raw) != source[\"raw_sha256\"]:\n        raise ValueError(\"source checksum mismatch: \" + key)\n    transform = source[\"transform\"]\n    if transform == \"identity\":\n        text = raw.decode(\"utf-8\")\n    else:\n        text = \" \".join(raw.decode(\"utf-8-sig\").split())\n        text = unicodedata.normalize(\"NFKC\", text)\n        table = str.maketrans(manifest[\"normalization\"][\"punctuation\"])\n        text = text.translate(table).lower()\n        if transform == \"book_archive_double_dash\":\n            text = text.replace(\"--\", \"-\")\n        elif transform != \"book\":\n            raise ValueError(\"unknown transform: \" + transform)\n    if len(text) != source[\"view_codepoints\"] or digest(text.encode(\"utf-8\")) != source[\"view_sha256\"]:\n        raise ValueError(\"normalized source checksum mismatch: \" + key)\n    return text\n\nout = Path(destination)\nout.mkdir(parents=True, exist_ok=True)\nfor card in manifest[\"cards\"]:\n    parts = []\n    for half in card[\"halves\"]:\n        locations = half[\"locations\"]\n        loc = locations.get(route, locations[\"primary\"])\n        start, end = loc[\"codepoints\"]\n        part = source_view(loc[\"source\"])[start:end]\n        if len(part) != 2048 or digest(part.encode(\"utf-8\")) != half[\"sha256\"]:\n            raise ValueError(\"half mismatch: \" + card[\"file\"] + \"/\" + half[\"side\"])\n        parts.append(part)\n    data = \"\".join(parts).encode(\"utf-8\")\n    if len(data) != card[\"utf8_bytes\"] or digest(data) != card[\"sha256\"]:\n        raise ValueError(\"page mismatch: \" + card[\"file\"])\n    (out / card[\"file\"]).write_bytes(data)\n    print(card[\"sha256\"], card[\"file\"])\n",
+    "run_from_project_root": "python3 -c \"import json; print(json.load(open('notes/experiments/continuation_study/controls.json', encoding='utf-8'))['rebuild']['python3'])\" | python3 - notes/experiments/continuation_study/controls.json OUTPUT_DIRECTORY primary ."
+  },
+  "sources": {
+    "babel_cache": {
+      "edition": "Babel, нормализованный корпус cache_v1",
+      "repository_url": "https://github.com/megamen32/topology-of-the-space-of-all-texts",
+      "git_commit": "e0e5df76a8a6987c01642c22b60c5ba35a894900",
+      "git_blob": "0c6e7706902826d6e918c13e8686d3be3e464c78",
+      "git_path": "datasets/cache_v1/normalized.txt",
+      "transform": "identity",
+      "raw_bytes": 57029554,
+      "raw_sha256": "020c3bdf6cb278b57580a4b66dcb8ce90d9ab1b07d42f1275c65175f18e23bd5",
+      "view_codepoints": 37427093,
+      "view_sha256": "020c3bdf6cb278b57580a4b66dcb8ce90d9ab1b07d42f1275c65175f18e23bd5"
+    },
+    "ruslit_kashtanka": {
+      "edition": "RusLit, Каштанка",
+      "git_commit": "4509680428729da225a73a22008133660f92bb7e",
+      "edition_url": "https://github.com/d0rj/RusLit/blob/4509680428729da225a73a22008133660f92bb7e/prose/Chekhov/%D0%9A%D0%B0%D1%88%D1%82%D0%B0%D0%BD%D0%BA%D0%B0.txt",
+      "download_urls": [
+        "https://raw.githubusercontent.com/d0rj/RusLit/4509680428729da225a73a22008133660f92bb7e/prose/Chekhov/%D0%9A%D0%B0%D1%88%D1%82%D0%B0%D0%BD%D0%BA%D0%B0.txt"
+      ],
+      "transform": "book",
+      "raw_bytes": 67404,
+      "raw_sha256": "5c20f123ddae890133d02896bc704c2f18e8fc9ba7615a0ed0ccf22cbfcb39ab",
+      "view_codepoints": 36905,
+      "view_sha256": "cbd500914f0c7d52e7a1143037efad9f10d031d1a1d54a7a940d37c81c153515"
+    },
+    "ruslit_fat_thin": {
+      "edition": "RusLit, Толстый и тонкий",
+      "git_commit": "4509680428729da225a73a22008133660f92bb7e",
+      "edition_url": "https://github.com/d0rj/RusLit/blob/4509680428729da225a73a22008133660f92bb7e/prose/Chekhov/%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D1%8B%D0%B9%20%D0%B8%20%D1%82%D0%BE%D0%BD%D0%BA%D0%B8%D0%B9.txt",
+      "download_urls": [
+        "https://raw.githubusercontent.com/d0rj/RusLit/4509680428729da225a73a22008133660f92bb7e/prose/Chekhov/%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D1%8B%D0%B9%20%D0%B8%20%D1%82%D0%BE%D0%BD%D0%BA%D0%B8%D0%B9.txt"
+      ],
+      "transform": "book",
+      "raw_bytes": 6307,
+      "raw_sha256": "7e6778f929fdf084d2acd6599df688b278ee2723f1c62e1175c1e97831df8e7b",
+      "view_codepoints": 3514,
+      "view_sha256": "76aee8a0e4f9913642dbff77faf09fb491a761a419c7f5fcde7cfbc2ca9228ac"
+    },
+    "ruslit_vanka": {
+      "edition": "RusLit, Ванька",
+      "git_commit": "4509680428729da225a73a22008133660f92bb7e",
+      "edition_url": "https://github.com/d0rj/RusLit/blob/4509680428729da225a73a22008133660f92bb7e/prose/Chekhov/%D0%92%D0%B0%D0%BD%D1%8C%D0%BA%D0%B0.txt",
+      "download_urls": [
+        "https://raw.githubusercontent.com/d0rj/RusLit/4509680428729da225a73a22008133660f92bb7e/prose/Chekhov/%D0%92%D0%B0%D0%BD%D1%8C%D0%BA%D0%B0.txt"
+      ],
+      "transform": "book",
+      "raw_bytes": 12948,
+      "raw_sha256": "000a53f2926f61c5917dcf4325ccfa557292549e0c58a6914018bc9e5548f5b8",
+      "view_codepoints": 7194,
+      "view_sha256": "897c97c4f02a3dca553a5caa0a8b8ba1aab5354fca7a9300dac75204cf8057e3"
+    },
+    "pg1342": {
+      "edition": "Project Gutenberg, eBook 1342, 1342-0.txt",
+      "edition_url": "https://www.gutenberg.org/ebooks/1342",
+      "download_urls": [
+        "https://gutenberg.pglaf.org/1/3/4/1342/1342-0.txt",
+        "https://mirror.csclub.uwaterloo.ca/gutenberg/1/3/4/1342/1342-0.txt"
+      ],
+      "transform": "book",
+      "raw_bytes": 738046,
+      "raw_sha256": "81300b79e8a8d65ac530a97578417d06137e3bbc90622a10a65e5036183d2500",
+      "view_codepoints": 718563,
+      "view_sha256": "65db736d31eb47b7955a4afa6af032f4b8f908005b6fa1b8d782f297a16583bd"
+    },
+    "pg158": {
+      "edition": "Project Gutenberg, eBook 158, 158-0.txt",
+      "edition_url": "https://www.gutenberg.org/ebooks/158",
+      "download_urls": [
+        "https://gutenberg.pglaf.org/1/5/158/158-0.txt",
+        "https://mirror.csclub.uwaterloo.ca/gutenberg/1/5/158/158-0.txt"
+      ],
+      "transform": "book",
+      "raw_bytes": 897582,
+      "raw_sha256": "f2719c1869d7d124783ff422fa93d6d16b2994506269410f64f81304586b2253",
+      "view_codepoints": 877770,
+      "view_sha256": "bb33232872c0e797a642cbf21a612f0042dfae815b4e962efcab11f6f72a67b8"
+    },
+    "pg158_archive": {
+      "edition": "Ранний снимок Project Gutenberg № 158 в GITenberg, 158-0.txt",
+      "git_commit": "9943f6422b9246e7ad37625d6bd014b035fbfdea",
+      "edition_url": "https://github.com/GITenberg/Emma_158/blob/9943f6422b9246e7ad37625d6bd014b035fbfdea/158-0.txt",
+      "download_urls": [
+        "https://raw.githubusercontent.com/GITenberg/Emma_158/9943f6422b9246e7ad37625d6bd014b035fbfdea/158-0.txt"
+      ],
+      "transform": "book_archive_double_dash",
+      "raw_bytes": 927445,
+      "raw_sha256": "89b601ce13c21eca31766bdd1a554842fc9ecb7d3638cc769f41712a523e24cf",
+      "view_codepoints": 895962,
+      "view_sha256": "3cb686d63817641c4fa3a2131a0dbfb5c7151d9e0da4c69c3491b031995f2771"
+    }
+  },
+  "works": {
+    "kashtanka": {
+      "title": "Каштанка",
+      "author": "Антон Павлович Чехов",
+      "author_years": [
+        1860,
+        1904
+      ],
+      "first_publication_year": 1887,
+      "original_language": "ru",
+      "excerpt_language": "ru",
+      "translator": null,
+      "rights": "Общественное достояние. Русский авторский текст из прижизненной публикации XIX века.",
+      "rights_url": "https://ilibrary.ru/text/1146/index.html",
+      "text_source": "ruslit_kashtanka"
+    },
+    "fat_thin": {
+      "title": "Толстый и тонкий",
+      "author": "Антон Павлович Чехов",
+      "author_years": [
+        1860,
+        1904
+      ],
+      "first_publication_year": 1883,
+      "original_language": "ru",
+      "excerpt_language": "ru",
+      "translator": null,
+      "rights": "Общественное достояние. Русский авторский текст из прижизненной публикации XIX века.",
+      "rights_url": "https://ilibrary.ru/text/464/index.html",
+      "text_source": "ruslit_fat_thin"
+    },
+    "vanka": {
+      "title": "Ванька",
+      "author": "Антон Павлович Чехов",
+      "author_years": [
+        1860,
+        1904
+      ],
+      "first_publication_year": 1886,
+      "original_language": "ru",
+      "excerpt_language": "ru",
+      "translator": null,
+      "rights": "Общественное достояние. Русский авторский текст из прижизненной публикации XIX века.",
+      "rights_url": "https://ilibrary.ru/text/983/index.html",
+      "text_source": "ruslit_vanka"
+    },
+    "pride": {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "author_years": [
+        1775,
+        1817
+      ],
+      "first_publication_year": 1813,
+      "original_language": "en",
+      "excerpt_language": "en",
+      "translator": null,
+      "rights": "Английский авторский текст из прижизненного издания XIX века. Для электронной книги Project Gutenberg указывает общественное достояние в США.",
+      "rights_url": "https://www.gutenberg.org/ebooks/1342",
+      "text_source": "pg1342"
+    },
+    "emma": {
+      "title": "Emma",
+      "author": "Jane Austen",
+      "author_years": [
+        1775,
+        1817
+      ],
+      "first_publication_year": 1815,
+      "original_language": "en",
+      "excerpt_language": "en",
+      "translator": null,
+      "rights": "Английский авторский текст из прижизненного издания XIX века. Для электронной книги Project Gutenberg указывает общественное достояние в США.",
+      "rights_url": "https://www.gutenberg.org/ebooks/158",
+      "text_source": "pg158"
+    }
+  },
+  "cards": [
+    {
+      "id": "ru_pos",
+      "file": "ru_pos.txt",
+      "language": "ru",
+      "condition": "positive",
+      "expected_continuation": true,
+      "length_codepoints": 4096,
+      "utf8_bytes": 7313,
+      "sha256": "42f46b2aff29be6357dcc201fac0df7c57e6d4ccece528ca32e0255b92c591e2",
+      "halves": [
+        {
+          "side": "left",
+          "work": "kashtanka",
+          "section": "Глава VII, «Неудачный дебют»",
+          "page_codepoints": [
+            0,
+            2048
+          ],
+          "length_codepoints": 2048,
+          "sha256": "eda9993b0f6af23e6810bd4da4cbe12a5732fbf958b8ea14408f473ddcfb82c1",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                4910443,
+                4912491
+              ]
+            },
+            "public": {
+              "source": "ruslit_kashtanka",
+              "codepoints": [
+                32804,
+                34852
+              ]
+            }
+          }
+        },
+        {
+          "side": "right",
+          "work": "kashtanka",
+          "section": "Глава VII, «Неудачный дебют»",
+          "page_codepoints": [
+            2048,
+            4096
+          ],
+          "length_codepoints": 2048,
+          "sha256": "9f19610aa24186c6c02ff48d3d83ab59d8e608ac333b6f864b0e9f00ba28fba4",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                4912491,
+                4914539
+              ]
+            },
+            "public": {
+              "source": "ruslit_kashtanka",
+              "codepoints": [
+                34852,
+                36900
+              ]
+            }
+          }
+        }
+      ],
+      "boundary_reading": {
+        "reason_ru": "Хозяин объявляет, что сейчас они с Тёткой споют. Сразу после границы он достаёт дудочку и играет. Собака начинает выть, и в публике её узнают прежние хозяева.",
+        "evidence": {
+          "left": [
+            {
+              "text": "сначала мы с вами споем, а потом попляшем.",
+              "page_codepoints": [
+                2005,
+                2047
+              ]
+            }
+          ],
+          "right": [
+            {
+              "text": "он вынул из кармана дудочку и заиграл.",
+              "page_codepoints": [
+                2056,
+                2094
+              ]
+            },
+            {
+              "text": "беспокойно задвигалась на стуле и завыла.",
+              "page_codepoints": [
+                2120,
+                2161
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "en_pos",
+      "file": "en_pos.txt",
+      "language": "en",
+      "condition": "positive",
+      "expected_continuation": true,
+      "length_codepoints": 4096,
+      "utf8_bytes": 4096,
+      "sha256": "a7648be2c40a1003b42db2626cae2ebac78316aaf3ba995e0c55fce5bcc03bc9",
+      "halves": [
+        {
+          "side": "left",
+          "work": "pride",
+          "section": "Chapter LI",
+          "page_codepoints": [
+            0,
+            2048
+          ],
+          "length_codepoints": 2048,
+          "sha256": "45135046d1da39b3e4372c1fb2b94b9b0e849c19b79dd1cad6ec9620b22c871d",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                9610156,
+                9612204
+              ]
+            },
+            "public": {
+              "source": "pg1342",
+              "codepoints": [
+                585882,
+                587930
+              ]
+            }
+          }
+        },
+        {
+          "side": "right",
+          "work": "pride",
+          "section": "Chapter LI",
+          "page_codepoints": [
+            2048,
+            4096
+          ],
+          "length_codepoints": 2048,
+          "sha256": "9349b98ef7871e50a219f4293faf9411cf7938712062ae40a5a5b9422fc0713d",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                9612204,
+                9614252
+              ]
+            },
+            "public": {
+              "source": "pg1342",
+              "codepoints": [
+                587930,
+                589978
+              ]
+            }
+          }
+        }
+      ],
+      "boundary_reading": {
+        "reason_ru": "Лидия хвастается перед семьёй, как сняла перчатку, чтобы знакомый увидел обручальное кольцо. Элизабет больше не может её слушать, встаёт и выбегает из комнаты.",
+        "evidence": {
+          "left": [
+            {
+              "text": "so that he might see the ring",
+              "page_codepoints": [
+                1973,
+                2002
+              ]
+            }
+          ],
+          "right": [
+            {
+              "text": "elizabeth could bear it no longer.",
+              "page_codepoints": [
+                2048,
+                2082
+              ]
+            },
+            {
+              "text": "she got up and ran out of the room",
+              "page_codepoints": [
+                2083,
+                2117
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ru_neg",
+      "file": "ru_neg.txt",
+      "language": "ru",
+      "condition": "negative",
+      "expected_continuation": false,
+      "length_codepoints": 4096,
+      "utf8_bytes": 7299,
+      "sha256": "f0bde8faf5ba61de2653d85e86ff056867ff74a59719dd49babe7d067a6f9c69",
+      "halves": [
+        {
+          "side": "left",
+          "work": "fat_thin",
+          "section": "Встреча школьных друзей на вокзале",
+          "page_codepoints": [
+            0,
+            2048
+          ],
+          "length_codepoints": 2048,
+          "sha256": "41a835256859d553a1c4957a601fe4b6a23f3464d3cbcbe92dd8133b447bc083",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                5082058,
+                5084106
+              ]
+            },
+            "public": {
+              "source": "ruslit_fat_thin",
+              "codepoints": [
+                230,
+                2278
+              ]
+            }
+          }
+        },
+        {
+          "side": "right",
+          "work": "vanka",
+          "section": "Воспоминание о ёлке и письмо деду",
+          "page_codepoints": [
+            2048,
+            4096
+          ],
+          "length_codepoints": 2048,
+          "sha256": "4c2d9d734670a9f97f09cda1f57e65a1e90d9e4e9dc0ff3fcaae0d1c7c38195e",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                3876620,
+                3878668
+              ]
+            },
+            "public": {
+              "source": "ruslit_vanka",
+              "codepoints": [
+                4879,
+                6927
+              ]
+            }
+          }
+        }
+      ],
+      "boundary_reading": {
+        "reason_ru": "На вокзале толстый сообщает школьному другу, что дослужился до тайного советника. За границей Ванька глядит в окно и вспоминает, как ходил с дедом за ёлкой.",
+        "evidence": {
+          "left": [
+            {
+              "text": "я уже до тайного дослужился... две звезды имею.",
+              "page_codepoints": [
+                2000,
+                2047
+              ]
+            }
+          ],
+          "right": [
+            {
+              "text": "ванька судорожно вздохнул и опять уставился на окно.",
+              "page_codepoints": [
+                2048,
+                2100
+              ]
+            },
+            {
+              "text": "за елкой для господ всегда ходил в лес дед",
+              "page_codepoints": [
+                2118,
+                2160
+              ]
+            }
+          ]
+        },
+        "next_in_original_left_source": "тонкий вдруг побледнел, окаменел"
+      }
+    },
+    {
+      "id": "en_neg",
+      "file": "en_neg.txt",
+      "language": "en",
+      "condition": "negative",
+      "expected_continuation": false,
+      "length_codepoints": 4096,
+      "utf8_bytes": 4096,
+      "sha256": "a8374c2e7bad47eae60a34e87e4c7b0c21bd26b3e5ef08d48f9a95db0ca5e7ef",
+      "halves": [
+        {
+          "side": "left",
+          "work": "pride",
+          "section": "Chapter XLIII, Pemberley",
+          "page_codepoints": [
+            0,
+            2048
+          ],
+          "length_codepoints": 2048,
+          "sha256": "084cded5d98d815d4885b5ede757124ad86fb9820b2fbd04fd03196532b4b33d",
+          "locations": {
+            "primary": {
+              "source": "babel_cache",
+              "codepoints": [
+                9488662,
+                9490710
+              ]
+            },
+            "public": {
+              "source": "pg1342",
+              "codepoints": [
+                464388,
+                466436
+              ]
+            }
+          }
+        },
+        {
+          "side": "right",
+          "work": "emma",
+          "section": "Volume I, Chapter XV, Randalls",
+          "page_codepoints": [
+            2048,
+            4096
+          ],
+          "length_codepoints": 2048,
+          "sha256": "532f0fb701f65f389cc4dbb78802c34f73b7bc2b2940e638eab719573fabab9a",
+          "locations": {
+            "primary": {
+              "source": "pg158",
+              "codepoints": [
+                224732,
+                226780
+              ]
+            },
+            "archive": {
+              "source": "pg158_archive",
+              "codepoints": [
+                224512,
+                226560
+              ]
+            }
+          }
+        }
+      ],
+      "boundary_reading": {
+        "reason_ru": "В Пемберли миссис Рейнольдс объясняет, когда был написан портрет Дарси. За границей мистер Вудхаус обращается к Эмме. Семья обсуждает, как вернуться из Рэндоллса домой по снегу.",
+        "evidence": {
+          "left": [
+            {
+              "text": "mrs. reynolds informed them, that it had been taken in his father's lifetime.",
+              "page_codepoints": [
+                1970,
+                2047
+              ]
+            }
+          ],
+          "right": [
+            {
+              "text": "what is to be done, my dear emma?",
+              "page_codepoints": [
+                2049,
+                2082
+              ]
+            },
+            {
+              "text": "accumulations of drifted snow",
+              "page_codepoints": [
+                2809,
+                2838
+              ]
+            }
+          ]
+        },
+        "next_in_original_left_source": "there was certainly at this moment, in elizabeth's mind, a more gentle sensation"
+      }
+    }
+  ],
+  "checks": {
+    "distinct_half_sha256": 8,
+    "cross_card_primary_ranges_disjoint": true,
+    "longest_shared_verbatim_substring_between_same_language_cards_codepoints": {
+      "ru": 11,
+      "en": 18
+    },
+    "all_characters_in_project_alphabet": true,
+    "alphabet_file": {
+      "git_path": "models/top256_alphabet/alphabet_top256.json",
+      "raw_sha256": "2b193a3c8d7139c575d49785c7a7a76ae79a53d506c88a51677b8df687618ca6",
+      "git_commit": "d1170d6d48db92b752326ca45a4fa68c1fdf1256"
+    },
+    "byte_identical_rebuilds": [
+      "primary",
+      "public",
+      "archive"
+    ],
+    "independent_utf8_length_and_digest_verifier": "Node.js, TextDecoder (UTF-8 fatal), итерация по кодовым точкам, crypto SHA-256."
+  }
+}

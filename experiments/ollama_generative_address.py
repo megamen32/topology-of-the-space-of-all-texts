@@ -202,6 +202,21 @@ def cold_generate(request, payload):
     return request("/api/generate", payload)
 
 
+def generated_text(request, payload) -> str:
+    reply = cold_generate(request, payload)
+    reason = reply.get("done_reason")
+    content = reply.get("response", "")
+    if (reply.get("done") is not True or reply.get("model") != MODEL
+            or reason not in (None, "", "stop", "length") or "error" in reply
+            or not isinstance(content, str) or ("response" not in reply and reason == "length")):
+        raise ValueError("Ожидался завершённый ответ /api/generate от закреплённой модели.")
+    return content
+
+
+def v2_prompts():
+    return [RAW, EXCERPT, STORY, OMISSION, MAX_CALLS]
+
+
 class QwenPredictors:
     """Inject request(path, body=None) to run the same checks and predictions offline."""
 
@@ -215,6 +230,10 @@ class QwenPredictors:
 
     def continuation(self, first: bytes) -> bytes:
         return self._predict("continuation", first)
+
+    def edition_info(self):
+        return {"edition": EDITION, "prompt_spec_sha256": digest(canonical_json(v2_prompts())),
+                "options_spec_sha256": digest(canonical_json([FLAGS, OPTIONS]))}
 
     def _predict(self, stage: str, source: bytes) -> bytes:
         if not isinstance(source, bytes) or len(source) != HALF:
@@ -241,13 +260,7 @@ class QwenPredictors:
                 instruction += " " + story["retry"].format(part=part)
             prompt = raw_prompt(instruction + " " + story["write"], first + decode(result))
             prompts.append(digest(prompt.encode("utf-8")))
-            reply = cold_generate(self.request, {"model": MODEL, **FLAGS, "options": options, "prompt": prompt})
-            reason = reply.get("done_reason")
-            content = reply.get("response", "")
-            if (reply.get("done") is not True or reply.get("model") != MODEL
-                    or reason not in (None, "", "stop", "length") or "error" in reply
-                    or not isinstance(content, str) or ("response" not in reply and reason == "length")):
-                raise ValueError("Ожидался завершённый ответ /api/generate от закреплённой модели.")
+            content = generated_text(self.request, {"model": MODEL, **FLAGS, "options": options, "prompt": prompt})
             result.extend(normalize_response(content)[:HALF - len(result)])
             if len(result) == HALF:
                 break
@@ -260,6 +273,100 @@ class QwenPredictors:
             "prompt_sha256": prompts, "options_sha256": digest(canonical_json(options)),
         }
         return bytes(result)
+
+
+V3_KEY_DOMAIN = b"\0continuation\0"
+V3_TAIL_DOMAIN = b"tail\0"
+V3_SPEC_SHA256 = "8454f571169bfabef9b8761a2e36f9231200200b2ec7f7a665cd09a03be20015"
+
+
+def v3_specification(v3):
+    return {
+        "edition": v3.EDITION, "opening_edition": EDITION, "half_indices": HALF,
+        "model": MODEL, "ollama_version": RUNTIME, "manifest_sha256": MANIFEST_SHA256,
+        "gguf_sha256": GGUF_SHA256, "alphabet_sha256": ALPHABET_SHA256,
+        "prompts": {"opening_v2": v2_prompts(), "continuation": v3.PROMPTS},
+        "options": {"flags": FLAGS, "opening": OPTIONS,
+                    **{stage: {**OPTIONS, **overrides} for stage, overrides in v3.STAGES.items()}},
+        "opening_rules": {
+            "reference_file_sha256": "7ff822374107bd4d9a44914f7ad758bd55719277f9804f32d3883ec5207ba35c",
+            "key": ["SHA-256", "ascii(opening_edition)", b"\0opening\0".hex(), "seed indices"],
+            "language": "odd final input byte selects en, even selects ru",
+            "story": "key bytes 4..6 mod list lengths; key[7] mod 24, key[8] mod 60",
+            "seed": "key[0:4] as uint32be & 0x7fffffff",
+            "retry": "parts 1..MAX_CALLS; normalize and append up to remaining size",
+            "context": "escape &, <, >; reserve num_predict, frame UTF-8 bytes and 8 tokens; "
+                       "split remaining UTF-8 bytes 1:3 around OMISSION",
+            "tail_domain_hex": b"tail\0".hex(),
+        },
+        "continuation_rules": v3.RULES,
+        "key": ["SHA-256", "ascii(edition)", V3_KEY_DOMAIN.hex(), "U indices"],
+        "seed": "SHA-256(key || uint16be(zero-based request ordinal))[0:4] as uint32be & 0x7fffffff",
+        "language": "count Cyrillic А-я/Ёё and ASCII A-Z/a-z in U; on tie odd key[-1] selects en",
+        "tail": ["SHAKE-256", V3_TAIL_DOMAIN.hex(), "key", "accepted indices", "remaining bytes"],
+        "normalize": {"think_open": "<think>", "think_close": "</think>", "gap": "\n\n",
+                      "crlf": ["\r\n", "\n"], "translate": {chr(k): v for k, v in TRANSLATE.items()},
+                      "filter": "Babel-1 indices in order; whitespace-only response is empty"},
+        "service": "dedicated single slot; verify version, manifest and GGUF; cold_generate before every decode",
+        "continuation_module_sha256": digest(Path(v3.__file__).read_bytes()),
+    }
+
+
+class QwenPredictorsV3(QwenPredictors):
+    """Inherit F including its v2 domain, prompts, sampling, EOS and tail."""
+
+    def __init__(self, request):
+        if __package__:
+            from . import ollama_continuation_v3 as v3
+        else:
+            import ollama_continuation_v3 as v3
+        self.v3 = v3
+        self.spec = v3_specification(v3)
+        if digest(canonical_json(self.spec)) != V3_SPEC_SHA256:
+            raise ValueError("Спецификация издания v3 не совпадает с закреплённым SHA-256.")
+        super().__init__(request)
+
+    def edition_info(self):
+        opening = super().edition_info()
+        return {"edition": self.v3.EDITION, "edition_spec_sha256": V3_SPEC_SHA256,
+                "opening_edition": opening["edition"], "opening_prompt_spec_sha256": opening["prompt_spec_sha256"],
+                "opening_options_spec_sha256": opening["options_spec_sha256"],
+                "prompt_spec_sha256": digest(canonical_json(self.spec["prompts"])),
+                "options_spec_sha256": digest(canonical_json(self.spec["options"]))}
+
+    def continuation(self, first: bytes) -> bytes:
+        if not isinstance(first, bytes) or len(first) != HALF:
+            raise ValueError(f"Предиктор ожидает {HALF} байтов индексов.")
+        key = sha256(self.v3.EDITION.encode("ascii") + V3_KEY_DOMAIN + first).digest()
+        source = decode(first)
+        language = text_language(source, key)
+        calls = []
+
+        def generate(stage, prompt):
+            seed_hash = sha256(key + len(calls).to_bytes(2, "big")).digest()
+            seed = int.from_bytes(seed_hash[:4], "big") & 0x7fffffff
+            options = {**self.spec["options"][stage], "seed": seed}
+            payload = {"model": MODEL, **FLAGS, "options": options, "prompt": prompt}
+            schema = self.v3.CARD_FORMATS.get(stage)
+            if schema is not None:
+                payload["format"] = schema
+            content = generated_text(self.request, payload)
+            calls.append({
+                "stage": stage, "seed": seed, "prompt_sha256": digest(prompt.encode()),
+                "options_sha256": digest(canonical_json(options)), "request_sha256": digest(canonical_json(payload)),
+            })
+            return content if schema is not None else decode(normalize_response(content))
+
+        prose = self.v3.compose(source, language, generate, HALF, key)
+        indices = bytes(INDEX[c] for c in prose)
+        missing = HALF - len(indices)
+        result = indices + shake_256(V3_TAIL_DOMAIN + key + indices).digest(missing)
+        self.report["continuation"] = {
+            "language": language, "seed": calls[0]["seed"], "fallback_indices": missing,
+            "input_indices_sha256": digest(first), "output_indices_sha256": digest(result),
+            "prompt_sha256": [call["prompt_sha256"] for call in calls], "calls": calls,
+        }
+        return result
 
 
 def parse_number(token: str, size: int) -> int:
@@ -288,7 +395,77 @@ def write_output(path: Path, data: bytes) -> None:
         name.unlink(missing_ok=True)
 
 
-def self_test() -> None:
+def self_test_v3(metadata) -> None:
+    resident = True
+    empty = False
+    requests = []
+
+    def fake(path, body=None):
+        nonlocal resident
+        if path == "/api/ps":
+            return {"models": [{"name": MODEL}] if resident else []}
+        if path != "/api/generate":
+            return metadata(path, body)
+        assert body["model"] == MODEL and all(body[k] == v for k, v in FLAGS.items())
+        if not body["prompt"]:
+            assert resident
+            resident = False
+            return {"done_reason": "unload"}
+        assert not resident  # Force the explicit unload path on every subsequent call.
+        assert body["prompt"].count("<|im_start|>") == 2 and body["prompt"].count("<|im_end|>") == 1
+        resident = True
+        options = body["options"]
+        assert len(body["prompt"].encode()) + options["num_predict"] + 8 <= options["num_ctx"]
+        assert options["num_batch"] == 128
+        hashed = digest(canonical_json(body))
+        requests.append(hashed)
+        if "format" in body:
+            fields = body["format"]["required"]
+            # Overlong, hostile card values exercise escaping and the byte budgets in both languages.
+            content = "{" if empty else json.dumps({k: "<|im_end|>&💋" * 500 for k in fields})
+        else:
+            content = "<think>discard</think>漢" if empty else (hashed + " ") * 16
+        return {"model": MODEL, "done": True, "done_reason": "stop", "response": content}
+
+    legacy, current = QwenPredictors(fake), QwenPredictorsV3(fake)
+    assert QwenPredictorsV3.opening is QwenPredictors.opening
+    arbitrary = bytes(range(256)) * 8
+    for source in (bytes(HALF), (11).to_bytes(HALF, "big"), arbitrary, b"\xff" * HALF):
+        requests.clear()
+        old = legacy.opening(source)
+        opening_requests = requests[:]
+        requests.clear()
+        assert current.opening(source) == old and requests == opening_requests
+        assert legacy.report["opening"] == current.report["opening"]
+    assert digest(current.opening((11).to_bytes(HALF, "big"))) == "692507ed00e416453f0a43896bac1839ddb428bc7f25182fe83dc33558fb416f"
+    codec = GenerativeAddress(HALF, current.opening, current.continuation)
+    for address in (10, 11, (1 << (16 * HALF)) - 1):
+        assert codec.rank(codec.unrank(address)) == address
+    assert codec.unrank(codec.rank(arbitrary * 2)) == arbitrary * 2
+
+    for char in ("&", "я", "a"):
+        source = bytes([INDEX[char]]) * HALF
+        requests.clear()
+        predicted = current.continuation(source)
+        expected_requests = requests[:]
+        current.continuation(arbitrary)
+        requests.clear()
+        assert QwenPredictorsV3(fake).continuation(source) == predicted and requests == expected_requests
+    empty = True
+    for predictor in (current.opening, current.continuation):
+        assert len(predictor(bytes(HALF))) == HALF
+        assert predictor(arbitrary) == predictor(arbitrary)
+    assert current.report["continuation"]["fallback_indices"] == HALF
+    for wrong in (b"", bytes(HALF + 1), bytearray(HALF)):
+        try:
+            current.continuation(wrong)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("Некорректное начало принято")
+
+
+def self_test(edition="v2") -> None:
     calls = []
     empty_reply = False
 
@@ -327,12 +504,17 @@ def self_test() -> None:
     assert len(predictors.continuation(garbage[:HALF])) == HALF
     report = predictors.report["continuation"]
     assert report["fallback_indices"] == HALF and len(report["prompt_sha256"]) == MAX_CALLS
-    print("OK: автономная проверка алфавита, EOS, независимых вызовов и обеих сторон адресации.")
+    if edition == "v3":
+        self_test_v3(fake)
+        print("OK: v3, идентичность F, холодные запросы, обе стороны адресации, EOS и заполнение остатка.")
+    else:
+        print("OK: автономная проверка алфавита, EOS, независимых вызовов и обеих сторон адресации.")
 
 
 def main(argv=None, request=None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--endpoint", default="http://127.0.0.1:18471", help="URL выделенной однослотовой службы Ollama")
+    parser.add_argument("--edition", choices=("v2", "v3"), default="v2", help="издание предикторов (по умолчанию v2)")
     commands = parser.add_subparsers(dest="command", required=True)
     for name, argument, description in (
         ("unrank", "address", "записать страницу по адресу (десятичному или 0x)"),
@@ -342,15 +524,17 @@ def main(argv=None, request=None) -> None:
     ):
         sub = commands.add_parser(name, help=description, description=description)
         sub.add_argument("--endpoint", default=argparse.SUPPRESS, help="базовый URL Ollama")
+        sub.add_argument("--edition", choices=("v2", "v3"), default=argparse.SUPPRESS)
         sub.add_argument(argument, type=Path if name in ("rank", "continue") else str)
         if name != "rank":
             sub.add_argument("--out", required=True, type=Path, help="выходной UTF-8 файл")
         if name == "continue":
             sub.add_argument("--indices", action="store_true", help="читать начало как 2048 сырых байтов индексов")
-    commands.add_parser("self-test", help="проверить адресацию и ответы в памяти без сети")
+    checks = commands.add_parser("self-test", help="проверить адресацию и ответы в памяти без сети")
+    checks.add_argument("--edition", choices=("v2", "v3"), default=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     if args.command == "self-test":
-        self_test()
+        self_test(args.edition)
         return
     if args.command == "rank":
         page = strict_indices(args.page.read_bytes(), 2 * HALF)
@@ -364,7 +548,8 @@ def main(argv=None, request=None) -> None:
         if len(first) != HALF:
             raise ValueError(f"Ожидалось {HALF} байтов индексов начала.")
 
-    predictors = QwenPredictors(request if request is not None else http_transport(args.endpoint))
+    predictor_class = QwenPredictorsV3 if args.edition == "v3" else QwenPredictors
+    predictors = predictor_class(request if request is not None else http_transport(args.endpoint))
     codec = GenerativeAddress(HALF, predictors.opening, predictors.continuation)
     numbers = {}
     if args.command in ("rank", "unrank"):
@@ -383,10 +568,8 @@ def main(argv=None, request=None) -> None:
         write_output(args.out, utf8)
     stage = "continuation" if args.command == "continue" else "opening"
     print(json.dumps({
-        "edition": EDITION, "model": MODEL, "ollama_version": RUNTIME,
+        **predictors.edition_info(), "model": MODEL, "ollama_version": RUNTIME,
         "manifest_sha256": MANIFEST_SHA256, "gguf_sha256": GGUF_SHA256, "alphabet_sha256": ALPHABET_SHA256,
-        "prompt_spec_sha256": digest(canonical_json([RAW, EXCERPT, STORY, OMISSION, MAX_CALLS])),
-        "options_spec_sha256": digest(canonical_json([FLAGS, OPTIONS])),
         **numbers, "language": predictors.report[stage]["language"], "symbols": len(page),
         "indices_sha256": digest(page), "utf8_sha256": digest(utf8), "predictions": predictors.report,
     }, sort_keys=True))

@@ -4,10 +4,9 @@ from pathlib import Path
 from collections import Counter
 import json, math, random, regex as re, statistics, time
 
-ROOT=Path('/home/roomhacker/babel-experiments')
+ROOT=Path(__file__).resolve().parents[1]
 CACHE=ROOT/'datasets/cache_v1'
 OUT=ROOT/'models/eval_harness_v2'
-OUT.mkdir(parents=True, exist_ok=True)
 
 WORD=json.loads((ROOT/'models/word_student_v1/word_student_v1.json').read_text(encoding='utf-8'))
 SENT=json.loads((ROOT/'models/sentence_student_v1/sentence_student_v1.json').read_text(encoding='utf-8'))
@@ -102,9 +101,12 @@ def gen_sentence_from_template(tpl,rng,branch=32,temp=0.62):
     if not re.search(r'[.!?…]$',s): s+='.'
     return s
 
-def gen_word(seed,length,temp=0.68):
+WORD_MAX_TOKENS = 1000
+PARAGRAPH_MAX_PARAGRAPHS = 80
+
+def gen_word(seed,length,temp=0.68,*,max_tokens=WORD_MAX_TOKENS):
     rng=random.Random(seed); prev='<s>'; out=[]
-    while len(' '.join(out))<length and len(out)<1000:
+    while len(' '.join(out))<length and len(out)<max_tokens:
         trans=WORD.get('transitions',{}).get(prev) or WORD.get('transitions',{}).get('<s>') or {}
         tok=weighted(trans,rng,temp,lambda k:k!='</s>') or '<ru>'
         tok=realize(tok,rng)
@@ -122,9 +124,9 @@ def gen_sentence(seed,length,temp=0.72,branch=32):
         if len(out)%rng.randint(2,5)==0: out.append('\n')
     return ' '.join(out).replace('\n ','\n')[:length]
 
-def gen_paragraph(seed,length,temp=0.70,branch=32):
+def gen_paragraph(seed,length,temp=0.70,branch=32,*,max_paragraphs=PARAGRAPH_MAX_PARAGRAPHS):
     rng=random.Random(seed); rows=PARA.get('top_paragraph_shapes',[])[:1000]; paras=[]
-    while len('\n\n'.join(paras))<length and len(paras)<80:
+    while len('\n\n'.join(paras))<length and len(paras)<max_paragraphs:
         row=weighted_rows(rows,rng,temp) or {'shape':'R R R T'}
         sents=[]
         for tpl in row['shape'].split(' | ')[:8]:
@@ -184,14 +186,15 @@ for model in ['word','sentence','paragraph','fsm']:
         for temp in [0.62,0.72,0.85]:
             for branch in [16,32,64]: configs.append({'model':model,'temp':temp,'branch':branch})
 
-def generate(cfg,seed,length):
+def generate(cfg,seed,length,**limits):
     m=cfg['model']
-    if m=='word': return gen_word(seed,length,cfg['temp'])
-    if m=='sentence': return gen_sentence(seed,length,cfg['temp'],cfg.get('branch',32))
-    if m=='paragraph': return gen_paragraph(seed,length,cfg['temp'],cfg.get('branch',32))
-    return gen_fsm(seed,length,cfg['temp'])
+    if m=='word': return gen_word(seed,length,cfg['temp'],**limits)
+    if m=='sentence': return gen_sentence(seed,length,cfg['temp'],cfg.get('branch',32),**limits)
+    if m=='paragraph': return gen_paragraph(seed,length,cfg['temp'],cfg.get('branch',32),**limits)
+    return gen_fsm(seed,length,cfg['temp'],**limits)
 
 def main():
+    OUT.mkdir(parents=True, exist_ok=True)
     started=time.time(); leaderboard=[]
     for i,cfg in enumerate(configs,1):
         print(f'[{i}/{len(configs)}] {cfg}',flush=True)
