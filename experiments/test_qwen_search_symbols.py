@@ -20,8 +20,8 @@ class QwenSearchSymbolsTest(TestCase):
         source = prefix + "\u202f🦦\u00a0" + "\n Z  "
         expected = (prefix + "   " + "\n Z  ").ljust(PAGE)
         tab.fill("#query", source)
-        alphabet_requests = []
-        tab.on("request", lambda req: alphabet_requests.append(req.url) if req.url.endswith("/api/qwen/alphabet") else None)
+        requests = []
+        tab.on("request", lambda req: requests.append(req.url))
 
         for mode, edition, queue, number in [(MODE, EDITION, "qwen_jobs", 17), (MODE_35, EDITION_35, "qwen35_jobs", 35)]:
             with self.subTest(mode=mode):
@@ -61,10 +61,11 @@ class QwenSearchSymbolsTest(TestCase):
                 self.assertEqual(tab.input_value("#query"), source)
                 tab.select_option("#rankMode", "base256")
                 web.expect(tab.locator("#qwenReplacements")).to_be_hidden()
-        self.assertEqual(len(alphabet_requests), 1)
+        self.assertEqual(sum(url.endswith("/api/qwen/alphabet") for url in requests), 1)
 
     def test_full_page_of_replacements_is_keyboard_accessible(self):
         tab = self.open_search()
+        tab.set_viewport_size({"width": 360, "height": 740})
         source = "🦦" * (PAGE - 5) + "\t\u00a0\u202e\u200c\u202f"
         tab.fill("#query", source)
         web.expect(tab.locator("#replacementHint")).to_contain_text("4 096")
@@ -85,6 +86,7 @@ class QwenSearchSymbolsTest(TestCase):
         summary.press("Tab")
         web.expect(extra).to_be_focused()
         self.assertTrue(extra.evaluate("list => list.scrollHeight > list.clientHeight"))
+        self.assertTrue(extra.evaluate("list => list.scrollWidth === list.clientWidth"))
         self.assert_page_exports(tab, " " * PAGE)
         tab.fill("#query", ALPHABET)
         web.expect(tab.locator("#qwenReplacements")).to_be_hidden()

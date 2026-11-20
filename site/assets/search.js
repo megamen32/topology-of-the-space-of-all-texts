@@ -79,7 +79,7 @@ function codePointLength(text) {
   return count;
 }
 
-async function loadQwenAlphabet() {
+async function loadQwenAlphabet(reload = false) {
   if (qwenAlphabet || alphabetLoading) return;
   alphabetLoading = true;
   const message = byId('alphabetMessage');
@@ -87,7 +87,7 @@ async function loadQwenAlphabet() {
   message.textContent = 'Загружаем алфавит для поиска, копирования и скачивания…';
   retry.hidden = true;
   try {
-    const response = await fetch('/api/qwen/alphabet');
+    const response = await fetch('/api/qwen/alphabet', {cache: reload ? 'reload' : 'default'});
     if (!response.ok) throw new Error();
     const {alphabet} = await response.json();
     const symbols = new Set(alphabet);
@@ -172,8 +172,10 @@ function showReplacements(replacements) {
   const count = replacements.length;
   const previewLimit = 3;
   byId('qwenReplacements').hidden = count === 0;
-  byId('replacementHint').textContent = count ? 'Знаков вне алфавита — ' + formatCount(count)
+  const hint = byId('replacementHint');
+  const summary = count ? 'Знаков вне алфавита — ' + formatCount(count)
     + '. При поиске, копировании и скачивании каждый заменим обычным пробелом (U+0020).' : '';
+  if (hint.textContent !== summary) hint.textContent = summary;
   byId('replacementPreview').replaceChildren(...replacements.slice(0, previewLimit).map(replacementItem));
 
   const more = byId('moreReplacements');
@@ -332,7 +334,7 @@ async function run(operation) {
 }
 
 mode.onchange = changeMode;
-byId('retryAlphabet').onclick = loadQwenAlphabet;
+byId('retryAlphabet').onclick = () => loadQwenAlphabet(true);
 lengthSelect.onchange = () => {
   if (Number(lengthSelect.value) > 256) mode.value = 'exact_hierarchical_v1';
   changeMode();
