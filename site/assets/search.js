@@ -6,9 +6,20 @@ const query = byId('query');
 const rankInput = byId('rankInput');
 const result = byId('result');
 const unrankResult = byId('unrankResult');
+const charCount = byId('charCount');
+const counterWrap = byId('counterWrap');
+const numberReceipt = byId('numberReceipt');
+const addressDetails = byId('addressDetails');
+const addressFormats = byId('addressFormats');
+const spacePlural = new Intl.PluralRules('ru-RU');
+const spaceForms = {one: 'пробел', few: 'пробела', many: 'пробелов'};
+const formatCount = count => fmt(count).replaceAll('\u00a0', '\u202f');
+const pageLimit = formatCount(PAGE_LEN);
+const tooLong = 'Текст превышает лимит в ' + pageLimit + ' знаков.';
 let model;
 let revision = 0;
 let originalPage = null;
+let decimalAddress = null;
 
 async function api(path, payload) {
   const options = {cache: 'no-store'};
@@ -27,12 +38,52 @@ function setPage(page) {
   query.value = page;
   // The browser converts CR and CRLF to LF in textarea.value.
   originalPage = page;
+  updateQwenHint();
 }
 
-function exactPage() {
-  const page = originalPage ?? query.value;
-  if (page.length > 2 * PAGE_LEN || [...page].length !== PAGE_LEN) throw new Error('Нужна страница ровно из 4096 знаков.');
-  return page;
+function codePointLength(text) {
+  let count = 0;
+  for (const _ of text) count++;
+  return count;
+}
+
+function paddedPage() {
+  const text = originalPage ?? query.value;
+  const remaining = PAGE_LEN - codePointLength(text);
+  if (remaining < 0) throw new Error(tooLong);
+  if (/[\uD800-\uDFFF]/u.test(text)) throw new Error('Текст содержит недопустимый символ Unicode.');
+  return text + ' '.repeat(remaining);
+}
+
+function updateQwenHint() {
+  const count = codePointLength(originalPage ?? query.value);
+  const remaining = PAGE_LEN - count;
+  charCount.textContent = formatCount(count) + ' / ' + pageLimit;
+  counterWrap.classList.toggle('over-limit', remaining < 0);
+  const hint = byId('qwenHint');
+  if (remaining < 0) hint.textContent = tooLong;
+  else if (remaining === 0) hint.textContent = 'Страница полная.';
+  else hint.textContent = 'Справа добавим ' + formatCount(remaining) + ' ' + spaceForms[spacePlural.select(remaining)] + '.';
+}
+
+function clearAddressReceipt() {
+  numberReceipt.hidden = true;
+  addressDetails.open = false;
+  addressFormats.textContent = '';
+  decimalAddress = null;
+  result.textContent = '';
+}
+
+function showAddressReceipt(decimal, hexadecimal) {
+  const edge = 10;
+  let preview = decimal;
+  if (decimal.length > 2 * edge) {
+    preview = decimal.slice(0, edge) + '…' + decimal.slice(-edge) + '\nЦифр в номере — ' + formatCount(decimal.length);
+  }
+  result.textContent = 'Адрес найден\n' + preview;
+  addressFormats.textContent = 'Десятичный номер\n' + decimal + '\n\nШестнадцатеричный номер\n' + hexadecimal;
+  decimalAddress = decimal;
+  numberReceipt.hidden = false;
 }
 
 function setBusy(busy) {
@@ -45,6 +96,8 @@ function changeMode() {
   setBusy(false);
   const qwen = mode.value === QWEN_MODE;
   for (const id of ['fileControl', 'qwenHint', 'copyPage', 'downloadPage']) byId(id).hidden = !qwen;
+  counterWrap.hidden = !qwen;
+  if (qwen) updateQwenHint();
   for (const id of ['lengthControl', 'scoreBtn', 'searchBtn', 'clusterHint']) byId(id).hidden = qwen;
   result.classList.toggle('smallResult', qwen);
   unrankResult.classList.toggle('smallResult', qwen);
@@ -52,11 +105,12 @@ function changeMode() {
   byId('unrankBtn').textContent = qwen ? 'Открыть страницу' : 'Unrank';
   if (mode.value === 'exact_hierarchical_v1' && Number(lengthSelect.value) < 256) lengthSelect.value = '4096';
   if (mode.value === 'exact_cluster_mvp' && Number(lengthSelect.value) > 256) lengthSelect.value = '256';
-  result.textContent = unrankResult.textContent = '';
+  clearAddressReceipt();
+  unrankResult.textContent = '';
 }
 
 async function runQwen(operation, current, output) {
-  const input = operation === 'rank' ? {text: exactPage()} : {rank: rankInput.value.trim()};
+  const input = operation === 'rank' ? {text: paddedPage()} : {rank: rankInput.value.trim()};
   output.textContent = 'Отправляем запрос…';
   let job = await api('/api/' + operation, {mode: QWEN_MODE, ...input});
   const id = job.job_id;
@@ -72,11 +126,10 @@ async function runQwen(operation, current, output) {
   if (job.status !== 'done') throw new Error(job.error || 'Служба вернула неизвестное состояние задания.');
   if (operation === 'unrank') {
     setPage(job.page);
-    result.textContent = '';
     output.textContent = job.page;
   } else {
     rankInput.value = /^0x/i.test(rankInput.value.trim()) ? job.rank_hex : job.rank;
-    output.textContent = 'Десятичный номер\n' + job.rank + '\n\nШестнадцатеричный номер\n' + job.rank_hex;
+    showAddressReceipt(job.rank, job.rank_hex);
   }
 }
 
@@ -115,6 +168,7 @@ async function run(operation) {
   const output = operation === 'unrank' ? unrankResult : result;
   try {
     if (mode.value === QWEN_MODE) {
+      clearAddressReceipt();
       setBusy(true);
       await runQwen(operation, current, output);
     } else {
@@ -134,14 +188,27 @@ lengthSelect.onchange = () => {
 };
 query.oninput = () => {
   originalPage = null;
-  if (mode.value === QWEN_MODE) result.textContent = unrankResult.textContent = '';
+  if (mode.value === QWEN_MODE) {
+    ++revision;
+    clearAddressReceipt();
+    updateQwenHint();
+    unrankResult.textContent = '';
+  }
+};
+rankInput.oninput = () => {
+  if (decimalAddress !== null) {
+    ++revision;
+    clearAddressReceipt();
+  }
 };
 query.onpaste = event => {
   if (mode.value !== QWEN_MODE || query.readOnly || query.selectionStart !== 0 ||
       query.selectionEnd !== query.value.length || !event.clipboardData) return;
   event.preventDefault();
+  ++revision;
+  clearAddressReceipt();
   setPage(event.clipboardData.getData('text/plain'));
-  result.textContent = unrankResult.textContent = '';
+  unrankResult.textContent = '';
 };
 
 byId('pageFile').onchange = async event => {
@@ -149,15 +216,16 @@ byId('pageFile').onchange = async event => {
   if (!file) return;
   event.target.value = '';
   const current = ++revision;
+  clearAddressReceipt();
   setBusy(true);
   try {
     if (file.size > 4 * PAGE_LEN) throw new Error('Файл превышает 16 КиБ.');
     // ignoreBOM keeps an initial U+FEFF as the first character of the page.
     const page = new TextDecoder('utf-8', {fatal: true, ignoreBOM: true}).decode(await file.arrayBuffer());
-    if ([...page].length !== PAGE_LEN) throw new Error('В файле должно быть ровно 4096 знаков.');
+    if (codePointLength(page) > PAGE_LEN) throw new Error(tooLong);
     if (current !== revision) return;
     setPage(page);
-    result.textContent = 'Загружены все 4096 знаков.';
+    result.textContent = 'Файл загружен.';
     unrankResult.textContent = '';
   } catch (error) {
     if (current === revision) result.textContent = error instanceof TypeError ? 'Файл содержит некорректный UTF-8.' : error.message;
@@ -165,20 +233,25 @@ byId('pageFile').onchange = async event => {
     if (current === revision) setBusy(false);
   }
 };
-byId('copyPage').onclick = async () => {
+async function copyText(event) {
   const current = revision;
+  const copyingAddress = event.currentTarget.id === 'copyAddress';
+  if (copyingAddress && decimalAddress === null) return;
   try {
-    const page = exactPage();
-    await navigator.clipboard.writeText(page);
-    if (current === revision) result.textContent = 'Страница скопирована.';
+    await navigator.clipboard.writeText(copyingAddress ? decimalAddress : paddedPage());
+    if (current === revision) result.textContent = copyingAddress ? 'Адрес скопирован.' : 'Страница скопирована.';
   } catch (error) {
-    if (current === revision) result.textContent = error instanceof TypeError || error instanceof DOMException
-      ? 'Браузер не разрешил копирование. Страницу можно скачать в UTF-8.' : error.message;
+    if (current !== revision) return;
+    if (error instanceof TypeError || error instanceof DOMException) {
+      result.textContent = copyingAddress ? 'Браузер не разрешил копирование номера.'
+        : 'Браузер не разрешил копирование. Страницу можно скачать в UTF-8.';
+    } else result.textContent = error.message;
   }
-};
+}
+byId('copyPage').onclick = byId('copyAddress').onclick = copyText;
 byId('downloadPage').onclick = () => {
   try {
-    const bytes = new TextEncoder().encode(exactPage());
+    const bytes = new TextEncoder().encode(paddedPage());
     const url = URL.createObjectURL(new Blob([bytes], {type: 'text/plain;charset=utf-8'}));
     const link = document.createElement('a');
     link.href = url;
@@ -190,5 +263,11 @@ byId('downloadPage').onclick = () => {
   }
 };
 for (const name of ['score', 'rank', 'search', 'unrank']) byId(name + 'Btn').onclick = () => run(name);
-if (new URLSearchParams(location.search).get('mode') === QWEN_MODE) mode.value = QWEN_MODE;
+if (new URLSearchParams(location.search).get('mode') === QWEN_MODE) {
+  mode.value = QWEN_MODE;
+  rankInput.value = '41';
+}
+window.addEventListener('pageshow', event => {
+  if (event.persisted && mode.value === QWEN_MODE) changeMode();
+});
 changeMode();

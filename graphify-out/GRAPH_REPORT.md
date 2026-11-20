@@ -1,16 +1,16 @@
-# Graph Report - graph-reference-reading-final  (2026-11-20)
+# Graph Report - graph-search-padding-folio  (2026-11-20)
 
 ## Corpus Check
-- 181 files · ~2,383,878 words
+- 181 files · ~2,395,531 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1231 nodes · 1962 edges · 135 communities (104 shown, 31 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 71 edges (avg confidence: 0.59)
+- 1257 nodes · 2028 edges · 135 communities (104 shown, 31 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 78 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `28689a00`
+- Built from commit: `967fc25e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -131,15 +131,15 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `HierarchicalEnumeratorV1` - 25 edges
-2. `GenerativeAddress` - 20 edges
-3. `BinaryShellRanker` - 19 edges
-4. `require()` - 19 edges
-5. `ClusterRanker` - 18 edges
-6. `RawClusterRanker` - 18 edges
-7. `generate()` - 14 edges
-8. `self_test()` - 14 edges
-9. `ReferenceUnavailable` - 14 edges
-10. `boot()` - 14 edges
+2. `QwenWebTest` - 24 edges
+3. `GenerativeAddress` - 20 edges
+4. `BinaryShellRanker` - 19 edges
+5. `require()` - 19 edges
+6. `ClusterRanker` - 18 edges
+7. `RawClusterRanker` - 18 edges
+8. `ReferenceUnavailable` - 15 edges
+9. `ReferenceClient` - 15 edges
+10. `generate()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `submit_qwen()` --calls--> `job_input()`  [INFERRED]
@@ -160,7 +160,7 @@
 
 ### Community 0 - "Community 0"
 Cohesion: 0.10
-Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+5 more)
+Nodes (14): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+6 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.09
@@ -275,8 +275,8 @@ Cohesion: 0.06
 Nodes (27): BabelRanker4096, BinaryShellRanker, ContextPermutationMarkov5, ContextPermutationV1, ContextPermutationWordV1, _exhaustive_reduced_space_test(), Permutation, Path (+19 more)
 
 ### Community 30 - "Community 30"
-Cohesion: 0.21
-Nodes (15): api(), byId(), changeMode(), exactPage(), lengthSelect, mode, query, rankInput (+7 more)
+Cohesion: 0.11
+Nodes (29): addressDetails, addressFormats, api(), byId(), changeMode(), charCount, clearAddressReceipt(), codePointLength() (+21 more)
 
 ### Community 32 - "implementation_plan.md"
 Cohesion: 0.10
@@ -439,8 +439,8 @@ Cohesion: 0.14
 Nodes (13): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Математическая конструкция Babel-1, STAGE 0. Формализация объекта библиотеки, Критерий завершения, Математическая готовность, Модельная готовность, Научный вопрос (+5 more)
 
 ### Community 120 - "Задачи"
-Cohesion: 0.50
-Nodes (4): Генераторы в браузере, Локальный запуск, Что считает Score, Шесть режимов генератора
+Cohesion: 0.40
+Nodes (5): Генераторы в браузере, Локальный запуск, Поиск по библиотеке Qwen, Что считает Score, Шесть режимов генератора
 
 ### Community 121 - "Какая маленькая модель удерживает развязку рассказа?"
 Cohesion: 0.67
@@ -487,7 +487,7 @@ Cohesion: 0.67
 Nodes (3): Qwen3 с обратимой нумерацией, Следующий исследовательский вопрос, Текущий план
 
 ## Knowledge Gaps
-- **341 isolated node(s):** `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script` (+336 more)
+- **350 isolated node(s):** `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script` (+345 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **31 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -495,16 +495,16 @@ Nodes (3): Qwen3 с обратимой нумерацией, Следующий
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ReferenceClient` connect `Community 10` to `implementation_plan.md`, `Текущий план`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `ReferenceUnavailable` connect `Community 10` to `implementation_plan.md`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `generate()` connect `Текущий план` to `Community 10`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
   _`HierarchicalEnumeratorV1` has 2 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 3 inferred relationships involving `QwenWebTest` (e.g. with `ReferenceClient` and `ReferenceUnavailable`) actually correct?**
+  _`QwenWebTest` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 8 inferred relationships involving `GenerativeAddress` (e.g. with `QwenPredictors` and `QwenPredictorsGreedy`) actually correct?**
   _`GenerativeAddress` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `serve.sh script`, `clone_tg_economic.sh script`, `install_dataset_deps.sh script` to the rest of the system?**
-  _341 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
+  _350 weakly-connected nodes found - possible documentation gaps or missing edges._

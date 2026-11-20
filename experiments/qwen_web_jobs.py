@@ -24,13 +24,15 @@ def job_input(operation, body):
         raise ValueError(f"Длина страницы Qwen — ровно {PAGE} знаков.")
     value = body.get(field)
     if operation == "rank":
-        if not isinstance(value, str) or len(value) != PAGE:
-            raise ValueError(f"Для поиска номера нужна страница ровно из {PAGE} знаков.")
+        if not isinstance(value, str):
+            raise ValueError("Передайте текст страницы строкой в поле text.")
+        if len(value) > PAGE:
+            raise ValueError(f"Текст страницы превышает лимит в {PAGE} знаков.")
         try:
             value.encode("utf-8")
         except UnicodeEncodeError:
             raise ValueError("Страница содержит недопустимый символ Unicode.") from None
-        return value
+        return value.ljust(PAGE, " ")
     if not isinstance(value, str):
         raise ValueError("Введите десятичный номер или шестнадцатеричный номер с префиксом 0x.")
     limit = 2 + 2 * PAGE if value.startswith(("0x", "0X")) else MAX_DECIMAL_DIGITS

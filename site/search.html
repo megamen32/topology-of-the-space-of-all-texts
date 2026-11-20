@@ -1,22 +1,152 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Babel — Search / Rank</title><link rel="stylesheet" href="assets/style.css" /></head>
-<body><main>
-  <nav class="topnav"><a href="/">Главная</a><a href="walk.html">Русская прогулка</a><a href="student-rank.html">Student Rank</a><a href="proof.html">Доказательство</a><a href="library.html">Библиотека</a><a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a><a href="analytics.html">Analytics</a></nav>
-  <section class="hero compact"><div class="kicker">Address space</div><h1>Search / Rank / Score</h1><p class="lead">Откройте страницу по номеру или найдите её номер по тексту.</p></section>
-  <section class="panel grid2"><div><h2><label for="query">Текст страницы</label></h2><div class="controls">
-    <label>Режим <select id="rankMode"><option value="base256">Base-256 address</option><option value="qwen_reference_v1">Qwen · 4096 знаков</option><option value="exact_cluster_mvp">Cluster energy exact</option><option value="exact_hierarchical_v1">Hierarchical exact</option></select></label>
-    <label id="lengthControl">Length <select id="rankLength"><option value="4">4</option><option value="8" selected>8</option><option value="16">16</option><option value="32">32</option><option value="64">64</option><option value="128">128</option><option value="256">256</option><option value="512">512</option><option value="1024">1024</option><option value="2048">2048</option><option value="4096">4096</option></select></label>
-    <textarea id="query" class="smallText" rows="6" spellcheck="false">Привет лол 😂 hello</textarea>
-    <label id="fileControl" hidden>Загрузить страницу из файла UTF-8 <input id="pageFile" type="file"></label>
-    <p id="qwenHint" hidden>Для поиска нужны все 4096 знаков. Файл UTF-8 сохраняет исходные переводы строк и пробелы.</p>
-    <button id="scoreBtn">Score</button><button id="rankBtn">Rank</button><button id="searchBtn">Search exact page</button>
-    <button id="copyPage" class="secondaryAction" hidden>Скопировать страницу</button>
-    <button id="downloadPage" class="secondaryAction" hidden>Скачать страницу в UTF-8</button>
-  </div></div><pre id="result" class="result" role="status"></pre></section>
-  <section class="panel grid2"><div><h2><label for="rankInput">Номер страницы</label></h2><div class="controls">
-    <textarea id="rankInput" class="smallText" rows="3" spellcheck="false" aria-describedby="numberHint">0x0</textarea>
-    <p id="numberHint">Введите десятичный номер или шестнадцатеричный с префиксом 0x.</p>
-    <button id="unrankBtn">Unrank</button>
-  </div><p id="clusterHint">Cluster-energy exact покрывает все страницы до 256 символов. Hierarchical exact собирает из таких блоков страницы до 4096 символов. Оба режима — взаимно однозначные перечисления без повторов.</p></div><pre id="unrankResult" class="result" role="status"></pre></section>
-</main><script src="assets/shared.js"></script><script src="assets/search.js?v=qwen-ref-1"></script></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101e28">
+  <title>Поиск по Вавилонской библиотеке · Babel</title>
+  <link rel="preload" href="assets/babel-serif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/search.css?v=folio-1">
+</head>
+<body>
+  <a class="skip" href="#workbench">Перейти к поиску</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="/" aria-label="Babel — на главную">
+        <span class="book-mark" aria-hidden="true"><i></i><i></i></span>
+        <span>Babel</span>
+      </a>
+      <nav class="nav" aria-label="Разделы библиотеки">
+        <a class="current" aria-current="page" href="#workbench">Поиск</a>
+        <a href="library.html">Читалка</a>
+        <a class="research-link" href="#qwenFeatured">Результаты</a>
+        <details class="nav-more">
+          <summary>Разделы</summary>
+          <div>
+            <a href="/">Главная</a><a href="proof.html">Доказательство</a>
+            <a href="alphabet.html">Алфавит</a><a href="generate.html">Генераторы</a>
+            <a href="analytics.html">Аналитика</a><a href="walk.html">Русская прогулка</a>
+            <a href="student-rank.html">Student Rank</a>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="cover" aria-labelledby="title">
+      <div class="cover-picture" aria-hidden="true">
+        <img src="assets/babel-stacks.webp" alt="" width="960" height="640" fetchpriority="high">
+      </div>
+      <div class="wrap cover-inner">
+        <h1 id="title">Вавилонская<br><em>библиотека</em></h1>
+        <p class="intro">У&nbsp;каждой страницы есть адрес. Найдите номер своей фразы или откройте текст по&nbsp;номеру.</p>
+        <dl class="dimensions" aria-label="Размер библиотеки">
+          <div><dt>Возможных страниц</dt><dd>2<sup>32&#8239;768</sup></dd></div>
+          <div><dt>Знаков на странице</dt><dd>4&#8239;096</dd></div>
+          <div><dt>Знаков в алфавите</dt><dd>256</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="wrap workspace" id="workbench">
+      <div class="toolbar">
+        <div class="select-group">
+          <label for="rankMode">Порядок страниц</label>
+          <select id="rankMode">
+            <option value="base256">Base-256 address</option>
+            <option value="qwen_reference_v1">Qwen · 4096 знаков</option>
+            <option value="exact_cluster_mvp">Cluster energy exact</option>
+            <option value="exact_hierarchical_v1">Hierarchical exact</option>
+          </select>
+          <label id="lengthControl">Длина
+            <select id="rankLength">
+              <option value="4">4</option><option value="8" selected>8</option>
+              <option value="16">16</option><option value="32">32</option><option value="64">64</option>
+              <option value="128">128</option><option value="256">256</option><option value="512">512</option>
+              <option value="1024">1024</option><option value="2048">2048</option><option value="4096">4096</option>
+            </select>
+          </label>
+        </div>
+        <a class="alphabet-link" href="alphabet.html">Алфавит библиотеки <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="spread">
+        <section class="operation" aria-labelledby="from-text">
+          <h2 id="from-text">Из текста в номер</h2>
+          <div class="field-row">
+            <label for="query">Текст страницы</label>
+            <label class="file-control" id="fileControl" hidden>
+              <input id="pageFile" type="file" aria-label="Загрузить текст из файла UTF-8">
+              <span aria-hidden="true">↑</span> Загрузить UTF-8
+            </label>
+          </div>
+          <textarea id="query" rows="3" spellcheck="false" placeholder="Напишите свою фразу…" aria-describedby="qwenHint charCount">Привет лол 😂 hello</textarea>
+          <div class="field-notes">
+            <p id="qwenHint" hidden></p>
+            <span class="counter" id="counterWrap" hidden><span id="charCount"></span></span>
+          </div>
+          <div class="actions">
+            <button id="rankBtn" class="primary" type="button">Rank</button>
+            <button id="scoreBtn" type="button">Score</button>
+            <button id="searchBtn" type="button">Search exact page</button>
+          </div>
+          <div class="page-tools">
+            <button id="copyPage" type="button" hidden>Скопировать страницу</button>
+            <button id="downloadPage" type="button" hidden>Скачать UTF-8</button>
+          </div>
+          <pre id="result" class="output" role="status" aria-label="Результат поиска адреса"></pre>
+          <div class="number-receipt" id="numberReceipt" hidden>
+            <button id="copyAddress" type="button">Скопировать номер</button>
+            <details id="addressDetails">
+              <summary>Показать номер целиком</summary>
+              <pre id="addressFormats" class="output" aria-label="Полный номер страницы"></pre>
+            </details>
+          </div>
+        </section>
+
+        <section class="operation" aria-labelledby="from-number">
+          <h2 id="from-number">Из номера в текст</h2>
+          <div class="field-row"><label for="rankInput">Номер страницы</label></div>
+          <textarea id="rankInput" rows="3" spellcheck="false" autocapitalize="off" aria-describedby="numberHint">0x0</textarea>
+          <div class="field-notes"><p id="numberHint">Десятичное число или шестнадцатеричное с&nbsp;префиксом <code>0x</code>.</p></div>
+          <div class="actions"><button id="unrankBtn" class="primary" type="button">Unrank</button></div>
+          <p class="mode-note" id="clusterHint">Кластерный режим работает с текстами до 256 знаков, иерархический — со страницами до 4096.</p>
+          <pre id="unrankResult" class="output" role="status" aria-label="Результат открытия страницы"></pre>
+        </section>
+      </div>
+
+      <section class="research" id="qwenFeatured" aria-labelledby="research-title">
+        <div class="research-copy">
+          <p class="eyebrow">Слепая проверка · Qwen v1</p>
+          <h2 id="research-title">Что читается на&nbsp;малых номерах?</h2>
+          <p>Два ИИ-читателя независимо оценили 16 страниц. Номера были скрыты. В&nbsp;таблице учтены оценки, которые подтвердили оба читателя.</p>
+          <a class="text-link" href="https://github.com/megamen32/topology-of-the-space-of-all-texts/blob/master/notes/experiments/reference_readability/result.md">Прочитать страницы и оценки <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="study-table">
+          <table>
+            <caption class="sr-only">Сравнение восьми малых и восьми далёких адресов издания Qwen</caption>
+            <thead><tr><th scope="col">Критерий</th><th scope="col">Малые адреса</th><th scope="col">Далёкие адреса</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Есть понятный абзац</th><td>7<span>/8</span></td><td>0<span>/8</span></td></tr>
+              <tr><th scope="row">Событие или мысль развивается во&nbsp;второй половине</th><td>5<span>/8</span></td><td>0<span>/8</span></td></tr>
+            </tbody>
+          </table>
+          <p>На восьмой малой странице одна цитата превысила лимит. Итог по абзацу для этой страницы остался открытым.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap foot-inner">
+      <a class="foot-brand" href="/">Вавилонская библиотека</a>
+      <div>
+        <a href="https://github.com/megamen32/topology-of-the-space-of-all-texts/blob/master/notes/experiments/qwen_reference.md">Как устроен адрес</a>
+        <a href="https://github.com/megamen32/topology-of-the-space-of-all-texts/releases/tag/babel-qwen3-ref-v1">Скачать издание <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/shared.js"></script>
+  <script src="assets/search.js?v=folio-1"></script>
+</body>
+</html>
