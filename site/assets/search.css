@@ -107,6 +107,14 @@ textarea:focus { outline: 2px solid #97703c; outline-offset: 1px; }
 .field-notes { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 3px 9px; min-height: 38px; padding-top: 6px; color: var(--muted); font-size: .77rem; }
 .counter { margin-left: auto; white-space: nowrap; font: .75rem/1.4 var(--mono); }
 .counter.over-limit { color: #9d3125; }
+.alphabet-status, .replacements { margin-bottom: 10px; padding: 8px 12px; border-left: 2px solid #ae8652; background: #f0eadf; font-size: .84rem; }
+.alphabet-status button, .replacements summary { color: var(--bronze); font-weight: 600; }
+.alphabet-status button { padding: 4px 6px; background: none; border: 0; text-decoration: underline; }
+.replacements ul { margin: 5px 0; padding-inline-start: 1.5em; }
+.replacements li { padding-block: 2px; overflow-wrap: anywhere; }
+.replacements bdi { display: inline-block; min-width: 1.6em; max-width: 3em; height: 1.55em; vertical-align: bottom; overflow: hidden; white-space: pre; text-align: center; border: 1px solid var(--rule); background: var(--paper); }
+.replacements summary { width: fit-content; padding-block: 4px; }
+#replacementList { max-height: 12em; overflow-y: auto; }
 .actions, .page-tools { flex-wrap: wrap; gap: 7px 14px; }
 .actions { align-items: stretch; margin-top: 7px; }
 .actions button { border: 1px solid #a49d8e; border-radius: 3px; min-height: 44px; padding: 9px 16px; background: transparent; font: 650 .87rem/1.4 var(--sans); }

@@ -7,6 +7,8 @@ from functools import lru_cache
 from cluster_counting_mvp import HierarchicalRawRanker, RawClusterRanker
 from babel_shell_v1 import BabelRanker4096
 from hierarchical_enumerator_v1 import HierarchicalEnumeratorV1
+from ollama_generative_address import ALPHABET as QWEN_ALPHABET
+from qwen_page_cache import PageCache
 from qwen_web_jobs import MODE as QWEN_MODE, MODE_35, QueueFull, QwenJobs, job_input
 from qwen35_reference import ADDRESS_ENDPOINT as QWEN35_ENDPOINT, EDITION as QWEN35_EDITION, Qwen35Client
 ROOT=Path(os.environ.get('BABEL_ROOT', Path(__file__).resolve().parents[1]))
@@ -20,9 +22,10 @@ MODEL=json.loads((ROOT/'models/student_fsm_v1/student_fsm_v1.json').read_text(en
 ALPHA=MODEL['alphabet']; ASET=set(ALPHA); IDX={c:i for i,c in enumerate(ALPHA)}
 emoji_re=re.compile(r'\p{Emoji}')
 app=Flask(__name__, static_folder=str(SITE), static_url_path='')
-qwen_jobs = QwenJobs()
+qwen_page_cache = PageCache.from_environment()
+qwen_jobs = QwenJobs(page_cache=qwen_page_cache)
 qwen35_jobs = QwenJobs(Qwen35Client, endpoint_variable="BABEL_QWEN35_ENDPOINT",
-                       default_endpoint=QWEN35_ENDPOINT, edition=QWEN35_EDITION)
+                       default_endpoint=QWEN35_ENDPOINT, edition=QWEN35_EDITION, page_cache=qwen_page_cache)
 # A JSON-escaped page of 4096 supplementary characters takes 49,152 bytes.
 QWEN_BODY_LIMIT = 64 * 1024
 EXACT_CLUSTER_MAX_LENGTH = 256
@@ -337,6 +340,13 @@ def index(): return send_from_directory(SITE,'index.html')
 def static_proxy(path): return send_from_directory(SITE,path)
 @app.post('/api/score')
 def api_score(): return jsonify(score_text((request.json or {}).get('text','')))
+
+@app.get('/api/qwen/alphabet')
+def qwen_alphabet():
+    response = jsonify(alphabet=QWEN_ALPHABET)
+    response.cache_control.public = True
+    response.cache_control.max_age = 86400
+    return response
 
 def qwen_reply(data, code, job_id=None, mode=QWEN_MODE):
     payload = dict(data, mode=mode)

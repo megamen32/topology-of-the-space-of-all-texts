@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#101e28">
   <title>Поиск по Вавилонской библиотеке · Babel</title>
   <link rel="preload" href="assets/babel-serif.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/search.css?v=folio-1">
+  <link rel="stylesheet" href="assets/search.css?v=folio-2">
 </head>
 <body>
   <a class="skip" href="#workbench">Перейти к поиску</a>
@@ -82,10 +82,22 @@
               <span aria-hidden="true">↑</span> Загрузить UTF-8
             </label>
           </div>
-          <textarea id="query" rows="3" spellcheck="false" placeholder="Напишите свою фразу…" aria-describedby="qwenHint charCount">Привет лол 😂 hello</textarea>
+          <textarea id="query" rows="3" spellcheck="false" placeholder="Напишите свою фразу…" aria-describedby="qwenHint charCount replacementHint">Привет лол 😂 hello</textarea>
           <div class="field-notes">
             <p id="qwenHint" hidden></p>
             <span class="counter" id="counterWrap" hidden><span id="charCount"></span></span>
+          </div>
+          <div class="alphabet-status" id="alphabetStatus" hidden>
+            <span id="alphabetMessage" role="status"></span>
+            <button id="retryAlphabet" type="button" hidden>Повторить загрузку</button>
+          </div>
+          <div class="replacements" id="qwenReplacements" hidden>
+            <p id="replacementHint" role="status"></p>
+            <ul id="replacementPreview"></ul>
+            <details id="moreReplacements">
+              <summary id="morePositions"></summary>
+              <ul id="replacementList" tabindex="0" aria-label="Остальные позиции замен"></ul>
+            </details>
           </div>
           <div class="actions">
             <button id="rankBtn" class="primary" type="button">Rank</button>
@@ -148,6 +160,6 @@
     </div>
   </footer>
   <script src="assets/shared.js"></script>
-  <script src="assets/search.js?v=folio-qwen35-2"></script>
+  <script src="assets/search.js?v=folio-qwen35-3"></script>
 </body>
 </html>

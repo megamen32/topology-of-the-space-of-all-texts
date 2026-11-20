@@ -13,8 +13,9 @@ const counterWrap = byId('counterWrap');
 const numberReceipt = byId('numberReceipt');
 const addressDetails = byId('addressDetails');
 const addressFormats = byId('addressFormats');
-const spacePlural = new Intl.PluralRules('ru-RU');
+const plural = new Intl.PluralRules('ru-RU');
 const spaceForms = {one: 'пробел', few: 'пробела', many: 'пробелов'};
+const positionForms = {one: 'позиция', few: 'позиции', many: 'позиций'};
 const formatCount = count => fmt(count).replaceAll('\u00a0', '\u202f');
 const pageLimit = formatCount(PAGE_LEN);
 const tooLong = 'Текст превышает лимит в ' + pageLimit + ' знаков.';
@@ -23,6 +24,8 @@ let revision = 0;
 let originalUnits = null;
 let editStart = null;
 let decimalAddress = null;
+let qwenAlphabet = null;
+let alphabetLoading = false;
 
 async function api(path, payload) {
   const options = {cache: 'no-store'};
@@ -76,23 +79,127 @@ function codePointLength(text) {
   return count;
 }
 
-function paddedPage() {
+async function loadQwenAlphabet() {
+  if (qwenAlphabet || alphabetLoading) return;
+  alphabetLoading = true;
+  const message = byId('alphabetMessage');
+  const retry = byId('retryAlphabet');
+  message.textContent = 'Загружаем алфавит для поиска, копирования и скачивания…';
+  retry.hidden = true;
+  try {
+    const response = await fetch('/api/qwen/alphabet');
+    if (!response.ok) throw new Error();
+    const {alphabet} = await response.json();
+    const symbols = new Set(alphabet);
+    if (typeof alphabet !== 'string' || codePointLength(alphabet) !== 256 || symbols.size !== 256 || !symbols.has(' ')) {
+      throw new Error();
+    }
+    qwenAlphabet = symbols;
+  } catch {
+    message.textContent = 'Для поиска, копирования и скачивания нужен алфавит издания. Загрузить его не удалось.';
+    retry.hidden = false;
+  } finally {
+    alphabetLoading = false;
+  }
+  if (qwenAlphabet && isQwen()) {
+    byId('alphabetStatus').hidden = true;
+    updateQwenHint();
+    updatePageButtons();
+  }
+}
+
+function prepareQwenPage() {
   const text = sourceText();
-  const remaining = PAGE_LEN - codePointLength(text);
-  if (remaining < 0) throw new Error(tooLong);
-  if (/[\uD800-\uDFFF]/u.test(text)) throw new Error('Текст содержит недопустимый символ Unicode.');
-  return text + ' '.repeat(remaining);
+  const count = codePointLength(text);
+  const replacements = [];
+  if (count > PAGE_LEN) return {count, replacements, error: tooLong};
+  if (/[\uD800-\uDFFF]/u.test(text)) return {count, replacements, error: 'Текст содержит недопустимый символ Unicode.'};
+  if (!qwenAlphabet) return {count, replacements};
+
+  let page = '';
+  let position = 0;
+  for (const symbol of text) {
+    position++;
+    if (qwenAlphabet.has(symbol)) page += symbol;
+    else {
+      replacements.push({position, symbol});
+      page += ' ';
+    }
+  }
+  return {count, replacements, page: page + ' '.repeat(PAGE_LEN - count)};
+}
+
+function paddedPage() {
+  const {page, error} = prepareQwenPage();
+  if (page === undefined) throw new Error(error || 'Сначала загрузите алфавит издания.');
+  return page;
+}
+
+const symbolNames = {
+  '\0': 'нулевой символ', '\t': 'табуляция', '\v': 'вертикальная табуляция',
+  '\f': 'перевод страницы', '\r': 'возврат каретки (CR)', '\u0085': 'переход на следующую строку',
+  '\u00A0': 'неразрывный пробел', '\u00AD': 'мягкий перенос', '\u1680': 'огамический пробел',
+  '\u2000': 'пробел в половину кегля', '\u2001': 'пробел в один кегль',
+  '\u2002': 'пробел в половину кегля', '\u2003': 'пробел в один кегль',
+  '\u2004': 'пробел в треть кегля', '\u2005': 'пробел в четверть кегля', '\u2006': 'пробел в шестую часть кегля',
+  '\u2007': 'цифровой пробел', '\u2008': 'пунктуационный пробел', '\u2009': 'тонкий пробел',
+  '\u200A': 'волосяной пробел', '\u200C': 'запрет соединения соседних знаков',
+  '\u2028': 'разделитель строк', '\u2029': 'разделитель абзацев', '\u202F': 'узкий неразрывный пробел',
+  '\u205F': 'средний математический пробел', '\u2060': 'неразрывный соединитель слов',
+  '\u3000': 'идеографический пробел',
+};
+
+function symbolName(symbol) {
+  if (symbolNames[symbol]) return symbolNames[symbol];
+  if (/\p{Bidi_Control}/u.test(symbol)) return 'знак направления письма';
+  if (/\p{Variation_Selector}/u.test(symbol)) return 'селектор варианта начертания';
+  if (/[\p{Default_Ignorable_Code_Point}\p{Cf}]/u.test(symbol)) return 'невидимый знак форматирования';
+  if (/\p{Cc}/u.test(symbol)) return 'управляющий символ';
+  if (/\p{Mark}/u.test(symbol)) return 'комбинируемый знак';
+  return '';
+}
+
+function replacementItem({position, symbol}) {
+  const item = document.createElement('li');
+  const glyph = document.createElement('bdi');
+  glyph.textContent = symbol;
+  const name = symbolName(symbol);
+  item.append('Позиция ' + position + ' — ', glyph, ' ' + codeInfo(symbol), name ? ' (' + name + ')' : '');
+  return item;
+}
+
+function showReplacements(replacements) {
+  const count = replacements.length;
+  const previewLimit = 3;
+  byId('qwenReplacements').hidden = count === 0;
+  byId('replacementHint').textContent = count ? 'Знаков вне алфавита — ' + formatCount(count)
+    + '. При поиске, копировании и скачивании каждый заменим обычным пробелом (U+0020).' : '';
+  byId('replacementPreview').replaceChildren(...replacements.slice(0, previewLimit).map(replacementItem));
+
+  const more = byId('moreReplacements');
+  const rest = count - previewLimit;
+  more.hidden = rest <= 0;
+  if (more.hidden) more.open = false;
+  byId('morePositions').textContent = rest > 0 ? 'Ещё ' + formatCount(rest) + ' ' + positionForms[plural.select(rest)] : '';
+  // Build the rest only when expanded, including when the user edits an open list.
+  const renderList = () => {
+    const entries = more.open ? replacements.slice(previewLimit).map(replacementItem) : [];
+    byId('replacementList').replaceChildren(...entries);
+  };
+  more.ontoggle = renderList;
+  renderList();
 }
 
 function updateQwenHint() {
-  const count = codePointLength(sourceText());
+  const {count, replacements, error} = prepareQwenPage();
   const remaining = PAGE_LEN - count;
   charCount.textContent = formatCount(count) + ' / ' + pageLimit;
   counterWrap.classList.toggle('over-limit', remaining < 0);
   const hint = byId('qwenHint');
-  if (remaining < 0) hint.textContent = tooLong;
+  if (error) hint.textContent = error;
   else if (remaining === 0) hint.textContent = 'Страница полная.';
-  else hint.textContent = 'Справа добавим ' + formatCount(remaining) + ' ' + spaceForms[spacePlural.select(remaining)] + '.';
+  else hint.textContent = 'Справа добавим ' + formatCount(remaining) + ' ' + spaceForms[plural.select(remaining)] + '.';
+  showReplacements(replacements);
 }
 
 function clearAddressReceipt() {
@@ -115,9 +222,15 @@ function showAddressReceipt(decimal, hexadecimal) {
   numberReceipt.hidden = false;
 }
 
+function updatePageButtons() {
+  const disabled = query.readOnly || (isQwen() && !qwenAlphabet);
+  for (const id of ['rankBtn', 'copyPage', 'downloadPage']) byId(id).disabled = disabled;
+}
+
 function setBusy(busy) {
-  for (const id of ['rankBtn', 'unrankBtn', 'pageFile', 'copyPage', 'downloadPage']) byId(id).disabled = busy;
+  byId('unrankBtn').disabled = byId('pageFile').disabled = busy;
   query.readOnly = rankInput.readOnly = busy;
+  updatePageButtons();
 }
 
 function changeMode() {
@@ -126,7 +239,11 @@ function changeMode() {
   const qwen = isQwen();
   for (const id of ['fileControl', 'qwenHint', 'copyPage', 'downloadPage', 'editionHint']) byId(id).hidden = !qwen;
   counterWrap.hidden = !qwen;
-  if (qwen) updateQwenHint();
+  byId('alphabetStatus').hidden = !qwen || Boolean(qwenAlphabet);
+  if (qwen) {
+    updateQwenHint();
+    loadQwenAlphabet();
+  } else showReplacements([]);
   for (const id of ['lengthControl', 'scoreBtn', 'searchBtn', 'clusterHint']) byId(id).hidden = qwen;
   result.classList.toggle('smallResult', qwen);
   unrankResult.classList.toggle('smallResult', qwen);
@@ -146,10 +263,12 @@ async function runQwen(operation, current, output) {
   let job = await api('/api/' + operation, {mode: selectedMode, ...input});
   const id = job.job_id;
   if (!id) throw new Error('Служба не выдала номер задания.');
-  while (current === revision && (job.status === 'queued' || job.status === 'running')) {
+  for (let poll = 0; current === revision && (job.status === 'queued' || job.status === 'running'); poll++) {
     output.textContent = job.status === 'queued' ? 'Задание в очереди…' : 'Qwen вычисляет страницу. Это может занять несколько минут.';
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    if (current !== revision) return;
+    if (poll > 0) {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      if (current !== revision) return;
+    }
     job = await api(jobsPath + encodeURIComponent(id));
     if (job.job_id !== id) throw new Error('Служба вернула ответ на другое задание.');
   }
@@ -213,6 +332,7 @@ async function run(operation) {
 }
 
 mode.onchange = changeMode;
+byId('retryAlphabet').onclick = loadQwenAlphabet;
 lengthSelect.onchange = () => {
   if (Number(lengthSelect.value) > 256) mode.value = 'exact_hierarchical_v1';
   changeMode();

@@ -29,6 +29,7 @@ PAGES = {
     7: PHRASE + " " * 4078,
     8: " " * PAGE,
     9: "😂" * PAGE,
+    10: "\ufeff строка \n  😀\n".ljust(PAGE),
 }
 FILE_WITH_CR = "\ufeff\rстрока\r\n  😀\n".ljust(PAGE)
 
@@ -124,6 +125,19 @@ class QwenWebTest(TestCase):
                 error = self.finish(self.submit("rank", text=text), 400)
                 self.assertIn(code, error["error"])
                 self.assertEqual(self.fake.ranked_page, text.ljust(PAGE))
+
+    def test_rank_replaces_unsupported_only_when_requested(self):
+        replaced = PHRASE.replace(" ", "\u202f", 1)
+        strict_error = self.finish(self.submit("rank", text=replaced), 400)["error"]
+        self.assertIn("узкий неразрывный пробел", strict_error)
+        self.assertIn("U+202F", strict_error)
+        self.assertIn("позиции 7", strict_error)
+        ranked = self.finish(self.submit("rank", text=replaced, replace_unsupported=True))
+        self.assertEqual((ranked["rank"], ranked["page"]), ("7", PAGES[7]))
+        invalid = self.web.post("/api/rank", json={"mode": MODE, "text": replaced, "replace_unsupported": "false"})
+        self.assertEqual(invalid.status_code, 400)
+        alphabet = self.web.get("/api/qwen/alphabet")
+        self.assertEqual(alphabet.get_json()["alphabet"], ALPHABET)
 
     def test_invalid_unrank_result(self):
         with patch.object(self.fake, "unrank", return_value=PAGES[42][:-1] + "\r"):
@@ -330,11 +344,11 @@ class QwenWebTest(TestCase):
         expect(tab.locator("#result")).to_contain_text("загружен")
         self.assertEqual(tab.input_value("#query"), FILE_WITH_CR.replace("\r\n", "\n").replace("\r", "\n"))
         expect(tab.locator("#charCount")).to_have_text("4 096 / 4 096")
-        self.assert_page_exports(tab, FILE_WITH_CR)
-        tab.click("#rankBtn")
-        expect(tab.locator("#result")).to_contain_text("U+000D")
-        self.assertEqual(self.fake.ranked_page, FILE_WITH_CR)
-        self.assert_receipt_cleared(tab)
+        for item, position in zip(tab.locator("#replacementPreview li").all(), (2, 9), strict=True):
+            expect(item).to_contain_text(f"Позиция {position}")
+            expect(item).to_contain_text("U+000D")
+        self.assert_page_exports(tab, PAGES[10])
+        self.assert_browser_rank(tab, 10)
 
         source = "\ufeffA\r\n\n😀\rB"
         tab.set_input_files("#pageFile", {"name": "short-cr.txt", "mimeType": "text/plain", "buffer": source.encode()})
@@ -343,11 +357,11 @@ class QwenWebTest(TestCase):
         # Delete the LF immediately following CRLF. They look identical in the textarea.
         query.evaluate("q => { q.focus(); q.setSelectionRange(3, 4); }")
         query.press("Backspace")
-        self.assert_page_exports(tab, "\ufeffA\r\n😀\rB".ljust(PAGE))
+        self.assert_page_exports(tab, "\ufeffA \n😀 B".ljust(PAGE))
         query.evaluate("q => { q.focus(); q.setSelectionRange(1, 1); }")
         tab.evaluate("text => navigator.clipboard.writeText(text)", "X\r\nY")
         query.press("Control+v")
-        self.assert_page_exports(tab, "\ufeffX\r\nYA\r\n😀\rB".ljust(PAGE))
+        self.assert_page_exports(tab, "\ufeffX \nYA \n😀 B".ljust(PAGE))
 
     def test_search_ui_receipt_after_restore_and_errors(self):
         tab = self.open_search()

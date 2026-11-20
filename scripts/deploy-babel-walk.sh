@@ -17,6 +17,8 @@ rsync -a --delete \
   --filter 'show /experiments/ollama_continuation_v3.py' \
   --filter 'show /experiments/ollama_generative_address.py' \
   --filter 'show /experiments/qwen_reference.py' \
+  --filter 'show /experiments/qwen35_reference.py' \
+  --filter 'show /experiments/qwen_page_cache.py' \
   --filter 'show /experiments/qwen_web_jobs.py' \
   --include '/models/' \
   --include '/models/cluster_student_v2/' \
