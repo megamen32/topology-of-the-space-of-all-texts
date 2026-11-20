@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import http.client
+import inspect
 import json
 import re
 import sys
@@ -202,7 +203,7 @@ def cold_generate(request, payload):
     return request("/api/generate", payload)
 
 
-def generated_text(request, payload) -> str:
+def generated_text(request, payload, receipt=None) -> str:
     reply = cold_generate(request, payload)
     reason = reply.get("done_reason")
     content = reply.get("response", "")
@@ -210,7 +211,16 @@ def generated_text(request, payload) -> str:
             or reason not in (None, "", "stop", "length") or "error" in reply
             or not isinstance(content, str) or ("response" not in reply and reason == "length")):
         raise ValueError("Ожидался завершённый ответ /api/generate от закреплённой модели.")
+    if receipt is not None:
+        receipt.update(response_sha256=digest(content.encode("utf-8", "surrogatepass")),
+                       raw_chars=len(content), done_reason=reason)
     return content
+
+
+def record_lengths(receipt, normalized, accepted):
+    receipt.update(normalized_chars=normalized, accepted_chars=accepted)
+    if normalized > accepted:
+        receipt["discarded_chars"] = normalized - accepted
 
 
 def v2_prompts():
@@ -219,6 +229,8 @@ def v2_prompts():
 
 class QwenPredictors:
     """Inject request(path, body=None) to run the same checks and predictions offline."""
+
+    detailed_receipts = False
 
     def __init__(self, request):
         verify_edition(request)
@@ -254,14 +266,22 @@ class QwenPredictors:
         options = {**OPTIONS, "seed": int.from_bytes(key[:4], "big") & 0x7fffffff}
         result = bytearray()
         prompts = []
+        calls = []
         for part in range(1, MAX_CALLS + 1):
             instruction = story["continue"] if result else task
             if part > 1:
                 instruction += " " + story["retry"].format(part=part)
             prompt = raw_prompt(instruction + " " + story["write"], first + decode(result))
             prompts.append(digest(prompt.encode("utf-8")))
-            content = generated_text(self.request, {"model": MODEL, **FLAGS, "options": options, "prompt": prompt})
-            result.extend(normalize_response(content)[:HALF - len(result)])
+            receipt = {"stage": stage} if self.detailed_receipts else None
+            payload = {"model": MODEL, **FLAGS, "options": options, "prompt": prompt}
+            content = generated_text(self.request, payload, receipt)
+            normalized = normalize_response(content)
+            accepted = normalized[:HALF - len(result)]
+            result.extend(accepted)
+            if receipt is not None:
+                record_lengths(receipt, len(normalized), len(accepted))
+                calls.append(receipt)
             if len(result) == HALF:
                 break
         missing = HALF - len(result)
@@ -272,12 +292,16 @@ class QwenPredictors:
             "input_indices_sha256": digest(source), "output_indices_sha256": digest(result),
             "prompt_sha256": prompts, "options_sha256": digest(canonical_json(options)),
         }
+        if self.detailed_receipts:
+            self.report[stage]["calls"] = calls
         return bytes(result)
 
 
 V3_KEY_DOMAIN = b"\0continuation\0"
 V3_TAIL_DOMAIN = b"tail\0"
 V3_SPEC_SHA256 = "8454f571169bfabef9b8761a2e36f9231200200b2ec7f7a665cd09a03be20015"
+V31_EDITION = "babel-qwen3-1.7b-ollama0.32.1-gpu-b128-v3.1"
+V31_SPEC_SHA256 = "838c6e6a8b6aea0b9f8ed9e4f99e49d6071586ba573363554e69242d2704f4f5"
 
 
 def v3_specification(v3):
@@ -312,8 +336,102 @@ def v3_specification(v3):
     }
 
 
+class SceneRetryV31:
+    """Per prediction. The frozen composer still constructs every scene and the returned page."""
+
+    def __init__(self, v3, source):
+        self.v3 = v3
+        suffix = v3.finish_word(source)
+        self.restored_chars = len(suffix)
+        self.waiting_for_prose = bool(suffix)
+        self.first_read = None
+        self.remaining = HALF - len(suffix)
+        self.last_char = (suffix or source)[-1]
+
+    def read_prompt(self, prompt):
+        if self.waiting_for_prose:
+            if self.first_read is None:
+                self.first_read = prompt
+            return self.first_read
+        return prompt
+
+    def record_card(self, receipt, raw, fields):
+        try:
+            card = json.loads(raw)
+            status = "object" if isinstance(card, dict) else "not_object"
+        except (ValueError, RecursionError):
+            card = None
+            status = "invalid_json" if raw.strip() else "empty"
+        useful = []
+        normalized = accepted = 0
+        if isinstance(card, dict):
+            for field in fields:
+                value = card.get(field)
+                if isinstance(value, str):
+                    data = self.v3.escaped(" ".join(value.split()))
+                    normalized += len(data.decode("utf-8"))
+                    kept = data[:self.v3.FIELD_BYTES].decode("utf-8", "ignore")
+                    accepted += len(kept)
+                    if kept.strip():
+                        useful.append(field)
+        receipt.update(json_status=status, useful_fields=useful)
+        record_lengths(receipt, normalized, accepted)
+
+    def record_prose(self, receipt, text):
+        kept = 0
+        if text:
+            # Account for the frozen composer's paragraph break separately from model characters.
+            separator = self.v3.PARAGRAPH if self.last_char in self.v3.END_MARKS else ""
+            prose = text.lstrip() if separator or self.last_char.isspace() else text
+            fragment = (separator + prose)[:self.remaining]
+            inserted = min(len(separator), len(fragment))
+            if inserted:
+                receipt["separator_chars"] = inserted
+            kept = len(fragment) - inserted
+            if kept:
+                self.waiting_for_prose = False
+            self.remaining -= len(fragment)
+            self.last_char = fragment[-1]
+        record_lengths(receipt, len(text), kept)
+
+
+def v31_specification(v3):
+    parent = v3_specification(v3)
+    implementations = (
+        SceneRetryV31.__init__, SceneRetryV31.read_prompt, SceneRetryV31.record_card, SceneRetryV31.record_prose,
+        generated_text, record_lengths, QwenPredictors._predict, QwenPredictorsV3.continuation,
+    )
+    return {
+        **parent, "edition": V31_EDITION, "parent_spec_sha256": digest(canonical_json(parent)),
+        "continuation_seed_edition": v3.EDITION,
+        "key": ["SHA-256", "ascii(continuation_seed_edition)", V3_KEY_DOMAIN.hex(), "U indices"],
+        "continuation_rules": {
+            **v3.RULES,
+            "retry": "With a restored suffix and no accepted model prose, reuse the first read prompt; "
+                     "all other prompts, ordinal seeds, tactics and tail use the frozen v3 rules.",
+        },
+        "receipts": {
+            "response_sha256": "raw response string encoded as UTF-8 (surrogatepass for lone surrogates)",
+            "raw_chars": "code points in the raw response string; a missing response at EOS is empty",
+            "normalized_chars": "alphabet characters for prose; for cards, code points of expected string "
+                                "field values after whitespace compaction and escaping, before the field byte cap",
+            "accepted_chars": "model characters retained after trimming and clipping; for cards, the sum of "
+                              "retained field lengths; discarded_chars is normalized minus accepted",
+            "json_status": ["object", "not_object", "invalid_json", "empty"],
+            "useful_fields": "schema names with nonblank values after clipping",
+            "accounting": "source word completion, inserted paragraph separators and final SHAKE indices "
+                          "are counted separately as restored_chars, separator_chars and fallback_indices",
+        },
+        "revision_source_sha256": digest("\n".join(inspect.getsource(f).rstrip() for f in implementations).encode()),
+    }
+
+
 class QwenPredictorsV3(QwenPredictors):
     """Inherit F including its v2 domain, prompts, sampling, EOS and tail."""
+
+    specification = staticmethod(v3_specification)
+    spec_sha256 = V3_SPEC_SHA256
+    retry_type = None
 
     def __init__(self, request):
         if __package__:
@@ -321,14 +439,15 @@ class QwenPredictorsV3(QwenPredictors):
         else:
             import ollama_continuation_v3 as v3
         self.v3 = v3
-        self.spec = v3_specification(v3)
-        if digest(canonical_json(self.spec)) != V3_SPEC_SHA256:
-            raise ValueError("Спецификация издания v3 не совпадает с закреплённым SHA-256.")
+        self.spec = self.specification(v3)
+        if digest(canonical_json(self.spec)) != self.spec_sha256:
+            version = self.spec["edition"].rsplit("-", 1)[-1]
+            raise ValueError(f"Спецификация издания {version} не совпадает с закреплённым SHA-256.")
         super().__init__(request)
 
     def edition_info(self):
         opening = super().edition_info()
-        return {"edition": self.v3.EDITION, "edition_spec_sha256": V3_SPEC_SHA256,
+        return {"edition": self.spec["edition"], "edition_spec_sha256": self.spec_sha256,
                 "opening_edition": opening["edition"], "opening_prompt_spec_sha256": opening["prompt_spec_sha256"],
                 "opening_options_spec_sha256": opening["options_spec_sha256"],
                 "prompt_spec_sha256": digest(canonical_json(self.spec["prompts"])),
@@ -341,8 +460,11 @@ class QwenPredictorsV3(QwenPredictors):
         source = decode(first)
         language = text_language(source, key)
         calls = []
+        retry = self.retry_type(self.v3, source) if self.retry_type is not None else None
 
         def generate(stage, prompt):
+            if retry is not None and stage == "read":
+                prompt = retry.read_prompt(prompt)
             seed_hash = sha256(key + len(calls).to_bytes(2, "big")).digest()
             seed = int.from_bytes(seed_hash[:4], "big") & 0x7fffffff
             options = {**self.spec["options"][stage], "seed": seed}
@@ -350,12 +472,20 @@ class QwenPredictorsV3(QwenPredictors):
             schema = self.v3.CARD_FORMATS.get(stage)
             if schema is not None:
                 payload["format"] = schema
-            content = generated_text(self.request, payload)
-            calls.append({
+            receipt = {
                 "stage": stage, "seed": seed, "prompt_sha256": digest(prompt.encode()),
                 "options_sha256": digest(canonical_json(options)), "request_sha256": digest(canonical_json(payload)),
-            })
-            return content if schema is not None else decode(normalize_response(content))
+            }
+            content = generated_text(self.request, payload, receipt if retry is not None else None)
+            calls.append(receipt)
+            if schema is not None:
+                if retry is not None:
+                    retry.record_card(receipt, content, schema["required"])
+                return content
+            text = decode(normalize_response(content))
+            if retry is not None:
+                retry.record_prose(receipt, text)
+            return text
 
         prose = self.v3.compose(source, language, generate, HALF, key)
         indices = bytes(INDEX[c] for c in prose)
@@ -366,7 +496,36 @@ class QwenPredictorsV3(QwenPredictors):
             "input_indices_sha256": digest(first), "output_indices_sha256": digest(result),
             "prompt_sha256": [call["prompt_sha256"] for call in calls], "calls": calls,
         }
+        if retry is not None:
+            self.report["continuation"]["restored_chars"] = retry.restored_chars
         return result
+
+
+class QwenPredictorsV31(QwenPredictorsV3):
+    detailed_receipts = True
+    specification = staticmethod(v31_specification)
+    spec_sha256 = V31_SPEC_SHA256
+    retry_type = SceneRetryV31
+
+    def edition_info(self):
+        return {**super().edition_info(), "continuation_seed_edition": self.v3.EDITION}
+
+
+def greedy_specification(v3):
+    parent = v31_specification(v3)
+    options = parent["options"]
+    writer = {**options["write"], "temperature": 0, "top_k": 1, "top_p": 1.0}
+    return {**parent, "edition": V31_EDITION + "-greedy", "parent_spec_sha256": V31_SPEC_SHA256,
+            "options": {**options, "write": writer}}
+
+
+class QwenPredictorsGreedy(QwenPredictorsV31):
+    specification = staticmethod(greedy_specification)
+    spec_sha256 = "40804e9423674841e95f87d239eaea66daa193157e358a1617f350360ec70b0d"
+
+
+PREDICTORS = {"v2": QwenPredictors, "v3": QwenPredictorsV3,
+              "v3.1": QwenPredictorsV31, "v3.1-greedy": QwenPredictorsGreedy}
 
 
 def parse_number(token: str, size: int) -> int:
@@ -465,6 +624,60 @@ def self_test_v3(metadata) -> None:
             raise AssertionError("Некорректное начало принято")
 
 
+def self_test_v31(metadata) -> None:
+    head, cut = "At the wharf I took the wooden key.", "I took the wooden k"
+    source = head + "." * (HALF - len(head) - len(cut)) + cut
+    first = strict_indices(source.encode(), HALF)
+
+    def exercise(cls, empty_first):
+        requests, reads = [], []
+        writes = 0
+
+        def fake(path, body=None):
+            nonlocal writes
+            if path != "/api/generate":
+                return metadata(path, body)
+            requests.append(canonical_json(body))
+            fields = body.get("format", {}).get("required", [])
+            if "actor" in fields:
+                reads.append(body["prompt"])
+                text = json.dumps({"actor": "wharf" if "wharf" in reads[-1] else "unknown"})
+            elif fields:
+                text = "{" if not writes else "{}"
+            else:
+                writes += 1
+                if writes == 1:
+                    text = "" if empty_first else " Next."
+                else:
+                    text = " " + ("key. " if "wharf" in body["prompt"] else "fog. ") * 600 + "漢"
+            return {"model": MODEL, "done": True, "done_reason": "stop", "response": text}
+
+        predictor = cls(fake)
+        page = predictor.continuation(first)
+        return page, requests, reads, predictor.report["continuation"]
+
+    for empty_first in (False, True):
+        old_page, old_requests, old_reads, _ = exercise(QwenPredictorsV3, empty_first)
+        page, requests, reads, report = exercise(QwenPredictorsV31, empty_first)
+        assert len(requests) == len(old_requests) == 6 and report["restored_chars"] == 2
+        if empty_first:
+            assert requests[:3] == old_requests[:3]
+            assert "<passage>\ney\n</passage>" in old_reads[1]
+            assert reads[0] == reads[1] and "wharf" in reads[1] and page != old_page
+        else:
+            assert page == old_page and requests == old_requests
+        read, plan, write, _, retry_plan, retry_write = report["calls"]
+        assert read["useful_fields"] == ["actor"] and plan["json_status"] == "invalid_json"
+        assert retry_plan["json_status"] == "object" and retry_plan["useful_fields"] == []
+        assert plan["response_sha256"] != retry_plan["response_sha256"]
+        assert write["accepted_chars"] == (0 if empty_first else len(" Next."))
+        assert retry_write["raw_chars"] == retry_write["normalized_chars"] + 1
+        assert retry_write["discarded_chars"] == retry_write["normalized_chars"] - retry_write["accepted_chars"]
+        appended = sum(c["accepted_chars"] + c.get("separator_chars", 0)
+                       for c in report["calls"] if c["stage"] == "write")
+        assert appended + report["restored_chars"] + report["fallback_indices"] == HALF
+
+
 def self_test(edition="v2") -> None:
     calls = []
     empty_reply = False
@@ -504,7 +717,22 @@ def self_test(edition="v2") -> None:
     assert len(predictors.continuation(garbage[:HALF])) == HALF
     report = predictors.report["continuation"]
     assert report["fallback_indices"] == HALF and len(report["prompt_sha256"]) == MAX_CALLS
-    if edition == "v3":
+    if edition == "v3.1-greedy":
+        sampled = QwenPredictorsV31(fake)
+        greedy = QwenPredictorsGreedy(fake)
+        assert greedy.opening(bytes(HALF)) == sampled.opening(bytes(HALF))
+        assert greedy.spec["prompts"] == sampled.spec["prompts"]
+        for stage in ("opening", "read", "plan"):
+            assert greedy.spec["options"][stage] == sampled.spec["options"][stage]
+        assert greedy.spec["options"]["write"] == {
+            **sampled.spec["options"]["write"], "temperature": 0, "top_k": 1, "top_p": 1.0}
+        codec = GenerativeAddress(HALF, greedy.opening, greedy.continuation)
+        assert codec.unrank(codec.rank(garbage)) == garbage and codec.rank(codec.unrank(33)) == 33
+        print("OK: жадное продолжение, закреплённая спецификация и обе стороны адресации.")
+    elif edition == "v3.1":
+        self_test_v31(fake)
+        print("OK: v3.1, повторное чтение сцены, запросы v3 и учёт полученных знаков.")
+    elif edition == "v3":
         self_test_v3(fake)
         print("OK: v3, идентичность F, холодные запросы, обе стороны адресации, EOS и заполнение остатка.")
     else:
@@ -514,7 +742,7 @@ def self_test(edition="v2") -> None:
 def main(argv=None, request=None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--endpoint", default="http://127.0.0.1:18471", help="URL выделенной однослотовой службы Ollama")
-    parser.add_argument("--edition", choices=("v2", "v3"), default="v2", help="издание предикторов (по умолчанию v2)")
+    parser.add_argument("--edition", choices=PREDICTORS, default="v2", help="издание предикторов (по умолчанию v2)")
     commands = parser.add_subparsers(dest="command", required=True)
     for name, argument, description in (
         ("unrank", "address", "записать страницу по адресу (десятичному или 0x)"),
@@ -524,14 +752,14 @@ def main(argv=None, request=None) -> None:
     ):
         sub = commands.add_parser(name, help=description, description=description)
         sub.add_argument("--endpoint", default=argparse.SUPPRESS, help="базовый URL Ollama")
-        sub.add_argument("--edition", choices=("v2", "v3"), default=argparse.SUPPRESS)
+        sub.add_argument("--edition", choices=PREDICTORS, default=argparse.SUPPRESS)
         sub.add_argument(argument, type=Path if name in ("rank", "continue") else str)
         if name != "rank":
             sub.add_argument("--out", required=True, type=Path, help="выходной UTF-8 файл")
         if name == "continue":
             sub.add_argument("--indices", action="store_true", help="читать начало как 2048 сырых байтов индексов")
     checks = commands.add_parser("self-test", help="проверить адресацию и ответы в памяти без сети")
-    checks.add_argument("--edition", choices=("v2", "v3"), default=argparse.SUPPRESS)
+    checks.add_argument("--edition", choices=PREDICTORS, default=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     if args.command == "self-test":
         self_test(args.edition)
@@ -548,7 +776,7 @@ def main(argv=None, request=None) -> None:
         if len(first) != HALF:
             raise ValueError(f"Ожидалось {HALF} байтов индексов начала.")
 
-    predictor_class = QwenPredictorsV3 if args.edition == "v3" else QwenPredictors
+    predictor_class = PREDICTORS[args.edition]
     predictors = predictor_class(request if request is not None else http_transport(args.endpoint))
     codec = GenerativeAddress(HALF, predictors.opening, predictors.continuation)
     numbers = {}

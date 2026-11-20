@@ -1,16 +1,16 @@
-# Graph Report - graph-edition  (2026-11-20)
+# Graph Report - graph-scores-gpu  (2026-11-20)
 
 ## Corpus Check
-- 151 files · ~2,349,327 words
+- 158 files · ~2,356,374 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1056 nodes · 1592 edges · 124 communities (95 shown, 29 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 29 edges (avg confidence: 0.64)
+- 1084 nodes · 1645 edges · 126 communities (96 shown, 30 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d1170d6d`
+- Built from commit: `78eed605`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,6 +46,7 @@
 - Community 28
 - Community 29
 - Community 30
+- Community 31
 - implementation_plan.md
 - Community 33
 - Community 34
@@ -118,18 +119,20 @@
 - Какая маленькая модель удерживает развязку рассказа?
 - student_comparison_pages.py
 - Что открывается на восьми малых и восьми далёких адресах Qwen3
+- evaluate_continuations.py
+- Сохраняет ли Qwen смысл между половинами страницы
 
 ## God Nodes (most connected - your core abstractions)
 1. `HierarchicalEnumeratorV1` - 25 edges
 2. `BinaryShellRanker` - 19 edges
 3. `ClusterRanker` - 18 edges
 4. `RawClusterRanker` - 18 edges
-5. `boot()` - 14 edges
-6. `Markov5Rows` - 13 edges
-7. `BabelRanker4096` - 12 edges
-8. `GenerativeAddress` - 12 edges
-9. `main()` - 12 edges
-10. `atlasBoot()` - 12 edges
+5. `GenerativeAddress` - 15 edges
+6. `self_test()` - 14 edges
+7. `boot()` - 14 edges
+8. `Markov5Rows` - 13 edges
+9. `BabelRanker4096` - 12 edges
+10. `main()` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `main()` --calls--> `ContextPermutationV1`  [INFERRED]
@@ -146,10 +149,10 @@
 ## Import Cycles
 - None detected.
 
-## Communities (124 total, 29 thin omitted)
+## Communities (126 total, 30 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.09
+Cohesion: 0.10
 Nodes (13): ClusterRanker, HierarchicalRawRanker, main(), parse_path(), Path, Exact ranker for fixed-length pages over the project's 256-symbol alphabet., Count raw-symbol suffixes, aggregating symbols by destination cluster., Exact energy-ordered enumerator for fixed-length cluster paths. (+5 more)
 
 ### Community 1 - "Community 1"
@@ -189,7 +192,7 @@ Cohesion: 0.28
 Nodes (15): boot(), buildTinyRanker(), detok(), generateFSM(), generateParagraphStudent(), generateSentenceFromTemplate(), generateSentenceStudent(), isPunct() (+7 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.31
+Cohesion: 0.28
 Nodes (6): ChunkedRawCounter, main(), Counter, Apply one exact raw-symbol transition to a state/energy vector., Return T[source][destination][energy] for exactly ``span`` steps., Count every raw page exactly, composing complete blocks then a tail.
 
 ### Community 11 - "Community 11"
@@ -269,8 +272,8 @@ Cohesion: 0.53
 Nodes (8): api(), baseRank(), boot(), exactRank(), rankAddress(), selectedLength(), selectedMode(), usesServerExact()
 
 ### Community 32 - "implementation_plan.md"
-Cohesion: 0.13
-Nodes (27): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), generated_text() (+19 more)
+Cohesion: 0.10
+Nodes (35): GenerativeAddress, Exact experimental addresses for two generated half-pages of alphabet indices., _self_test(), canonical_json(), cold_generate(), decode(), digest(), generated_text() (+27 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.29
@@ -413,8 +416,8 @@ Cohesion: 0.22
 Nodes (9): STAGE 8. Условное расширение выразительности, Критерий завершения, Критерий перехода на Stage 8, Принципиальное отличие от старого пути, Проблема фиксированного спектра, Расширение 8A. Позиционно-зависимые спектры, Расширение 8B. Периодические или блочные спектры, Расширение 8C. Малое латентное состояние (+1 more)
 
 ### Community 116 - "ROADMAP.md"
-Cohesion: 0.25
-Nodes (7): 11. Логическая зависимость стадий, 13. Условия, при которых научная работа считается законченной, 14. Самая важная формулировка для следующего агента, Математическая готовность, Модельная готовность, Репродуктивная готовность, Эмпирическая готовность
+Cohesion: 0.40
+Nodes (5): 13. Условия, при которых научная работа считается законченной, Математическая готовность, Модельная готовность, Репродуктивная готовность, Эмпирическая готовность
 
 ### Community 117 - "2. Центральная математическая гипотеза"
 Cohesion: 0.25
@@ -444,25 +447,33 @@ Nodes (8): main(), measure(), provenance(), Path, require_prefix(), seed_range()
 Cohesion: 0.67
 Nodes (3): Как воспроизвести адрес, Как отбирали страницы, Что открывается на восьми малых и восьми далёких адресах Qwen3
 
+### Community 124 - "evaluate_continuations.py"
+Cohesion: 0.36
+Nodes (7): compare(), Read an anonymous page or reproduce the published continuation comparison., Each positive judgment must cite the original, unnormalized Unicode text., Exact two-sided sign test conditional on the discordant matched seeds., read_lines(), summarize(), validate_reading()
+
+### Community 125 - "Сохраняет ли Qwen смысл между половинами страницы"
+Cohesion: 0.33
+Nodes (6): Для чего проверяли на двух компьютерах, Как повторить, Как сравнивали, Следующий шаг, Сохраняет ли Qwen смысл между половинами страницы, Что изменили в генераторе
+
 ## Knowledge Gaps
-- **311 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+306 more)
+- **316 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+311 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `RawClusterRanker` connect `Community 0` to `Community 1`, `Community 10`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **Why does `HierarchicalEnumeratorV1` connect `Community 6` to `Community 1`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `HierarchicalEnumeratorV1` (e.g. with `catalogue_ranker()` and `main()`) actually correct?**
   _`HierarchicalEnumeratorV1` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
-  _311 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _316 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.09494949494949495 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
