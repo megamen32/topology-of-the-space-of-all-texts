@@ -1,0 +1,37 @@
+{
+  "api": {
+    "method": "POST",
+    "path": "/api/chat",
+    "stream": false,
+    "think": false,
+    "options": {
+      "temperature": 0,
+      "seed": 7331,
+      "num_ctx": 4096,
+      "num_predict": 1024
+    }
+  },
+  "order": [
+    "print_ru",
+    "clock_en",
+    "print_en",
+    "clock_ru"
+  ],
+  "tasks": {
+    "print_ru": "Напиши по-русски рассказ объёмом 150–220 слов, без заголовка. Утром в типографии Мира кладёт полоску бумаги на последнюю букву слова «АТЛАС» и снимает пробные копии. Она убирает полоску и делает копии для витрины. К вечеру ярлыки от обеих папок отклеиваются. Бумага и чернила у всех листов одинаковые. Покажи утреннюю сцену. В последнем абзаце Мира выбирает лист для витрины и объясняет стажёру, как утренняя работа помогла ей различить папки. Выведи только рассказ.",
+    "print_en": "Write a story in English, 150–220 words, without a title. In the morning at a print shop, Mira lays a strip of paper over the last letter of the word “ATLAS” and makes some test copies. She removes the strip and makes copies for the window display. By evening the labels have fallen off both folders. The paper and ink are identical on every sheet. Show the morning scene. In the final paragraph Mira chooses a sheet for the window and explains to a trainee how the morning's work helped her tell the folders apart. Output only the story.",
+    "clock_ru": "Напиши по-русски рассказ объёмом 150–220 слов, без заголовка. Утром Лев видит, как часовщик в читальном зале останавливает часы на десять минут, а затем пускает их, не переводя стрелок. Часы во дворе весь день показывают точное время. Вечером двое дежурных, один в зале, другой во дворе, слышат один и тот же звонок. Каждый записывает время по ближайшим часам. На записках стоят 18:10 и 18:20, подписей нет. Покажи утреннюю сцену. В последнем абзаце Лев определяет, какая записка из зала и во сколько на самом деле прозвенел звонок, и объясняет свой вывод. Выведи только рассказ.",
+    "clock_en": "Write a story in English, 150–220 words, without a title. In the morning Lev watches a clockmaker stop the reading-room clock for ten minutes, then restart it without moving its hands. The courtyard clock keeps correct time all day. In the evening two attendants, one in the reading room and one in the courtyard, hear the same bell. Each writes down the time on the nearest clock. The unsigned notes say 18:10 and 18:20. Show the morning scene. In the final paragraph Lev works out which note came from the reading room and what time the bell actually rang, and explains his reasoning. Output only the story."
+  },
+  "schedule": "One block per tag in order of availability, starting with qwen3:1.7b then gemma4:latest. Within each block use the listed task order. Each request has only one user message, with the installed model's own chat formatting. One attempt per task. No warm-ups or keep_alive override. Record residency before and after each request and the observed context.",
+  "selection_after_blind_review": "Compare small candidates by complete three-part causal chains (0–4), then by total causal criteria (0–12), then by tasks meeting both language and word count (0–4), then by total coherence (0–8). If those tie, prefer higher pooled characters per decode second in this deployment. The larger reference is reported separately after grading. Interpret the result only for these two plots.",
+  "metrics": {
+    "load_s": "API load_duration / 1e9; includes scheduler/load overhead and is not necessarily a cold load.",
+    "decode_s": "API eval_duration / 1e9.",
+    "tokens_per_decode_s": "API eval_count / decode_s; tokenizer-specific.",
+    "chars_per_decode_s": "Unicode code points in the exact message.content including whitespace / decode_s.",
+    "words": "Unicode alphanumeric tokens; internal hyphens/apostrophes join words; HH:MM counts as one.",
+    "aggregate": "Sum of counts divided by sum of decode seconds; character counts include only message.content. Separate end-to-end and prompt timings."
+  },
+  "artifacts": "Exact request and response bodies, model manifests as installed, native templates, before/after /api/ps and GPU snapshots, layer logs where available. Model name and timings are excluded from blind cards."
+}

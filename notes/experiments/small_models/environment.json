@@ -1,0 +1,116 @@
+{
+  "hardware": {
+    "cpu": "Intel(R) Xeon(R) CPU E5-2696 v4 @ 2.20GHz",
+    "gpu": [
+      {
+        "driver_version": "595.99.02",
+        "memory.total": "12288",
+        "name": "NVIDIA GeForce RTX 3080 Ti"
+      }
+    ],
+    "host_ram_kib": 131869404,
+    "logical_cpus": 88
+  },
+  "protocol_frozen_at_utc": "2026-11-20T04:20:58.133621+00:00",
+  "size_policy": {
+    "unit": "bytes",
+    "maximum_candidate_bytes": 3000000000,
+    "measured_field": "/api/tags models[].size",
+    "basis": "Full installed tag including all shipped components. A tag above the limit is a quality reference. Exactly the limit is eligible.",
+    "scope": "Applies to both blind batches. The size rule was supplied after generation of the first batch and before generation of the second. It changes eligibility only."
+  },
+  "models": [
+    {
+      "actual_contexts": [
+        4096
+      ],
+      "completed_requests": 4,
+      "manifest_sha256": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+      "native_template_sha256": "ae370d884f108d16e7cc8fd5259ebc5773a0afa6e078b11f4ed7e39a27e0dfc4",
+      "ollama_version": "0.32.1",
+      "quantization": "Q4_K_M",
+      "tag": "qwen3:1.7b",
+      "tag_size_bytes": 1359293444
+    },
+    {
+      "actual_contexts": [
+        4096
+      ],
+      "completed_requests": 4,
+      "manifest_sha256": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "native_template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "ollama_version": "0.32.1",
+      "quantization": "Q4_K_M",
+      "tag": "gemma4:latest",
+      "tag_size_bytes": 9608350718
+    },
+    {
+      "actual_contexts": [
+        4096
+      ],
+      "completed_requests": 4,
+      "manifest_sha256": "97558784bdc9175075a72655bf360b15da17df6b3b9e5182af9f8c0c8e58ba7c",
+      "native_template_sha256": "e0a42594d802e5d31cdc786deb4823edb8adff66094d49de8fffe976d753e348",
+      "ollama_version": "0.32.1",
+      "quantization": "Q4_K_M",
+      "tag": "gemma3:1b",
+      "tag_size_bytes": 806067407
+    },
+    {
+      "actual_contexts": [
+        4096
+      ],
+      "completed_requests": 4,
+      "manifest_sha256": "0689d44085e06d165161a8a9a1731344278cfb5aade63a3c3dbdb48ab54b130a",
+      "native_template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "ollama_version": "0.32.1",
+      "quantization": "Q8_0",
+      "tag": "qwen3.5:2b",
+      "tag_size_bytes": 2683396812
+    },
+    {
+      "actual_contexts": [
+        4096
+      ],
+      "completed_requests": 4,
+      "manifest_sha256": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+      "native_template_sha256": "813f53fdc6e58d35bb1c3853c93266380e9ca918a993e8eab193e8ede5d3a603",
+      "ollama_version": "0.32.1",
+      "quantization": "Q4_K_M",
+      "tag": "phi4-mini:3.8b",
+      "tag_size_bytes": 2491876774
+    },
+    {
+      "actual_contexts": [
+        4096
+      ],
+      "completed_requests": 4,
+      "manifest_sha256": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+      "native_template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "ollama_version": "0.32.1",
+      "quantization": "Q4_K_M",
+      "tag": "qwen3.5:4b",
+      "tag_size_bytes": 3324173934
+    }
+  ],
+  "blind_batches": [
+    {
+      "start_utc": "2026-11-20T04:20:59.726962+00:00",
+      "finish_utc": "2026-11-20T04:28:45.194155+00:00",
+      "key_sha256": "fb37791339d45c18b7dc842d026328eb3c8a492c90272e881970a9e453a99d5a",
+      "reader_files_sha256": [
+        "c2baecb13e16d0e9fd66d6cb4aed8a209de242c7ca262850f690e92b17c071ef",
+        "cc1ebee271c21492d52cb3f9cc976c31f786fc46c69620d36b877f70be5d6af3"
+      ]
+    },
+    {
+      "start_utc": "2026-11-20T04:41:39.252447+00:00",
+      "finish_utc": "2026-11-20T04:43:00.996303+00:00",
+      "key_sha256": "1223d36371e6866be0b9bcefc13fbeb9481d34f0623e948ea47540f865bce9d4",
+      "reader_files_sha256": [
+        "be681a3d7068e92b0652b8cf2143935f3ec3fdbbde3b5aa1348242ca010acfac",
+        "22957592fa864f2b7c644c8fc59cbc3e2c8a1ceb59ea37087f1706f5e4882f73"
+      ]
+    }
+  ]
+}

@@ -1,16 +1,16 @@
-# Graph Report - graph-clean  (2026-11-20)
+# Graph Report - compare-clean  (2026-11-20)
 
 ## Corpus Check
-- 138 files · ~2,339,065 words
+- 143 files · ~2,341,543 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1013 nodes · 1512 edges · 121 communities (92 shown, 29 thin omitted)
+- 1022 nodes · 1523 edges · 122 communities (93 shown, 29 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.65)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d15345d3`
+- Built from commit: `e1056dcd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -115,6 +115,7 @@
 - STAGE 9. Масштабирование, точная арифметика и воспроизводимость
 - STAGE 0. Формализация объекта библиотеки
 - Задачи
+- Какая маленькая модель удерживает развязку рассказа?
 
 ## God Nodes (most connected - your core abstractions)
 1. `HierarchicalEnumeratorV1` - 25 edges
@@ -143,7 +144,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (121 total, 29 thin omitted)
+## Communities (122 total, 29 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.10
@@ -234,8 +235,8 @@ Cohesion: 0.39
 Nodes (6): fail(), log(), main(), need_file(), run_step(), run_pipeline.sh script
 
 ### Community 23 - "Community 23"
-Cohesion: 0.07
-Nodes (26): template(), tok_type(), build_clusterer(), build_model(), sentence_energy(), tokenize(), blind_plan(), distinct_ranks() (+18 more)
+Cohesion: 0.06
+Nodes (33): template(), tok_type(), build_clusterer(), build_model(), sentence_energy(), tokenize(), blind_plan(), distinct_ranks() (+25 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.53
@@ -302,8 +303,8 @@ Cohesion: 0.33
 Nodes (6): 1. Порядок всех страниц по стоимости исходной модели, 2. Масштабирование точного подсчёта, 3. Читаемость, 4. Проверки нового порядка, 5. Связность и адреса в эксперименте с LLM, Открытые задачи
 
 ### Community 41 - "Community 41"
-Cohesion: 0.29
-Nodes (7): Как восстановить исходную таблицу Markov-5, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что проверено на публичном сайте, Что удавалось ранним моделям, Эксперимент с Qwen3
+Cohesion: 0.25
+Nodes (8): Как восстановить исходную таблицу Markov-5, Результаты слепой проверки, Текущий статус, Что остаётся проверить, Что показало сравнение малых языковых моделей, Что проверено на публичном сайте, Что удавалось ранним моделям, Эксперимент с Qwen3
 
 ### Community 42 - "Community 42"
 Cohesion: 0.40
@@ -358,8 +359,8 @@ Cohesion: 0.40
 Nodes (5): Как номер превращается в страницу, Можно ли отдать начало библиотеки языковой модели?, Первая проверка с языковой моделью, 20 ноября 2026 года, Следующий эксперимент и критерии решения, Что уже проверено
 
 ### Community 93 - "README.md"
-Cohesion: 0.42
-Nodes (7): detok(), generate_sentence(), main(), paragraph_frontier(), realize(), sentence_frontier(), type_ok()
+Cohesion: 0.67
+Nodes (3): consensus(), main(), Recompute the blinded story comparison from the published records.
 
 ### Community 104 - "atlas.js"
 Cohesion: 0.19
@@ -429,8 +430,12 @@ Nodes (6): STAGE 0. Формализация объекта библиотеки
 Cohesion: 0.50
 Nodes (4): Генераторы в браузере, Локальный запуск, Что считает Score, Шесть режимов генератора
 
+### Community 121 - "Какая маленькая модель удерживает развязку рассказа?"
+Cohesion: 0.67
+Nodes (3): Из чего выбирали, Как перепроверить, Какая маленькая модель удерживает развязку рассказа?
+
 ## Knowledge Gaps
-- **304 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+299 more)
+- **307 isolated node(s):** `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script`, `enable-babel-walk-tls.sh script`, `graphify-semantic.sh script` (+302 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -448,6 +453,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 3 inferred relationships involving `RawClusterRanker` (e.g. with `exact_cluster_ranker()` and `ChunkedRawCounter`) actually correct?**
   _`RawClusterRanker` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `clone_tg_economic.sh script`, `install_dataset_deps.sh script`, `deploy-babel-walk.sh script` to the rest of the system?**
-  _304 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _307 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09830866807610994 - nodes in this community are weakly interconnected._

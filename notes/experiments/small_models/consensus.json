@@ -1,0 +1,11 @@
+{
+  "set_before_opening_any_ratings": "2026-11-20T04:32:44Z",
+  "small_budget_decimal_bytes": 3000000000,
+  "reference": "gemma4:latest",
+  "borderline_reference": "qwen3.5:4b",
+  "independent_ratings": 2,
+  "combination": "A completed causal chain requires both readers to give all three flags; count individual criteria only when both marked them. Language/length requires both language flags and 150–220 words. Use the mean coherence score. Apply the frozen ordered criteria; report each reader independently alongside consensus.",
+  "scope": "two paired story mechanisms, RU and EN, one deterministic output each; no population inference",
+  "rubric_hash": "81b9cb2784979c85b5ca4e51357d3f1e0f3d1a142072b51955f7050a3dcab502",
+  "design_hash": "135083eb49798c73bbd8c1000e6524e73f2e47bde04b2a86e58bca63dee08264"
+}
