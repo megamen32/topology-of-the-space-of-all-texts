@@ -1,0 +1,32 @@
+{
+  "edition": "babel-qwen35-ref-v1",
+  "model": "Qwen3.5 4B Q4_K_M",
+  "model_sha256": "a9d0a3e1d8c91732a3812becd31f8d4a8ff57414903f226306069f0437e2ac50",
+  "sample": {
+    "address": "0x20",
+    "symbols": 4096,
+    "page_sha256": "9d78db13a4f38d30aa6fd09b3d1dc938f8b4f4f1d5d831325385f9a1fb579123",
+    "page": "32-ru.txt",
+    "language": "ru"
+  },
+  "test": {
+    "independent_generation": "Temporary single-slot server with the pinned Haswell backend on server 88.",
+    "rank": "A separate container recomputed both predictors from the UTF-8 page and returned 0x20.",
+    "rank_seconds": 359.4,
+    "unrank_seconds": 362.1,
+    "final_image_unrank": {
+      "address": "0x20",
+      "seconds": 353.1,
+      "matches_independent_generation": true
+    },
+    "web_roundtrip": {
+      "mode": "qwen35_reference_v1",
+      "opened_address": "32",
+      "returned_address": "32",
+      "page_matches": true
+    }
+  },
+  "runtime": "Ollama 0.32.1 runtime, llama.cpp b9888, Linux x86-64 CPU Haswell, four threads.",
+  "note": "One positive test establishes the recorded round trip. Identical predictor calculations remain a condition for general inversion.",
+  "image_id": "sha256:62e81663d9ce76766986789cf8208c3f7c4347b8e9fee59deb9b514a5fffef11"
+}

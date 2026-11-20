@@ -1,4 +1,6 @@
 const QWEN_MODE = 'qwen_reference_v1';
+const QWEN35_MODE = 'qwen35_reference_v1';
+const isQwen = () => mode.value === QWEN_MODE || mode.value === QWEN35_MODE;
 const byId = id => document.getElementById(id);
 const mode = byId('rankMode');
 const lengthSelect = byId('rankLength');
@@ -121,8 +123,8 @@ function setBusy(busy) {
 function changeMode() {
   ++revision;
   setBusy(false);
-  const qwen = mode.value === QWEN_MODE;
-  for (const id of ['fileControl', 'qwenHint', 'copyPage', 'downloadPage']) byId(id).hidden = !qwen;
+  const qwen = isQwen();
+  for (const id of ['fileControl', 'qwenHint', 'copyPage', 'downloadPage', 'editionHint']) byId(id).hidden = !qwen;
   counterWrap.hidden = !qwen;
   if (qwen) updateQwenHint();
   for (const id of ['lengthControl', 'scoreBtn', 'searchBtn', 'clusterHint']) byId(id).hidden = qwen;
@@ -139,14 +141,16 @@ function changeMode() {
 async function runQwen(operation, current, output) {
   const input = operation === 'rank' ? {text: paddedPage()} : {rank: rankInput.value.trim()};
   output.textContent = 'Отправляем запрос…';
-  let job = await api('/api/' + operation, {mode: QWEN_MODE, ...input});
+  const selectedMode = mode.value;
+  const jobsPath = selectedMode === QWEN35_MODE ? '/api/qwen35/jobs/' : '/api/qwen/jobs/';
+  let job = await api('/api/' + operation, {mode: selectedMode, ...input});
   const id = job.job_id;
   if (!id) throw new Error('Служба не выдала номер задания.');
   while (current === revision && (job.status === 'queued' || job.status === 'running')) {
     output.textContent = job.status === 'queued' ? 'Задание в очереди…' : 'Qwen вычисляет страницу. Это может занять несколько минут.';
     await new Promise(resolve => setTimeout(resolve, 2000));
     if (current !== revision) return;
-    job = await api('/api/qwen/jobs/' + encodeURIComponent(id));
+    job = await api(jobsPath + encodeURIComponent(id));
     if (job.job_id !== id) throw new Error('Служба вернула ответ на другое задание.');
   }
   if (current !== revision) return;
@@ -194,7 +198,7 @@ async function run(operation) {
   const current = ++revision;
   const output = operation === 'unrank' ? unrankResult : result;
   try {
-    if (mode.value === QWEN_MODE) {
+    if (isQwen()) {
       clearAddressReceipt();
       setBusy(true);
       await runQwen(operation, current, output);
@@ -221,7 +225,7 @@ function pageEdited() {
 }
 query.onbeforeinput = () => { editStart = query.selectionStart; };
 query.oninput = () => {
-  if (mode.value === QWEN_MODE) {
+  if (isQwen()) {
     if (originalUnits) keepSourceLineEndings();
     pageEdited();
   } else originalUnits = null;
@@ -234,7 +238,7 @@ rankInput.oninput = () => {
   }
 };
 query.onpaste = event => {
-  if (mode.value !== QWEN_MODE || query.readOnly || !event.clipboardData) return;
+  if (!isQwen() || query.readOnly || !event.clipboardData) return;
   const pasted = event.clipboardData.getData('text/plain');
   const start = query.selectionStart;
   const end = query.selectionEnd;
@@ -299,11 +303,12 @@ byId('downloadPage').onclick = () => {
   }
 };
 for (const name of ['score', 'rank', 'search', 'unrank']) byId(name + 'Btn').onclick = () => run(name);
-if (new URLSearchParams(location.search).get('mode') === QWEN_MODE) {
-  mode.value = QWEN_MODE;
+const requestedMode = new URLSearchParams(location.search).get('mode');
+if (requestedMode === QWEN_MODE || requestedMode === QWEN35_MODE) {
+  mode.value = requestedMode;
   rankInput.value = '41';
 }
 window.addEventListener('pageshow', event => {
-  if (event.persisted && mode.value === QWEN_MODE) changeMode();
+  if (event.persisted && isQwen()) changeMode();
 });
 changeMode();

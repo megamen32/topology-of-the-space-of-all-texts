@@ -12,6 +12,7 @@ from qwen_reference import ADDRESS_ENDPOINT, EDITION, PAGE, ReferenceClient, Ref
 
 
 MODE = "qwen_reference_v1"
+MODE_35 = "qwen35_reference_v1"
 MAX_DECIMAL_DIGITS = len(str(Decimal((1 << (8 * PAGE)) - 1)))
 
 
@@ -41,14 +42,14 @@ def job_input(operation, body):
     return parse_number(value)
 
 
-def job_result(client, operation, value):
+def job_result(client, operation, value, edition=EDITION):
     if operation == "rank":
         page, number = value, client.rank(value)
     else:
         page, number = client.unrank(value), value
         if not isinstance(page, str) or len(page) != PAGE or any(ch not in EDITION_INDEX for ch in page):
             return {"status": "error", "error": "Служба Qwen вернула страницу неверной длины или вне алфавита издания."}, 503
-    return {"status": "done", "edition": EDITION, "length": PAGE,
+    return {"status": "done", "edition": edition, "length": PAGE,
             "page": page, "rank": str(Decimal(number)), "rank_hex": hex(number)}, 200
 
 
@@ -57,8 +58,12 @@ class QueueFull(Exception):
 
 
 class QwenJobs:
-    def __init__(self, client_factory=ReferenceClient, *, max_active=4, max_results=16, ttl=900):
+    def __init__(self, client_factory=ReferenceClient, *, max_active=4, max_results=16, ttl=900,
+                 endpoint_variable="BABEL_QWEN_ENDPOINT", default_endpoint=ADDRESS_ENDPOINT, edition=EDITION):
         self.client_factory = client_factory
+        self.endpoint_variable = endpoint_variable
+        self.default_endpoint = default_endpoint
+        self.edition = edition
         self.max_active = max_active
         self.max_results = max_results
         self.ttl = ttl
@@ -86,8 +91,8 @@ class QwenJobs:
 
     def _run(self, job_id, operation, value):
         try:
-            client = self.client_factory(endpoint=environ.get("BABEL_QWEN_ENDPOINT", ADDRESS_ENDPOINT))
-            result, code = job_result(client, operation, value)
+            client = self.client_factory(endpoint=environ.get(self.endpoint_variable, self.default_endpoint))
+            result, code = job_result(client, operation, value, self.edition)
         except ValueError as exc:
             result, code = {"status": "error", "error": str(exc)}, 400
         except (ReferenceUnavailable, OSError):

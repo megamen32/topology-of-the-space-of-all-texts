@@ -55,7 +55,8 @@
           <label for="rankMode">Порядок страниц</label>
           <select id="rankMode">
             <option value="base256">Base-256 address</option>
-            <option value="qwen_reference_v1">Qwen · 4096 знаков</option>
+            <option value="qwen_reference_v1">Qwen3 1.7B · 4096 знаков</option>
+            <option value="qwen35_reference_v1">Qwen3.5 4B · 4096 знаков</option>
             <option value="exact_cluster_mvp">Cluster energy exact</option>
             <option value="exact_hierarchical_v1">Hierarchical exact</option>
           </select>
@@ -109,7 +110,7 @@
           <h2 id="from-number">Из номера в текст</h2>
           <div class="field-row"><label for="rankInput">Номер страницы</label></div>
           <textarea id="rankInput" rows="3" spellcheck="false" autocapitalize="off" aria-describedby="numberHint">0x0</textarea>
-          <div class="field-notes"><p id="numberHint">Десятичное число или шестнадцатеричное с&nbsp;префиксом <code>0x</code>.</p></div>
+          <div class="field-notes"><p id="numberHint">Десятичное число или шестнадцатеричное с&nbsp;префиксом <code>0x</code>.</p><p id="editionHint" hidden>Номера относятся к выбранному изданию.</p></div>
           <div class="actions"><button id="unrankBtn" class="primary" type="button">Unrank</button></div>
           <p class="mode-note" id="clusterHint">Кластерный режим работает с текстами до 256 знаков, иерархический — со страницами до 4096.</p>
           <pre id="unrankResult" class="output" role="status" aria-label="Результат открытия страницы"></pre>
@@ -147,6 +148,6 @@
     </div>
   </footer>
   <script src="assets/shared.js"></script>
-  <script src="assets/search.js?v=folio-2"></script>
+  <script src="assets/search.js?v=folio-qwen35-2"></script>
 </body>
 </html>
