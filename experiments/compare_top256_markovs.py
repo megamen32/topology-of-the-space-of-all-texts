@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json, argparse
+from markov5_storage import Markov5Rows
 
-ROOT=Path('/home/roomhacker/babel-experiments')
+ROOT=Path(__file__).resolve().parents[1]
 
 def load_model(n:int):
     if n == 0:
@@ -16,6 +17,10 @@ def load_model(n:int):
         p=ROOT/f'models/top256_markov{n}/markov{n}_meta.json'
     if not p.exists(): return None
     j=json.loads(p.read_text(encoding='utf-8'))
+    if n == 5:
+        rows = Markov5Rows(p.parent, j)
+        return {'n': n, 'alphabet': j['alphabet'], 'fallback': j['fallback_costs'],
+                'rows': rows, 'states': rows.state_count, 'size': rows.size + p.stat().st_size}
     idx_path=Path(j['index_file']); rows_path=Path(j['rows_file'])
     idx_size=8 if 'u64' in idx_path.name or n==5 else 4
     rows={}

@@ -23,8 +23,7 @@ from math import comb, gcd, log2
 from pathlib import Path
 from typing import Iterable, Protocol, Sequence
 import json
-import mmap
-import struct
+from markov5_storage import Markov5Rows
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -218,16 +217,8 @@ class ContextPermutationMarkov5:
             raise ValueError("Markov-5 model must expose 256 unique symbols")
         self.context_symbols = int(meta["context_symbols"])
         self.fallback_costs = tuple(int(cost) for cost in meta["fallback_costs"])
-        index_path = Path(meta["index_file"])
-        rows_path = Path(meta["rows_file"])
-        if not index_path.exists():
-            index_path = meta_path.parent / index_path.name
-        if not rows_path.exists():
-            rows_path = meta_path.parent / rows_path.name
-        self.index = index_path.read_bytes()
-        self.row_file = rows_path.open("rb")
-        self.rows = mmap.mmap(self.row_file.fileno(), 0, access=mmap.ACCESS_READ)
-        self.state_count = len(self.index) // 8
+        self.rows = Markov5Rows(meta_path.parent, meta)
+        self.state_count = self.rows.state_count
         self.space = self.alphabet.index(" ") if " " in self.alphabet else 0
         self.newline = self.alphabet.index("\n") if "\n" in self.alphabet else -1
 
@@ -237,17 +228,7 @@ class ContextPermutationMarkov5:
         state = 0
         for symbol in prefix[-self.context_symbols:]:
             state = (state << 8) | int(symbol)
-        low, high = 0, self.state_count
-        while low < high:
-            middle = (low + high) // 2
-            candidate = struct.unpack_from("<Q", self.index, middle * 8)[0]
-            if candidate < state:
-                low = middle + 1
-            else:
-                high = middle
-        if low >= self.state_count or struct.unpack_from("<Q", self.index, low * 8)[0] != state:
-            return self.fallback_costs
-        return struct.unpack_from("<256H", self.rows, low * 512)
+        return self.rows.get(state, self.fallback_costs)
 
     def order(self, prefix: Sequence[int]) -> Sequence[int]:
         costs = self._state_row(prefix)

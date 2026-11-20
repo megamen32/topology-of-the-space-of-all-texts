@@ -10,6 +10,7 @@ rsync -a --delete \
   --include '/experiments/backend_app.py' \
   --include '/experiments/hierarchical_enumerator_v1.py' \
   --include '/experiments/babel_shell_v1.py' \
+  --include '/experiments/markov5_storage.py' \
   --include '/experiments/cluster_counting_mvp.py' \
   --include '/models/' \
   --include '/models/cluster_student_v2/' \

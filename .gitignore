@@ -1,7 +1,16 @@
 # heavy/local data
 datasets/raw/
 datasets/processed/
-models/
+models/*
+!models/top256_alphabet/
+models/top256_alphabet/*
+!models/top256_alphabet/alphabet_top256.json
+!models/top256_markov5/
+models/top256_markov5/*
+!models/top256_markov5/markov5_meta.json
+!models/top256_markov5/markov5_meta.original.json
+!models/top256_markov5/markov5_index_u64.bin
+!models/top256_markov5/markov5_rows.zip
 tasks/
 venvs/
 
