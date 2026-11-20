@@ -1,0 +1,202 @@
+{
+  "generation_pairs": [
+    [
+      "far-01",
+      "odd-04"
+    ],
+    [
+      "far-02",
+      "even-04"
+    ],
+    [
+      "far-07",
+      "odd-03"
+    ],
+    [
+      "far-03",
+      "even-02"
+    ],
+    [
+      "odd-02",
+      "far-08"
+    ],
+    [
+      "far-04",
+      "even-03"
+    ],
+    [
+      "far-05",
+      "odd-01"
+    ],
+    [
+      "far-06",
+      "even-01"
+    ]
+  ],
+  "panels": {
+    "a": [
+      {
+        "id": "3b5d5bb48aa78a8317cd04f963193bc6",
+        "item": "far-05"
+      },
+      {
+        "id": "87f8a3f1bb29abcaeffbd07d9a207248",
+        "item": "ru_neg"
+      },
+      {
+        "id": "ae8662827318fd048a0d7caea1b520ee",
+        "item": "en_neg"
+      },
+      {
+        "id": "fa88db44756ce8a878a4c49ecc8bdbec",
+        "item": "odd-02"
+      },
+      {
+        "id": "12d385514cb427815e474a0b20b76a70",
+        "item": "even-02"
+      },
+      {
+        "id": "7ea16e4d31824aef2de93c049733061c",
+        "item": "even-04"
+      },
+      {
+        "id": "154aea9c96378f44ebedd6ffcf6ffb4c",
+        "item": "odd-03"
+      },
+      {
+        "id": "c7990c7a0551eff7a0a3c89606b7834d",
+        "item": "far-08"
+      },
+      {
+        "id": "4cb096f5d82af98023509c1bed512dda",
+        "item": "far-04"
+      },
+      {
+        "id": "af8653d1cd16d0ca34c2cae586c6b3ea",
+        "item": "far-07"
+      },
+      {
+        "id": "be2e7d31b0ecfb82d677091895060625",
+        "item": "far-02"
+      },
+      {
+        "id": "03b6b4c07cee4c2d3041f33036a9cf04",
+        "item": "ru_pos"
+      },
+      {
+        "id": "4bbfbd2bd2146bc8e50272b61e7df046",
+        "item": "odd-04"
+      },
+      {
+        "id": "ee11bc31633ee15593d9e53581cb3fab",
+        "item": "odd-01"
+      },
+      {
+        "id": "0f6c78a6cee1680ca8f50da40a072958",
+        "item": "en_pos"
+      },
+      {
+        "id": "3e1ce548e82df256d343e459cabb87ce",
+        "item": "even-01"
+      },
+      {
+        "id": "197d3065ea2993cfc4f44e9f32e165ad",
+        "item": "even-03"
+      },
+      {
+        "id": "53234c01426054d6bb5b1b9f2366900a",
+        "item": "far-01"
+      },
+      {
+        "id": "39ec64bec35cf8db8dfffa8862757311",
+        "item": "far-03"
+      },
+      {
+        "id": "bd242839a26f8434c489165c17af6bd2",
+        "item": "far-06"
+      }
+    ],
+    "b": [
+      {
+        "id": "aeb4137b185838c056edf8de3aa59917",
+        "item": "en_pos"
+      },
+      {
+        "id": "262ad23477e7cb8ed436fc3c82df6033",
+        "item": "far-02"
+      },
+      {
+        "id": "ee200d478b367dff20cc22102769a834",
+        "item": "odd-02"
+      },
+      {
+        "id": "7972c454875c77f8b0303ac641bc2c50",
+        "item": "even-03"
+      },
+      {
+        "id": "0bb67fbe9204b5603055d56e7ecbd596",
+        "item": "even-02"
+      },
+      {
+        "id": "951e4062913c326a5cdaf08cf922ffc3",
+        "item": "far-08"
+      },
+      {
+        "id": "f07fb1df61514d628e553eb96fcf6558",
+        "item": "odd-04"
+      },
+      {
+        "id": "5ea68a0ca2bcd4adf3682e31220e35e6",
+        "item": "ru_neg"
+      },
+      {
+        "id": "b27601fe52b1b0ba3af893e9b6551007",
+        "item": "far-05"
+      },
+      {
+        "id": "754f29bb4ae238e6845a6902f4f108cc",
+        "item": "ru_pos"
+      },
+      {
+        "id": "862640d49f0bc28c46bf8aee20d8d187",
+        "item": "even-04"
+      },
+      {
+        "id": "4b7112f17f9d3c605e11ea0c3ecf36c4",
+        "item": "far-04"
+      },
+      {
+        "id": "f8518c7706202a97d9ef339a85b8a619",
+        "item": "far-07"
+      },
+      {
+        "id": "47b8712f9e2d86ea5f8079fb18eee5ba",
+        "item": "far-06"
+      },
+      {
+        "id": "c52195bc6e984ff25604ae3ccddc4f8d",
+        "item": "far-03"
+      },
+      {
+        "id": "b00d518120855d8f7123bd6d1c3dfbb1",
+        "item": "odd-01"
+      },
+      {
+        "id": "5be6648b3d3eed7922ac30babd6a069f",
+        "item": "en_neg"
+      },
+      {
+        "id": "aa3c4b57ce46bc5af8e900cb47c95472",
+        "item": "far-01"
+      },
+      {
+        "id": "e7c64faba757e8b4c103c010993cf86b",
+        "item": "odd-03"
+      },
+      {
+        "id": "c2af9875fc88959d59b40abf93069724",
+        "item": "even-01"
+      }
+    ]
+  }
+}
